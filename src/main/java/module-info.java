@@ -1,4 +1,4 @@
-module com.hirundo.hirundo {
+module com.hirundo.app {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -6,6 +6,6 @@ module com.hirundo.hirundo {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.hirundo.hirundo to javafx.fxml;
-    exports com.hirundo.hirundo;
+    opens com.hirundo.app to javafx.fxml;
+    exports com.hirundo.app;
 }

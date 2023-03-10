@@ -1,4 +1,4 @@
-package com.hirundo.hirundo;
+package com.hirundo.app;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

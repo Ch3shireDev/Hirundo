@@ -1,4 +1,4 @@
-package com.hirundo.hirundo;
+package com.hirundo.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
