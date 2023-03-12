@@ -26,7 +26,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.hirundo.app'
-    mainClass = 'com.hirundo.app.HelloApplication'
+    mainClass = 'com.hirundo.app.Application'
 }
 
 javafx {

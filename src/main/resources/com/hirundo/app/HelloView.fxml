@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="400.0" minWidth="600.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hirundo.app.MainController">
+    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="100.0" vgrow="NEVER" />
+        </rowConstraints>
+        <GridPane GridPane.rowIndex="0">
+            <HBox>
+                <Button>Załaduj dane</Button>
+                <ProgressBar fx:id="progressBar" prefHeight="28.0" prefWidth="200.0" progress="0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets top="2.0" />
+               </padding></ProgressBar>
+            </HBox>
+            <columnConstraints>
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+        <AnchorPane  GridPane.rowIndex="1">
+        <HBox AnchorPane.topAnchor="0">
+            <Label>Wybierz gatunek:</Label>
+            <ComboBox fx:id="speciesComboBox" prefWidth="200.0" />
+            <Button alignment="CENTER">
+                Zatwierdź
+            </Button>
+        </HBox></AnchorPane>
+        <GridPane GridPane.rowIndex="2">
+            <Button>Zapisz wyniki</Button>
+            <columnConstraints>
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </GridPane>
+</AnchorPane>
