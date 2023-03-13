@@ -1,18 +1,21 @@
-package com.hirundo.app.controllers;
+package com.hirundo.app.views;
 
+import com.hirundo.app.view_models.MainViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
-    public MainController() {
+public class MainView implements Initializable {
+    private Parent parent;
+
+    public MainView() {
         super();
 //        records = FXCollections.observableArrayList("aaa", "bbb", "ccc");
 
@@ -22,6 +25,37 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+    public void setViewModel(MainViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
+    MainViewModel viewModel;
+
+    public void setText(String abc) {
+        text = new SimpleStringProperty(abc);
+    }
+
+    @FXML
+    public StringProperty getText() {
+        return text;
+    }
+
+    StringProperty text = new SimpleStringProperty("");
+
+    public Parent getParent() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainView.fxml"),
+                null,
+                null,
+                (x) -> this);
+
+        return fxmlLoader.load();
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
+
 //
 //    private final StringProperty twoWayInput = new SimpleStringProperty("default value");
 //

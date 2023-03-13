@@ -1,15 +1,16 @@
 package com.hirundo.app;
 
-import javafx.fxml.FXMLLoader;
+import com.hirundo.app.models.MainModel;
+import com.hirundo.app.view_models.MainViewModel;
+import com.hirundo.app.views.MainView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class Application extends javafx.application.Application {
 
-    public Application(){
+    public Application() {
         super();
     }
 
@@ -18,14 +19,17 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        var model = new MainModel();
+        var viewModel = new MainViewModel(model);
+        var view = new MainView();
+        view.setViewModel(viewModel);
 
         stage.setMinHeight(this.width);
         stage.setMinWidth(this.height);
         stage.setResizable(false);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/MainView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("view.css")).toExternalForm());
+        Scene scene = new Scene(view.getParent());
+
         stage.setTitle("Hirundo - powroty ptaków");
         stage.setScene(scene);
         stage.show();

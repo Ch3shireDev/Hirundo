@@ -7,13 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Rename hirundo\hirundo to hirundo\app">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/viewmodels/MainViewModel.java" afterDir="false" />
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Move classes and resources to views, models, controllers, viewmodels folders">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/viewmodels/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/viewmodels/MainViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/view.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/view.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,13 +128,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources\com\hirundo\app\views" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources\com\hirundo\app" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\java\com\hirundo\app" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Hirundo [build]">
+  <component name="RunManager" selected="Gradle.Hirundo [run]">
     <configuration name="Hirundo [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -204,8 +206,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Hirundo [build]" />
         <item itemvalue="Gradle.Hirundo [run]" />
+        <item itemvalue="Gradle.Hirundo [build]" />
         <item itemvalue="Gradle.Hirundo [check]" />
       </list>
     </recent_temporary>
@@ -227,7 +229,7 @@
       <workItem from="1678631095884" duration="6515000" />
       <workItem from="1678653327449" duration="4775000" />
       <workItem from="1678701643392" duration="2147000" />
-      <workItem from="1678729329362" duration="662000" />
+      <workItem from="1678729329362" duration="2684000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -236,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678487881020</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=":bird: Move classes and resources to views, models, controllers, viewmodels folders">
+      <created>1678730116165</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1678730116165</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +264,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":bird: Rename hirundo\hirundo to hirundo\app" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Rename hirundo\hirundo to hirundo\app" />
+    <MESSAGE value=":bird: Move classes and resources to views, models, controllers, viewmodels folders" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Move classes and resources to views, models, controllers, viewmodels folders" />
   </component>
 </project>
