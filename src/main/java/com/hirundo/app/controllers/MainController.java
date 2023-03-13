@@ -1,4 +1,4 @@
-package com.hirundo.app;
+package com.hirundo.app.controllers;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

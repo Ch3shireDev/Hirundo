@@ -23,7 +23,7 @@ public class Application extends javafx.application.Application {
         stage.setMinWidth(this.height);
         stage.setResizable(false);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("views/MainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("view.css")).toExternalForm());
         stage.setTitle("Hirundo - powroty ptaków");
