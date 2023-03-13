@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -18,16 +17,8 @@
         </rowConstraints>
         <GridPane GridPane.rowIndex="0">
             <HBox>
-                <Button>Załaduj dane</Button>
-                <ProgressBar prefHeight="28.0" prefWidth="200.0" progress="0">
-                    <HBox.margin>
-                        <Insets/>
-                    </HBox.margin>
-                    <padding>
-                        <Insets top="2.0"/>
-                    </padding>
-                </ProgressBar>
-                <Label text="${controller.text.valueSafe}" />
+                <Button onAction="#loadDataAction">Załaduj dane</Button>
+                <ProgressBar prefHeight="28.0" prefWidth="200.0" progress="0"/>
             </HBox>
             <columnConstraints>
                 <ColumnConstraints/>

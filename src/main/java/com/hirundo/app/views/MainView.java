@@ -1,50 +1,37 @@
 package com.hirundo.app.views;
 
 import com.hirundo.app.view_models.MainViewModel;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.stage.FileChooser;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
-    private Parent parent;
+
+    private final Desktop desktop = Desktop.getDesktop();
+    MainViewModel viewModel;
 
     public MainView() {
-        super();
-//        records = FXCollections.observableArrayList("aaa", "bbb", "ccc");
-
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
 
     }
 
-    public void setViewModel(MainViewModel viewModel) {
+    public void setViewModel(final MainViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
-    MainViewModel viewModel;
-
-    public void setText(String abc) {
-        text = new SimpleStringProperty(abc);
-    }
-
-    @FXML
-    public StringProperty getText() {
-        return text;
-    }
-
-    StringProperty text = new SimpleStringProperty("");
-
     public Parent getParent() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainView.fxml"),
+        final FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("MainView.fxml"),
                 null,
                 null,
                 (x) -> this);
@@ -52,43 +39,22 @@ public class MainView implements Initializable {
         return fxmlLoader.load();
     }
 
-    public void setParent(Parent parent) {
-        this.parent = parent;
+    public void loadDataAction(final ActionEvent actionEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        final File file = fileChooser.showOpenDialog(null);
+        if (null != file) {
+            this.openFile(file);
+            this.viewModel.loadData(file);
+        }
+
     }
 
-//
-//    private final StringProperty twoWayInput = new SimpleStringProperty("default value");
-//
-//    @FXML
-//    private final ObservableList<String> records;
-//
-//    private String name;
-//
-//    @FXML
-//    public String getName() {
-//        return name;
-//    }
-//
-//    @FXML
-//    public void setName(String value) {
-//        name = value;
-//    }
-//
-//    @FXML
-//    public ObservableList<String> getRecords() {
-//        return records;
-//    }
-//
-//    @FXML
-//    protected void onAddNewRecord() {
-//        addNewRecord();
-////        listView.scrollTo(records.size()-1);
-//    }
-//
-//
-//    public void addNewRecord() {
-//        if (name == null || name.isBlank()) return;
-//        records.add(name.trim());
-//        System.out.println("New Record added");
-//    }
+    private void openFile(final File file) {
+        try {
+            this.desktop.open(file);
+        } catch (final IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
 }
