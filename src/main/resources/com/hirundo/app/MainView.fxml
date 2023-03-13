@@ -17,7 +17,7 @@
         <GridPane GridPane.rowIndex="0">
             <HBox>
                 <Button>Załaduj dane</Button>
-                <ProgressBar fx:id="progressBar" prefHeight="28.0" prefWidth="200.0" progress="0">
+                <ProgressBar prefHeight="28.0" prefWidth="200.0" progress="0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -35,7 +35,7 @@
         <AnchorPane  GridPane.rowIndex="1">
         <HBox AnchorPane.topAnchor="0">
             <Label>Wybierz gatunek:</Label>
-            <ComboBox fx:id="speciesComboBox" prefWidth="200.0" />
+            <ComboBox prefWidth="200.0" />
             <Button alignment="CENTER">
                 Zatwierdź
             </Button>

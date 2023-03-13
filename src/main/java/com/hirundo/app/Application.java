@@ -8,14 +8,22 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Application extends javafx.application.Application {
+
+    public Application(){
+        super();
+    }
+
+    final double width = 600.0;
+    final double height = 400.0;
+
     @Override
     public void start(Stage stage) throws IOException {
 
-        stage.setMinWidth(400);
-        stage.setMinWidth(600);
+        stage.setMinHeight(this.width);
+        stage.setMinWidth(this.height);
         stage.setResizable(false);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("HelloView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("view.css")).toExternalForm());
         stage.setTitle("Hirundo - powroty ptaków");
