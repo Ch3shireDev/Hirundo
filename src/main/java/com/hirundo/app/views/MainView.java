@@ -1,6 +1,8 @@
 package com.hirundo.app.views;
 
 import com.hirundo.app.view_models.MainViewModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,22 +18,27 @@ import java.util.ResourceBundle;
 public class MainView implements Initializable {
 
     private final Desktop desktop = Desktop.getDesktop();
+    public StringProperty selectedFileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
     MainViewModel viewModel;
 
     public MainView() {
     }
 
+    public String getSelectedFileName() {
+        return selectedFileName.getValue();
+    }
+
     @Override
-    public void initialize(final URL location, final ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void setViewModel(final MainViewModel viewModel) {
+    public void setViewModel(MainViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
     public Parent getParent() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("MainView.fxml"),
+        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainView.fxml"),
                 null,
                 null,
                 (x) -> this);
@@ -39,21 +46,26 @@ public class MainView implements Initializable {
         return fxmlLoader.load();
     }
 
-    public void loadDataAction(ActionEvent actionEvent) {
-
-        final FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
-        if (null != file) {
-            this.openFile(file);
-            this.viewModel.loadData(file);
-        }
-
+    public void loadDataAction(final ActionEvent actionEvent) {
+            viewModel.loadData();
     }
 
-    private void openFile(File file) {
+    public void selectFileName(final ActionEvent actionEvent) {
+
+        if(viewModel==null)return;
+        String result = viewModel.selectFileName();
+        if(result!=null) selectedFileName.setValue(result);
+    }
+    public StringProperty selectedFileNameProperty() {
+        return selectedFileName;
+    }
+    public void setSelectedFileName(String value) {
+        selectedFileName.set(value);
+    }
+    private void openFile(final File file) {
         try {
-            this.desktop.open(file);
-        } catch (IOException ex) {
+            desktop.open(file);
+        } catch (final IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
     }

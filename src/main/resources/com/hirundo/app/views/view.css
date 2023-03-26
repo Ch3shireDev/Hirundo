@@ -4,23 +4,21 @@ Label {
     -fx-alignment: center;
 }
 
-HBox{
+HBox {
     -fx-padding: 10px;
     -fx-fit-to-height: true;
     -fx-alignment: center;
     -fx-spacing: 10px;
 }
 
-GridPane{
+GridPane {
     -fx-padding: 10px;
     -fx-fit-to-height: true;
     -fx-alignment: center;
     -fx-spacing: 10px;
 }
 
-ProgressBar{
-    -fx-padding-top: 2px;
-    -fx-fit-to-height: true;
+ProgressBar {
     -fx-alignment: center;
-    -fx-pref-height: 28px;
+    -fx-pref-height: 26px;
 }

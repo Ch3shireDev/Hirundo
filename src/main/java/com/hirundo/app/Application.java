@@ -1,9 +1,9 @@
 package com.hirundo.app;
 
+import com.hirundo.app.models.DialogFileChooser;
 import com.hirundo.app.models.MainModel;
 import com.hirundo.app.view_models.MainViewModel;
 import com.hirundo.app.views.MainView;
-import com.hirundo.libs.services.AccessNewDbBirdRecordDataLoader;
 import com.hirundo.libs.services.FileDataLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,34 +12,34 @@ import java.io.IOException;
 
 public class Application extends javafx.application.Application {
 
+    final double width = 600.0;
+    final double height = 400.0;
     public Application() {
     }
 
-    final double width = 600.0;
-    final double height = 400.0;
+    public static void main(final String[] args) {
+        launch();
+    }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(final Stage stage) throws IOException {
 
-        var dataLoader = new FileDataLoader();
+        final var dataLoader = new FileDataLoader();
+        final var fileChooser = new DialogFileChooser();
 
-        var model = new MainModel(dataLoader);
-        var viewModel = new MainViewModel(model);
-        var view = new MainView();
+        final var model = new MainModel(dataLoader, fileChooser);
+        final var viewModel = new MainViewModel(model);
+        final var view = new MainView();
         view.setViewModel(viewModel);
 
         stage.setMinHeight(width);
         stage.setMinWidth(height);
         stage.setResizable(false);
 
-        Scene scene = new Scene(view.getParent());
+        final Scene scene = new Scene(view.getParent());
 
         stage.setTitle("Hirundo - powroty ptaków");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        Application.launch();
     }
 }

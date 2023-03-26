@@ -1,6 +1,7 @@
 package com.hirundo.app.view_models;
 
 import com.hirundo.app.models.MainModel;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 
@@ -10,7 +11,11 @@ public class MainViewModel {
     }
     private final MainModel model;
 
-    public void loadData(File file) {
+    public void loadData() {
         model.loadData();
+    }
+
+    public String selectFileName() {
+        return model.selectFileName();
     }
 }
