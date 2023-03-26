@@ -1,7 +1,7 @@
 package com.hirundo.app.view_models;
 
 import com.hirundo.app.models.MainModel;
-import mockups.MockNewDbBirdRecordDataLoader;
+import mockups.MockFileDataLoader;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainViewModelTest {
 
-    MockNewDbBirdRecordDataLoader dataLoader;
+    MockFileDataLoader dataLoader;
     MainModel model;
     MainViewModel viewModel;
 
     @BeforeEach
     void setUp() {
-        dataLoader = new MockNewDbBirdRecordDataLoader();
+        dataLoader = new MockFileDataLoader();
         model = new MainModel(dataLoader);
         viewModel = new MainViewModel(model);
     }
@@ -34,7 +34,7 @@ class MainViewModelTest {
 
         viewModel.loadData(file);
 
-        assertTrue(dataLoader.loadDataCalled);
+        assertTrue(dataLoader.IsLoaded);
     }
 }
 

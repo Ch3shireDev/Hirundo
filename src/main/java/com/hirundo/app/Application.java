@@ -4,6 +4,7 @@ import com.hirundo.app.models.MainModel;
 import com.hirundo.app.view_models.MainViewModel;
 import com.hirundo.app.views.MainView;
 import com.hirundo.libs.services.AccessNewDbBirdRecordDataLoader;
+import com.hirundo.libs.services.FileDataLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -20,7 +21,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        var dataLoader = new AccessNewDbBirdRecordDataLoader();
+        var dataLoader = new FileDataLoader();
 
         var model = new MainModel(dataLoader);
         var viewModel = new MainViewModel(model);

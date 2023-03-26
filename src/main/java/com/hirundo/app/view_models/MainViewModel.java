@@ -11,6 +11,6 @@ public class MainViewModel {
     private final MainModel model;
 
     public void loadData(File file) {
-        this.model.loadData();
+        model.loadData();
     }
 }

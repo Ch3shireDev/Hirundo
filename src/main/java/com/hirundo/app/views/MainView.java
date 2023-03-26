@@ -22,11 +22,11 @@ public class MainView implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
 
     }
 
-    public void setViewModel(MainViewModel viewModel) {
+    public void setViewModel(final MainViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
