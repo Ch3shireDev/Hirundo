@@ -18,13 +18,12 @@ public class AccessNewDbBirdRecordDataLoader implements INewDbBirdRecordDataLoad
         this.tableName = tableName;
     }
 
-    public void setFilename(final String filename) {
+    public void setFileName(final String filename) {
         this.filename = filename;
     }
 
     @Override
     public List<NewDbBirdRecord> loadData() {
-
         var records = new LinkedList<NewDbBirdRecord>();
 
         Table table = null;

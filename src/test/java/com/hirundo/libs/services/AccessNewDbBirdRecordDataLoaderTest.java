@@ -17,7 +17,7 @@ class AccessNewDbBirdRecordDataLoaderTest {
 
     @Test
     void loadData() {
-        dataLoader.setFilename("src/test/resources/access_example_new_db.mdb");
+        dataLoader.setFileName("src/test/resources/access_example_new_db.mdb");
         dataLoader.setTableName("example table");
 
         var data = dataLoader.loadData();
@@ -111,16 +111,16 @@ class AccessNewDbBirdRecordDataLoaderTest {
         Assertions.assertEquals("", birb.Pole84);
         Assertions.assertEquals("+7", birb.P1PC);
         Assertions.assertEquals("", birb.Pole86);
-        Assertions.assertEquals(null, birb.Special5);
-        Assertions.assertEquals(null, birb.Pole88);
-        Assertions.assertEquals(null, birb.Special6);
-        Assertions.assertEquals(null, birb.Pole90);
-        Assertions.assertEquals(null, birb.Special7);
-        Assertions.assertEquals(null, birb.Pole92);
-        Assertions.assertEquals(null, birb.Special8);
-        Assertions.assertEquals(null, birb.Pole94);
+        Assertions.assertNull(birb.Special5);
+        Assertions.assertNull(birb.Pole88);
+        Assertions.assertNull(birb.Special6);
+        Assertions.assertNull(birb.Pole90);
+        Assertions.assertNull(birb.Special7);
+        Assertions.assertNull(birb.Pole92);
+        Assertions.assertNull(birb.Special8);
+        Assertions.assertNull(birb.Pole94);
         Assertions.assertEquals("", birb.Comments);
-        Assertions.assertEquals(null, birb.Notes_T);
+        Assertions.assertNull(birb.Notes_T);
         Assertions.assertEquals("KRS", birb.CodeR);
         Assertions.assertEquals("ŻYWOB", birb.KOND);
         Assertions.assertEquals("25", birb.OKOL);
@@ -130,27 +130,27 @@ class AccessNewDbBirdRecordDataLoaderTest {
         Assertions.assertEquals("-", birb.PRZEM);
         Assertions.assertEquals("STĘPNIEWSKI,KRZYSZTOF", birb.NAZWOB2);
         Assertions.assertEquals("", birb.BŁĄD);
-        Assertions.assertEquals(LocalDateTime.of(1899, 12, 30, 06, 00, 00), birb.Godz);
-        Assertions.assertEquals(LocalDateTime.of(2017, 03, 26, 06, 00, 00), birb.DT);
-        Assertions.assertEquals(null, birb.OB2);
-        Assertions.assertEquals(null, birb.TYP2);
-        Assertions.assertEquals(null, birb.CTR2);
-        Assertions.assertEquals(null, birb.KRZ2);
-        Assertions.assertEquals(null, birb.NROB2);
+        Assertions.assertEquals(LocalDateTime.of(1899, 12, 30, 6, 0, 0), birb.Godz);
+        Assertions.assertEquals(LocalDateTime.of(2017, 3, 26, 6, 0, 0), birb.DT);
+        Assertions.assertNull(birb.OB2);
+        Assertions.assertNull(birb.TYP2);
+        Assertions.assertNull(birb.CTR2);
+        Assertions.assertNull(birb.KRZ2);
+        Assertions.assertNull(birb.NROB2);
         Assertions.assertEquals("KRZYSZTOF STĘPNIEWSKI", birb.Name);
         Assertions.assertEquals("O", birb.OB1);
         Assertions.assertEquals("MET", birb.TYPE1);
         Assertions.assertEquals("PLG", birb.CTR1);
         Assertions.assertEquals("0", birb.DD);
         Assertions.assertEquals("?", birb.STATUS);
-        Assertions.assertEquals(null, birb.Index_l_prim);
-        Assertions.assertEquals(null, birb.Index_e_prim);
-        Assertions.assertEquals(null, birb.IndexL);
-        Assertions.assertEquals(null, birb.IndexE);
-        Assertions.assertEquals(null, birb.IndexH);
-        Assertions.assertEquals(null, birb.FotoB);
-        Assertions.assertEquals(null, birb.FotoW);
-        Assertions.assertEquals(null, birb.D9);
-        Assertions.assertEquals(null, birb.D10);
+        Assertions.assertNull(birb.Index_l_prim);
+        Assertions.assertNull(birb.Index_e_prim);
+        Assertions.assertNull(birb.IndexL);
+        Assertions.assertNull(birb.IndexE);
+        Assertions.assertNull(birb.IndexH);
+        Assertions.assertNull(birb.FotoB);
+        Assertions.assertNull(birb.FotoW);
+        Assertions.assertNull(birb.D9);
+        Assertions.assertNull(birb.D10);
     }
 }
