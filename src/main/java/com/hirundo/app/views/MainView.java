@@ -22,16 +22,16 @@ public class MainView implements Initializable {
     }
 
     @Override
-    public void initialize(final URL location, final ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void setViewModel(final MainViewModel viewModel) {
+    public void setViewModel(MainViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
     public Parent getParent() throws IOException {
-        final FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("MainView.fxml"),
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("MainView.fxml"),
                 null,
                 null,
                 (x) -> this);
@@ -39,10 +39,10 @@ public class MainView implements Initializable {
         return fxmlLoader.load();
     }
 
-    public void loadDataAction(final ActionEvent actionEvent) {
+    public void loadDataAction(ActionEvent actionEvent) {
 
-        FileChooser fileChooser = new FileChooser();
-        final File file = fileChooser.showOpenDialog(null);
+        final FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
         if (null != file) {
             this.openFile(file);
             this.viewModel.loadData(file);
@@ -50,10 +50,10 @@ public class MainView implements Initializable {
 
     }
 
-    private void openFile(final File file) {
+    private void openFile(File file) {
         try {
             this.desktop.open(file);
-        } catch (final IOException ex) {
+        } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
     }

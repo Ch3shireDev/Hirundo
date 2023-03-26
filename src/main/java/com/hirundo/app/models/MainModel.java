@@ -1,17 +1,17 @@
 package com.hirundo.app.models;
 
-import com.hirundo.libs.services.IDataLoader;
+import com.hirundo.libs.services.INewDbBirdRecordDataLoader;
 
 public class MainModel {
 
-    private final IDataLoader dataLoader;
+    private final INewDbBirdRecordDataLoader dataLoader;
 
-    public MainModel(final IDataLoader dataLoader) {
+    public MainModel(INewDbBirdRecordDataLoader dataLoader) {
         this.dataLoader = dataLoader;
     }
     public void loadData() {
-        final var filename = "abc.txt";
-        dataLoader.loadData(filename);
+//        final var filename = "abc.txt";
+        dataLoader.loadData();
     }
 }
 

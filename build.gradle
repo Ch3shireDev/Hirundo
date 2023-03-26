@@ -14,7 +14,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.9.1'
+    junitVersion = '5.9.2'
 }
 
 sourceCompatibility = '18'
@@ -36,10 +36,15 @@ javafx {
 
 dependencies {
     implementation('org.controlsfx:controlsfx:11.1.2')
-    implementation('com.dlsc.formsfx:formsfx-core:11.5.0') {
+    implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
         exclude(group: 'org.openjfx')
     }
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+    implementation 'c3p0:c3p0:0.9.1.2'
+    implementation 'org.java-sql-generator:org.java-sql-generator:0.3.2'
+    implementation 'org.java-sql-generator:java-sql-generator:0.2'
+    implementation 'jackcess:jackcess:1.1.10'
+    implementation 'com.healthmarketscience.jackcess:jackcess:4.0.5'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

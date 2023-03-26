@@ -6,6 +6,8 @@ module com.hirundo.app {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
+    requires java.sql;
+    requires com.healthmarketscience.jackcess;
 
     opens com.hirundo.app to javafx.fxml;
     exports com.hirundo.app;

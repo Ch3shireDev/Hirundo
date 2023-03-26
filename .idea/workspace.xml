@@ -8,18 +8,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Rename controllers to views&#10;&#10;Move FXML loader from Application to MainView">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IDataLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/mockups/MockDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add NewDbBirdRecord data structure with AccessDataLoader and tests">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessNewDbBirdRecordNewDbBirdRecordDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/INewDbBirdRecordDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessDataLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockNewDbBirdRecordDataLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,25 +43,12 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Hirundo" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Hirundo" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Hirundo" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Hirundo" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -79,13 +62,19 @@
       <list>
         <option value="FxmlFile" />
         <option value="CSS File" />
+        <option value="Class" />
+        <option value="Record" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="IzabelaJaszczuk &lt;izabela.m.jaszczuk@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubPullRequestsUISettings">
@@ -101,7 +90,7 @@
   </component>
   <component name="ProblemsViewState">
     <option name="groupByToolId" value="true" />
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2Mq30NdbvofRDchrImJXRm9Z6EG" />
   <component name="ProjectLevelVcsManager">
@@ -111,50 +100,74 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_directory_selection": "C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java",
-    "last_opened_file_path": "C:/Users/igor.nowicki/Documents/GitLab/Hirundo",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2816092",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "configurable.group.tools",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/komp/Documents/Hirundo&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2816092&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.hirundo.app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\test\resources" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\java\com\hirundo\libs" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources\com\hirundo\app\views" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources\com\hirundo\app" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources" />
-      <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\java\com\hirundo\app" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.hirundo.libs.services" />
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainViewModelTest.loadData">
+  <component name="RunManager" selected="Gradle.Hirundo [run]">
+    <configuration name="AccessDataLoaderTest.loadData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.AccessDataLoaderTest.loadData&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="Hirundo [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -242,6 +255,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.AccessDataLoaderTest.loadData" />
       <item itemvalue="Gradle.MainViewModelTest.loadData" />
       <item itemvalue="Gradle.Hirundo [check]" />
       <item itemvalue="Gradle.Hirundo [build]" />
@@ -249,10 +263,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainViewModelTest.loadData" />
         <item itemvalue="Gradle.Hirundo [run]" />
-        <item itemvalue="Gradle.Hirundo [build]" />
         <item itemvalue="Gradle.Hirundo [check]" />
+        <item itemvalue="Gradle.AccessDataLoaderTest.loadData" />
+        <item itemvalue="Gradle.MainViewModelTest.loadData" />
+        <item itemvalue="Gradle.Hirundo [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -274,6 +289,8 @@
       <workItem from="1678653327449" duration="4775000" />
       <workItem from="1678701643392" duration="2147000" />
       <workItem from="1678729329362" duration="3958000" />
+      <workItem from="1679837583641" duration="7484000" />
+      <workItem from="1679856806320" duration="837000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -296,7 +313,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678732165600</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=":bird: Add DbData data structure with tests">
+      <created>1679847551176</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679847551176</updated>
+    </task>
+    <task id="LOCAL-00005" summary=":bird: Add NewDbBirdRecord data structure with AccessDataLoader and tests">
+      <created>1679857018272</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679857018273</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +348,12 @@
     <MESSAGE value=":bird: Rename hirundo\hirundo to hirundo\app" />
     <MESSAGE value=":bird: Move classes and resources to views, models, controllers, viewmodels folders" />
     <MESSAGE value=":bird: Rename controllers to views&#10;&#10;Move FXML loader from Application to MainView" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Rename controllers to views&#10;&#10;Move FXML loader from Application to MainView" />
+    <MESSAGE value=":bird: Add DbData data structure with tests" />
+    <MESSAGE value=":bird: Add NewDbBirdRecord data structure with AccessDataLoader and tests" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add NewDbBirdRecord data structure with AccessDataLoader and tests" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

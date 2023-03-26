@@ -5,12 +5,12 @@ import com.hirundo.app.models.MainModel;
 import java.io.File;
 
 public class MainViewModel {
-    public MainViewModel(final MainModel model) {
+    public MainViewModel(MainModel model) {
         this.model = model;
     }
     private final MainModel model;
 
-    public void loadData(final File file) {
+    public void loadData(File file) {
         this.model.loadData();
     }
 }

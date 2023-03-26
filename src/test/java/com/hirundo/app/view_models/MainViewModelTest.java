@@ -1,26 +1,26 @@
 package com.hirundo.app.view_models;
 
 import com.hirundo.app.models.MainModel;
-import mockups.MockDataLoader;
+import mockups.MockNewDbBirdRecordDataLoader;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainViewModelTest {
 
-    MockDataLoader dataLoader;
+    MockNewDbBirdRecordDataLoader dataLoader;
     MainModel model;
     MainViewModel viewModel;
 
     @BeforeEach
     void setUp() {
-        this.dataLoader = new MockDataLoader();
-        this.model = new MainModel(this.dataLoader);
-        this.viewModel = new MainViewModel(this.model);
+        dataLoader = new MockNewDbBirdRecordDataLoader();
+        model = new MainModel(dataLoader);
+        viewModel = new MainViewModel(model);
     }
 
     @AfterEach
@@ -32,9 +32,9 @@ class MainViewModelTest {
     void loadData() {
         final File file = new File("abc.mdb");
 
-        this.viewModel.loadData(file);
+        viewModel.loadData(file);
 
-        assertTrue(this.dataLoader.loadDataCalled);
+        assertTrue(dataLoader.loadDataCalled);
     }
 }
 
