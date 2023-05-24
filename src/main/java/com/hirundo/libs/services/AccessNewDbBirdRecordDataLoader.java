@@ -12,11 +12,6 @@ import java.util.List;
 
 public class AccessNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<NewDbBirdRecord> {
     private String filename;
-    private String tableName;
-
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
 
     public void setFileName(final String filename) {
         this.filename = filename;

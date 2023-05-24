@@ -4,8 +4,7 @@ import com.hirundo.libs.data_structures.DbBirdRecord;
 
 import java.util.List;
 
-public interface IFileDataLoader {
-    void setFileName(String fileName);
+public interface IDbBirdRecordDataLoader extends IBirdRecordDataLoader<DbBirdRecord> {
+    @Override
     List<DbBirdRecord> loadData(String tableName) throws Exception;
 }
-

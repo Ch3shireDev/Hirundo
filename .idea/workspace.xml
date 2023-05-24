@@ -8,34 +8,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add IFileChooser to MainModel">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/DbBirdRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IBirdRecordDataLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/FileDataLoaderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/mockups/MockOldDbBirdRecordDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Merge New and Old DbBirdRecordDataLoader into generics">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/BirdDataLoaderAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IDbBirdRecordDataLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mockups/MockDbBirdRecordDataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/DialogFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/DialogFileChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/IFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/IFileChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/OldDbBirdRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/OldDbBirdRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/FileDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/FileDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IBirdRecordDataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IFileDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IFileDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/INewDbBirdRecordDataLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IOldDbBirdRecordDataLoader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockFileChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockFileDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockFileDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/FileDataLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/FileDataLoaderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockNewDbBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockNewDbBirdRecordDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/access_example_new_db.mdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/access_example_new_db.mdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/access_example_old_db.mdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/access_example_old_db.mdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockOldDbBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockOldDbBirdRecordDataLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +63,8 @@
         <option value="FxmlFile" />
         <option value="CSS File" />
         <option value="Record" />
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -165,6 +150,30 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Tests in 'Hirundo.test'">
+    <configuration name="FileDataLoaderTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.FileDataLoaderTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration name="FileDataLoaderTest.loadDataWithFilename" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -235,30 +244,6 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="MainViewModelTest.selectFileAndLoad" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.hirundo.app.view_models.MainViewModelTest.selectFileAndLoad&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
     <configuration name="Tests in 'Hirundo.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -282,19 +267,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.FileDataLoaderTest" />
       <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithFilename" />
       <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithoutFilename" />
-      <item itemvalue="Gradle.MainViewModelTest.selectFileAndLoad" />
       <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
       <item itemvalue="Gradle.Hirundo [run]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
+        <item itemvalue="Gradle.FileDataLoaderTest" />
         <item itemvalue="Gradle.Hirundo [run]" />
         <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithFilename" />
         <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithoutFilename" />
-        <item itemvalue="Gradle.MainViewModelTest.selectFileAndLoad" />
       </list>
     </recent_temporary>
   </component>
@@ -321,7 +306,7 @@
       <workItem from="1681493693544" duration="403000" />
       <workItem from="1681928320535" duration="28000" />
       <workItem from="1683440628402" duration="73000" />
-      <workItem from="1684948526476" duration="12499000" />
+      <workItem from="1684948526476" duration="15619000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -386,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679866844512</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary=":bird: Merge New and Old DbBirdRecordDataLoader into generics">
+      <created>1684963764430</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1684963764431</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +404,8 @@
     <MESSAGE value=":bird: Add OldDbBirdRecord data structure with AccessDataLoader and tests" />
     <MESSAGE value=":bird: Replace MainModel data loader with FileDataLoader" />
     <MESSAGE value=":bird: Add IFileChooser to MainModel" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add IFileChooser to MainModel" />
+    <MESSAGE value=":bird: Merge New and Old DbBirdRecordDataLoader into generics" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Merge New and Old DbBirdRecordDataLoader into generics" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

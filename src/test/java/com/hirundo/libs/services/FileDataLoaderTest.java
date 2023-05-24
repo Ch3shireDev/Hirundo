@@ -1,21 +1,20 @@
 package com.hirundo.libs.services;
 
-import mockups.MockNewDbBirdRecordDataLoader;
-import mockups.MockOldDbBirdRecordDataLoader;
+import mockups.MockDbBirdRecordDataLoader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class FileDataLoaderTest {
-    MockNewDbBirdRecordDataLoader newDbBirdRecordDataLoader;
-    MockOldDbBirdRecordDataLoader oldDbBirdRecordDataLoader;
+    MockDbBirdRecordDataLoader loader1;
+    MockDbBirdRecordDataLoader loader2;
     FileDataLoader dataLoader;
 
     @BeforeEach
     void setUp() {
-        newDbBirdRecordDataLoader = new MockNewDbBirdRecordDataLoader();
-        oldDbBirdRecordDataLoader = new MockOldDbBirdRecordDataLoader();
-        dataLoader = new FileDataLoader(oldDbBirdRecordDataLoader, newDbBirdRecordDataLoader);
+        loader1 = new MockDbBirdRecordDataLoader();
+        loader2 = new MockDbBirdRecordDataLoader();
+        dataLoader = new FileDataLoader(loader1, loader2);
     }
 
     @Test

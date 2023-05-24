@@ -19,9 +19,4 @@ public class MockOldDbBirdRecordDataLoader implements IBirdRecordDataLoader<OldD
         return Data;
     }
 
-    @Override
-    public void setFileName(String fileName) {
-        FileName = fileName;
-    }
-
 }
