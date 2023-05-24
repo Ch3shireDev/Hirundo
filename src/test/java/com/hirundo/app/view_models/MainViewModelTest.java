@@ -27,7 +27,7 @@ MockFileChooser fileChooser;
     }
 
     @Test
-    void loadData() {
+    void loadData() throws Exception{
         dataLoader.IsLoaded = false;
 
         viewModel.loadData();
@@ -37,8 +37,7 @@ MockFileChooser fileChooser;
 
     @Test
     void selectFileName() {
-        final String fileName = "file.mdb";
-        fileChooser.FileName = fileName;
+        fileChooser.FileName = "file.mdb";
 
         final String selectedFileName = viewModel.selectFileName();
 
@@ -47,7 +46,7 @@ MockFileChooser fileChooser;
     }
 
     @Test
-    void selectFileAndLoad(){
+    void selectFileAndLoad() throws Exception{
         final String fileName = "file.mdb";
         fileChooser.FileName = fileName;
         final File file = new File(fileName);

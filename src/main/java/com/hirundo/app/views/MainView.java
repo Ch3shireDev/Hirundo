@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.stage.FileChooser;
+import javafx.scene.control.Alert;
 
 import java.awt.*;
 import java.io.File;
@@ -28,6 +28,10 @@ public class MainView implements Initializable {
         return selectedFileName.getValue();
     }
 
+    public void setSelectedFileName(String value) {
+        selectedFileName.set(value);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -38,30 +42,33 @@ public class MainView implements Initializable {
     }
 
     public Parent getParent() throws IOException {
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainView.fxml"),
-                null,
-                null,
-                (x) -> this);
+        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainView.fxml"), null, null, (x) -> this);
 
         return fxmlLoader.load();
     }
 
     public void loadDataAction(final ActionEvent actionEvent) {
+        try {
             viewModel.loadData();
+        }
+        catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
     }
 
     public void selectFileName(final ActionEvent actionEvent) {
 
-        if(viewModel==null)return;
+        if (null == viewModel) return;
         String result = viewModel.selectFileName();
-        if(result!=null) selectedFileName.setValue(result);
+        if (null != result) selectedFileName.setValue(result);
     }
+
     public StringProperty selectedFileNameProperty() {
         return selectedFileName;
     }
-    public void setSelectedFileName(String value) {
-        selectedFileName.set(value);
-    }
+
     private void openFile(final File file) {
         try {
             desktop.open(file);

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AccessNewDbBirdRecordDataLoader implements INewDbBirdRecordDataLoader {
+public class AccessNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<NewDbBirdRecord> {
     private String filename;
     private String tableName;
 
@@ -23,7 +23,7 @@ public class AccessNewDbBirdRecordDataLoader implements INewDbBirdRecordDataLoad
     }
 
     @Override
-    public List<NewDbBirdRecord> loadData() {
+    public List<NewDbBirdRecord> loadData(String tableName) {
         var records = new LinkedList<NewDbBirdRecord>();
 
         Table table = null;

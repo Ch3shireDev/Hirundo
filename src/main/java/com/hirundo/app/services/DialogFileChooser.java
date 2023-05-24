@@ -1,4 +1,4 @@
-package com.hirundo.app.models;
+package com.hirundo.app.services;
 
 import javafx.stage.FileChooser;
 
@@ -8,7 +8,7 @@ public class DialogFileChooser implements IFileChooser {
         final FileChooser fileChooser = new FileChooser();
         final var file = fileChooser.showOpenDialog(null);
         if (null != file) {
-            return file.getName();
+            return file.getAbsolutePath();
         }
         return null;
     }

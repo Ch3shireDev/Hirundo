@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AccessOldDbBirdRecordDataLoaderTest {
 
@@ -20,9 +20,9 @@ class AccessOldDbBirdRecordDataLoaderTest {
     @Test
     void loadData() {
         dataLoader.setFileName("src/test/resources/access_example_old_db.mdb");
-        dataLoader.setTableName("Tab_Ring_Podab");
+//        dataLoader.setTableName("Tab_Ring_Podab");
 
-        var data = dataLoader.loadData();
+        var data = dataLoader.loadData("Tab_Ring_Podab");
 
         assertEquals(2, data.size());
         var result = data.get(0);
@@ -31,16 +31,16 @@ class AccessOldDbBirdRecordDataLoaderTest {
         Assertions.assertEquals(128, result.IdrZesz);
         Assertions.assertEquals(1, result.IDR_Podab);
         Assertions.assertEquals(128, result.IdrZesz);
-        Assertions.assertEquals((short)2007, result.IdBase);
+        Assertions.assertEquals((short) 2007, result.IdBase);
         Assertions.assertEquals(5, result.IdInp);
         Assertions.assertEquals("BU", result.Sta);
         Assertions.assertEquals(129, result.Row);
         Assertions.assertEquals("BK", result.ST);
         Assertions.assertEquals("PL.BK.01", result.CoStaSit);
-        Assertions.assertEquals((short)1967, result.Year);
+        Assertions.assertEquals((short) 1967, result.Year);
         Assertions.assertEquals("A", result.Seas);
-        Assertions.assertEquals(LocalDateTime.of(1967, 8, 16,0,0,0), result.Date);
-        Assertions.assertEquals((short)18, result.Hour);
+        Assertions.assertEquals(LocalDateTime.of(1967, 8, 16, 0, 0, 0), result.Date);
+        Assertions.assertEquals((short) 18, result.Hour);
         Assertions.assertEquals("J634038", result.Ring);
         Assertions.assertEquals("O", result.Status);
         Assertions.assertEquals("PHY.LUS", result.Spec);
@@ -66,11 +66,11 @@ class AccessOldDbBirdRecordDataLoaderTest {
         Assertions.assertEquals("+4", result.P5);
         Assertions.assertEquals("6", result.P6);
         Assertions.assertEquals("7", result.Notes);
-        Assertions.assertEquals((byte)1, result.OK);
+        Assertions.assertEquals((byte) 1, result.OK);
         Assertions.assertEquals(null, result.TS_Import);
         Assertions.assertEquals(null, result.TS_Zesz);
         Assertions.assertEquals(true, result.Sel);
-        Assertions.assertEquals((short)816, result.MD);
+        Assertions.assertEquals((short) 816, result.MD);
         Assertions.assertEquals(null, result.RNG);
         Assertions.assertEquals("1", result.AgeT);
         Assertions.assertEquals(LocalDateTime.of(1967, 8, 16, 18, 0, 0), result.DT);

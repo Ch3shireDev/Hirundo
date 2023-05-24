@@ -8,18 +8,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Replace MainModel data loader with FileDataLoader">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/DialogFileChooser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/IFileChooser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/mockups/MockFileChooser.java" afterDir="false" />
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add IFileChooser to MainModel">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/DbBirdRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IBirdRecordDataLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/FileDataLoaderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mockups/MockOldDbBirdRecordDataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/DialogFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/DialogFileChooser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/IFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/IFileChooser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/view.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/view.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/OldDbBirdRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/OldDbBirdRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/FileDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/FileDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IFileDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IFileDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/INewDbBirdRecordDataLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IOldDbBirdRecordDataLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessNewDbBirdRecordDataLoaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/AccessOldDbBirdRecordDataLoaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockFileChooser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockFileDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockFileDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockNewDbBirdRecordDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockNewDbBirdRecordDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/access_example_new_db.mdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/access_example_new_db.mdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/access_example_old_db.mdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/access_example_old_db.mdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,11 +63,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Hirundo" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Hirundo" type="f1a62948:ProjectNode" />
                 <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
@@ -67,8 +78,8 @@
         <option value="FxmlFile" />
         <option value="CSS File" />
         <option value="Record" />
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -117,16 +128,17 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "last_directory_selection": "C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services",
-    "last_opened_file_path": "C:/Users/komp/Documents/Hirundo",
+    "last_opened_file_path": "D:/Documents/GitHub/WIT-Zajecia/semestr-8/Programowanie obiektowe w Java/Wyklad-4/CommandProjekt",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2816092",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "Errors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -152,7 +164,55 @@
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Hirundo [run]">
+  <component name="RunManager" selected="Gradle.Tests in 'Hirundo.test'">
+    <configuration name="FileDataLoaderTest.loadDataWithFilename" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.FileDataLoaderTest.loadDataWithFilename&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="FileDataLoaderTest.loadDataWithoutFilename" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.FileDataLoaderTest.loadDataWithoutFilename&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration name="Hirundo [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -172,29 +232,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainViewModelTest.loadData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.hirundo.app.view_models.MainViewModelTest.loadData&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="MainViewModelTest.selectFileAndLoad" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -218,29 +256,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainViewModelTest.selectFileName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.hirundo.app.view_models.MainViewModelTest.selectFileName&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Tests in 'Hirundo.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -262,22 +278,23 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithFilename" />
+      <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithoutFilename" />
       <item itemvalue="Gradle.MainViewModelTest.selectFileAndLoad" />
-      <item itemvalue="Gradle.MainViewModelTest.selectFileName" />
       <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
-      <item itemvalue="Gradle.MainViewModelTest.loadData" />
       <item itemvalue="Gradle.Hirundo [run]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Hirundo [run]" />
         <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
+        <item itemvalue="Gradle.Hirundo [run]" />
+        <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithFilename" />
+        <item itemvalue="Gradle.FileDataLoaderTest.loadDataWithoutFilename" />
         <item itemvalue="Gradle.MainViewModelTest.selectFileAndLoad" />
-        <item itemvalue="Gradle.MainViewModelTest.selectFileName" />
-        <item itemvalue="Gradle.MainViewModelTest.loadData" />
       </list>
     </recent_temporary>
   </component>
@@ -300,7 +317,11 @@
       <workItem from="1678701643392" duration="2147000" />
       <workItem from="1678729329362" duration="3958000" />
       <workItem from="1679837583641" duration="7484000" />
-      <workItem from="1679856806320" duration="7612000" />
+      <workItem from="1679856806320" duration="7939000" />
+      <workItem from="1681493693544" duration="403000" />
+      <workItem from="1681928320535" duration="28000" />
+      <workItem from="1683440628402" duration="73000" />
+      <workItem from="1684948526476" duration="12499000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -358,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679862438602</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=":bird: Add IFileChooser to MainModel">
+      <created>1679866844512</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679866844512</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +411,8 @@
     <MESSAGE value=":bird: Add NewDbBirdRecord data structure with AccessDataLoader and tests" />
     <MESSAGE value=":bird: Add OldDbBirdRecord data structure with AccessDataLoader and tests" />
     <MESSAGE value=":bird: Replace MainModel data loader with FileDataLoader" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Replace MainModel data loader with FileDataLoader" />
+    <MESSAGE value=":bird: Add IFileChooser to MainModel" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add IFileChooser to MainModel" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

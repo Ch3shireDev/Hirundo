@@ -18,9 +18,7 @@ class AccessNewDbBirdRecordDataLoaderTest {
     @Test
     void loadData() {
         dataLoader.setFileName("src/test/resources/access_example_new_db.mdb");
-        dataLoader.setTableName("example table");
-
-        var data = dataLoader.loadData();
+        var data = dataLoader.loadData("example table");
 
         Assertions.assertEquals(3, data.size());
 

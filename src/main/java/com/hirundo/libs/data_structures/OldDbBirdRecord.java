@@ -13,6 +13,7 @@ public class OldDbBirdRecord {
     public String CoStaSit;
     public Short Year;
     public String Seas;
+
     public LocalDateTime Date;
     public Short Hour;
     public String Ring;

@@ -1,9 +1,7 @@
 package com.hirundo.app.models;
 
+import com.hirundo.app.services.IFileChooser;
 import com.hirundo.libs.services.IFileDataLoader;
-import javafx.stage.FileChooser;
-
-import java.io.File;
 
 public class MainModel {
 
@@ -17,14 +15,17 @@ public class MainModel {
         this.fileChooser = fileChooser;
     }
 
-    public void loadData() {
+    public void loadData() throws Exception {
         dataLoader.setFileName(selectedFileName);
-        dataLoader.loadData();
+//        dataLoader.setOldRecordsTableName("IdrZesz1");
+//        dataLoader.setNewRecordsTableName1("Tab_Ring_Podab");
+//        dataLoader.setNewRecordsTableName2("AB 2017_18_19_20_21S");
+        var data = dataLoader.loadData("IdrZesz1");
     }
 
     public String selectFileName() {
         var file = fileChooser.selectFileName();
-        if(file != null) {
+        if (null != file) {
             selectedFileName = file;
         }
         return selectedFileName;

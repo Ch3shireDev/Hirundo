@@ -3,18 +3,15 @@ package com.hirundo.libs.services;
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
 import com.healthmarketscience.jackcess.Table;
-import com.hirundo.libs.data_structures.NewDbBirdRecord;
 import com.hirundo.libs.data_structures.OldDbBirdRecord;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AccessOldDbBirdRecordDataLoader implements IOldDbBirdRecordDataLoader {
+public class AccessOldDbBirdRecordDataLoader implements IBirdRecordDataLoader<OldDbBirdRecord> {
 
-    String tableName;
     String filename;
 
     public AccessOldDbBirdRecordDataLoader() {
@@ -24,12 +21,21 @@ public class AccessOldDbBirdRecordDataLoader implements IOldDbBirdRecordDataLoad
         this.filename = filename;
     }
 
-    public void setTableName(final String tableName) {
-        this.tableName = tableName;
+    public Boolean isValid(String tableName) {
+        Table table = null;
+        try {
+            table = DatabaseBuilder.open(new File(filename)).getTable(tableName);
+            var row = table.stream().findFirst().get();
+            row.get("IDR_Podab");
+            row.get("IdBase");
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     @Override
-    public List<OldDbBirdRecord> loadData() {
+    public List<OldDbBirdRecord> loadData(String tableName) {
         var records = new LinkedList<OldDbBirdRecord>();
 
         Table table = null;
@@ -110,7 +116,7 @@ public class AccessOldDbBirdRecordDataLoader implements IOldDbBirdRecordDataLoad
             record.X6 = row.getFloat("X6");
             record.Net = row.getString("Net");
 
-        records.add(record);
+            records.add(record);
         }
 
         return records;
