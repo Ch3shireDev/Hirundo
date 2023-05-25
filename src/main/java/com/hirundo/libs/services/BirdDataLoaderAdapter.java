@@ -14,8 +14,8 @@ public class BirdDataLoaderAdapter implements IDbBirdRecordDataLoader {
     }
 
     @Override
-    public List<DbBirdRecord> loadData(String tableName) throws Exception {
-        var data = fileDataLoader.loadData(tableName);
+    public List<DbBirdRecord> loadData() throws Exception {
+        var data = fileDataLoader.loadData();
         if (data.get(0) instanceof OldDbBirdRecord) {
             return data.stream().map(x -> new DbBirdRecord((OldDbBirdRecord) x)).toList();
         }

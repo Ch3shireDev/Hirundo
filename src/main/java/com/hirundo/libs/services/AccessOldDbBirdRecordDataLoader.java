@@ -13,8 +13,11 @@ import java.util.List;
 public class AccessOldDbBirdRecordDataLoader implements IBirdRecordDataLoader<OldDbBirdRecord> {
 
     String filename;
+    private final String tableName;
 
-    public AccessOldDbBirdRecordDataLoader() {
+    public AccessOldDbBirdRecordDataLoader(String filename, String tableName) {
+        this.filename = filename;
+        this.tableName = tableName;
     }
 
     public void setFileName(final String filename) {
@@ -35,7 +38,7 @@ public class AccessOldDbBirdRecordDataLoader implements IBirdRecordDataLoader<Ol
     }
 
     @Override
-    public List<OldDbBirdRecord> loadData(String tableName) {
+    public List<OldDbBirdRecord> loadData() {
         var records = new LinkedList<OldDbBirdRecord>();
 
         Table table = null;

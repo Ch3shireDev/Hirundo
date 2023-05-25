@@ -4,10 +4,7 @@ import com.hirundo.app.models.MainModel;
 import com.hirundo.app.services.DialogFileChooser;
 import com.hirundo.app.view_models.MainViewModel;
 import com.hirundo.app.views.MainView;
-import com.hirundo.libs.services.AccessNewDbBirdRecordDataLoader;
-import com.hirundo.libs.services.AccessOldDbBirdRecordDataLoader;
-import com.hirundo.libs.services.BirdDataLoaderAdapter;
-import com.hirundo.libs.services.FileDataLoader;
+import com.hirundo.libs.services.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -28,16 +25,18 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(final Stage stage) throws IOException {
 
-        final var oldDbBirdRecordDataLoader = new AccessOldDbBirdRecordDataLoader();
-        final var newDbBirdRecordDataLoader = new AccessNewDbBirdRecordDataLoader();
+//        final var oldDbBirdRecordDataLoader = new AccessOldDbBirdRecordDataLoader();
+//        final var newDbBirdRecordDataLoader = new AccessNewDbBirdRecordDataLoader();
 
-        final var oldAdapter = new BirdDataLoaderAdapter(oldDbBirdRecordDataLoader);
-        final var newAdapter = new BirdDataLoaderAdapter(newDbBirdRecordDataLoader);
+//        final var oldAdapter = new BirdDataLoaderAdapter(oldDbBirdRecordDataLoader);
+//        final var newAdapter = new BirdDataLoaderAdapter(newDbBirdRecordDataLoader);
 
-        final var dataLoader = new FileDataLoader(oldAdapter, newAdapter);
+//        final var dataLoader = new FileDataLoader(oldAdapter, newAdapter);
         final var fileChooser = new DialogFileChooser();
 
-        final var model = new MainModel(dataLoader, fileChooser);
+        var builder = new BirdRecordDataLoaderBuilder();
+
+        final var model = new MainModel(builder, fileChooser);
         final var viewModel = new MainViewModel(model);
         final var view = new MainView();
         view.setViewModel(viewModel);

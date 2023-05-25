@@ -11,14 +11,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AccessNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<NewDbBirdRecord> {
+    private final String tableName;
     private String filename;
 
-    public void setFileName(final String filename) {
+    public AccessNewDbBirdRecordDataLoader(String filename, String tableName) {
         this.filename = filename;
+        this.tableName = tableName;
     }
 
     @Override
-    public List<NewDbBirdRecord> loadData(String tableName) {
+    public List<NewDbBirdRecord> loadData() {
         var records = new LinkedList<NewDbBirdRecord>();
 
         Table table = null;

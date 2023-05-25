@@ -14,15 +14,15 @@ class AccessOldDbBirdRecordDataLoaderTest {
 
     @BeforeEach
     void setUp() {
-        dataLoader = new AccessOldDbBirdRecordDataLoader();
+    var filename = "src/test/resources/access_example_old_db.mdb";
+    var tableName = "Tab_Ring_Podab";
+        dataLoader = new AccessOldDbBirdRecordDataLoader(filename, tableName);
     }
 
     @Test
     void loadData() {
-        dataLoader.setFileName("src/test/resources/access_example_old_db.mdb");
-//        dataLoader.setTableName("Tab_Ring_Podab");
+        var data = dataLoader.loadData();
 
-        var data = dataLoader.loadData("Tab_Ring_Podab");
 
         assertEquals(2, data.size());
         var result = data.get(0);

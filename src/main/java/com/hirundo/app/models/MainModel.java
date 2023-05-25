@@ -1,26 +1,34 @@
 package com.hirundo.app.models;
 
 import com.hirundo.app.services.IFileChooser;
-import com.hirundo.libs.services.IFileDataLoader;
+import com.hirundo.libs.services.IBirdRecordDataLoaderBuilder;
 
 public class MainModel {
 
-    private final IFileDataLoader dataLoader;
+    private final IBirdRecordDataLoaderBuilder builder;
     private final IFileChooser fileChooser;
     String selectedFileName;
 
 
-    public MainModel(IFileDataLoader dataLoader, IFileChooser fileChooser) {
-        this.dataLoader = dataLoader;
+    public MainModel(IBirdRecordDataLoaderBuilder builder, IFileChooser fileChooser) {
+        this.builder = builder;
         this.fileChooser = fileChooser;
     }
 
     public void loadData() throws Exception {
-        dataLoader.setFileName(selectedFileName);
+//        dataLoader.setFileName(selectedFileName);
 //        dataLoader.setOldRecordsTableName("IdrZesz1");
 //        dataLoader.setNewRecordsTableName1("Tab_Ring_Podab");
 //        dataLoader.setNewRecordsTableName2("AB 2017_18_19_20_21S");
-        var data = dataLoader.loadData("IdrZesz1");
+//        var data = dataLoader.loadData("IdrZesz1");
+
+        var dataLoader = builder
+                .withFilename(selectedFileName)
+                .withTableName("IdrZesz1")
+                .build();
+
+        var data = dataLoader.loadData();
+
     }
 
     public String selectFileName() {

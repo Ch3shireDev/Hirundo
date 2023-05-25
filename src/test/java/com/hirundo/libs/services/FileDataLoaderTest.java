@@ -1,5 +1,8 @@
 package com.hirundo.libs.services;
 
+import com.hirundo.libs.data_structures.DbBirdRecord;
+import com.hirundo.libs.data_structures.NewDbBirdRecord;
+import com.hirundo.libs.data_structures.OldDbBirdRecord;
 import mockups.MockDbBirdRecordDataLoader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,14 +21,14 @@ class FileDataLoaderTest {
     }
 
     @Test
-    void loadDataWithoutFilename() {
-        Assertions.assertThrows(Exception.class, () -> dataLoader.loadData("example table"));
-    }
+    void loadData() throws Exception {
+        loader1.Data.add(new DbBirdRecord(new NewDbBirdRecord()));
+        loader2.Data.add(new DbBirdRecord(new OldDbBirdRecord()));
 
-    @Test
-    void loadDataWithFilenameWithoutTables() throws Exception {
-        dataLoader.setFileName("file.mdb");
+        var data = dataLoader.loadData();
 
-        Assertions.assertThrows(Exception.class, () -> dataLoader.loadData(null));
+        Assertions.assertTrue(loader1.IsLoaded);
+        Assertions.assertTrue(loader2.IsLoaded);
+        Assertions.assertEquals(2, data.size());
     }
 }

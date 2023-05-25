@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IDbBirdRecordDataLoader extends IBirdRecordDataLoader<DbBirdRecord> {
     @Override
-    List<DbBirdRecord> loadData(String tableName) throws Exception;
+    List<DbBirdRecord> loadData() throws Exception;
 }

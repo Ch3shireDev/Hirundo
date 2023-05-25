@@ -12,13 +12,14 @@ class AccessNewDbBirdRecordDataLoaderTest {
 
     @BeforeEach
     void setUp() {
-        dataLoader = new AccessNewDbBirdRecordDataLoader();
+        var fileName = "src/test/resources/access_example_new_db.mdb";
+        var tableName = "example table";
+        dataLoader = new AccessNewDbBirdRecordDataLoader(fileName, tableName);
     }
 
     @Test
     void loadData() {
-        dataLoader.setFileName("src/test/resources/access_example_new_db.mdb");
-        var data = dataLoader.loadData("example table");
+        var data = dataLoader.loadData();
 
         Assertions.assertEquals(3, data.size());
 

@@ -7,30 +7,23 @@ import java.util.List;
 
 public class FileDataLoader implements IFileDataLoader {
     private final IDbBirdRecordDataLoader[] birdDataLoaders;
-    private String fileName;
 
     public FileDataLoader(IDbBirdRecordDataLoader... birdDataLoaders) {
         this.birdDataLoaders = birdDataLoaders;
     }
 
-    @Override
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 
     @Override
-    public List<DbBirdRecord> loadData(String tableName) throws Exception {
+    public List<DbBirdRecord> loadData() throws Exception {
 
-        if (null == fileName || fileName.isEmpty()) {
-            throw new Exception("File name is not set");
+        var totalData = new java.util.ArrayList<DbBirdRecord>();
+
+        for (IDbBirdRecordDataLoader birdDataLoader : birdDataLoaders) {
+            var data = birdDataLoader.loadData();
+            totalData.addAll(data);
         }
 
-        if (null == tableName || tableName.isEmpty()) {
-            throw new Exception("Table name is not set");
-        }
-
-        return null;
-
+        return totalData;
     }
 
 }

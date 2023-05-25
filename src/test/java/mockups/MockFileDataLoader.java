@@ -13,12 +13,7 @@ public class MockFileDataLoader implements IFileDataLoader {
     private String NewTableName2;
 
     @Override
-    public void setFileName(String fileName) {
-        FileName = fileName;
-    }
-
-    @Override
-    public List<DbBirdRecord> loadData(String tableName) throws Exception {
+    public List<DbBirdRecord> loadData( ) throws Exception {
         IsLoaded = true;
         return null;
     }

@@ -9,13 +9,10 @@ import java.util.List;
 public class MockNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<NewDbBirdRecord> {
     public List<NewDbBirdRecord> Data = new ArrayList<>();
     public boolean IsLoaded;
-    public String FileName;
-    public String TableName;
 
     @Override
-    public List<NewDbBirdRecord> loadData(String tableName) {
+    public List<NewDbBirdRecord> loadData() {
         IsLoaded = true;
-        TableName = tableName;
         return Data;
     }
 
