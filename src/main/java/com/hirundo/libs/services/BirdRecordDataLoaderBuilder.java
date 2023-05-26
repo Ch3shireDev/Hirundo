@@ -1,29 +1,46 @@
 package com.hirundo.libs.services;
 
 public class BirdRecordDataLoaderBuilder implements IBirdRecordDataLoaderBuilder{
-
     String filename;
-    private String tableName;
+    private String oldTableName;
+    private String newTableName;
 
     public BirdRecordDataLoaderBuilder withFilename(String filename) {
-        filename = filename;
+        this.filename = filename;
         return this;
     }
-    public BirdRecordDataLoaderBuilder withTableName(String tableName) {
-        this.tableName = tableName;
+
+    public BirdRecordDataLoaderBuilder withOldTableName(String oldTableName) {
+        this.oldTableName = oldTableName;
+        return this;
+    }
+
+    public BirdRecordDataLoaderBuilder withNewTableName(String newTableName) {
+        this.newTableName = newTableName;
         return this;
     }
 
     public IFileDataLoader build() {
 
-        var oldBirdDataLoader = new AccessOldDbBirdRecordDataLoader(filename, tableName);
-        var oldAdapter = new BirdDataLoaderAdapter(oldBirdDataLoader);
-        var newBirdDataLoader = new AccessNewDbBirdRecordDataLoader(filename, tableName);
-        var newAdapter = new BirdDataLoaderAdapter(newBirdDataLoader);
+        if (null == filename) {
+            throw new IllegalStateException("Filename is not set");
+        }
 
-        var fileDataLoader = new FileDataLoader(oldAdapter, newAdapter);
+        var adapters = new java.util.ArrayList<IDbBirdRecordDataLoader>();
 
-        return fileDataLoader;
+        if (null != oldTableName) {
+            var oldBirdDataLoader = new AccessOldDbBirdRecordDataLoader(filename, oldTableName);
+            var oldAdapter = new BirdDataLoaderAdapter(oldBirdDataLoader);
+            adapters.add(oldAdapter);
+        }
+
+        if (null != newTableName) {
+            var newBirdDataLoader = new AccessNewDbBirdRecordDataLoader(filename, newTableName);
+            var newAdapter = new BirdDataLoaderAdapter(newBirdDataLoader);
+            adapters.add(newAdapter);
+        }
+
+        return new FileDataLoader(adapters.toArray(IDbBirdRecordDataLoader[]::new));
     }
 
 }

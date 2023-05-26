@@ -5,7 +5,8 @@ import com.hirundo.libs.services.IFileDataLoader;
 
 public class MockBirdRecordDataLoaderBuilder implements IBirdRecordDataLoaderBuilder {
     public String Filename;
-    public String TableName;
+    public String NewTableName;
+    public String OldTableName;
     public IFileDataLoader FileDataLoader;
 
     @Override
@@ -15,8 +16,14 @@ public class MockBirdRecordDataLoaderBuilder implements IBirdRecordDataLoaderBui
     }
 
     @Override
-    public IBirdRecordDataLoaderBuilder withTableName(String tableName) {
-        TableName = tableName;
+    public IBirdRecordDataLoaderBuilder withOldTableName(String oldTableName) {
+        OldTableName = oldTableName;
+        return this;
+    }
+
+    @Override
+    public IBirdRecordDataLoaderBuilder withNewTableName(String newTableName) {
+        NewTableName = newTableName;
         return this;
     }
 

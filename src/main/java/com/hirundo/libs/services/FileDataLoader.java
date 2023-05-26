@@ -1,6 +1,5 @@
 package com.hirundo.libs.services;
 
-
 import com.hirundo.libs.data_structures.DbBirdRecord;
 
 import java.util.List;
@@ -11,7 +10,6 @@ public class FileDataLoader implements IFileDataLoader {
     public FileDataLoader(IDbBirdRecordDataLoader... birdDataLoaders) {
         this.birdDataLoaders = birdDataLoaders;
     }
-
 
     @Override
     public List<DbBirdRecord> loadData() throws Exception {

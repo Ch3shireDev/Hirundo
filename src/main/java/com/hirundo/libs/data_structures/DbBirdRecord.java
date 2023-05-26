@@ -13,4 +13,26 @@ public class DbBirdRecord {
         this.oldDbBirdRecord = oldDbBirdRecord;
         this.newDbBirdRecord = null;
     }
+
+
+    public String getSpecies() {
+        if (null != oldDbBirdRecord) {
+            return oldDbBirdRecord.Spec;
+        }
+        if (null != newDbBirdRecord) {
+            return newDbBirdRecord.SpeciesCode;
+        }
+        return null;
+    }
+
+    public DbBirdRecordType getRecordType() {
+        if (null != oldDbBirdRecord) {
+            return DbBirdRecordType.Old;
+        }
+        if (null != newDbBirdRecord) {
+            return DbBirdRecordType.New;
+        }
+        return DbBirdRecordType.Undefined;
+    }
 }
+

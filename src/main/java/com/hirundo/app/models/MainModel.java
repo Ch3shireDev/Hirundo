@@ -1,13 +1,17 @@
 package com.hirundo.app.models;
 
 import com.hirundo.app.services.IFileChooser;
+import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.services.IBirdRecordDataLoaderBuilder;
 
-public class MainModel {
+import java.util.List;
 
+public class MainModel {
     private final IBirdRecordDataLoaderBuilder builder;
     private final IFileChooser fileChooser;
     String selectedFileName;
+    private String oldTableName;
+    private String newTableName;
 
 
     public MainModel(IBirdRecordDataLoaderBuilder builder, IFileChooser fileChooser) {
@@ -16,18 +20,10 @@ public class MainModel {
     }
 
     public void loadData() throws Exception {
-//        dataLoader.setFileName(selectedFileName);
-//        dataLoader.setOldRecordsTableName("IdrZesz1");
-//        dataLoader.setNewRecordsTableName1("Tab_Ring_Podab");
-//        dataLoader.setNewRecordsTableName2("AB 2017_18_19_20_21S");
-//        var data = dataLoader.loadData("IdrZesz1");
 
-        var dataLoader = builder
-                .withFilename(selectedFileName)
-                .withTableName("IdrZesz1")
-                .build();
+        var dataLoader = builder.withFilename(selectedFileName).withOldTableName(oldTableName).withNewTableName(newTableName).build();
 
-        var data = dataLoader.loadData();
+        List<DbBirdRecord> data = dataLoader.loadData();
 
     }
 
@@ -43,8 +39,16 @@ public class MainModel {
         return selectedFileName;
     }
 
-    public void setSelectedFileName(final String selectedFileName) {
+    public void setSelectedFileName(String selectedFileName) {
         this.selectedFileName = selectedFileName;
+    }
+
+    public void setNewTableName(String value) {
+        this.newTableName = value;
+    }
+
+    public void setOldTableName(String value) {
+        this.oldTableName = value;
     }
 }
 

@@ -4,12 +4,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="400.0" minWidth="600.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hirundo.app.views.MainView">
-    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0">
+<AnchorPane
+        minHeight="400.0" minWidth="600.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hirundo.app.views.MainView"
+
+>
+    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0"
+              disable="${controller.isWindowDisabled}"
+              fx:id="mainView"
+    >
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" vgrow="NEVER" />
             <RowConstraints minHeight="100.0" vgrow="NEVER" />
             <RowConstraints minHeight="100.0" vgrow="NEVER" />
             <RowConstraints minHeight="100.0" vgrow="ALWAYS" />
@@ -20,20 +28,38 @@
                 <Button onAction="#selectFileName">Otwórz</Button>
                 <Label text="${controller.selectedFileName}" />
             </HBox>
-         <columnConstraints>
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-         </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+            </rowConstraints>
         </GridPane>
         <GridPane GridPane.rowIndex="1">
+            <HBox GridPane.rowIndex="0">
+                <Label text="Nazwa starej bazy danych (1961-2016):" />
+                <TextField maxWidth="200.0" text="${controller.oldTableName}" />
+            </HBox>
+            <HBox GridPane.rowIndex="1">
+                <Label text="Nazwa nowej bazy danych (2017-2021):" />
+                <TextField maxWidth="200.0" text="${controller.newTableName}" />
+            </HBox>
+            <columnConstraints>
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+        <GridPane GridPane.rowIndex="2">
             <HBox>
                 <Button onAction="#loadDataAction">Załaduj dane</Button>
-                <ProgressBar prefHeight="28.0" prefWidth="200.0" progress="0">
-               <HBox.margin>
-                  <Insets top="1.0" />
-               </HBox.margin></ProgressBar>
+                <ProgressBar fx:id="pb" prefHeight="28.0" prefWidth="200.0" progress="${controller.progress}">
+                    <HBox.margin>
+                        <Insets top="1.0" />
+                    </HBox.margin>
+                </ProgressBar>
             </HBox>
             <columnConstraints>
                 <ColumnConstraints />
@@ -42,7 +68,7 @@
                 <RowConstraints />
             </rowConstraints>
         </GridPane>
-        <AnchorPane GridPane.rowIndex="2">
+        <AnchorPane GridPane.rowIndex="3">
             <HBox AnchorPane.topAnchor="0">
                 <Label>Wybierz gatunek:</Label>
                 <ComboBox prefWidth="200.0" />
@@ -51,7 +77,7 @@
                 </Button>
             </HBox>
         </AnchorPane>
-        <GridPane GridPane.rowIndex="3">
+        <GridPane GridPane.rowIndex="4">
             <Button>Zapisz wyniki</Button>
             <columnConstraints>
                 <ColumnConstraints />

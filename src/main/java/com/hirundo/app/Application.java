@@ -25,17 +25,8 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(final Stage stage) throws IOException {
 
-//        final var oldDbBirdRecordDataLoader = new AccessOldDbBirdRecordDataLoader();
-//        final var newDbBirdRecordDataLoader = new AccessNewDbBirdRecordDataLoader();
-
-//        final var oldAdapter = new BirdDataLoaderAdapter(oldDbBirdRecordDataLoader);
-//        final var newAdapter = new BirdDataLoaderAdapter(newDbBirdRecordDataLoader);
-
-//        final var dataLoader = new FileDataLoader(oldAdapter, newAdapter);
         final var fileChooser = new DialogFileChooser();
-
-        var builder = new BirdRecordDataLoaderBuilder();
-
+        final var builder = new BirdRecordDataLoaderBuilder();
         final var model = new MainModel(builder, fileChooser);
         final var viewModel = new MainViewModel(model);
         final var view = new MainView();
