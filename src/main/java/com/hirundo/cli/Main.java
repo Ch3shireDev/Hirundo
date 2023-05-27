@@ -5,8 +5,7 @@ import com.hirundo.libs.services.BirdRecordDataLoaderBuilder;
 
 import java.util.Objects;
 
-public enum Main {
-    ;
+public class Main {
 
     public static void main(String[] args) throws Exception {
 
@@ -20,16 +19,16 @@ public enum Main {
 
             var joinedData = loader.loadData();
 
-            var sexes = joinedData
+            var seasons = joinedData
                     .stream()
-                    .map(DbBirdRecord::getSex)
+                    .map(DbBirdRecord::getSeason)
                     .filter(Objects::nonNull)
                     .distinct()
                     .sorted()
                     .toArray();
 
-            for (var sex : sexes) {
-                System.out.println(sex);
+            for (var season : seasons) {
+                System.out.println(season);
             }
 
         } catch (Exception e) {

@@ -3,7 +3,7 @@ package com.hirundo.libs.data_structures;
 import java.time.LocalDateTime;
 
 public class OldDbBirdRecord {
-    public int IDR_Podab;
+    public Integer IDR_Podab;
     public Integer IdrZesz;
     public Short IdBase;
     public Integer IdInp;

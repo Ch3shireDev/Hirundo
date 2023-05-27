@@ -7,10 +7,13 @@ import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.services.IBirdRecordDataLoaderBuilder;
 
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MainModel {
     private final IBirdRecordDataLoaderBuilder builder;
@@ -139,17 +142,19 @@ public class MainModel {
 
         var filteredData = data
                 .stream()
-                .filter(b -> speciesCode.equals(b.getSpeciesCode()))
-                ;
+                .filter(b -> speciesCode.equals(b.getSpeciesCode()));
 
-        if (BirdSex.Any != selectedSex){
+        if (BirdSex.Any != selectedSex) {
             filteredData = filteredData.filter(b -> selectedSex == b.getSex());
         }
 
         var list = filteredData.toList();
 
         var recordsCount = list.size();
-        var returnsCount = 0;
+
+        var returningBirds = findReturningBirds(list);
+
+        var returnsCount =  returningBirds.size();
 
         return new BirdSpeciesCalculatedData(speciesCode, speciesNameEng, speciesNameLat, sexName, recordsCount, returnsCount);
     }
@@ -169,6 +174,40 @@ public class MainModel {
 
     public void setSexSelected(BirdSex sex) {
         selectedSex = sex;
+    }
+
+    public List<DbBirdRecord> findReturningBirds(List<DbBirdRecord> records) {
+        var ringNumbers = records
+                .stream()
+                .filter(b -> null != b.getRing() && !b.getRing().isBlank())
+                .collect(Collectors.groupingBy(DbBirdRecord::getRing));
+
+        List<DbBirdRecord> result = new ArrayList<>();
+
+        for (var ringNumber : ringNumbers.keySet()) {
+            var ringRecords = ringNumbers.get(ringNumber);
+            if (2 > ringRecords.size()) {
+                continue;
+            }
+
+            var seasons = ringRecords
+                    .stream()
+                    .collect(Collectors.groupingBy(DbBirdRecord::getSeason));
+
+            if (2 > seasons.size()) {
+                continue;
+            }
+
+            DbBirdRecord record = (DbBirdRecord) ringRecords
+                    .stream()
+                    .sorted(Comparator.comparing(DbBirdRecord::getDate, Comparator.reverseOrder()))
+
+                    .toArray()[0];
+
+            result.add(record);
+        }
+
+        return result;
     }
 }
 
