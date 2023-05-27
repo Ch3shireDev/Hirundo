@@ -1,7 +1,9 @@
 package com.hirundo.app.views;
 
+import com.hirundo.app.converters.BirdSexStringConverter;
 import com.hirundo.app.converters.BirdSpeciesStringConverter;
 import com.hirundo.app.view_models.MainViewModel;
+import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.BirdSpecies;
 import javafx.application.Platform;
 import javafx.beans.property.*;
@@ -12,10 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -24,6 +23,10 @@ import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
     public ObservableList<BirdSpecies> speciesList;
+    public ObservableList<BirdSex> sexList;
+    @FXML
+    public ComboBox<BirdSex> sexComboBox;
+
     //    public StringProperty selectedFileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
     public StringProperty fileName = new SimpleStringProperty("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
     public StringProperty oldTableName = new SimpleStringProperty("Tab_Ring_Podab");
@@ -40,7 +43,13 @@ public class MainView implements Initializable {
     public BooleanProperty isWriteResultsDisabled = new SimpleBooleanProperty(true);
     public BooleanProperty isSpeciesSelectDisabled = new SimpleBooleanProperty(true);
     public ObjectProperty<BirdSpecies> selectedSpecies = new SimpleObjectProperty<>();
+    public ObjectProperty<BirdSex> selectedSex = new SimpleObjectProperty<>(BirdSex.Female);
+    public StringProperty selectedSexName = new SimpleStringProperty();
+    public StringProperty loadingResultsText = new SimpleStringProperty();
+    public StringProperty loadingStatusText = new SimpleStringProperty();
     MainViewModel viewModel;
+    BirdSpeciesStringConverter speciesConverter = new BirdSpeciesStringConverter();
+    BirdSexStringConverter sexConverter = new BirdSexStringConverter();
     @FXML
     private ProgressBar progressBar;
     @FXML
@@ -56,43 +65,104 @@ public class MainView implements Initializable {
     @FXML
     private Label speciesNameLatinLabel;
     @FXML
+    private Label loadingResultsLabel;
+    @FXML
     private Pane mainView;
     @FXML
     private Pane resultsPane;
     @FXML
     private Pane writeResultsPane;
     @FXML
-    private Pane speciesSelectPane;
+    private Label loadingStatusLabel;
+    @FXML
+    private Tab dataProcessingTab;
+    @FXML
+    private TabPane tabPane;
+    @FXML
+    private Button dataLoadingTabNextButton;
+    @FXML
+    private Label sexLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         speciesList = FXCollections.observableArrayList();
-        speciesComboBox.setConverter(new BirdSpeciesStringConverter());
-        selectedSpecies.bind(speciesComboBox.getSelectionModel().selectedItemProperty());
+        speciesComboBox.setConverter(speciesConverter);
+        selectedSpecies.bind(speciesComboBox
+                .getSelectionModel()
+                .selectedItemProperty());
 
-        mainView.disableProperty().bind(isWindowDisabled);
-        resultsPane.disableProperty().bind(isResultsDisabled);
-        writeResultsPane.disableProperty().bind(isWriteResultsDisabled);
-        speciesSelectPane.disableProperty().bind(isSpeciesSelectDisabled);
+        sexList = FXCollections.observableArrayList(BirdSex.Any, BirdSex.Male, BirdSex.Female);
+        sexComboBox.setConverter(sexConverter);
+        selectedSex.bind(sexComboBox
+                .getSelectionModel()
+                .selectedItemProperty());
+        sexComboBox
+                .getSelectionModel()
+                .selectFirst();
 
-        progressBar.progressProperty().bind(progress);
-        speciesCodeLabel.textProperty().bind(speciesCode);
-        recordsCountLabel.textProperty().bind(recordsCount);
-        returnsCountLabel.textProperty().bind(returnsCount);
-        speciesNameEngLabel.textProperty().bind(speciesNameEng);
-        speciesNameLatinLabel.textProperty().bind(speciesNameLatin);
+        mainView
+                .disableProperty()
+                .bind(isWindowDisabled);
+        resultsPane
+                .disableProperty()
+                .bind(isResultsDisabled);
+        writeResultsPane
+                .disableProperty()
+                .bind(isWriteResultsDisabled);
+        dataProcessingTab
+                .disableProperty()
+                .bind(isSpeciesSelectDisabled);
+        dataLoadingTabNextButton
+                .disableProperty()
+                .bind(isSpeciesSelectDisabled);
+
+        progressBar
+                .progressProperty()
+                .bind(progress);
+        sexLabel
+                .textProperty()
+                .bind(selectedSexName);
+        loadingResultsLabel
+                .textProperty()
+                .bind(loadingResultsText);
+        loadingStatusLabel
+                .textProperty()
+                .bind(loadingStatusText);
+        speciesCodeLabel
+                .textProperty()
+                .bind(speciesCode);
+        recordsCountLabel
+                .textProperty()
+                .bind(recordsCount);
+        returnsCountLabel
+                .textProperty()
+                .bind(returnsCount);
+        speciesNameEngLabel
+                .textProperty()
+                .bind(speciesNameEng);
+        speciesNameLatinLabel
+                .textProperty()
+                .bind(speciesNameLatin);
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());
         viewModel.setFileName(fileName.getValue());
     }
 
-    public String getDescription(){
-        return "Program do wybierania z bazy danych rekordów zdarzeń schwytania ptaków w czasie migracji.\r\n\r\nProgram łączy się z bazą danych RINGER ( plik .mdb) w celu pobrania rekordów schwytań ptaków. Dane są przetwarzane w poszukiwaniu przypadków tych samych ptaków schwytanych w następujących po sobie sezonach jesiennym i wiosennym. Takie zdarzenie sugeruje, że ptak był w stanie przeżyć wędrówkę i powrót. Hipoteza badawcza mówi, że mierzone cechy takiego ptaka będą w sposób istotny różne od średniej populacji ptaków danego gatunku i płci w danym sezonie. Program ma ułatwiać przeglądanie i wybieranie z bazy danych interesujących nas rekordów powracających ptaków.";
+    public String getLoadingStatusText() {
+        return loadingStatusText.getValue();
     }
+
+    public String getLoadingResultsText() {
+        return loadingResultsText.getValue();
+    }
+
     public Boolean getIsSpeciesSelectDisabled() {
         return isSpeciesSelectDisabled.getValue();
+    }
+
+    public String getSelectedSexName() {
+        return selectedSexName.getValue();
     }
 
     public Boolean getIsResultsDisabled() {
@@ -123,38 +193,26 @@ public class MainView implements Initializable {
         return returnsCount.getValue();
     }
 
-    public String getSpeciesName() {
-        return speciesName.getValue();
-    }
-
     public ObservableList<BirdSpecies> getSpeciesList() {
         return speciesList;
+    }
+
+    public ObservableList<BirdSex> getSexList() {
+        return sexList;
     }
 
     public Boolean getIsWindowDisabled() {
         return isWindowDisabled.getValue();
     }
 
-    public void setIsWindowDisabled(Boolean value) {
-        isWindowDisabled.setValue(value);
-    }
 
     public Float getProgress() {
         return progress.getValue();
     }
 
-    public void setProgress(Float value) {
-        progress.set(value);
-    }
 
     public String getFileName() {
         return fileName.getValue();
-    }
-
-    public void setFileName(String value) {
-        fileName.set(value);
-
-        viewModel.setFileName(fileName.getValue());
     }
 
     public String getOldTableName() {
@@ -175,7 +233,6 @@ public class MainView implements Initializable {
         newTableName.set(value);
     }
 
-
     public void setViewModel(MainViewModel viewModel) {
         this.viewModel = viewModel;
     }
@@ -190,25 +247,35 @@ public class MainView implements Initializable {
         try {
             isWindowDisabled.setValue(true);
             progress.setValue(-1);
+            loadingStatusText.setValue("Ładowanie danych...");
             new Thread(() -> {
                 try {
-//                   viewModel.loadData();
+                    viewModel.loadData();
+                    var count = viewModel.getRecordsCount();
+                    Platform.runLater(() -> loadingStatusText.setValue("Ładowanie zakończone. Załadowano " + count + " rekordów"));
                     Platform.runLater(() -> progress.setValue(1.0f));
                 } catch (Exception e) {
                     Platform.runLater(() -> progress.setValue(0.0f));
+                    Platform.runLater(() -> loadingStatusText.setValue("Błąd ładowania danych. " + e.getMessage()));
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     a.setContentText(e.getMessage());
                     a.show();
                 } finally {
-                    Platform.runLater(() -> isWindowDisabled.setValue(false));
+                    Platform.runLater(() -> {
+                        this.isWindowDisabled.setValue(false);
+                        var speciesList = viewModel.getSpeciesList();
+                        this.speciesList.addAll(speciesList);
+                        this.speciesComboBox
+                                .getSelectionModel()
+                                .selectFirst();
+                        this.speciesName.setValue(selectedSpecies
+                                .getValue()
+                                .speciesNameEng());
+                        this.isSpeciesSelectDisabled.setValue(false);
+                    });
                 }
             }).start();
 
-            var speciesList = viewModel.getSpeciesList();
-            this.speciesList.addAll(speciesList);
-            this.speciesComboBox.getSelectionModel().selectFirst();
-            this.speciesName.setValue(selectedSpecies.getValue().speciesNameEng());
-            this.isSpeciesSelectDisabled.setValue(false);
         } catch (Exception e) {
             progress.setValue(0.0f);
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -224,22 +291,85 @@ public class MainView implements Initializable {
         if (null != result) fileName.setValue(result);
     }
 
-    public void applySelectedSpeciesAction(ActionEvent actionEvent) {
-        if (null == viewModel) return;
+
+    public void introductionTabNext(ActionEvent actionEvent) {
+        tabPane
+                .getSelectionModel()
+                .select(1);
+    }
+
+    public void dataLoadingTabNext(ActionEvent actionEvent) {
+        tabPane
+                .getSelectionModel()
+                .select(2);
+    }
+
+    public void writeResultsAction(ActionEvent actionEvent) {
         try {
-            var calculatedData = viewModel.getCalculatedData();
-            speciesCode.setValue(calculatedData.speciesCode());
-            speciesNameEng.setValue(calculatedData.speciesNameEng());
-            speciesNameLatin.setValue(calculatedData.speciesNameLatin());
-            recordsCount.setValue(calculatedData.recordsCount().toString());
-            returnsCount.setValue(calculatedData.returnsCount().toString());
-            isResultsDisabled.setValue(false);
-            isWriteResultsDisabled.setValue(false);
+            viewModel.writeResults();
         } catch (Exception e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText(e.getMessage());
             a.show();
         }
+    }
+
+    public void speciesComboBoxAction(ActionEvent actionEvent) {
+        try {
+            var species = speciesComboBox
+                    .getSelectionModel()
+                    .getSelectedItem();
+            viewModel.setSpeciesSelected(species);
+
+            getCalculatedData();
+        } catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
+    }
+
+    public void sexComboBoxAction(ActionEvent actionEvent) {
+        try {
+            var sex = sexComboBox
+                    .getSelectionModel()
+                    .getSelectedItem();
+            viewModel.setSexSelected(sex);
+            getCalculatedData();
+        } catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
+    }
+
+
+
+    public void applySelectedSpeciesAction(ActionEvent actionEvent) {
+        if (null == viewModel) return;
+        try {
+            getCalculatedData();
+        } catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
+    }
+
+    private void getCalculatedData() throws Exception {
+        var calculatedData = viewModel.getCalculatedData();
+        speciesCode.setValue(calculatedData.speciesCode());
+        speciesNameEng.setValue(calculatedData.speciesNameEng());
+        speciesNameLatin.setValue(calculatedData.speciesNameLat());
+        selectedSexName.setValue(calculatedData.selectedSexName());
+        recordsCount.setValue(calculatedData
+                .recordsCount()
+                .toString());
+        returnsCount.setValue(calculatedData
+                .returnsCount()
+                .toString());
+        isResultsDisabled.setValue(false);
+        isWriteResultsDisabled.setValue(false);
     }
 }
 

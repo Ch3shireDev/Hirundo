@@ -6,7 +6,12 @@ public class MockFileChooser implements IFileChooser {
     public String FileName;
 
     @Override
-    public String selectFileName() {
+    public String selectFileToOpen() {
         return FileName;
+    }
+
+    @Override
+    public String selectFileToSave(String exampleFilename) {
+        return null;
     }
 }

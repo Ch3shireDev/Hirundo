@@ -3,174 +3,211 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane
-        minHeight="400.0"
-        minWidth="600.0"
-        stylesheets="@view.css"
-        xmlns="http://javafx.com/javafx/17.0.2-ea"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.hirundo.app.views.MainView"
->
+<AnchorPane minHeight="400.0" minWidth="600.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hirundo.app.views.MainView">
 
-    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0"
-          disable="${controller.isWindowDisabled}"
-          fx:id="mainView"
-    >
-        <VBox>
-            <Label wrapText="true" maxWidth="500" textAlignment="JUSTIFY">Program do wybierania z bazy danych rekordów
-                zdarzeń schwytania ptaków w czasie migracji.
-            </Label>
-            <Label wrapText="true" maxWidth="500" textAlignment="JUSTIFY">
-                Aplikacja łączy się z bazą danych RINGER ( plik .mdb) w celu pobrania rekordów schwytań ptaków. Dane są
-                przetwarzane w poszukiwaniu przypadków tych samych ptaków schwytanych w następujących po sobie sezonach
-                jesiennym i wiosennym. Takie zdarzenie sugeruje, że ptak był w stanie przeżyć wędrówkę i powrót.
-                Hipoteza badawcza mówi, że mierzone cechy takiego ptaka będą w sposób istotny różne od średniej
-                populacji ptaków danego gatunku i płci w danym sezonie. Program ma ułatwiać przeglądanie i wybieranie z
-                bazy danych interesujących nas rekordów powracających ptaków.
-            </Label>
-        </VBox>
-        <GridPane>
-            <HBox GridPane.rowIndex="0">
-                <Label text="Wybierz plik bazy danych RINGER (.mdb)"/>
-                <Button onAction="#selectFileName">Otwórz</Button>
-            </HBox>
-            <HBox GridPane.rowIndex="1">
-                <Label text="${controller.fileName}"/>
-            </HBox>
-            <columnConstraints>
-                <ColumnConstraints/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints/>
-                <RowConstraints/>
-            </rowConstraints>
-        </GridPane>
-        <GridPane>
-            <HBox GridPane.rowIndex="0">
-                <Label text="Podaj nazwy starej i nowej tabeli (pozostaw puste by pominąć)."/>
-            </HBox>
-            <HBox GridPane.rowIndex="1">
-                <Label text="Nazwa starej bazy danych (1961-2016):"/>
-                <TextField maxWidth="200.0" text="${controller.oldTableName}"/>
-            </HBox>
-            <HBox GridPane.rowIndex="2">
-                <Label text="Nazwa nowej bazy danych (2017-2021):"/>
-                <TextField maxWidth="200.0" text="${controller.newTableName}"/>
-            </HBox>
-            <columnConstraints>
-                <ColumnConstraints/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-            </rowConstraints>
-        </GridPane>
-        <GridPane>
-            <HBox>
-                <Button onAction="#loadDataAction">Załaduj dane</Button>
-                <ProgressBar fx:id="progressBar" prefHeight="28.0" prefWidth="200.0" progress="${controller.progress}">
-                    <HBox.margin>
-                        <Insets top="1.0"/>
-                    </HBox.margin>
-                </ProgressBar>
-            </HBox>
-            <columnConstraints>
-                <ColumnConstraints/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints/>
-            </rowConstraints>
-        </GridPane>
-        <GridPane fx:id="speciesSelectPane" disable="${controller.isSpeciesSelectDisabled}">
-            <HBox AnchorPane.topAnchor="0">
-                <Label>Wybierz gatunek:</Label>
-                <ComboBox
-                        fx:id="speciesComboBox"
-                        prefWidth="200.0"
-                        items="${controller.speciesList}"
+    <AnchorPane fx:id="mainView" disable="${controller.isWindowDisabled}"
+                AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <TabPane
+                AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0"
+                AnchorPane.topAnchor="0"
+                fx:id="tabPane"
+        >
+            <Tab closable="false" text="Wstęp">
+                <AnchorPane>
+                    <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                        <Label maxWidth="500" textAlignment="JUSTIFY" wrapText="true">
+                            Program do wybierania z bazy danych rekordów
+                            zdarzeń schwytania ptaków w czasie migracji.
+                        </Label>
+                        <Label maxWidth="500" textAlignment="JUSTIFY" wrapText="true">
+                            Aplikacja łączy się z bazą danych RINGER ( plik .mdb) w celu pobrania rekordów schwytań
+                            ptaków. Dane są przetwarzane w poszukiwaniu przypadków tych samych ptaków schwytanych w
+                            następujących po sobie sezonach jesiennym i wiosennym. Takie zdarzenie sugeruje, że ptak był
+                            w stanie przeżyć
+                            wędrówkę i powrót. Hipoteza badawcza mówi, że mierzone cechy takiego ptaka będą w sposób
+                            istotny różne
+                            od średniej populacji ptaków danego gatunku i płci w danym sezonie. Program ma ułatwiać
+                            przeglądanie i wybieranie z bazy danych interesujących nas rekordów powracających ptaków.
+                        </Label>
+                        <HBox>
+                            <Button onAction="#introductionTabNext">Przejdź dalej</Button>
+                        </HBox>
+                    </VBox>
+                </AnchorPane>
+            </Tab>
+            <Tab closable="false" text="Ładowanie danych">
+                <AnchorPane>
+                    <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                        <VBox>
+                            <HBox GridPane.rowIndex="0">
+                                <Label text="Wybierz plik bazy danych RINGER (.mdb)"/>
+                                <Button onAction="#selectFileName">Otwórz</Button>
+                            </HBox>
+                            <HBox GridPane.rowIndex="1">
+                                <Label text="${controller.fileName}"/>
+                            </HBox>
+                        </VBox>
+                        <VBox>
+                            <HBox>
+                                <Label text="Podaj nazwy starej i nowej tabeli (pozostaw puste aby pominąć)."/>
+                            </HBox>
+                            <HBox>
+                                <Label text="Nazwa starej bazy danych (1961-2016):"/>
+                                <TextField maxWidth="200.0" text="${controller.oldTableName}"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="Nazwa nowej bazy danych (2017-2021):"/>
+                                <TextField maxWidth="200.0" text="${controller.newTableName}"/>
+                            </HBox>
+                        </VBox>
+                        <HBox>
+                            <Button onAction="#loadDataAction">Załaduj dane</Button>
+                            <ProgressBar fx:id="progressBar" prefHeight="28.0" prefWidth="200.0"
+                                         progress="${controller.progress}">
+                                <HBox.margin>
+                                    <Insets top="1.0"/>
+                                </HBox.margin>
+                            </ProgressBar>
+                        </HBox>
+                        <HBox>
+                            <Label fx:id="loadingStatusLabel" text="${controller.loadingStatusText}"/>
+                        </HBox>
+                        <HBox>
+                            <Button
+                                    fx:id="dataLoadingTabNextButton"
+                                    disable="${controller.isSpeciesSelectDisabled}"
+                                    onAction="#dataLoadingTabNext">Przejdź dalej
+                            </Button>
+                        </HBox>
+                    </VBox>
+                </AnchorPane>
+            </Tab>
+            <Tab
+                    fx:id="dataProcessingTab"
+                    closable="false"
+                    text="Przetwarzanie danych"
+                    disable="${controller.isSpeciesSelectDisabled}">
+                <AnchorPane>
+                    <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                        <GridPane>
 
-                />
-                <Button alignment="CENTER" onAction="#applySelectedSpeciesAction">
-                    Zatwierdź
-                </Button>
-            </HBox>
-        </GridPane>
-        <GridPane fx:id="resultsPane" disable="${controller.isResultsDisabled}">
-
-            <Label
-                    GridPane.rowIndex="0"
-                    GridPane.columnIndex="0"
-                    text="Kod gatunku:"/>
-            <Label
-
-                    GridPane.rowIndex="0"
-                    GridPane.columnIndex="1"
-                    fx:id="speciesCodeLabel"
-                    text="${controller.speciesCode}"/>
-            <Label
-                    GridPane.rowIndex="1"
-                    GridPane.columnIndex="0"
-                    text="Nazwa gatunku (ang.):"/>
-            <Label
-
-                    GridPane.rowIndex="1"
-                    GridPane.columnIndex="1"
-                    fx:id="speciesNameEngLabel"
-                    text="${controller.speciesNameEng}"/>
-
-            <Label
-                    GridPane.rowIndex="2"
-                    GridPane.columnIndex="0"
-                    text="Nazwa gatunku (łac.):"/>
-            <Label
-
-                    GridPane.rowIndex="2"
-                    GridPane.columnIndex="1"
-                    fx:id="speciesNameLatinLabel"
-                    text="${controller.speciesNameLatin}"/>
-
-            <Label
-                    GridPane.rowIndex="3"
-                    GridPane.columnIndex="0"
-                    text="Liczba rekordów:"/>
-            <Label
-                    GridPane.rowIndex="3"
-                    GridPane.columnIndex="1"
-                    fx:id="recordsCountLabel"
-                    text="${controller.recordsCount}"/>
-
-            <Label
-                    GridPane.rowIndex="4"
-                    GridPane.columnIndex="0"
-                    text="Liczba zarejestrowanych powrotów:"/>
-            <Label
-                    GridPane.rowIndex="4"
-                    GridPane.columnIndex="1"
-                    fx:id="returnsCountLabel"
-                    text="${controller.returnsCount}"/>
+                            <Label text="Wybierz gatunek:"
+                                   GridPane.rowIndex="0"
+                                   GridPane.columnIndex="0"/>
+                            <ComboBox GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                      fx:id="speciesComboBox"
+                                      items="${controller.speciesList}"
+                                      onAction="#speciesComboBoxAction"
+                                      prefWidth="300.0"/>
 
 
-            <columnConstraints>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-                <RowConstraints/>
-            </rowConstraints>
-        </GridPane>
-        <GridPane fx:id="writeResultsPane" disable="${controller.isWriteResultsDisabled}">
-            <Button>Zapisz wyniki</Button>
-            <columnConstraints>
-                <ColumnConstraints/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints/>
-            </rowConstraints>
-        </GridPane>
-    </VBox>
+                            <Label text="Wybierz płeć:"
+                                   GridPane.rowIndex="1"
+                                   GridPane.columnIndex="0"
+                            />
+                            <ComboBox
+                                    GridPane.rowIndex="1"
+                                    GridPane.columnIndex="1"
+                                    fx:id="sexComboBox"
+                                    items="${controller.sexList}"
+                                    prefWidth="300.0"
+                                    onAction="#sexComboBoxAction"
+                            />
+
+                            <columnConstraints>
+                                <ColumnConstraints/>
+                                <ColumnConstraints/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                            </rowConstraints>
+                        </GridPane>
+<!--                        <HBox>-->
+<!--                            <Button alignment="CENTER" onAction="#applySelectedSpeciesAction">-->
+<!--                                Zatwierdź-->
+<!--                            </Button>-->
+<!--                        </HBox>-->
+                        <GridPane
+                                fx:id="resultsPane"
+                                disable="${controller.isResultsDisabled}">
+                            <Label text="Kod gatunku:"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="0"/>
+                            <Label fx:id="speciesCodeLabel"
+                                   text="${controller.speciesCode}"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="0"/>
+                            <Label text="Nazwa gatunku (ang.):"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="1"/>
+                            <Label fx:id="speciesNameEngLabel"
+                                   text="${controller.speciesNameEng}"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1"/>
+                            <Label text="Nazwa gatunku (łac.):"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="2"/>
+                            <Label fx:id="speciesNameLatinLabel" text="${controller.speciesNameLatin}"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="2"/>
+                            <Label text="Płeć:"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="3"/>
+                            <Label fx:id="sexLabel"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="3"
+                                   text="${controller.selectedSexName}"/>
+                            <Label text="Liczba rekordów:"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="4"/>
+                            <Label fx:id="recordsCountLabel"
+                                   text="${controller.recordsCount}"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="4"/>
+                            <Label text="Liczba zarejestrowanych powrotów:"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="5"/>
+                            <Label fx:id="returnsCountLabel"
+                                   text="${controller.returnsCount}"
+                                   GridPane.columnIndex="1"
+                                   GridPane.rowIndex="5"/>
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50.0"/>
+                                <ColumnConstraints percentWidth="50.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                            </rowConstraints>
+                        </GridPane>
+                        <HBox fx:id="writeResultsPane" disable="${controller.isWriteResultsDisabled}">
+                            <Button onAction="#writeResultsAction">
+                                Zapisz wyniki
+                            </Button>
+                        </HBox>
+                        <HBox>
+                            <Label fx:id="loadingResultsLabel" text="${controller.loadingResultsText}"/>
+                        </HBox>
+                    </VBox>
+                </AnchorPane>
+            </Tab>
+            <Tab closable="false" text="O programie">
+                <AnchorPane>
+                    <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                        <Label text="Hirundo ver. 0.1"/>
+                        <Label text="Data wydania: 2023-05-29"/>
+                        <Label text="Autor: Igor Nowicki (igor.nowicki.business@gmail.com)"/>
+                        <Label text="Program do analizy rekordów zdarzeń ponownych schwytań ptaków w czasie migracji."/>
+                    </VBox>
+                </AnchorPane>
+            </Tab>
+        </TabPane>
+    </AnchorPane>
 </AnchorPane>

@@ -1,46 +1,35 @@
 package com.hirundo.cli;
 
 import com.hirundo.libs.data_structures.DbBirdRecord;
-import com.hirundo.libs.services.AccessNewDbBirdRecordDataLoader;
-import com.hirundo.libs.services.AccessOldDbBirdRecordDataLoader;
-import com.hirundo.libs.services.BirdDataLoaderAdapter;
+import com.hirundo.libs.services.BirdRecordDataLoaderBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
-public class Main {
+public enum Main {
+    ;
 
     public static void main(String[] args) throws Exception {
 
-        var dbPath = "C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb";
-
         try {
-            var oldBirdDataLoader = new AccessOldDbBirdRecordDataLoader(dbPath, "Tab_Ring_Podab");
-            var oldAdapter = new BirdDataLoaderAdapter(oldBirdDataLoader);
-            var oldData = oldAdapter.loadData();
 
-            var newBirdDataLoader = new AccessNewDbBirdRecordDataLoader(dbPath, "AB 2017_18_19_20_21S");
-            var newAdapter = new BirdDataLoaderAdapter(newBirdDataLoader);
-            var newData = newAdapter.loadData();
+            var loader = new BirdRecordDataLoaderBuilder()
+                    .withOldTableName("Tab_Ring_Podab")
+                    .withNewTableName("AB 2017_18_19_20_21S")
+                    .withFilename("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb")
+                    .build();
 
-            System.out.println("oldData.size() = " + oldData.size());
-            System.out.println("newData.size() = " + newData.size());
+            var joinedData = loader.loadData();
 
-            List<DbBirdRecord> joinedData = new ArrayList<>();
-            joinedData.addAll(oldData);
-            joinedData.addAll(newData);
+            var sexes = joinedData
+                    .stream()
+                    .map(DbBirdRecord::getSex)
+                    .filter(Objects::nonNull)
+                    .distinct()
+                    .sorted()
+                    .toArray();
 
-            joinedData = joinedData.stream().filter(x -> null != x.getSpecies() && !x.getSpecies().isBlank()).toList();
-
-            System.out.println("joinedData.size() = " + joinedData.size());
-
-            var speciesSet = joinedData.stream().map(DbBirdRecord::getSpecies).distinct().sorted().toList();
-
-            System.out.println("count of species = " + speciesSet.size());
-
-            for (var species : speciesSet) {
-                var speciesData = joinedData.stream().filter(x -> x.getSpecies().equals(species)).toList();
-                System.out.println(species + ", count = " + speciesData.size());
+            for (var sex : sexes) {
+                System.out.println(sex);
             }
 
         } catch (Exception e) {

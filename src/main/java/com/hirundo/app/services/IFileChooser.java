@@ -1,5 +1,6 @@
 package com.hirundo.app.services;
 
 public interface IFileChooser {
-    String selectFileName();
+    String selectFileToOpen();
+    String selectFileToSave(String exampleFilename);
 }
