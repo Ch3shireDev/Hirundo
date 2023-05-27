@@ -23,7 +23,6 @@ class AccessOldDbBirdRecordDataLoaderTest {
     void loadData() {
         var data = dataLoader.loadData();
 
-
         assertEquals(2, data.size());
         var result = data.get(0);
 
@@ -44,7 +43,7 @@ class AccessOldDbBirdRecordDataLoaderTest {
         Assertions.assertEquals("J634038", result.Ring);
         Assertions.assertEquals("O", result.Status);
         Assertions.assertEquals("PHY.LUS", result.Spec);
-        Assertions.assertEquals(null, result.Sex);
+        Assertions.assertEquals("M", result.Sex);
         Assertions.assertEquals("I", result.Age);
         Assertions.assertEquals(null, result.Ringer);
         Assertions.assertEquals(9, result.Mass);
@@ -98,5 +97,11 @@ class AccessOldDbBirdRecordDataLoaderTest {
         Assertions.assertEquals(20, result.X5);
         Assertions.assertEquals(21, result.X6);
         Assertions.assertEquals("22", result.Net);
+
+        var result2 = data.get(1);
+
+        Assertions.assertEquals(2, result2.IDR_Podab);
+        Assertions.assertEquals(129, result2.IdrZesz);
+        Assertions.assertEquals("F", result2.Sex);
     }
 }
