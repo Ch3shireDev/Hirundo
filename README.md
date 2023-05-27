@@ -8,7 +8,7 @@ Uniwersytet Gdański organizuje kilka razy do roku wyjazdy Akcji Bałtyckiej (ht
 
 ## Wymagania funkcjonalne
 
-1. [ ] Stworzyć moduł do pobierania danych z bazy danych Access
+1. [x] Stworzyć moduł do pobierania danych z bazy danych Access
 2. [ ] Stworzyć moduł do wysyłania zapytania do bazy danych według wybranych kryteriów
 3. [ ] Stworzyć moduł wyliczający dane statystyczne dla wybranego zbioru rekordów
 4. [ ] Stworzyć moduł do zapisu danych w formacie .csv

@@ -1,90 +1,176 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <AnchorPane
-        minHeight="400.0" minWidth="600.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hirundo.app.views.MainView"
-
+        minHeight="400.0"
+        minWidth="600.0"
+        stylesheets="@view.css"
+        xmlns="http://javafx.com/javafx/17.0.2-ea"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.hirundo.app.views.MainView"
 >
-    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0"
-              disable="${controller.isWindowDisabled}"
-              fx:id="mainView"
+
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0"
+          disable="${controller.isWindowDisabled}"
+          fx:id="mainView"
     >
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="100.0" vgrow="NEVER" />
-            <RowConstraints minHeight="100.0" vgrow="NEVER" />
-            <RowConstraints minHeight="100.0" vgrow="NEVER" />
-            <RowConstraints minHeight="100.0" vgrow="NEVER" />
-            <RowConstraints minHeight="100.0" vgrow="ALWAYS" />
-            <RowConstraints minHeight="100.0" vgrow="NEVER" />
-        </rowConstraints>
-        <GridPane GridPane.rowIndex="0">
-            <HBox>
-                <Button onAction="#selectFileName">Otwórz</Button>
-                <Label text="${controller.selectedFileName}" />
-            </HBox>
-            <columnConstraints>
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
-        <GridPane GridPane.rowIndex="1">
+        <VBox>
+            <Label wrapText="true" maxWidth="500" textAlignment="JUSTIFY">Program do wybierania z bazy danych rekordów
+                zdarzeń schwytania ptaków w czasie migracji.
+            </Label>
+            <Label wrapText="true" maxWidth="500" textAlignment="JUSTIFY">
+                Aplikacja łączy się z bazą danych RINGER ( plik .mdb) w celu pobrania rekordów schwytań ptaków. Dane są
+                przetwarzane w poszukiwaniu przypadków tych samych ptaków schwytanych w następujących po sobie sezonach
+                jesiennym i wiosennym. Takie zdarzenie sugeruje, że ptak był w stanie przeżyć wędrówkę i powrót.
+                Hipoteza badawcza mówi, że mierzone cechy takiego ptaka będą w sposób istotny różne od średniej
+                populacji ptaków danego gatunku i płci w danym sezonie. Program ma ułatwiać przeglądanie i wybieranie z
+                bazy danych interesujących nas rekordów powracających ptaków.
+            </Label>
+        </VBox>
+        <GridPane>
             <HBox GridPane.rowIndex="0">
-                <Label text="Nazwa starej bazy danych (1961-2016):" />
-                <TextField maxWidth="200.0" text="${controller.oldTableName}" />
+                <Label text="Wybierz plik bazy danych RINGER (.mdb)"/>
+                <Button onAction="#selectFileName">Otwórz</Button>
             </HBox>
             <HBox GridPane.rowIndex="1">
-                <Label text="Nazwa nowej bazy danych (2017-2021):" />
-                <TextField maxWidth="200.0" text="${controller.newTableName}" />
+                <Label text="${controller.fileName}"/>
             </HBox>
             <columnConstraints>
-                <ColumnConstraints />
+                <ColumnConstraints/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
+                <RowConstraints/>
+                <RowConstraints/>
             </rowConstraints>
         </GridPane>
-        <GridPane GridPane.rowIndex="2">
+        <GridPane>
+            <HBox GridPane.rowIndex="0">
+                <Label text="Podaj nazwy starej i nowej tabeli (pozostaw puste by pominąć)."/>
+            </HBox>
+            <HBox GridPane.rowIndex="1">
+                <Label text="Nazwa starej bazy danych (1961-2016):"/>
+                <TextField maxWidth="200.0" text="${controller.oldTableName}"/>
+            </HBox>
+            <HBox GridPane.rowIndex="2">
+                <Label text="Nazwa nowej bazy danych (2017-2021):"/>
+                <TextField maxWidth="200.0" text="${controller.newTableName}"/>
+            </HBox>
+            <columnConstraints>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+        </GridPane>
+        <GridPane>
             <HBox>
                 <Button onAction="#loadDataAction">Załaduj dane</Button>
-                <ProgressBar fx:id="pb" prefHeight="28.0" prefWidth="200.0" progress="${controller.progress}">
+                <ProgressBar fx:id="progressBar" prefHeight="28.0" prefWidth="200.0" progress="${controller.progress}">
                     <HBox.margin>
-                        <Insets top="1.0" />
+                        <Insets top="1.0"/>
                     </HBox.margin>
                 </ProgressBar>
             </HBox>
             <columnConstraints>
-                <ColumnConstraints />
+                <ColumnConstraints/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints />
+                <RowConstraints/>
             </rowConstraints>
         </GridPane>
-        <AnchorPane GridPane.rowIndex="3">
+        <GridPane fx:id="speciesSelectPane" disable="${controller.isSpeciesSelectDisabled}">
             <HBox AnchorPane.topAnchor="0">
                 <Label>Wybierz gatunek:</Label>
-                <ComboBox prefWidth="200.0" />
-                <Button alignment="CENTER">
+                <ComboBox
+                        fx:id="speciesComboBox"
+                        prefWidth="200.0"
+                        items="${controller.speciesList}"
+
+                />
+                <Button alignment="CENTER" onAction="#applySelectedSpeciesAction">
                     Zatwierdź
                 </Button>
             </HBox>
-        </AnchorPane>
-        <GridPane GridPane.rowIndex="4">
-            <Button>Zapisz wyniki</Button>
+        </GridPane>
+        <GridPane fx:id="resultsPane" disable="${controller.isResultsDisabled}">
+
+            <Label
+                    GridPane.rowIndex="0"
+                    GridPane.columnIndex="0"
+                    text="Kod gatunku:"/>
+            <Label
+
+                    GridPane.rowIndex="0"
+                    GridPane.columnIndex="1"
+                    fx:id="speciesCodeLabel"
+                    text="${controller.speciesCode}"/>
+            <Label
+                    GridPane.rowIndex="1"
+                    GridPane.columnIndex="0"
+                    text="Nazwa gatunku (ang.):"/>
+            <Label
+
+                    GridPane.rowIndex="1"
+                    GridPane.columnIndex="1"
+                    fx:id="speciesNameEngLabel"
+                    text="${controller.speciesNameEng}"/>
+
+            <Label
+                    GridPane.rowIndex="2"
+                    GridPane.columnIndex="0"
+                    text="Nazwa gatunku (łac.):"/>
+            <Label
+
+                    GridPane.rowIndex="2"
+                    GridPane.columnIndex="1"
+                    fx:id="speciesNameLatinLabel"
+                    text="${controller.speciesNameLatin}"/>
+
+            <Label
+                    GridPane.rowIndex="3"
+                    GridPane.columnIndex="0"
+                    text="Liczba rekordów:"/>
+            <Label
+                    GridPane.rowIndex="3"
+                    GridPane.columnIndex="1"
+                    fx:id="recordsCountLabel"
+                    text="${controller.recordsCount}"/>
+
+            <Label
+                    GridPane.rowIndex="4"
+                    GridPane.columnIndex="0"
+                    text="Liczba zarejestrowanych powrotów:"/>
+            <Label
+                    GridPane.rowIndex="4"
+                    GridPane.columnIndex="1"
+                    fx:id="returnsCountLabel"
+                    text="${controller.returnsCount}"/>
+
+
             <columnConstraints>
-                <ColumnConstraints />
+                <ColumnConstraints/>
+                <ColumnConstraints/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints />
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
             </rowConstraints>
         </GridPane>
-    </GridPane>
+        <GridPane fx:id="writeResultsPane" disable="${controller.isWriteResultsDisabled}">
+            <Button>Zapisz wyniki</Button>
+            <columnConstraints>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+            </rowConstraints>
+        </GridPane>
+    </VBox>
 </AnchorPane>

@@ -1,7 +1,11 @@
 package com.hirundo.app.view_models;
 
 import com.hirundo.app.models.MainModel;
-import javafx.concurrent.Task;
+import com.hirundo.libs.data_structures.BirdSpecies;
+import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainViewModel {
     private final MainModel model;
@@ -26,7 +30,15 @@ public class MainViewModel {
         this.model.setOldTableName(value);
     }
 
-    public void setSelectedFileName(String value) {
+    public void setFileName(String value) {
         this.model.setSelectedFileName(value);
+    }
+
+    public List<BirdSpecies> getSpeciesList() {
+        return new ArrayList<>(List.of(new BirdSpecies("A", "B", "C"), new BirdSpecies("D", "E", "F"), new BirdSpecies("G", "H", "I")));
+    }
+
+    public BirdSpeciesCalculatedData getCalculatedData() {
+        return new BirdSpeciesCalculatedData("A", "B", "C", 1, 2);
     }
 }
