@@ -1,8 +1,5 @@
 package com.hirundo.libs.services;
 
-import com.opencsv.bean.CsvBindByName;
-import com.opencsv.bean.CsvBindByPosition;
-import com.opencsv.bean.CsvDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +12,7 @@ class CsvSerializerTest {
 
     @BeforeEach
     void setUp() {
-        serializer = new CsvSerializer<>(MockCsvBirdData.class);
+        serializer = new CsvSerializer<MockCsvBirdData>(MockCsvBirdData.class);
     }
 
     @Test
@@ -27,29 +24,11 @@ class CsvSerializerTest {
 
         var result = serializer.serializeToCsv(birds);
 
-        var expectedResult = "\"Id\",\"Ring\",\"Date\"\n" +
-                              "1,1234,2020-01-02\n" +
-                              "2,1235,2020-01-03\n" +
-                              "3,1236,2020-01-04\n";
+        var expectedResult = "Id,Ring,Date\r\n" +
+                              "1,1234,2020-01-02\r\n" +
+                              "2,1235,2020-01-03\r\n" +
+                              "3,1236,2020-01-04\r\n";
         Assertions.assertEquals(expectedResult, result);
     }
 
-    public class MockCsvBirdData {
-        @CsvBindByName(column = "Id")
-        @CsvBindByPosition(position = 0)
-        public Integer Id;
-        @CsvBindByName(column = "Ring")
-        @CsvBindByPosition(position = 1)
-        public String Ring;
-        @CsvBindByName(column = "Date")
-        @CsvBindByPosition(position = 2)
-        @CsvDate("yyyy-MM-dd")
-        public LocalDateTime Date;
-
-        public MockCsvBirdData(Integer id, String ring, LocalDateTime date) {
-            Id = id;
-            Ring = ring;
-            Date = date;
-        }
-    }
 }

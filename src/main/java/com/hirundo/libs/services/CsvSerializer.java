@@ -2,7 +2,9 @@ package com.hirundo.libs.services;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.ICSVWriter;
-import com.opencsv.bean.*;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
 
 import java.io.StringWriter;
 import java.io.Writer;
@@ -12,25 +14,28 @@ import java.util.List;
 
 public class CsvSerializer<T> {
     private Class<? extends T> type;
+
     public CsvSerializer(Class<? extends T> type) {
         this.type = type;
     }
+
     public String serializeToCsv(List<T> birdDataList) throws Exception {
 
-        var strategy = new ColumnPositionMappingStrategy<T>();
-        strategy.setType(type);
 
-        try  {
+        try {
             Writer writer = new StringWriter();
 
             String[] headers = getFieldNames(type);
-            strategy.setColumnMapping(headers);
 
-            CSVWriter csvWriter = new CSVWriter(writer);
+            CSVWriter csvWriter = new CSVWriter(writer, ICSVWriter.DEFAULT_SEPARATOR,
+                                                ICSVWriter.NO_QUOTE_CHARACTER,
+                                                ICSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                                                ICSVWriter.RFC4180_LINE_END);
             csvWriter.writeNext(headers);
 
             StatefulBeanToCsv<T> beanToCsv = new StatefulBeanToCsvBuilder<T>(writer)
                     .withQuotechar(ICSVWriter.NO_QUOTE_CHARACTER)
+                    .withLineEnd(ICSVWriter.RFC4180_LINE_END)
                     .build();
 
             beanToCsv.write(birdDataList);
