@@ -1,9 +1,8 @@
 package com.hirundo.app.models;
 
 import com.hirundo.libs.data_structures.*;
-import mockups.MockBirdRecordDataLoaderBuilder;
-import mockups.MockFileChooser;
-import mockups.MockFileDataLoader;
+import com.hirundo.libs.services.CsvReturningBirdsData;
+import mockups.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainModelTest {
     MainModel model;
@@ -43,15 +43,18 @@ class MainModelTest {
         var speciesList = model.getSpeciesList();
 
         assertEquals(1, speciesList.size());
-        assertEquals("AAA.BBB", speciesList
-                .get(0)
-                .speciesCode());
-        assertEquals("Aaabin Bbbir", speciesList
-                .get(0)
-                .speciesNameEng());
-        assertEquals("Aaarus Bbbirix", speciesList
-                .get(0)
-                .speciesNameLat());
+        assertEquals("AAA.BBB",
+                     speciesList
+                             .get(0)
+                             .speciesCode());
+        assertEquals("Aaabin Bbbir",
+                     speciesList
+                             .get(0)
+                             .speciesNameEng());
+        assertEquals("Aaarus Bbbirix",
+                     speciesList
+                             .get(0)
+                             .speciesNameLat());
     }
 
     @Test
@@ -73,7 +76,11 @@ class MainModelTest {
         var record5 = new NewDbBirdRecord();
         record5.SpeciesCode = "";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2), new DbBirdRecord(record3), new DbBirdRecord(record4), new DbBirdRecord(record5));
+        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
+                                      new DbBirdRecord(record2),
+                                      new DbBirdRecord(record3),
+                                      new DbBirdRecord(record4),
+                                      new DbBirdRecord(record5));
 
         model.loadData();
         var speciesList = model.getSpeciesList();
@@ -102,27 +109,34 @@ class MainModelTest {
         var speciesList = model.getSpeciesList();
 
         assertEquals(3, speciesList.size());
-        assertEquals("AAA.BBB", speciesList
-                .get(0)
-                .speciesCode());
-        assertEquals("Aaabin Bbbir", speciesList
-                .get(0)
-                .speciesNameEng());
-        assertEquals("Aaarus Bbbirix", speciesList
-                .get(0)
-                .speciesNameLat());
-        assertEquals("BBB.CCC", speciesList
-                .get(1)
-                .speciesCode());
-        assertEquals("CCC.DDD", speciesList
-                .get(2)
-                .speciesCode());
-        assertEquals("Cccin Dddir", speciesList
-                .get(2)
-                .speciesNameEng());
-        assertEquals("Cccus Dddirix", speciesList
-                .get(2)
-                .speciesNameLat());
+        assertEquals("AAA.BBB",
+                     speciesList
+                             .get(0)
+                             .speciesCode());
+        assertEquals("Aaabin Bbbir",
+                     speciesList
+                             .get(0)
+                             .speciesNameEng());
+        assertEquals("Aaarus Bbbirix",
+                     speciesList
+                             .get(0)
+                             .speciesNameLat());
+        assertEquals("BBB.CCC",
+                     speciesList
+                             .get(1)
+                             .speciesCode());
+        assertEquals("CCC.DDD",
+                     speciesList
+                             .get(2)
+                             .speciesCode());
+        assertEquals("Cccin Dddir",
+                     speciesList
+                             .get(2)
+                             .speciesNameEng());
+        assertEquals("Cccus Dddirix",
+                     speciesList
+                             .get(2)
+                             .speciesNameLat());
     }
 
     @Test
@@ -162,7 +176,10 @@ class MainModelTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2), new DbBirdRecord(record3), new DbBirdRecord(record4));
+        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
+                                      new DbBirdRecord(record2),
+                                      new DbBirdRecord(record3),
+                                      new DbBirdRecord(record4));
 
         model.loadData();
         model.setSexSelected(BirdSex.Male);
@@ -198,7 +215,10 @@ class MainModelTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2), new DbBirdRecord(record3), new DbBirdRecord(record4));
+        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
+                                      new DbBirdRecord(record2),
+                                      new DbBirdRecord(record3),
+                                      new DbBirdRecord(record4));
 
         model.loadData();
         model.setSexSelected(BirdSex.Any);
@@ -238,7 +258,10 @@ class MainModelTest {
         record4.Date2 = "2020-03-02";
         record4.Seas = "S";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2), new DbBirdRecord(record3), new DbBirdRecord(record4));
+        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
+                                      new DbBirdRecord(record2),
+                                      new DbBirdRecord(record3),
+                                      new DbBirdRecord(record4));
 
         model.loadData();
         model.setSexSelected(BirdSex.Any);
@@ -314,11 +337,41 @@ class MainModelTest {
 
 
     @Test
-    public void writeResultsForSelectedSpeciesTest(){
+    public void writeResultsForSelectedSpeciesTest() throws Exception {
+        var speciesFilter = new MockSpeciesFilter();
+        speciesFilter.filteredRecords = List.of(new DbBirdRecord(new NewDbBirdRecord()),
+                                                new DbBirdRecord(new NewDbBirdRecord()));
+
+        model.speciesFilter = speciesFilter;
+
+        var returningBirdsSummarizer = new MockReturningBirdsSummarizer();
+        returningBirdsSummarizer.summary = List.of(new ReturningBirdsData());
+        model.returningBirdsSummarizer = returningBirdsSummarizer;
+
+        var mapper = new MockReturningBirdsDataCsvRecordMapper();
+
+        model.mapper = mapper;
+
+        var serializer = new MockCsvSerializer<CsvReturningBirdsData>();
+
+        model.serializer = serializer;
+
+        model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
+
+        model.writeResultsForSelectedSpecies();
+
         // 1. Z danych jest wyodrębniany dany gatunek.
+        assertTrue(speciesFilter.isFilterCalled);
+        assertEquals("XXX.YYY", speciesFilter.speciesToFilter.speciesCode());
+        assertEquals("Aaabin Bbbir", speciesFilter.speciesToFilter.speciesNameEng());
+        assertEquals("Aaarus Bbbirix", speciesFilter.speciesToFilter.speciesNameLat());
         // 2. Tworzone jest podsumowanie przez serwis.
+        assertTrue(returningBirdsSummarizer.isCreateSummaryCalled);
+        assertTrue(mapper.isMapperCalled);
         // 3. Podsumowanie jest przetwarzane do CSV przez serializer.
-        // 4. Podsumowanie jest zapisywane do pliku.
+        assertTrue(serializer.isSerializeCalled);
+        // 4. Od użytkownika jest pobierana nazwa pliku.
+        // 5. Podsumowanie jest zapisywane do pliku.
     }
 }
 

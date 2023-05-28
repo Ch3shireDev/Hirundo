@@ -22,9 +22,10 @@ public class MainViewModel {
         return model.selectFileName();
     }
 
-    public void writeResultsForSelectedSpecies() {
+    public void writeResultsForSelectedSpecies() throws Exception{
         model.writeResultsForSelectedSpecies();
     }
+
     public void writeResultsForAllSpecies() {
         model.writeResultsForAllSpecies();
     }
@@ -54,7 +55,7 @@ public class MainViewModel {
     }
 
     public void setSpeciesSelected(BirdSpecies species) {
-    model.setSpeciesSelected(species);
+        model.setSpeciesSelected(species);
 
     }
 

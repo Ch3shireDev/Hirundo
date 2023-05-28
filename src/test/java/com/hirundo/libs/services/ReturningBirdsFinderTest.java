@@ -10,10 +10,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReturningBirdsFinderTest {
-ReturningBirdsFinder finder;
+ReturningBirdsSummarizer finder;
     @BeforeEach
     void setUp() {
-        finder = new ReturningBirdsFinder();
+        finder = new ReturningBirdsSummarizer();
     }
 
     @Test
@@ -39,7 +39,7 @@ ReturningBirdsFinder finder;
 
         var birds =  List.of(r1, r2, r3);
 
-        var returningBirds = finder.findReturningBirds(birds);
+        var returningBirds = finder.getSummary(birds);
 
         assertEquals(1, returningBirds.size());
         assertEquals(2, returningBirds.get(0).Records.size());

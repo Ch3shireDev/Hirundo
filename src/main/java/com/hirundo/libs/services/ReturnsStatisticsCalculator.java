@@ -8,7 +8,7 @@ import com.hirundo.libs.data_structures.DbBirdRecord;
 import java.util.List;
 
 public class ReturnsStatisticsCalculator {
-    ReturningBirdsFinder returningBirdsFinder = new ReturningBirdsFinder();
+    ReturningBirdsSummarizer returningBirdsSummarizer = new ReturningBirdsSummarizer();
 
     public BirdSpeciesCalculatedData getCalculatedData(List<DbBirdRecord> data, BirdSpecies selectedSpecies, BirdSex selectedSex) throws Exception {
 
@@ -42,7 +42,7 @@ public class ReturnsStatisticsCalculator {
 
         var recordsCount = list.size();
 
-        var returningBirds = returningBirdsFinder.findReturningBirds(list);
+        var returningBirds = returningBirdsSummarizer.getSummary(list);
 
         var returnsCount = returningBirds.size();
 

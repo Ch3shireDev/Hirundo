@@ -8,7 +8,21 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-public class SpeciesFinder {
+public class SpeciesFilter implements ISpeciesFilter {
+    public List<DbBirdRecord> filterBySpecies(List<DbBirdRecord> records, BirdSpecies species) {
+        if (null == species) return records;
+        return records
+                .stream()
+                .filter(record -> null != record.getSpeciesCode())
+                .filter(record -> !record
+                        .getSpeciesCode()
+                        .isBlank())
+                .filter(record -> record
+                        .getSpeciesCode()
+                        .equals(species.speciesCode()))
+                .toList();
+    }
+
     public List<BirdSpecies> getSpeciesList(List<DbBirdRecord> data) {
         if (0 == data.size()) {
             return new ArrayList<>();

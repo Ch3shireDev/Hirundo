@@ -8,9 +8,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ReturningBirdsFinder {
-
-    public List<ReturningBirdsData> findReturningBirds(List<DbBirdRecord> records) {
+public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
+    public List<ReturningBirdsData> getSummary(List<DbBirdRecord> records) {
         var ringNumbers = records
                 .stream()
                 .filter(b -> null != b.getRing() && !b

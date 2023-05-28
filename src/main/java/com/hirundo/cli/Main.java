@@ -1,9 +1,6 @@
 package com.hirundo.cli;
 
-import com.hirundo.libs.services.BirdRecordDataLoaderBuilder;
-import com.hirundo.libs.services.CsvReturningBirdsData;
-import com.hirundo.libs.services.CsvSerializer;
-import com.hirundo.libs.services.ReturningBirdsFinder;
+import com.hirundo.libs.services.*;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -22,19 +19,12 @@ public class Main {
 
             var joinedData = loader.loadData();
 
-            var finder = new ReturningBirdsFinder();
+            var finder = new ReturningBirdsSummarizer();
 
-            var returningBirds = finder.findReturningBirds(joinedData);
+            var returningBirds = finder.getSummary(joinedData);
 
-            var list = new java.util.ArrayList<CsvReturningBirdsData>();
-
-            for (var returningBird : returningBirds) {
-
-                for (var record : returningBird.Records) {
-                    var csvData = CsvReturningBirdsData.from(returningBird, record);
-                    list.add(csvData);
-                }
-            }
+            var mapper = new ReturningBirdsDataCsvRecordMapper();
+            var list = mapper.getCsvReturningBirdsData(returningBirds);
 
             var csvWriter = new CsvSerializer<>(CsvReturningBirdsData.class);
 
@@ -52,4 +42,6 @@ public class Main {
             System.out.println("exception = " + e);
         }
     }
+
 }
+

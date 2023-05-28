@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SpeciesFinderTest {
-    SpeciesFinder model;
+class SpeciesFilterTest {
+    SpeciesFilter model;
 
     @BeforeEach
     void setUp() {
-        model = new SpeciesFinder();
+        model = new SpeciesFilter();
     }
 
 

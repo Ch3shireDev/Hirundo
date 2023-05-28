@@ -5,9 +5,7 @@ import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
-import com.hirundo.libs.services.IBirdRecordDataLoaderBuilder;
-import com.hirundo.libs.services.ReturnsStatisticsCalculator;
-import com.hirundo.libs.services.SpeciesFinder;
+import com.hirundo.libs.services.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +13,15 @@ import java.util.List;
 public class MainModel {
     private final IBirdRecordDataLoaderBuilder builder;
     private final IFileChooser fileChooser;
+    public ISpeciesFilter speciesFilter = new SpeciesFilter();
     List<DbBirdRecord> data = new ArrayList<>();
     BirdSpecies selectedSpecies;
     BirdSex selectedSex = BirdSex.Any;
-    //    ReturningBirdsFinder returningBirdsFinder = new ReturningBirdsFinder();
+    public IReturningBirdsSummarizer returningBirdsSummarizer = new ReturningBirdsSummarizer();
+    public IReturningBirdsDataCsvRecordMapper mapper = new ReturningBirdsDataCsvRecordMapper();
+    public ICsvSerializer<CsvReturningBirdsData> serializer = new CsvSerializer<>(
+            CsvReturningBirdsData.class);
     ReturnsStatisticsCalculator calculator = new ReturnsStatisticsCalculator();
-    SpeciesFinder speciesFinder = new SpeciesFinder();
     private String selectedFileName;
     private String oldTableName;
     private String newTableName;
@@ -68,7 +69,7 @@ public class MainModel {
     }
 
     public List<BirdSpecies> getSpeciesList() {
-        return speciesFinder.getSpeciesList(data);
+        return speciesFilter.getSpeciesList(data);
     }
 
     public Integer getRecordsCount() {
@@ -83,12 +84,21 @@ public class MainModel {
         selectedSex = sex;
     }
 
-    public void writeResultsForSelectedSpecies() {
-//        var file = fileChooser.selectFileToSave("example.csv");
+    public void writeResultsForSelectedSpecies() throws Exception {
+        var filteredResults = speciesFilter.filterBySpecies(data, selectedSpecies);
+        var returningData = returningBirdsSummarizer.getSummary(filteredResults);
+        var mappedData = mapper.getCsvReturningBirdsData(returningData);
+        var result = serializer.serializeToCsv(mappedData);
+        var filename = fileChooser.selectFileToSave("example.csv");
+        if (null == result || null == filename) {
+            throw new Exception();
+        }
+
     }
 
     public void writeResultsForAllSpecies() {
     }
 
 }
+
 

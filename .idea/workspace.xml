@@ -8,9 +8,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Move getCalculatedData to ReturnsStatisticsCalculator">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/SpeciesListObtainer.java" afterDir="false" />
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ISpeciesFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsDataCsvRecordMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/mockups/MockSpeciesFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/SpeciesFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/SpeciesFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/SpeciesFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/SpeciesFilterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +71,8 @@
         <option value="FxmlFile" />
         <option value="CSS File" />
         <option value="Record" />
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -152,43 +159,19 @@
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Hirundo [run]">
+  <component name="RunManager" selected="Gradle.MainModelTest.writeResultsForSelectedSpeciesTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.hirundo.cli.Main" />
       <module name="Hirundo.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.hirundo.cli.*" />
+          <option name="PATTERN" value="com.hirundo.libs.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="CsvSerializerTest.serializeToCsv" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.hirundo.libs.services.CsvSerializerTest.serializeToCsv&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
     </configuration>
     <configuration name="Hirundo [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -210,6 +193,30 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="MainModelTest.writeResultsForSelectedSpeciesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.app.models.MainModelTest.writeResultsForSelectedSpeciesTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="ReturningBirdsFinderTest.returnsCountDifferentSeasonTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -260,18 +267,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.CsvSerializerTest.serializeToCsv" />
+      <item itemvalue="Gradle.MainModelTest.writeResultsForSelectedSpeciesTest" />
       <item itemvalue="Gradle.ReturningBirdsFinderTest.returnsCountDifferentSeasonTest" />
       <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
       <item itemvalue="Gradle.Hirundo [run]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Hirundo [run]" />
+        <item itemvalue="Gradle.MainModelTest.writeResultsForSelectedSpeciesTest" />
         <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
+        <item itemvalue="Gradle.Hirundo [run]" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.ReturningBirdsFinderTest.returnsCountDifferentSeasonTest" />
-        <item itemvalue="Gradle.CsvSerializerTest.serializeToCsv" />
       </list>
     </recent_temporary>
   </component>
@@ -301,7 +308,7 @@
       <workItem from="1684948526476" duration="15619000" />
       <workItem from="1685117702445" duration="8187000" />
       <workItem from="1685169500687" duration="40988000" />
-      <workItem from="1685262239064" duration="18603000" />
+      <workItem from="1685262239064" duration="20985000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -471,7 +478,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685298490004</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary=":bird: Move getSpeciesList to SpeciesFinder">
+      <created>1685299695716</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1685299695716</updated>
+    </task>
+    <task id="LOCAL-00026" summary=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception">
+      <created>1685299950236</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1685299950236</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,14 +529,16 @@
     <MESSAGE value=":bird: Change format of CsvWriter to CLRF" />
     <MESSAGE value=":bird: Move getReturningBirdsData to separate service" />
     <MESSAGE value=":bird: Move getCalculatedData to ReturnsStatisticsCalculator" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Move getCalculatedData to ReturnsStatisticsCalculator" />
+    <MESSAGE value=":bird: Move getSpeciesList to SpeciesFinder" />
+    <MESSAGE value=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java</url>
-          <line>234</line>
+          <line>240</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
