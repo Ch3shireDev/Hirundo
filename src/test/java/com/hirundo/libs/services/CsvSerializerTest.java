@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 class CsvSerializerTest {
-    CsvSerializer serializer;
+    CsvSerializer<MockCsvBirdData> serializer;
 
     @BeforeEach
     void setUp() {
-        serializer = new CsvSerializer<MockCsvBirdData>(MockCsvBirdData.class);
+        serializer = new CsvSerializer<>(MockCsvBirdData.class);
     }
 
     @Test
@@ -24,10 +24,12 @@ class CsvSerializerTest {
 
         var result = serializer.serializeToCsv(birds);
 
-        var expectedResult = "Id,Ring,Date\r\n" +
-                              "1,1234,2020-01-02\r\n" +
-                              "2,1235,2020-01-03\r\n" +
-                              "3,1236,2020-01-04\r\n";
+        var expectedResult = """
+                Id,Ring,Date\r
+                1,1234,2020-01-02\r
+                2,1235,2020-01-03\r
+                3,1236,2020-01-04\r
+                """;
         Assertions.assertEquals(expectedResult, result);
     }
 

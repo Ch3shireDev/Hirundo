@@ -6,14 +6,12 @@ import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.services.IBirdRecordDataLoaderBuilder;
+import com.hirundo.libs.services.ReturningBirdsFinder;
 
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MainModel {
     private final IBirdRecordDataLoaderBuilder builder;
@@ -21,6 +19,7 @@ public class MainModel {
     List<DbBirdRecord> data = new ArrayList<>();
     BirdSpecies selectedSpecies;
     BirdSex selectedSex = BirdSex.Any;
+    ReturningBirdsFinder returningBirdsFinder = new ReturningBirdsFinder();
     private String selectedFileName;
     private String oldTableName;
     private String newTableName;
@@ -31,7 +30,7 @@ public class MainModel {
     }
 
     public void writeResults() {
-        var file = fileChooser.selectFileToSave("example.csv");
+//        var file = fileChooser.selectFileToSave("example.csv");
     }
 
     public void loadData() throws Exception {
@@ -109,8 +108,9 @@ public class MainModel {
     }
 
     private BirdSpecies asSpecies(DbBirdRecord record) {
-        var birdSpecies = new BirdSpecies(record.getSpeciesCode(), record.getSpeciesNameEng(), record.getSpeciesNameLat());
-        return birdSpecies;
+        return new BirdSpecies(record.getSpeciesCode(),
+                               record.getSpeciesNameEng(),
+                               record.getSpeciesNameLat());
     }
 
     private Boolean missingNames(BirdSpecies species) {
@@ -152,11 +152,16 @@ public class MainModel {
 
         var recordsCount = list.size();
 
-        var returningBirds = findReturningBirds(list);
+        var returningBirds = returningBirdsFinder.findReturningBirds(list);
 
-        var returnsCount =  returningBirds.Records.size();
+        var returnsCount = returningBirds.size();
 
-        return new BirdSpeciesCalculatedData(speciesCode, speciesNameEng, speciesNameLat, sexName, recordsCount, returnsCount);
+        return new BirdSpeciesCalculatedData(speciesCode,
+                                             speciesNameEng,
+                                             speciesNameLat,
+                                             sexName,
+                                             recordsCount,
+                                             returnsCount);
     }
 
     private String getSexName() {
@@ -175,41 +180,6 @@ public class MainModel {
     public void setSexSelected(BirdSex sex) {
         selectedSex = sex;
     }
-
-    public ReturningBirdsData findReturningBirds(List<DbBirdRecord> records) {
-        var ringNumbers = records
-                .stream()
-                .filter(b -> null != b.getRing() && !b.getRing().isBlank())
-                .collect(Collectors.groupingBy(DbBirdRecord::getRing));
-
-        List<DbBirdRecord> result = new ArrayList<>();
-
-        for (var ringNumber : ringNumbers.keySet()) {
-            var ringRecords = ringNumbers.get(ringNumber);
-            if (2 > ringRecords.size()) {
-                continue;
-            }
-
-            var seasons = ringRecords
-                    .stream()
-                    .collect(Collectors.groupingBy(DbBirdRecord::getSeason));
-
-            if (2 > seasons.size()) {
-                continue;
-            }
-
-            DbBirdRecord record = (DbBirdRecord) ringRecords
-                    .stream()
-                    .sorted(Comparator.comparing(DbBirdRecord::getDate, Comparator.reverseOrder()))
-
-                    .toArray()[0];
-
-            result.add(record);
-        }
-
-        var returningBirds = new ReturningBirdsData();
-        returningBirds.Records = result;
-        return returningBirds;
-    }
 }
+
 

@@ -1,13 +1,16 @@
 package com.hirundo.cli;
 
-import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.services.BirdRecordDataLoaderBuilder;
+import com.hirundo.libs.services.CsvReturningBirdsData;
+import com.hirundo.libs.services.CsvSerializer;
+import com.hirundo.libs.services.ReturningBirdsFinder;
 
-import java.util.Objects;
+import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         try {
 
@@ -19,18 +22,32 @@ public class Main {
 
             var joinedData = loader.loadData();
 
-            var seasons = joinedData
-                    .stream()
-                    .map(DbBirdRecord::getSeason)
-                    .filter(Objects::nonNull)
-                    .distinct()
-                    .sorted()
-                    .toArray();
+            var finder = new ReturningBirdsFinder();
 
-            for (var season : seasons) {
-                System.out.println(season);
+            var returningBirds = finder.findReturningBirds(joinedData);
+
+            var list = new java.util.ArrayList<CsvReturningBirdsData>();
+
+            for (var returningBird : returningBirds) {
+
+                for (var record : returningBird.Records) {
+                    var csvData = CsvReturningBirdsData.from(returningBird, record);
+                    list.add(csvData);
+                }
             }
 
+            var csvWriter = new CsvSerializer<>(CsvReturningBirdsData.class);
+
+            var result = csvWriter.serializeToCsv(list);
+
+            var file = new File("result.csv");
+
+            try(var writer = new java.io.FileWriter(file, StandardCharsets.UTF_8)){
+                writer.write(result);
+            }
+            catch (Exception e){
+                System.out.println("exception = " + e);
+            }
         } catch (Exception e) {
             System.out.println("exception = " + e);
         }
