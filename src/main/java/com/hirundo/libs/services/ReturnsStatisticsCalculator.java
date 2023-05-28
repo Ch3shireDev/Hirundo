@@ -10,9 +10,22 @@ import java.util.List;
 public class ReturnsStatisticsCalculator {
     ReturningBirdsFinder returningBirdsFinder = new ReturningBirdsFinder();
 
-    public BirdSpeciesCalculatedData getCalculatedData(List<DbBirdRecord> data, BirdSpecies selectedSpecies, BirdSex selectedSex) {
+    public BirdSpeciesCalculatedData getCalculatedData(List<DbBirdRecord> data, BirdSpecies selectedSpecies, BirdSex selectedSex) throws Exception {
+
+        if (null == selectedSpecies) {
+            throw new Exception("Species not selected");
+        }
+        if (BirdSex.Undefined == selectedSex) {
+            throw new Exception("Sex not selected");
+        }
 
         var speciesCode = selectedSpecies.speciesCode();
+
+        if (null == speciesCode || speciesCode.isBlank()) {
+            throw new Exception("Species code not selected");
+        }
+
+
         var speciesNameEng = selectedSpecies.speciesNameEng();
         var speciesNameLat = selectedSpecies.speciesNameLat();
         var sexName = getSexName(selectedSex);

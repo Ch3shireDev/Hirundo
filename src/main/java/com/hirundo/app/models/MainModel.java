@@ -40,19 +40,6 @@ public class MainModel {
     }
 
     public BirdSpeciesCalculatedData getCalculatedData() throws Exception {
-        if (null == selectedSpecies) {
-            throw new Exception("Species not selected");
-        }
-        if (BirdSex.Undefined == selectedSex) {
-            throw new Exception("Sex not selected");
-        }
-
-        var speciesCode = selectedSpecies.speciesCode();
-
-        if (null == speciesCode || speciesCode.isBlank()) {
-            throw new Exception("Species code not selected");
-        }
-
         return calculator.getCalculatedData(data, selectedSpecies, selectedSex);
     }
 

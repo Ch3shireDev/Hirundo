@@ -18,7 +18,7 @@ class ReturnsStatisticsCalculatorTest {
     }
 
     @Test
-    void getCalculatedData() {
+    void getCalculatedData() throws Exception {
         var record1 = new NewDbBirdRecord();
         record1.SpeciesCode = "AAA.BBB";
         record1.EnglishName = "Aaabin Bbbir";
@@ -59,7 +59,7 @@ class ReturnsStatisticsCalculatorTest {
     }
 
     @Test
-    void getCalculatedDataAnySex() {
+    void getCalculatedDataAnySex() throws Exception {
         var record1 = new NewDbBirdRecord();
         record1.SpeciesCode = "AAA.BBB";
         record1.Sex = "M";
@@ -95,7 +95,7 @@ class ReturnsStatisticsCalculatorTest {
     }
 
     @Test
-    public void getCalculatedDataReturningBirds() {
+    public void getCalculatedDataReturningBirds() throws Exception {
         var record1 = new NewDbBirdRecord();
         record1.SpeciesCode = "XXX.YYY";
         record1.Ring = "1234";
