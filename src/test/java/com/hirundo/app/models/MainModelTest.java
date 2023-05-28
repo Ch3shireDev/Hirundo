@@ -28,14 +28,6 @@ class MainModelTest {
     }
 
     @Test
-    void writeResults() {
-    }
-
-    @Test
-    void loadData() {
-    }
-
-    @Test
     void getSingleSpecies() throws Exception {
         var record1 = new NewDbBirdRecord();
         record1.SpeciesCode = "AAA.BBB";

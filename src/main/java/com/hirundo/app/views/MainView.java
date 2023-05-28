@@ -9,13 +9,11 @@ import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -29,7 +27,8 @@ public class MainView implements Initializable {
     public ComboBox<BirdSex> sexComboBox;
 
     //    public StringProperty selectedFileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
-    public StringProperty fileName = new SimpleStringProperty("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
+    public StringProperty fileName = new SimpleStringProperty(
+            "C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
     public StringProperty oldTableName = new SimpleStringProperty("Tab_Ring_Podab");
     public StringProperty newTableName = new SimpleStringProperty("AB 2017_18_19_20_21S");
     public FloatProperty progress = new SimpleFloatProperty(0.0f);
@@ -83,21 +82,24 @@ public class MainView implements Initializable {
     private Button dataLoadingTabNextButton;
     @FXML
     private Label sexLabel;
-@FXML private TextField oldTableNameTextField;
-@FXML private TextField newTableNameTextField;
+    @FXML
+    private TextField oldTableNameTextField;
+    @FXML
+    private TextField newTableNameTextField;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         speciesList = FXCollections.observableArrayList();
         speciesComboBox.setConverter(speciesConverter);
         selectedSpecies.bind(speciesComboBox
-                .getSelectionModel()
-                .selectedItemProperty());
+                                     .getSelectionModel()
+                                     .selectedItemProperty());
 
         sexList = FXCollections.observableArrayList(BirdSex.Any, BirdSex.Male, BirdSex.Female);
         sexComboBox.setConverter(sexConverter);
         selectedSex.bind(sexComboBox
-                .getSelectionModel()
-                .selectedItemProperty());
+                                 .getSelectionModel()
+                                 .selectedItemProperty());
         sexComboBox
                 .getSelectionModel()
                 .selectFirst();
@@ -146,8 +148,12 @@ public class MainView implements Initializable {
                 .textProperty()
                 .bind(speciesNameLatin);
 
-        oldTableNameTextField.textProperty().bindBidirectional(oldTableName);
-        newTableNameTextField.textProperty().bindBidirectional(newTableName);
+        oldTableNameTextField
+                .textProperty()
+                .bindBidirectional(oldTableName);
+        newTableNameTextField
+                .textProperty()
+                .bindBidirectional(newTableName);
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());
@@ -228,7 +234,7 @@ public class MainView implements Initializable {
         return fxmlLoader.load();
     }
 
-    public void loadDataAction(final ActionEvent actionEvent) {
+    public void loadDataAction() {
         try {
             isWindowDisabled.setValue(true);
             progress.setValue(-1);
@@ -254,8 +260,8 @@ public class MainView implements Initializable {
                                 .getSelectionModel()
                                 .selectFirst();
                         this.speciesName.setValue(selectedSpecies
-                                .getValue()
-                                .speciesNameEng());
+                                                          .getValue()
+                                                          .speciesNameEng());
                         this.isSpeciesSelectDisabled.setValue(false);
                     });
                 }
@@ -269,7 +275,7 @@ public class MainView implements Initializable {
         }
     }
 
-    public void selectFileName(final ActionEvent actionEvent) {
+    public void selectFileName() {
 
         if (null == viewModel) return;
         String result = viewModel.selectFileName();
@@ -277,19 +283,19 @@ public class MainView implements Initializable {
     }
 
 
-    public void introductionTabNext(ActionEvent actionEvent) {
+    public void introductionTabNext() {
         tabPane
                 .getSelectionModel()
                 .select(1);
     }
 
-    public void dataLoadingTabNext(ActionEvent actionEvent) {
+    public void dataLoadingTabNext() {
         tabPane
                 .getSelectionModel()
                 .select(2);
     }
 
-    public void speciesComboBoxAction(ActionEvent actionEvent) {
+    public void speciesComboBoxAction() {
         try {
             var species = speciesComboBox
                     .getSelectionModel()
@@ -304,7 +310,7 @@ public class MainView implements Initializable {
         }
     }
 
-    public void sexComboBoxAction(ActionEvent actionEvent) {
+    public void sexComboBoxAction() {
         try {
             var sex = sexComboBox
                     .getSelectionModel()
@@ -319,8 +325,6 @@ public class MainView implements Initializable {
     }
 
 
-
-
     private void getCalculatedData() throws Exception {
         var calculatedData = viewModel.getCalculatedData();
         speciesCode.setValue(calculatedData.speciesCode());
@@ -328,16 +332,16 @@ public class MainView implements Initializable {
         speciesNameLatin.setValue(calculatedData.speciesNameLat());
         selectedSexName.setValue(calculatedData.selectedSexName());
         recordsCount.setValue(calculatedData
-                .recordsCount()
-                .toString());
+                                      .recordsCount()
+                                      .toString());
         returnsCount.setValue(calculatedData
-                .returnsCount()
-                .toString());
+                                      .returnsCount()
+                                      .toString());
         isResultsDisabled.setValue(false);
         isWriteResultsDisabled.setValue(false);
     }
 
-    public void writeResultsForSelectedSpeciesAction(ActionEvent actionEvent) {
+    public void writeResultsForSelectedSpeciesAction() {
         try {
             viewModel.writeResultsForSelectedSpecies();
         } catch (Exception e) {
@@ -347,7 +351,7 @@ public class MainView implements Initializable {
         }
     }
 
-    public void writeResultsForAllSpeciesAction(ActionEvent actionEvent) {
+    public void writeResultsForAllSpeciesAction() {
         try {
             viewModel.writeResultsForAllSpecies();
         } catch (Exception e) {
@@ -357,11 +361,11 @@ public class MainView implements Initializable {
         }
     }
 
-    public void updateOldTableName(KeyEvent actionEvent) {
+    public void updateOldTableName() {
         viewModel.setOldTableName(oldTableName.getValue());
     }
 
-    public void updateNewTableName(KeyEvent actionEvent) {
+    public void updateNewTableName() {
         viewModel.setNewTableName(newTableName.getValue());
     }
 }

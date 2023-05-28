@@ -55,11 +55,13 @@
                             </HBox>
                             <HBox>
                                 <Label text="Nazwa starej bazy danych (1961-2016):"/>
-                                <TextField fx:id="oldTableNameTextField" maxWidth="200.0" onKeyTyped="#updateOldTableName"/>
+                                <TextField fx:id="oldTableNameTextField" maxWidth="200.0"
+                                           onKeyTyped="#updateOldTableName"/>
                             </HBox>
                             <HBox>
                                 <Label text="Nazwa nowej bazy danych (2017-2021):"/>
-                                <TextField fx:id="newTableNameTextField" maxWidth="200.0" onKeyTyped="#updateNewTableName"/>
+                                <TextField fx:id="newTableNameTextField" maxWidth="200.0"
+                                           onKeyTyped="#updateNewTableName"/>
                             </HBox>
                         </VBox>
                         <HBox>
@@ -75,10 +77,10 @@
                             <Label fx:id="loadingStatusLabel" text="${controller.loadingStatusText}"/>
                         </HBox>
                         <HBox>
-                            <Button
-                                    fx:id="dataLoadingTabNextButton"
+                            <Button fx:id="dataLoadingTabNextButton"
                                     disable="${controller.isSpeciesSelectDisabled}"
-                                    onAction="#dataLoadingTabNext">Przejdź dalej
+                                    onAction="#dataLoadingTabNext">
+                                Przejdź dalej
                             </Button>
                         </HBox>
                     </VBox>
