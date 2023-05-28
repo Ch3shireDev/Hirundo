@@ -1,6 +1,6 @@
 package com.hirundo.libs.services;
 
-import com.hirundo.app.models.ReturningBirdsData;
+import com.hirundo.libs.data_structures.ReturningBirdsData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 
 import java.util.ArrayList;

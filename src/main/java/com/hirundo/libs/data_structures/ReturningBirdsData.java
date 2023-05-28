@@ -1,7 +1,4 @@
-package com.hirundo.app.models;
-
-import com.hirundo.libs.data_structures.DbBirdRecord;
-import com.hirundo.libs.data_structures.Season;
+package com.hirundo.libs.data_structures;
 
 import java.time.LocalDateTime;
 import java.util.List;

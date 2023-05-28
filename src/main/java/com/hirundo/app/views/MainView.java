@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -82,7 +83,8 @@ public class MainView implements Initializable {
     private Button dataLoadingTabNextButton;
     @FXML
     private Label sexLabel;
-
+@FXML private TextField oldTableNameTextField;
+@FXML private TextField newTableNameTextField;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         speciesList = FXCollections.observableArrayList();
@@ -143,6 +145,9 @@ public class MainView implements Initializable {
         speciesNameLatinLabel
                 .textProperty()
                 .bind(speciesNameLatin);
+
+        oldTableNameTextField.textProperty().bindBidirectional(oldTableName);
+        newTableNameTextField.textProperty().bindBidirectional(newTableName);
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());
@@ -205,32 +210,12 @@ public class MainView implements Initializable {
         return isWindowDisabled.getValue();
     }
 
-
     public Float getProgress() {
         return progress.getValue();
     }
 
-
     public String getFileName() {
         return fileName.getValue();
-    }
-
-    public String getOldTableName() {
-        return oldTableName.getValue();
-    }
-
-    public void setOldTableName(String value) {
-        viewModel.setOldTableName(value);
-        oldTableName.set(value);
-    }
-
-    public String getNewTableName() {
-        return newTableName.getValue();
-    }
-
-    public void setNewTableName(String value) {
-        viewModel.setNewTableName(value);
-        newTableName.set(value);
     }
 
     public void setViewModel(MainViewModel viewModel) {
@@ -304,16 +289,6 @@ public class MainView implements Initializable {
                 .select(2);
     }
 
-    public void writeResultsAction(ActionEvent actionEvent) {
-        try {
-            viewModel.writeResults();
-        } catch (Exception e) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText(e.getMessage());
-            a.show();
-        }
-    }
-
     public void speciesComboBoxAction(ActionEvent actionEvent) {
         try {
             var species = speciesComboBox
@@ -345,16 +320,6 @@ public class MainView implements Initializable {
 
 
 
-    public void applySelectedSpeciesAction(ActionEvent actionEvent) {
-        if (null == viewModel) return;
-        try {
-            getCalculatedData();
-        } catch (Exception e) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText(e.getMessage());
-            a.show();
-        }
-    }
 
     private void getCalculatedData() throws Exception {
         var calculatedData = viewModel.getCalculatedData();
@@ -370,6 +335,34 @@ public class MainView implements Initializable {
                 .toString());
         isResultsDisabled.setValue(false);
         isWriteResultsDisabled.setValue(false);
+    }
+
+    public void writeResultsForSelectedSpeciesAction(ActionEvent actionEvent) {
+        try {
+            viewModel.writeResultsForSelectedSpecies();
+        } catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
+    }
+
+    public void writeResultsForAllSpeciesAction(ActionEvent actionEvent) {
+        try {
+            viewModel.writeResultsForAllSpecies();
+        } catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
+    }
+
+    public void updateOldTableName(KeyEvent actionEvent) {
+        viewModel.setOldTableName(oldTableName.getValue());
+    }
+
+    public void updateNewTableName(KeyEvent actionEvent) {
+        viewModel.setNewTableName(newTableName.getValue());
     }
 }
 

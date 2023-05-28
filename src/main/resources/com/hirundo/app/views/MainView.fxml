@@ -55,11 +55,11 @@
                             </HBox>
                             <HBox>
                                 <Label text="Nazwa starej bazy danych (1961-2016):"/>
-                                <TextField maxWidth="200.0" text="${controller.oldTableName}"/>
+                                <TextField fx:id="oldTableNameTextField" maxWidth="200.0" onKeyTyped="#updateOldTableName"/>
                             </HBox>
                             <HBox>
                                 <Label text="Nazwa nowej bazy danych (2017-2021):"/>
-                                <TextField maxWidth="200.0" text="${controller.newTableName}"/>
+                                <TextField fx:id="newTableNameTextField" maxWidth="200.0" onKeyTyped="#updateNewTableName"/>
                             </HBox>
                         </VBox>
                         <HBox>
@@ -102,7 +102,6 @@
                                       onAction="#speciesComboBoxAction"
                                       prefWidth="300.0"/>
 
-
                             <Label text="Wybierz płeć:"
                                    GridPane.rowIndex="1"
                                    GridPane.columnIndex="0"
@@ -125,11 +124,6 @@
                                 <RowConstraints/>
                             </rowConstraints>
                         </GridPane>
-<!--                        <HBox>-->
-<!--                            <Button alignment="CENTER" onAction="#applySelectedSpeciesAction">-->
-<!--                                Zatwierdź-->
-<!--                            </Button>-->
-<!--                        </HBox>-->
                         <GridPane
                                 fx:id="resultsPane"
                                 disable="${controller.isResultsDisabled}">
@@ -188,8 +182,11 @@
                             </rowConstraints>
                         </GridPane>
                         <HBox fx:id="writeResultsPane" disable="${controller.isWriteResultsDisabled}">
-                            <Button onAction="#writeResultsAction">
-                                Zapisz wyniki
+                            <Button onAction="#writeResultsForSelectedSpeciesAction">
+                                Zapisz wyniki dla wybranego gatunku
+                            </Button>
+                            <Button onAction="#writeResultsForAllSpeciesAction">
+                                Zapisz wyniki dla wszystkich gatunków
                             </Button>
                         </HBox>
                         <HBox>

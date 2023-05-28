@@ -6,7 +6,7 @@ import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.services.IBirdRecordDataLoaderBuilder;
-import com.hirundo.libs.services.ReturningBirdsFinder;
+import com.hirundo.libs.services.ReturnsStatisticsCalculator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,7 +19,8 @@ public class MainModel {
     List<DbBirdRecord> data = new ArrayList<>();
     BirdSpecies selectedSpecies;
     BirdSex selectedSex = BirdSex.Any;
-    ReturningBirdsFinder returningBirdsFinder = new ReturningBirdsFinder();
+//    ReturningBirdsFinder returningBirdsFinder = new ReturningBirdsFinder();
+    ReturnsStatisticsCalculator calculator = new ReturnsStatisticsCalculator();
     private String selectedFileName;
     private String oldTableName;
     private String newTableName;
@@ -29,8 +30,11 @@ public class MainModel {
         this.fileChooser = fileChooser;
     }
 
-    public void writeResults() {
+    public void writeResultsForSelectedSpecies() {
 //        var file = fileChooser.selectFileToSave("example.csv");
+    }
+
+    public void writeResultsForAllSpecies() {
     }
 
     public void loadData() throws Exception {
@@ -74,7 +78,6 @@ public class MainModel {
             return new ArrayList<>();
         }
 
-
         var species = data
                 .stream()
                 .map(this::asSpecies)
@@ -108,9 +111,7 @@ public class MainModel {
     }
 
     private BirdSpecies asSpecies(DbBirdRecord record) {
-        return new BirdSpecies(record.getSpeciesCode(),
-                               record.getSpeciesNameEng(),
-                               record.getSpeciesNameLat());
+        return new BirdSpecies(record.getSpeciesCode(), record.getSpeciesNameEng(), record.getSpeciesNameLat());
     }
 
     private Boolean missingNames(BirdSpecies species) {
@@ -132,45 +133,12 @@ public class MainModel {
         }
 
         var speciesCode = selectedSpecies.speciesCode();
-        var speciesNameEng = selectedSpecies.speciesNameEng();
-        var speciesNameLat = selectedSpecies.speciesNameLat();
-        var sexName = getSexName();
 
         if (null == speciesCode || speciesCode.isBlank()) {
             throw new Exception("Species code not selected");
         }
 
-        var filteredData = data
-                .stream()
-                .filter(b -> speciesCode.equals(b.getSpeciesCode()));
-
-        if (BirdSex.Any != selectedSex) {
-            filteredData = filteredData.filter(b -> selectedSex == b.getSex());
-        }
-
-        var list = filteredData.toList();
-
-        var recordsCount = list.size();
-
-        var returningBirds = returningBirdsFinder.findReturningBirds(list);
-
-        var returnsCount = returningBirds.size();
-
-        return new BirdSpeciesCalculatedData(speciesCode,
-                                             speciesNameEng,
-                                             speciesNameLat,
-                                             sexName,
-                                             recordsCount,
-                                             returnsCount);
-    }
-
-    private String getSexName() {
-        return switch (selectedSex) {
-            case Male -> "Samiec";
-            case Female -> "Samica";
-            case Any -> "Dowolna";
-            default -> "Nieznana";
-        };
+        return calculator.getCalculatedData(data, selectedSpecies, selectedSex);
     }
 
     public void setSpeciesSelected(BirdSpecies species) {

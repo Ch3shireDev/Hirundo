@@ -319,5 +319,14 @@ class MainModelTest {
         assertEquals(3, calculatedData.recordsCount());
         assertEquals(1, calculatedData.returnsCount());
     }
+
+
+    @Test
+    public void writeResultsForSelectedSpeciesTest(){
+        // 1. Z danych jest wyodrębniany dany gatunek.
+        // 2. Tworzone jest podsumowanie przez serwis.
+        // 3. Podsumowanie jest przetwarzane do CSV przez serializer.
+        // 4. Podsumowanie jest zapisywane do pliku.
+    }
 }
 

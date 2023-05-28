@@ -22,8 +22,11 @@ public class MainViewModel {
         return model.selectFileName();
     }
 
-    public void writeResults() {
-        model.writeResults();
+    public void writeResultsForSelectedSpecies() {
+        model.writeResultsForSelectedSpecies();
+    }
+    public void writeResultsForAllSpecies() {
+        model.writeResultsForAllSpecies();
     }
 
     public void setNewTableName(String value) {
@@ -58,4 +61,5 @@ public class MainViewModel {
     public void setSexSelected(BirdSex sex) {
         model.setSexSelected(sex);
     }
+
 }
