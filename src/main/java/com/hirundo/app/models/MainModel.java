@@ -154,7 +154,7 @@ public class MainModel {
 
         var returningBirds = findReturningBirds(list);
 
-        var returnsCount =  returningBirds.size();
+        var returnsCount =  returningBirds.Records.size();
 
         return new BirdSpeciesCalculatedData(speciesCode, speciesNameEng, speciesNameLat, sexName, recordsCount, returnsCount);
     }
@@ -176,7 +176,7 @@ public class MainModel {
         selectedSex = sex;
     }
 
-    public List<DbBirdRecord> findReturningBirds(List<DbBirdRecord> records) {
+    public ReturningBirdsData findReturningBirds(List<DbBirdRecord> records) {
         var ringNumbers = records
                 .stream()
                 .filter(b -> null != b.getRing() && !b.getRing().isBlank())
@@ -207,7 +207,9 @@ public class MainModel {
             result.add(record);
         }
 
-        return result;
+        var returningBirds = new ReturningBirdsData();
+        returningBirds.Records = result;
+        return returningBirds;
     }
 }
 

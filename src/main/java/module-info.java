@@ -8,6 +8,9 @@ module com.hirundo.app {
     requires java.desktop;
     requires java.sql;
     requires com.healthmarketscience.jackcess;
+    requires com.opencsv;
+    requires org.apache.commons.collections4;
+    requires org.apache.commons.lang3;
 
     opens com.hirundo.app to javafx.fxml;
     exports com.hirundo.app;
