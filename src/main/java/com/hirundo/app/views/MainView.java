@@ -21,14 +21,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
+    MainViewModel viewModel;
     public ObservableList<BirdSpecies> speciesList;
     public ObservableList<BirdSex> sexList;
     @FXML
     public ComboBox<BirdSex> sexComboBox;
 
-    //    public StringProperty selectedFileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
-    public StringProperty fileName = new SimpleStringProperty(
-            "C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
+        public StringProperty fileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
+//    public StringProperty fileName = new SimpleStringProperty("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
     public StringProperty oldTableName = new SimpleStringProperty("Tab_Ring_Podab");
     public StringProperty newTableName = new SimpleStringProperty("AB 2017_18_19_20_21S");
     public FloatProperty progress = new SimpleFloatProperty(0.0f);
@@ -45,9 +45,8 @@ public class MainView implements Initializable {
     public ObjectProperty<BirdSpecies> selectedSpecies = new SimpleObjectProperty<>();
     public ObjectProperty<BirdSex> selectedSex = new SimpleObjectProperty<>(BirdSex.Female);
     public StringProperty selectedSexName = new SimpleStringProperty();
-    public StringProperty loadingResultsText = new SimpleStringProperty();
-    public StringProperty loadingStatusText = new SimpleStringProperty();
-    MainViewModel viewModel;
+    public StringProperty writingResultsText = new SimpleStringProperty();
+    public StringProperty loadingDatabaseStatus = new SimpleStringProperty();
     BirdSpeciesStringConverter speciesConverter = new BirdSpeciesStringConverter();
     BirdSexStringConverter sexConverter = new BirdSexStringConverter();
     @FXML
@@ -65,7 +64,7 @@ public class MainView implements Initializable {
     @FXML
     private Label speciesNameLatinLabel;
     @FXML
-    private Label loadingResultsLabel;
+    private Label writingResultsLabel;
     @FXML
     private Pane mainView;
     @FXML
@@ -73,7 +72,7 @@ public class MainView implements Initializable {
     @FXML
     private Pane writeResultsPane;
     @FXML
-    private Label loadingStatusLabel;
+    private Label loadingDatabaseStatusLabel;
     @FXML
     private Tab dataProcessingTab;
     @FXML
@@ -126,12 +125,12 @@ public class MainView implements Initializable {
         sexLabel
                 .textProperty()
                 .bind(selectedSexName);
-        loadingResultsLabel
+        writingResultsLabel
                 .textProperty()
-                .bind(loadingResultsText);
-        loadingStatusLabel
+                .bind(writingResultsText);
+        loadingDatabaseStatusLabel
                 .textProperty()
-                .bind(loadingStatusText);
+                .bind(loadingDatabaseStatus);
         speciesCodeLabel
                 .textProperty()
                 .bind(speciesCode);
@@ -157,15 +156,15 @@ public class MainView implements Initializable {
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());
-        viewModel.setFileName(fileName.getValue());
+//        viewModel.setFileName(fileName.getValue());
     }
 
-    public String getLoadingStatusText() {
-        return loadingStatusText.getValue();
+    public String getLoadingDatabaseStatus() {
+        return loadingDatabaseStatus.getValue();
     }
 
-    public String getLoadingResultsText() {
-        return loadingResultsText.getValue();
+    public String getWritingResultsText() {
+        return writingResultsText.getValue();
     }
 
     public Boolean getIsSpeciesSelectDisabled() {
@@ -238,16 +237,16 @@ public class MainView implements Initializable {
         try {
             isWindowDisabled.setValue(true);
             progress.setValue(-1);
-            loadingStatusText.setValue("Ładowanie danych...");
+            loadingDatabaseStatus.setValue("Ładowanie danych...");
             new Thread(() -> {
                 try {
                     viewModel.loadData();
                     var count = viewModel.getRecordsCount();
-                    Platform.runLater(() -> loadingStatusText.setValue("Ładowanie zakończone. Załadowano " + count + " rekordów"));
+                    Platform.runLater(() -> loadingDatabaseStatus.setValue("Ładowanie zakończone. Załadowano " + count + " rekordów"));
                     Platform.runLater(() -> progress.setValue(1.0f));
                 } catch (Exception e) {
                     Platform.runLater(() -> progress.setValue(0.0f));
-                    Platform.runLater(() -> loadingStatusText.setValue("Błąd ładowania danych. " + e.getMessage()));
+                    Platform.runLater(() -> loadingDatabaseStatus.setValue("Błąd ładowania danych. " + e.getMessage()));
                     Alert a = new Alert(Alert.AlertType.ERROR);
                     a.setContentText(e.getMessage());
                     a.show();
@@ -343,8 +342,10 @@ public class MainView implements Initializable {
 
     public void writeResultsForSelectedSpeciesAction() {
         try {
-            viewModel.writeResultsForSelectedSpecies();
+            var result = viewModel.writeResultsForSelectedSpecies();
+            writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " rekordów do pliku " + result.OutputFileName);
         } catch (Exception e) {
+            writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText(e.getMessage());
             a.show();
@@ -353,8 +354,10 @@ public class MainView implements Initializable {
 
     public void writeResultsForAllSpeciesAction() {
         try {
-            viewModel.writeResultsForAllSpecies();
+            var result = viewModel.writeResultsForAllSpecies();
+            writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " rekordów do pliku " + result.OutputFileName);
         } catch (Exception e) {
+            writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText(e.getMessage());
             a.show();

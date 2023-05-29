@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MainModelTest {
     MainModel model;
@@ -349,29 +348,116 @@ class MainModelTest {
         model.returningBirdsSummarizer = returningBirdsSummarizer;
 
         var mapper = new MockReturningBirdsDataCsvRecordMapper();
-
+        mapper.outputData = List.of(new CsvReturningBirdsData(), new CsvReturningBirdsData());
         model.mapper = mapper;
 
         var serializer = new MockCsvSerializer<CsvReturningBirdsData>();
+        serializer.outputData = "abc";
 
         model.serializer = serializer;
 
+        var fileChooser = new MockFileChooser();
+        fileChooser.FileName = "test.csv";
+        model.fileChooser = fileChooser;
+
+        var csvFileWriter = new MockCsvFileSaver();
+
+        model.csvFileWriter = csvFileWriter;
+
         model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
 
-        model.writeResultsForSelectedSpecies();
+        var result = model.writeResultsForSelectedSpecies();
 
         // 1. Z danych jest wyodrębniany dany gatunek.
         assertTrue(speciesFilter.isFilterCalled);
         assertEquals("XXX.YYY", speciesFilter.speciesToFilter.speciesCode());
         assertEquals("Aaabin Bbbir", speciesFilter.speciesToFilter.speciesNameEng());
         assertEquals("Aaarus Bbbirix", speciesFilter.speciesToFilter.speciesNameLat());
+
         // 2. Tworzone jest podsumowanie przez serwis.
         assertTrue(returningBirdsSummarizer.isCreateSummaryCalled);
+        assertEquals(2, returningBirdsSummarizer.inputData.size());
+
+        // 3. Dane są mapowane do struktury CSV.
         assertTrue(mapper.isMapperCalled);
-        // 3. Podsumowanie jest przetwarzane do CSV przez serializer.
+        assertEquals(1, mapper.inputData.size());
+
+        // 4. Struktura CSV jest przetwarzane do ciągu znaków przez serializer.
         assertTrue(serializer.isSerializeCalled);
-        // 4. Od użytkownika jest pobierana nazwa pliku.
-        // 5. Podsumowanie jest zapisywane do pliku.
+        assertEquals(2, serializer.inputData.size());
+
+        // 5. Od użytkownika jest pobierana nazwa pliku.
+        assertTrue(fileChooser.isSelectFileToSaveCalled);
+
+        // 6. Podsumowanie jest zapisywane do pliku.
+        assertTrue(csvFileWriter.isSaveToFileCalled);
+        assertEquals("test.csv", csvFileWriter.FileName);
+        assertEquals("abc", csvFileWriter.fileData);
+
+        assertEquals("test.csv", result.OutputFileName);
+        assertEquals(2, result.RecordsCount);
+    }
+
+    @Test
+    public void writeResultsForAllSpeciesTest() throws Exception {
+        model.data = List.of(new DbBirdRecord(new NewDbBirdRecord()),
+                             new DbBirdRecord(new NewDbBirdRecord()),
+                             new DbBirdRecord(new NewDbBirdRecord()));
+
+        var speciesFilter = new MockSpeciesFilter();
+        model.speciesFilter = speciesFilter;
+
+        var returningBirdsSummarizer = new MockReturningBirdsSummarizer();
+        returningBirdsSummarizer.summary = List.of(new ReturningBirdsData());
+        model.returningBirdsSummarizer = returningBirdsSummarizer;
+
+        var mapper = new MockReturningBirdsDataCsvRecordMapper();
+        mapper.outputData = List.of(new CsvReturningBirdsData(),
+                                    new CsvReturningBirdsData(),
+                                    new CsvReturningBirdsData(),
+                                    new CsvReturningBirdsData());
+        model.mapper = mapper;
+
+        var serializer = new MockCsvSerializer<CsvReturningBirdsData>();
+        serializer.outputData = "abc";
+        model.serializer = serializer;
+
+        var fileChooser = new MockFileChooser();
+        fileChooser.FileName = "test.csv";
+        model.fileChooser = fileChooser;
+
+        var csvFileWriter = new MockCsvFileSaver();
+        model.csvFileWriter = csvFileWriter;
+
+        model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
+
+        var result = model.writeResultsForAllSpecies();
+
+        // 1. Z danych nie jest wyodrębniany gatunek.
+        assertFalse(speciesFilter.isFilterCalled);
+
+        // 2. Tworzone jest podsumowanie przez serwis.
+        assertTrue(returningBirdsSummarizer.isCreateSummaryCalled);
+        assertEquals(3, returningBirdsSummarizer.inputData.size());
+
+        // 3. Dane są mapowane do struktury CSV.
+        assertTrue(mapper.isMapperCalled);
+        assertEquals(1, mapper.inputData.size());
+
+        // 4. Struktura CSV jest przetwarzane do ciągu znaków przez serializer.
+        assertTrue(serializer.isSerializeCalled);
+        assertEquals(4, serializer.inputData.size());
+
+        // 5. Od użytkownika jest pobierana nazwa pliku.
+        assertTrue(fileChooser.isSelectFileToSaveCalled);
+
+        // 6. Podsumowanie jest zapisywane do pliku.
+        assertTrue(csvFileWriter.isSaveToFileCalled);
+        assertEquals("test.csv", csvFileWriter.FileName);
+        assertEquals("abc", csvFileWriter.fileData);
+
+        assertEquals("test.csv", result.OutputFileName);
+        assertEquals(4, result.RecordsCount);
     }
 }
 

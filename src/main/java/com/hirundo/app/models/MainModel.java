@@ -12,15 +12,15 @@ import java.util.List;
 
 public class MainModel {
     private final IBirdRecordDataLoaderBuilder builder;
-    private final IFileChooser fileChooser;
+    public IFileChooser fileChooser;
     public ISpeciesFilter speciesFilter = new SpeciesFilter();
-    List<DbBirdRecord> data = new ArrayList<>();
-    BirdSpecies selectedSpecies;
-    BirdSex selectedSex = BirdSex.Any;
     public IReturningBirdsSummarizer returningBirdsSummarizer = new ReturningBirdsSummarizer();
     public IReturningBirdsDataCsvRecordMapper mapper = new ReturningBirdsDataCsvRecordMapper();
-    public ICsvSerializer<CsvReturningBirdsData> serializer = new CsvSerializer<>(
-            CsvReturningBirdsData.class);
+    public ICsvSerializer<CsvReturningBirdsData> serializer = new CsvSerializer<>(CsvReturningBirdsData.class);
+    public ICsvFileWriter csvFileWriter = new CsvFileWriter();
+    public List<DbBirdRecord> data = new ArrayList<>();
+    BirdSpecies selectedSpecies;
+    BirdSex selectedSex = BirdSex.Any;
     ReturnsStatisticsCalculator calculator = new ReturnsStatisticsCalculator();
     private String selectedFileName;
     private String oldTableName;
@@ -56,10 +56,6 @@ public class MainModel {
         return selectedFileName;
     }
 
-    public void setSelectedFileName(String selectedFileName) {
-        this.selectedFileName = selectedFileName;
-    }
-
     public void setNewTableName(String value) {
         this.newTableName = value;
     }
@@ -84,21 +80,29 @@ public class MainModel {
         selectedSex = sex;
     }
 
-    public void writeResultsForSelectedSpecies() throws Exception {
+    public FileSaveResult writeResultsForSelectedSpecies() throws Exception {
         var filteredResults = speciesFilter.filterBySpecies(data, selectedSpecies);
         var returningData = returningBirdsSummarizer.getSummary(filteredResults);
         var mappedData = mapper.getCsvReturningBirdsData(returningData);
         var result = serializer.serializeToCsv(mappedData);
-        var filename = fileChooser.selectFileToSave("example.csv");
-        if (null == result || null == filename) {
-            throw new Exception();
-        }
-
+        var filename = fileChooser.selectFileToSave(String.format("%s.csv", selectedSpecies.speciesCode().replace(".", "-")));
+        csvFileWriter.writeToFile(filename, result);
+        var fileSaveResult = new FileSaveResult();
+        fileSaveResult.OutputFileName = filename;
+        fileSaveResult.RecordsCount = mappedData.size();
+        return fileSaveResult;
     }
 
-    public void writeResultsForAllSpecies() {
+    public FileSaveResult writeResultsForAllSpecies() throws Exception {
+        var returningData = returningBirdsSummarizer.getSummary(data);
+        var mappedData = mapper.getCsvReturningBirdsData(returningData);
+        var result = serializer.serializeToCsv(mappedData);
+        var filename = fileChooser.selectFileToSave("all-species.csv");
+        csvFileWriter.writeToFile(filename, result);
+        var fileSaveResult = new FileSaveResult();
+        fileSaveResult.OutputFileName = filename;
+        fileSaveResult.RecordsCount = mappedData.size();
+        return fileSaveResult;
     }
-
 }
-
 

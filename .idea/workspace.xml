@@ -8,17 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ISpeciesFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsDataCsvRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/mockups/MockSpeciesFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/SpeciesFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/SpeciesFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/SpeciesFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/SpeciesFilterTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add some logic and tests to MainModel. Extract interfaces from services" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,6 +140,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.hirundo.libs.services" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="mockups" />
     </key>
@@ -159,7 +152,7 @@
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainModelTest.writeResultsForSelectedSpeciesTest">
+  <component name="RunManager" selected="Gradle.Tests in 'Hirundo.test'">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.hirundo.cli.Main" />
       <module name="Hirundo.main" />
@@ -274,8 +267,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainModelTest.writeResultsForSelectedSpeciesTest" />
         <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
+        <item itemvalue="Gradle.MainModelTest.writeResultsForSelectedSpeciesTest" />
         <item itemvalue="Gradle.Hirundo [run]" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.ReturningBirdsFinderTest.returnsCountDifferentSeasonTest" />
@@ -308,7 +301,7 @@
       <workItem from="1684948526476" duration="15619000" />
       <workItem from="1685117702445" duration="8187000" />
       <workItem from="1685169500687" duration="40988000" />
-      <workItem from="1685262239064" duration="20985000" />
+      <workItem from="1685262239064" duration="22077000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -492,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685299950236</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary=":bird: Add some logic and tests to MainModel. Extract interfaces from services">
+      <created>1685302668707</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1685302668707</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +531,8 @@
     <MESSAGE value=":bird: Move getCalculatedData to ReturnsStatisticsCalculator" />
     <MESSAGE value=":bird: Move getSpeciesList to SpeciesFinder" />
     <MESSAGE value=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception" />
+    <MESSAGE value=":bird: Add some logic and tests to MainModel. Extract interfaces from services" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add some logic and tests to MainModel. Extract interfaces from services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

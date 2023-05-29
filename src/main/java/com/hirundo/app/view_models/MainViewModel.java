@@ -1,5 +1,6 @@
 package com.hirundo.app.view_models;
 
+import com.hirundo.app.models.FileSaveResult;
 import com.hirundo.app.models.MainModel;
 import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.BirdSpecies;
@@ -22,12 +23,12 @@ public class MainViewModel {
         return model.selectFileName();
     }
 
-    public void writeResultsForSelectedSpecies() throws Exception{
-        model.writeResultsForSelectedSpecies();
+    public FileSaveResult writeResultsForSelectedSpecies() throws Exception{
+        return model.writeResultsForSelectedSpecies();
     }
 
-    public void writeResultsForAllSpecies() {
-        model.writeResultsForAllSpecies();
+    public FileSaveResult writeResultsForAllSpecies() throws Exception{
+        return model.writeResultsForAllSpecies();
     }
 
     public void setNewTableName(String value) {
@@ -36,10 +37,6 @@ public class MainViewModel {
 
     public void setOldTableName(String value) {
         this.model.setOldTableName(value);
-    }
-
-    public void setFileName(String value) {
-        this.model.setSelectedFileName(value);
     }
 
     public List<BirdSpecies> getSpeciesList() {

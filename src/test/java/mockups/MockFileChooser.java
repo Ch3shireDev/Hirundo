@@ -4,6 +4,7 @@ import com.hirundo.app.services.IFileChooser;
 
 public class MockFileChooser implements IFileChooser {
     public String FileName;
+    public Boolean isSelectFileToSaveCalled;
 
     @Override
     public String selectFileToOpen() {
@@ -12,6 +13,7 @@ public class MockFileChooser implements IFileChooser {
 
     @Override
     public String selectFileToSave(String exampleFilename) {
-        return null;
+        isSelectFileToSaveCalled = true;
+        return FileName;
     }
 }
