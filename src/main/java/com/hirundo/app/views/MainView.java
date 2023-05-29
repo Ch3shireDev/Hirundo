@@ -21,14 +21,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
-    MainViewModel viewModel;
     public ObservableList<BirdSpecies> speciesList;
     public ObservableList<BirdSex> sexList;
     @FXML
     public ComboBox<BirdSex> sexComboBox;
-
-        public StringProperty fileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
-//    public StringProperty fileName = new SimpleStringProperty("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
+    public StringProperty fileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
+    //    public StringProperty fileName = new SimpleStringProperty("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
     public StringProperty oldTableName = new SimpleStringProperty("Tab_Ring_Podab");
     public StringProperty newTableName = new SimpleStringProperty("AB 2017_18_19_20_21S");
     public FloatProperty progress = new SimpleFloatProperty(0.0f);
@@ -47,6 +45,7 @@ public class MainView implements Initializable {
     public StringProperty selectedSexName = new SimpleStringProperty();
     public StringProperty writingResultsText = new SimpleStringProperty();
     public StringProperty loadingDatabaseStatus = new SimpleStringProperty();
+    MainViewModel viewModel;
     BirdSpeciesStringConverter speciesConverter = new BirdSpeciesStringConverter();
     BirdSexStringConverter sexConverter = new BirdSexStringConverter();
     @FXML
@@ -85,6 +84,8 @@ public class MainView implements Initializable {
     private TextField oldTableNameTextField;
     @FXML
     private TextField newTableNameTextField;
+    @FXML
+    private Label fileNameLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -153,6 +154,10 @@ public class MainView implements Initializable {
         newTableNameTextField
                 .textProperty()
                 .bindBidirectional(newTableName);
+
+        fileNameLabel
+                .textProperty()
+                .bind(fileName);
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());

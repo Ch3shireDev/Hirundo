@@ -46,7 +46,7 @@
                                 <Button onAction="#selectFileName">Otwórz</Button>
                             </HBox>
                             <HBox GridPane.rowIndex="1">
-                                <Label text="${controller.fileName}"/>
+                                <Label fx:id="fileNameLabel" text="${controller.fileName}"/>
                             </HBox>
                         </VBox>
                         <VBox>
@@ -192,7 +192,7 @@
                             </Button>
                         </HBox>
                         <HBox>
-                            <Label fx:id="writingResultsLabel" text="${controller.writingResultsText}"/>
+                            <Label fx:id="writingResultsLabel" text="${controller.writingResultsText}" wrapText="true"/>
                         </HBox>
                     </VBox>
                 </AnchorPane>
@@ -200,10 +200,10 @@
             <Tab closable="false" text="O programie">
                 <AnchorPane>
                     <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <Label text="Hirundo ver. 1.0"/>
+                        <Label text="Hirundo ver. 1.0.1"/>
                         <Label text="Data wydania: 2023-05-29"/>
                         <Label text="Autor: Igor Nowicki (igor.nowicki.business@gmail.com)"/>
-                        <Label text="Program do analizy rekordów zdarzeń ponownych schwytań ptaków w czasie migracji."/>
+                        <Label text="Program do analizy ponownych schwytań ptaków w czasie migracji."/>
                     </VBox>
                 </AnchorPane>
             </Tab>
