@@ -8,9 +8,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Fix update filename text issue">
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Small adjustments to release">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +320,7 @@
       <workItem from="1685386294329" duration="787000" />
       <workItem from="1685387777068" duration="1010000" />
       <workItem from="1685807580450" duration="4848000" />
-      <workItem from="1685812512338" duration="365000" />
+      <workItem from="1685812512338" duration="1760000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -526,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685388694304</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary=":bird: Small adjustments to release">
+      <created>1685814259821</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1685814259821</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,7 +574,8 @@
     <MESSAGE value=":bird: Add some logic and tests to MainModel. Extract interfaces from services" />
     <MESSAGE value=":bird: First release" />
     <MESSAGE value=":bird: Fix update filename text issue" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Fix update filename text issue" />
+    <MESSAGE value=":bird: Small adjustments to release" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Small adjustments to release" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
