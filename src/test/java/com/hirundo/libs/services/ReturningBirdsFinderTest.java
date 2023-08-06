@@ -23,6 +23,7 @@ ReturningBirdsSummarizer finder;
         record1.Ring = "1234";
         record1.Date2 = "2019-11-01";
         record1.Seas = "A";
+        record1.Age ="I";
 
         var r1 = new DbBirdRecord(record1);
 
@@ -31,10 +32,12 @@ ReturningBirdsSummarizer finder;
         record2.Ring = "1234";
         record2.Date = LocalDateTime.of(2020, 3, 1, 0, 0);
         record2.Seas = "S";
+        record2.Age ="I";
         var r2 = new DbBirdRecord(record2);
 
         var record3 = new OldDbBirdRecord();
         record3.Spec = "XXX.YYY";
+        record3.Age ="I";
         var r3 = new DbBirdRecord(record3);
 
         var birds =  List.of(r1, r2, r3);

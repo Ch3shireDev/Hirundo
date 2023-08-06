@@ -8,8 +8,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Small adjustments to release">
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add new features, change algorithm of finding returning birds">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ReturningBirdsDataCsvRecordMapperTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/BirdSpecies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/BirdSpecies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/CsvBirdData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/CsvBirdData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/DbBirdRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/DbBirdRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/ReturningBirdsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/ReturningBirdsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/CsvReturningBirdsData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IReturningBirdsDataCsvRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/IReturningBirdsDataCsvRecordMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsDataCsvRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsDataCsvRecordMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsSummarizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsSummarizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/MockCsvBirdData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockCsvBirdData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ReturningBirdsFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ReturningBirdsFinderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ReturnsStatisticsCalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ReturnsStatisticsCalculatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mockups/MockReturningBirdsDataCsvRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mockups/MockReturningBirdsDataCsvRecordMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +61,12 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Hirundo" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Hirundo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
@@ -50,6 +74,29 @@
                 <item name="Hirundo" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Hirundo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="distribution" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Hirundo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Hirundo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Hirundo" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -69,9 +116,9 @@
         <option value="FxmlFile" />
         <option value="CSS File" />
         <option value="Record" />
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -118,9 +165,10 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_directory_selection": "C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services",
-    "last_opened_file_path": "D:/Documents/GitHub/WIT-Zajecia/semestr-8/Programowanie obiektowe w Java/Wyklad-4/CommandProjekt",
+    "last_opened_file_path": "D:/Documents/GitHub/Hirundo",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -140,11 +188,11 @@
       <recent name="com.hirundo.app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\GitHub\Hirundo\src\test\java\mockups" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\test\java" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\test\resources" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\java\com\hirundo\libs" />
       <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources\com\hirundo\app\views" />
-      <recent name="C:\Users\cheshire\Documents\GitHub\Hirundo\src\main\resources\com\hirundo\app" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -161,8 +209,8 @@
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Hirundo [jpackage]">
-    <configuration name="Hirundo [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.Hirundo [wrapper]">
+    <configuration name="Hirundo [assembleDist]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -173,7 +221,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="init" />
+            <option value="assembleDist" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -273,7 +321,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.Hirundo [init]" />
+      <item itemvalue="Gradle.Hirundo [assembleDist]" />
       <item itemvalue="Gradle.Hirundo [jlink]" />
       <item itemvalue="Gradle.Hirundo [jpackageImage]" />
       <item itemvalue="Gradle.Hirundo [jpackage]" />
@@ -281,11 +329,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Hirundo [jpackage]" />
+        <item itemvalue="Gradle.Hirundo [wrapper]" />
         <item itemvalue="Gradle.Hirundo [jpackageImage]" />
         <item itemvalue="Gradle.Hirundo [jlink]" />
-        <item itemvalue="Gradle.Hirundo [wrapper]" />
-        <item itemvalue="Gradle.Hirundo [init]" />
+        <item itemvalue="Gradle.Hirundo [jpackage]" />
+        <item itemvalue="Gradle.Hirundo [assembleDist]" />
       </list>
     </recent_temporary>
   </component>
@@ -321,6 +369,7 @@
       <workItem from="1685387777068" duration="1010000" />
       <workItem from="1685807580450" duration="4848000" />
       <workItem from="1685812512338" duration="1760000" />
+      <workItem from="1691323428332" duration="7773000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -550,7 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":bird: Rename hirundo\hirundo to hirundo\app" />
     <MESSAGE value=":bird: Move classes and resources to views, models, controllers, viewmodels folders" />
     <MESSAGE value=":bird: Rename controllers to views&#10;&#10;Move FXML loader from Application to MainView" />
     <MESSAGE value=":bird: Add DbData data structure with tests" />
@@ -575,7 +623,8 @@
     <MESSAGE value=":bird: First release" />
     <MESSAGE value=":bird: Fix update filename text issue" />
     <MESSAGE value=":bird: Small adjustments to release" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Small adjustments to release" />
+    <MESSAGE value=":bird: Add new features, change algorithm of finding returning birds" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add new features, change algorithm of finding returning birds" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -589,6 +638,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java</url>
           <line>350</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/DbBirdRecord.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

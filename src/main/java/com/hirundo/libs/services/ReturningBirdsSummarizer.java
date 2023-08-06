@@ -1,11 +1,13 @@
 package com.hirundo.libs.services;
 
-import com.hirundo.libs.data_structures.ReturningBirdsData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
+import com.hirundo.libs.data_structures.ReturningBirdsData;
+import com.hirundo.libs.data_structures.Season;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
@@ -21,23 +23,46 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
 
         for (var ringNumber : ringNumbers.keySet()) {
             var ringRecords = ringNumbers.get(ringNumber);
-            if (2 > ringRecords.size()) {
+            if (ringRecords.size() < 2) {
                 continue;
             }
 
-            var seasons = ringRecords
+            var sortedRecords = ringRecords
                     .stream()
-                    .collect(Collectors.groupingBy(DbBirdRecord::getSeason));
+                    .sorted(Comparator.comparing(DbBirdRecord::getDate))
+                    .toList();
 
-            if (2 > seasons.size()) {
+            var firstRecord= sortedRecords
+                    .stream()
+                    .findFirst()
+                    .get();
+
+            var firstSeason = firstRecord
+                    .getSeason();
+
+            if (firstSeason != Season.Autumn) {
                 continue;
             }
 
-            DbBirdRecord record = ringRecords.get(0);
+            if (!Objects.equals(firstRecord.getAge(), "I") && !Objects.equals(firstRecord.getAge(), "J")) {
+                continue;
+            }
 
+            var years = sortedRecords
+                    .stream()
+                    .map(DbBirdRecord::getYear)
+                    .distinct()
+                    .toList();
+
+            if (years.size() < 2) {
+                continue;
+            }
+
+            DbBirdRecord record = sortedRecords.get(0);
             ReturningBirdsData returningBirds = getReturningBirdsData(ringRecords, record);
-
             result.add(returningBirds);
+
+
         }
 
         return result;
@@ -53,7 +78,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
                 .sorted(Comparator.comparing(DbBirdRecord::getDate))
                 .toList();
 
-        var first = sortedRecords.get(0);
+        DbBirdRecord first = sortedRecords.get(0);
         var last = sortedRecords.get(sortedRecords.size() - 1);
 
         returningBirds.FirstDateSeen = first.getDate();
@@ -61,6 +86,9 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
 
         returningBirds.FirstSeasonSeen = first.getSeason();
         returningBirds.LastSeasonSeen = last.getSeason();
+
+        returningBirds.Weight = first.getWeight();
+
         return returningBirds;
     }
 }

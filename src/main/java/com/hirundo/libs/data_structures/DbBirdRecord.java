@@ -20,52 +20,52 @@ public class DbBirdRecord {
 
 
     public String getSpeciesCode() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             return oldDbBirdRecord.Spec;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             return newDbBirdRecord.SpeciesCode;
         }
         return null;
     }
 
     public String getSpeciesNameEng() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             return null;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             return newDbBirdRecord.EnglishName;
         }
         return null;
     }
 
     public String getSpeciesNameLat() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             return null;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             return newDbBirdRecord.LatinName;
         }
         return null;
     }
 
     public DbBirdRecordType getRecordType() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             return DbBirdRecordType.Old;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             return DbBirdRecordType.New;
         }
         return DbBirdRecordType.Undefined;
     }
 
     public BirdSex getSex() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             if ("F".equals(oldDbBirdRecord.Sex)) return BirdSex.Female;
             if ("M".equals(oldDbBirdRecord.Sex)) return BirdSex.Male;
             return BirdSex.Undefined;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             if ("F".equals(newDbBirdRecord.Sex)) return BirdSex.Female;
             if ("M".equals(newDbBirdRecord.Sex)) return BirdSex.Male;
             return BirdSex.Undefined;
@@ -74,37 +74,40 @@ public class DbBirdRecord {
     }
 
     public String getRing() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             return oldDbBirdRecord.Ring;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             return newDbBirdRecord.Ring;
         }
         return null;
     }
 
     public LocalDateTime getDate() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             return oldDbBirdRecord.Date;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(newDbBirdRecord.Date2, formatter);
-            LocalDateTime dateTime = date.atStartOfDay();
-            return dateTime;
+            return date.atStartOfDay();
         }
         return null;
     }
 
+    public Integer getYear(){
+        return getDate().getYear();
+    }
+
     public Season getSeason() {
         String season = null;
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             season = oldDbBirdRecord.Seas;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             season = newDbBirdRecord.Seas;
         }
-        if (null == season) return Season.Undefined;
+        if (season == null) return Season.Undefined;
         return switch (season) {
             case "A" -> Season.Autumn;
             case "S" -> Season.Spring;
@@ -113,11 +116,31 @@ public class DbBirdRecord {
     }
 
     public Integer getId() {
-        if (null != oldDbBirdRecord) {
+        if (oldDbBirdRecord != null) {
             return oldDbBirdRecord.IDR_Podab;
         }
-        if (null != newDbBirdRecord) {
+        if (newDbBirdRecord != null) {
             return Math.round((float) (double) newDbBirdRecord.IDR_Podab);
+        }
+        return null;
+    }
+
+    public Double getWeight(){
+        if (oldDbBirdRecord != null) {
+            return Double.valueOf(oldDbBirdRecord.Mass);
+        }
+        if (newDbBirdRecord != null) {
+            return newDbBirdRecord.Weight;
+        }
+        return null;
+    }
+
+    public String getAge() {
+        if (oldDbBirdRecord != null) {
+            return oldDbBirdRecord.Age;
+        }
+        if (newDbBirdRecord != null) {
+            return newDbBirdRecord.Age;
         }
         return null;
     }

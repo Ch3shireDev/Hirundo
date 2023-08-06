@@ -1,5 +1,6 @@
 package com.hirundo.cli;
 
+import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.services.*;
 
 import java.io.File;
@@ -26,7 +27,7 @@ public class Main {
             var mapper = new ReturningBirdsDataCsvRecordMapper();
             var list = mapper.getCsvReturningBirdsData(returningBirds);
 
-            var csvWriter = new CsvSerializer<>(CsvReturningBirdsData.class);
+            var csvWriter = new CsvSerializer<>(BirdSpecies.CsvReturningBirdsData.class);
 
             var result = csvWriter.serializeToCsv(list);
 

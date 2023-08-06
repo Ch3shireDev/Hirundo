@@ -200,8 +200,8 @@
             <Tab closable="false" text="O programie">
                 <AnchorPane>
                     <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <Label text="Hirundo ver. 1.0.1"/>
-                        <Label text="Data wydania: 2023-05-29"/>
+                        <Label text="Hirundo ver. 1.1"/>
+                        <Label text="Data wydania: 2023-08-06"/>
                         <Label text="Autor: Igor Nowicki (igor.nowicki.business@gmail.com)"/>
                         <Label text="Program do analizy ponownych schwytań ptaków w czasie migracji."/>
                     </VBox>
