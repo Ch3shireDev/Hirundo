@@ -4,9 +4,11 @@ import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
-public record BirdSpecies (String speciesCode, String speciesNameEng, String speciesNameLat){
+public record BirdSpecies(String speciesCode, String speciesNameEng, String speciesNameLat) {
 
     public static class CsvReturningBirdsData {
         @CsvBindByName(column = "RingNumber")
@@ -34,44 +36,44 @@ public record BirdSpecies (String speciesCode, String speciesNameEng, String spe
         @CsvDate("yyyy-MM-dd")
         public LocalDateTime RecordDate;
         @CsvBindByName(column = "Sex")
-        @CsvBindByPosition(position = 6)
+        @CsvBindByPosition(position = 7)
         public String Sex;
         @CsvBindByName(column = "Age")
-        @CsvBindByPosition(position = 7)
+        @CsvBindByPosition(position = 8)
         public String Age;
         @CsvBindByName(column = "Weight")
-        @CsvBindByPosition(position = 8)
-        public Double Weight;
-        @CsvBindByName(column = "Fat")
         @CsvBindByPosition(position = 9)
-        public Double Fat;
-        @CsvBindByName(column = "Wing")
+        public BigDecimal Weight;
+        @CsvBindByName(column = "Fat")
         @CsvBindByPosition(position = 10)
-        public Double Wing;
-        @CsvBindByName(column = "Tail")
+        public Integer Fat;
+        @CsvBindByName(column = "Wing")
         @CsvBindByPosition(position = 11)
-        public Double Tail;
-        @CsvBindByName(column = "D2")
+        public BigDecimal Wing;
+        @CsvBindByName(column = "Tail")
         @CsvBindByPosition(position = 12)
-        public Double D2;
-        @CsvBindByName(column = "D3")
+        public Integer Tail;
+        @CsvBindByName(column = "D2")
         @CsvBindByPosition(position = 13)
-        public Double D3;
-        @CsvBindByName(column = "D4")
+        public Integer D2;
+        @CsvBindByName(column = "D3")
         @CsvBindByPosition(position = 14)
-        public Double D4;
+        public Integer D3;
+        @CsvBindByName(column = "D4")
+        @CsvBindByPosition(position = 15)
+        public Integer D4;
         @CsvBindByName(column = "D5")
-        @CsvBindByPosition(position = 6)
-        public Double D5;
-        @CsvBindByName(column = "Sex")
-        @CsvBindByPosition(position = 6)
-        public Double D6;
-        @CsvBindByName(column = "Sex")
-        @CsvBindByPosition(position = 6)
-        public Double D7;
-        @CsvBindByName(column = "Sex")
-        @CsvBindByPosition(position = 6)
-        public Double D8;
+        @CsvBindByPosition(position = 16)
+        public Integer D5;
+        @CsvBindByName(column = "D6")
+        @CsvBindByPosition(position = 17)
+        public Integer D6;
+        @CsvBindByName(column = "D7")
+        @CsvBindByPosition(position = 18)
+        public Integer D7;
+        @CsvBindByName(column = "D8")
+        @CsvBindByPosition(position = 19)
+        public Integer D8;
 
         public static CsvReturningBirdsData from(ReturningBirdsData data, DbBirdRecord record) {
             var result = new CsvReturningBirdsData();
@@ -82,20 +84,33 @@ public record BirdSpecies (String speciesCode, String speciesNameEng, String spe
             result.FirstSeasonSeen = data.FirstSeasonSeen.toString();
             result.LastSeasonSeen = data.LastSeasonSeen.toString();
             result.RecordDate = record.getDate();
-            result.Age = data.Age;
-            result.Weight = data.Weight;
-            result.Fat = data.Fat;
-            result.Wing = data.Wing;
-            result.Tail = data.Tail;
-            result.Sex = data.Sex;
-            result.D2 = data.D2;
-            result.D3 = data.D3;
-            result.D4 = data.D4;
-            result.D5 = data.D5;
-            result.D6 = data.D6;
-            result.D7 = data.D7;
-            result.D8 = data.D8;
+            result.Age = record.getAge();
+            result.Weight = CsvReturningBirdsData.roundDecimal(record.getWeight());
+            result.Fat = record.getFat();
+            result.Wing = CsvReturningBirdsData.roundDecimal(record.getWing());
+            result.Tail = record.getTail();
+
+            if (record.getSex() == BirdSex.Male) result.Sex = "M";
+            if (record.getSex() == BirdSex.Female) result.Sex = "F";
+            if (record.getSex() == BirdSex.Undefined) result.Sex = "";
+
+            result.D2 = record.getD2();
+            result.D3 = record.getD3();
+            result.D4 = record.getD4();
+            result.D5 = record.getD5();
+            result.D6 = record.getD6();
+            result.D7 = record.getD7();
+            result.D8 = record.getD8();
             return result;
+        }
+
+        static BigDecimal round(BigDecimal value) {
+            if (value == null) return null;
+            return value.setScale(0, RoundingMode.FLOOR);
+        }
+        static BigDecimal roundDecimal(BigDecimal value) {
+            if (value == null) return null;
+            return value.setScale(3, RoundingMode.FLOOR);
         }
 
     }

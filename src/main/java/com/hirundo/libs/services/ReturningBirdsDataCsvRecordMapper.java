@@ -15,6 +15,7 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         for (var returningBird : returningBirds) {
 
             for (var record : returningBird.Records) {
+
                 var csvData = BirdSpecies.CsvReturningBirdsData.from(returningBird, record);
                 list.add(csvData);
             }

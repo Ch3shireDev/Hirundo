@@ -27,7 +27,7 @@ public class CsvSerializer<T>  implements  ICsvSerializer<T>{
 
             String[] headers = getFieldNames(type);
 
-            CSVWriter csvWriter = new CSVWriter(writer, ICSVWriter.DEFAULT_SEPARATOR,
+            CSVWriter csvWriter = new CSVWriter(writer, ';',
                                                 ICSVWriter.NO_QUOTE_CHARACTER,
                                                 ICSVWriter.DEFAULT_ESCAPE_CHARACTER,
                                                 ICSVWriter.RFC4180_LINE_END);
@@ -36,6 +36,7 @@ public class CsvSerializer<T>  implements  ICsvSerializer<T>{
             StatefulBeanToCsv<T> beanToCsv = new StatefulBeanToCsvBuilder<T>(writer)
                     .withQuotechar(ICSVWriter.NO_QUOTE_CHARACTER)
                     .withLineEnd(ICSVWriter.RFC4180_LINE_END)
+                    .withSeparator(';')
                     .build();
 
             beanToCsv.write(birdDataList);

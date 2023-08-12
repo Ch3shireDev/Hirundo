@@ -87,8 +87,6 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         returningBirds.FirstSeasonSeen = first.getSeason();
         returningBirds.LastSeasonSeen = last.getSeason();
 
-        returningBirds.Weight = first.getWeight();
-
         return returningBirds;
     }
 }

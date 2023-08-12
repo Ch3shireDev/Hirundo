@@ -1,5 +1,6 @@
 package com.hirundo.libs.data_structures;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -95,7 +96,7 @@ public class DbBirdRecord {
         return null;
     }
 
-    public Integer getYear(){
+    public Integer getYear() {
         return getDate().getYear();
     }
 
@@ -125,12 +126,14 @@ public class DbBirdRecord {
         return null;
     }
 
-    public Double getWeight(){
+    public BigDecimal getWeight() {
         if (oldDbBirdRecord != null) {
-            return Double.valueOf(oldDbBirdRecord.Mass);
+            if (oldDbBirdRecord.Mass == null) return null;
+            return BigDecimal.valueOf(oldDbBirdRecord.Mass);
         }
         if (newDbBirdRecord != null) {
-            return newDbBirdRecord.Weight;
+            if (newDbBirdRecord.Weight == null) return null;
+            return BigDecimal.valueOf(newDbBirdRecord.Weight);
         }
         return null;
     }
@@ -141,6 +144,112 @@ public class DbBirdRecord {
         }
         if (newDbBirdRecord != null) {
             return newDbBirdRecord.Age;
+        }
+        return null;
+    }
+
+    public Integer getFat() {
+        if (oldDbBirdRecord != null) {
+            if (oldDbBirdRecord.Fat == null) return null;
+            return oldDbBirdRecord.Fat.intValue();
+        }
+        if (newDbBirdRecord != null) {
+            if (newDbBirdRecord.Fat == null) return null;
+            return newDbBirdRecord.Fat.intValue();
+        }
+        return null;
+    }
+
+    public BigDecimal getWing() {
+        if (oldDbBirdRecord != null) {
+            if (oldDbBirdRecord.Wing == null) return null;
+            return BigDecimal.valueOf(oldDbBirdRecord.Wing);
+        }
+        if (newDbBirdRecord != null) {
+            if (newDbBirdRecord.Wing == null) return null;
+            return BigDecimal.valueOf(newDbBirdRecord.Wing);
+        }
+        return null;
+    }
+
+    public Integer getTail() {
+        if (oldDbBirdRecord != null) {
+            if (oldDbBirdRecord.Tail == null) return null;
+            return oldDbBirdRecord.Tail.intValue();
+        }
+        if (newDbBirdRecord != null) {
+            if (newDbBirdRecord.Tail == null) return null;
+            return newDbBirdRecord.Tail.intValue();
+        }
+        return null;
+    }
+
+    public Integer getD2() {
+        if (oldDbBirdRecord != null && oldDbBirdRecord.D2 != null) {
+            return Math.round(oldDbBirdRecord.D2);
+        }
+        if (newDbBirdRecord != null && newDbBirdRecord.D2 != null) {
+            return newDbBirdRecord.D2.intValue();
+        }
+        return null;
+    }
+
+    public Integer getD3() {
+        if (oldDbBirdRecord != null && oldDbBirdRecord.D3 != null) {
+            return Math.round(oldDbBirdRecord.D3);
+        }
+        if (newDbBirdRecord != null && newDbBirdRecord.D3 != null) {
+            return newDbBirdRecord.D3.intValue();
+        }
+        return null;
+    }
+
+    public Integer getD4() {
+        if (oldDbBirdRecord != null && oldDbBirdRecord.D4 != null) {
+            return Math.round(oldDbBirdRecord.D4);
+        }
+        if (newDbBirdRecord != null && newDbBirdRecord.D4 != null) {
+            return newDbBirdRecord.D4.intValue();
+        }
+        return null;
+    }
+
+    public Integer getD5() {
+        if (oldDbBirdRecord != null && oldDbBirdRecord.D5 != null) {
+            return Math.round(oldDbBirdRecord.D5);
+        }
+        if (newDbBirdRecord != null && newDbBirdRecord.D5 != null) {
+            return newDbBirdRecord.D5.intValue();
+        }
+        return null;
+    }
+
+    public Integer getD6() {
+        if (oldDbBirdRecord != null && oldDbBirdRecord.D6 != null) {
+            return Math.round(oldDbBirdRecord.D6);
+        }
+        if (newDbBirdRecord != null && newDbBirdRecord.D6 != null) {
+            return newDbBirdRecord.D6.intValue();
+        }
+        return null;
+    }
+
+    public Integer getD7() {
+        if (oldDbBirdRecord != null && oldDbBirdRecord.D7 != null) {
+            return Math.round(oldDbBirdRecord.D7);
+        }
+        if (newDbBirdRecord != null && newDbBirdRecord.D7 != null) {
+            return newDbBirdRecord.D7.intValue();
+        }
+        return null;
+    }
+
+    public Integer getD8() {
+        if (oldDbBirdRecord != null && oldDbBirdRecord.D8 != null) {
+            return Math.round(oldDbBirdRecord.D8);
+        }
+        if (newDbBirdRecord != null && newDbBirdRecord.D8 != null) {
+            return newDbBirdRecord.D8.intValue();
         }
         return null;
     }
