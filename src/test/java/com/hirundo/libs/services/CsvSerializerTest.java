@@ -8,17 +8,18 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 class CsvSerializerTest {
     CsvSerializer<MockCsvBirdData> serializer;
-    CsvSerializer<BirdSpecies.CsvReturningBirdsData> serializer2;
+    CsvSerializer<CsvReturningBirdsData> serializer2;
 
     @BeforeEach
     void setUp() {
         serializer = new CsvSerializer<>(MockCsvBirdData.class);
-        serializer2 = new CsvSerializer<>(BirdSpecies.CsvReturningBirdsData.class);
+        serializer2 = new CsvSerializer<>(CsvReturningBirdsData.class);
     }
 
     @Test
@@ -60,26 +61,24 @@ class CsvSerializerTest {
 
     @Test
     public void SerializeBirdData() throws Exception{
-        var newRecord = new NewDbBirdRecord();
+        var record = new DbBirdRecord();
+        record.ring = "LA94007";
+        record.speciesCode = "REG.REG";
+        record.date = LocalDateTime.of(1982,10,12,0,0,0);
+        record.sex = BirdSex.Male;
+        record.age = "I";
+        record.weight = BigDecimal.valueOf(50.5);
+        record.wing = BigDecimal.valueOf(50.5);
+        record.tail = 60;
+        record.fat = 3;
+        record.d2 = 1;
+        record.d3 = 2;
+        record.d4 = 3;
+        record.d5 = 4;
+        record.d6 = 5;
+        record.d7 = 6;
+        record.d8 = 7;
 
-        newRecord.RingNo = "LA94007";
-        newRecord.SpeciesCode = "REG.REG";
-        newRecord.Date2 = "1982-10-12";
-        newRecord.Sex = "M";
-        newRecord.Age = "I";
-        newRecord.Weight = 50.5000000000001;
-        newRecord.Wing = 50.50000000000001;
-        newRecord.Tail = 60.50000000000001;
-        newRecord.Fat = 3.0;
-        newRecord.D2 = 1.0;
-        newRecord.D3 = 2.0;
-        newRecord.D4 = 3.0;
-        newRecord.D5 = 4.0;
-        newRecord.D6 = 5.0;
-        newRecord.D7 = 6.0;
-        newRecord.D8 = 7.0;
-
-        var record = DbBirdRecord.from(newRecord);
         var data = new ReturningBirdsData();
         data.Species = "REG.REG";
         data.FirstDateSeen = LocalDateTime.of(1982, 10, 12, 0, 0);
@@ -89,7 +88,7 @@ class CsvSerializerTest {
         data.LastSeasonSeen = Season.Spring;
         data.Records = List.of(record);
 
-        var csv1 = BirdSpecies.CsvReturningBirdsData.from(data, record);
+        var csv1 = CsvReturningBirdsData.from(data, record);
 
         var birds = List.of(csv1);
 

@@ -22,8 +22,8 @@ class FileDataLoaderTest {
 
     @Test
     void loadData() throws Exception {
-        loader1.Data.add(DbBirdRecord.from(new NewDbBirdRecord()));
-        loader2.Data.add(DbBirdRecord.from(new OldDbBirdRecord()));
+        loader1.Data.add(new DbBirdRecord());
+        loader1.Data.add(new DbBirdRecord());
 
         var data = dataLoader.loadData();
 

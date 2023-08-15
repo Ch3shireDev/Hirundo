@@ -355,10 +355,10 @@ class MainModelTest {
         model.returningBirdsSummarizer = returningBirdsSummarizer;
 
         var mapper = new MockReturningBirdsDataCsvRecordMapper();
-        mapper.outputData = List.of(new BirdSpecies.CsvReturningBirdsData(), new BirdSpecies.CsvReturningBirdsData());
+        mapper.outputData = List.of(new CsvReturningBirdsData(), new CsvReturningBirdsData());
         model.mapper = mapper;
 
-        var serializer = new MockCsvSerializer<BirdSpecies.CsvReturningBirdsData>();
+        var serializer = new MockCsvSerializer<CsvReturningBirdsData>();
         serializer.outputData = "abc";
 
         model.serializer = serializer;
@@ -419,13 +419,13 @@ class MainModelTest {
         model.returningBirdsSummarizer = returningBirdsSummarizer;
 
         var mapper = new MockReturningBirdsDataCsvRecordMapper();
-        mapper.outputData = List.of(new BirdSpecies.CsvReturningBirdsData(),
-                                    new BirdSpecies.CsvReturningBirdsData(),
-                                    new BirdSpecies.CsvReturningBirdsData(),
-                                    new BirdSpecies.CsvReturningBirdsData());
+        mapper.outputData = List.of(new CsvReturningBirdsData(),
+                                    new CsvReturningBirdsData(),
+                                    new CsvReturningBirdsData(),
+                                    new CsvReturningBirdsData());
         model.mapper = mapper;
 
-        var serializer = new MockCsvSerializer<BirdSpecies.CsvReturningBirdsData>();
+        var serializer = new MockCsvSerializer<CsvReturningBirdsData>();
         serializer.outputData = "abc";
         model.serializer = serializer;
 

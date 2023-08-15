@@ -1,12 +1,21 @@
-package com.hirundo.libs.data_structures;
+package com.hirundo.libs.services;
 
+import com.hirundo.libs.data_structures.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-class DbBirdRecordTest {
+class DbBirdRecordMapperTest {
+
+    DbBirdRecordMapper mapper;
+
+    @BeforeEach
+    void setUp(){
+        mapper = new DbBirdRecordMapper();
+    }
 
     @Test
     void fromNewRecord() {
@@ -32,7 +41,7 @@ class DbBirdRecordTest {
         record1.D7 = 7.0;
         record1.D8 = 8.0;
 
-        var record = DbBirdRecord.from(record1);
+        var record = mapper.map(record1);
 
         Assertions.assertEquals(123, record.getId());
         Assertions.assertEquals("AAA.BBB", record.getSpeciesCode());
@@ -78,8 +87,7 @@ class DbBirdRecordTest {
         record1.D7 = 7.0f;
         record1.D8 = 8.0f;
 
-        var record = DbBirdRecord.from(record1);
-
+        var record = mapper.map(record1);
         Assertions.assertEquals(123, record.getId());
         Assertions.assertEquals("AAA.BBB", record.getSpeciesCode());
         Assertions.assertEquals("I", record.getAge());

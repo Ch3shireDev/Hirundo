@@ -1,10 +1,7 @@
 package com.hirundo.app.models;
 
 import com.hirundo.app.services.IFileChooser;
-import com.hirundo.libs.data_structures.BirdSex;
-import com.hirundo.libs.data_structures.BirdSpecies;
-import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
-import com.hirundo.libs.data_structures.DbBirdRecord;
+import com.hirundo.libs.data_structures.*;
 import com.hirundo.libs.services.*;
 
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ public class MainModel {
     public ISpeciesFilter speciesFilter = new SpeciesFilter();
     public IReturningBirdsSummarizer returningBirdsSummarizer = new ReturningBirdsSummarizer();
     public IReturningBirdsDataCsvRecordMapper mapper = new ReturningBirdsDataCsvRecordMapper();
-    public ICsvSerializer<BirdSpecies.CsvReturningBirdsData> serializer = new CsvSerializer<>(BirdSpecies.CsvReturningBirdsData.class);
+    public ICsvSerializer<CsvReturningBirdsData> serializer = new CsvSerializer<>(CsvReturningBirdsData.class);
     public ICsvFileWriter csvFileWriter = new CsvFileWriter();
     public List<DbBirdRecord> data = new ArrayList<>();
     BirdSpecies selectedSpecies;

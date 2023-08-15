@@ -1,9 +1,9 @@
 package com.hirundo.libs.data_structures;
 
+import com.hirundo.libs.services.DbBirdRecordMapper;
+
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class DbBirdRecord {
     public Integer id;
@@ -12,112 +12,29 @@ public class DbBirdRecord {
     public String speciesNameLat;
     public String speciesNameEng;
     public BirdSex sex;
-    public Integer D2;
-    public Integer D3;
-    public Integer D4;
-    public Integer D5;
-    public Integer D6;
-    public Integer D7;
-    public Integer D8;
+    public Integer d2;
+    public Integer d3;
+    public Integer d4;
+    public Integer d5;
+    public Integer d6;
+    public Integer d7;
+    public Integer d8;
     public LocalDateTime date;
     public Season season;
-    BigDecimal weight;
-    String age;
-    Integer fat;
-    BigDecimal wing;
-    Integer tail;
+    public BigDecimal weight;
+    public String age;
+    public Integer fat;
+    public BigDecimal wing;
+    public Integer tail;
 
 
     public static DbBirdRecord from(OldDbBirdRecord birdRecord) {
-        var result = new DbBirdRecord();
-        result.speciesCode = birdRecord.Spec;
-        result.speciesNameEng = null;
-        result.speciesNameLat = null;
-        result.sex = toSex(birdRecord.Sex);
-        result.D2 = asInt(birdRecord.D2);
-        result.D3 = asInt(birdRecord.D3);
-        result.D4 = asInt(birdRecord.D4);
-        result.D5 = asInt(birdRecord.D5);
-        result.D6 = asInt(birdRecord.D6);
-        result.D7 = asInt(birdRecord.D7);
-        result.D8 = asInt(birdRecord.D8);
-        result.ring = birdRecord.Ring;
-        result.date = birdRecord.Date;
-        result.season = asSeason(birdRecord.Seas);
-        result.id = birdRecord.IDR_Podab;
-        result.weight = asBigDecimal(birdRecord.Mass);
-        result.age = birdRecord.Age;
-        result.fat = asInt(birdRecord.Fat);
-        result.wing = asBigDecimal(birdRecord.Wing);
-        result.tail = asInt(birdRecord.Tail);
-        return result;
+        return new DbBirdRecordMapper().map(birdRecord);
     }
 
     public static DbBirdRecord from(NewDbBirdRecord birdRecord) {
-        var result = new DbBirdRecord();
-        result.id = DbBirdRecord.asInt((birdRecord.IDR_Podab));
-        result.speciesCode = birdRecord.SpeciesCode;
-        result.speciesNameEng = birdRecord.EnglishName;
-        result.speciesNameLat = birdRecord.LatinName;
-        result.sex = DbBirdRecord.toSex(birdRecord.Sex);
-        result.D2 = DbBirdRecord.asInt(birdRecord.D2);
-        result.D3 = DbBirdRecord.asInt(birdRecord.D3);
-        result.D4 = DbBirdRecord.asInt(birdRecord.D4);
-        result.D5 = DbBirdRecord.asInt(birdRecord.D5);
-        result.D6 = DbBirdRecord.asInt(birdRecord.D6);
-        result.D7 = DbBirdRecord.asInt(birdRecord.D7);
-        result.D8 = DbBirdRecord.asInt(birdRecord.D8);
-        result.ring = birdRecord.Ring;
-        result.date = DbBirdRecord.asDate(birdRecord.Date2);
-        result.season = DbBirdRecord.asSeason(birdRecord.Seas);
-        result.weight = DbBirdRecord.asBigDecimal(birdRecord.Weight);
-        result.age = birdRecord.Age;
-        result.fat = DbBirdRecord.asInt(birdRecord.Fat);
-        result.wing = DbBirdRecord.asBigDecimal(birdRecord.Wing);
-        result.tail = DbBirdRecord.asInt(birdRecord.Tail);
-
-        return result;
+        return new DbBirdRecordMapper().map(birdRecord);
     }
-
-    static LocalDateTime asDate(String value) {
-        if (null == value) return null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(value, formatter);
-        return date.atStartOfDay();
-    }
-
-    static Integer asInt(Double value) {
-        if (null == value) return null;
-        return value.intValue();
-    }
-
-    static Integer asInt(Float value) {
-        if (null == value) return null;
-        return value.intValue();
-    }
-
-    static BirdSex toSex(String sexStr) {
-        if ("F".equals(sexStr)) return BirdSex.Female;
-        if ("M".equals(sexStr)) return BirdSex.Male;
-        return BirdSex.Undefined;
-    }
-
-    static Season asSeason(String seasonStr) {
-        if ("A".equals(seasonStr)) return Season.Autumn;
-        if ("S".equals(seasonStr)) return Season.Spring;
-        return Season.Undefined;
-    }
-
-    static BigDecimal asBigDecimal(Double value) {
-        if (null == value) return null;
-        return BigDecimal.valueOf(value);
-    }
-
-    static BigDecimal asBigDecimal(Float value) {
-        if (null == value) return null;
-        return BigDecimal.valueOf(value);
-    }
-
     public String getSpeciesCode() {
         return speciesCode;
     }
@@ -175,31 +92,31 @@ public class DbBirdRecord {
     }
 
     public Integer getD2() {
-        return D2;
+        return d2;
     }
 
     public Integer getD3() {
-        return D3;
+        return d3;
     }
 
     public Integer getD4() {
-        return D4;
+        return d4;
     }
 
     public Integer getD5() {
-        return D5;
+        return d5;
     }
 
     public Integer getD6() {
-        return D6;
+        return d6;
     }
 
     public Integer getD7() {
-        return D7;
+        return d7;
     }
 
     public Integer getD8() {
-        return D8;
+        return d8;
     }
 
 }
