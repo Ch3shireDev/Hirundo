@@ -73,43 +73,5 @@ public class CsvReturningBirdsData {
     @CsvBindByPosition(position = 19)
     public Integer D8;
 
-    public static CsvReturningBirdsData from(ReturningBirdsData data, DbBirdRecord record) {
-        var result = new CsvReturningBirdsData();
-        result.RingNumber = data.RingNumber;
-        result.Species = data.Species;
-        result.FirstDateSeen = data.FirstDateSeen;
-        result.LastDateSeen = data.LastDateSeen;
-        result.FirstSeasonSeen = data.FirstSeasonSeen.toString();
-        result.LastSeasonSeen = data.LastSeasonSeen.toString();
-        result.RecordDate = record.getDate();
-        result.Age = record.getAge();
-        result.Weight = CsvReturningBirdsData.roundDecimal(record.getWeight());
-        result.Fat = record.getFat();
-        result.Wing = CsvReturningBirdsData.roundDecimal(record.getWing());
-        result.Tail = record.getTail();
-
-        if (record.getSex() == BirdSex.Male) result.Sex = "M";
-        if (record.getSex() == BirdSex.Female) result.Sex = "F";
-        if (record.getSex() == BirdSex.Undefined) result.Sex = "";
-
-        result.D2 = record.getD2();
-        result.D3 = record.getD3();
-        result.D4 = record.getD4();
-        result.D5 = record.getD5();
-        result.D6 = record.getD6();
-        result.D7 = record.getD7();
-        result.D8 = record.getD8();
-        return result;
-    }
-
-    static BigDecimal round(BigDecimal value) {
-        if (value == null) return null;
-        return value.setScale(0, RoundingMode.FLOOR);
-    }
-
-    static BigDecimal roundDecimal(BigDecimal value) {
-        if (value == null) return null;
-        return value.setScale(3, RoundingMode.FLOOR);
-    }
 
 }
