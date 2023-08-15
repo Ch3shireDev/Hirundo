@@ -1,9 +1,9 @@
 package com.hirundo.app.view_models;
 
 import com.hirundo.app.models.MainModel;
-import mockups.MockBirdRecordDataLoaderBuilder;
-import mockups.MockFileChooser;
-import mockups.MockFileDataLoader;
+import com.hirundo.mockups.MockBirdRecordDataLoaderBuilder;
+import com.hirundo.mockups.MockFileChooser;
+import com.hirundo.mockups.MockFileDataLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

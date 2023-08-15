@@ -1,4 +1,4 @@
-package mockups;
+package com.hirundo.mockups;
 
 import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.data_structures.DbBirdRecord;

@@ -3,7 +3,7 @@ package com.hirundo.libs.services;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.NewDbBirdRecord;
 import com.hirundo.libs.data_structures.OldDbBirdRecord;
-import mockups.MockDbBirdRecordDataLoader;
+import com.hirundo.mockups.MockDbBirdRecordDataLoader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ class FileDataLoaderTest {
 
     @Test
     void loadData() throws Exception {
-        loader1.Data.add(new DbBirdRecord(new NewDbBirdRecord()));
-        loader2.Data.add(new DbBirdRecord(new OldDbBirdRecord()));
+        loader1.Data.add(DbBirdRecord.from(new NewDbBirdRecord()));
+        loader2.Data.add(DbBirdRecord.from(new OldDbBirdRecord()));
 
         var data = dataLoader.loadData();
 

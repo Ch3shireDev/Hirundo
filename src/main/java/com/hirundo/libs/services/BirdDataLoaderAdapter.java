@@ -17,10 +17,10 @@ public class BirdDataLoaderAdapter implements IDbBirdRecordDataLoader {
     public List<DbBirdRecord> loadData() throws Exception {
         var data = fileDataLoader.loadData();
         if (data.get(0) instanceof OldDbBirdRecord) {
-            return data.stream().map(x -> new DbBirdRecord((OldDbBirdRecord) x)).toList();
+            return data.stream().map(x -> DbBirdRecord.from((OldDbBirdRecord) x)).toList();
         }
         if (data.get(0) instanceof NewDbBirdRecord) {
-            return data.stream().map(x -> new DbBirdRecord((NewDbBirdRecord) x)).toList();
+            return data.stream().map(x -> DbBirdRecord.from((NewDbBirdRecord) x)).toList();
         }
         throw new Exception("Unknown data type");
     }

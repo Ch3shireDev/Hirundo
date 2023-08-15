@@ -29,7 +29,7 @@ class SpeciesFilterTest {
         var record2 = new OldDbBirdRecord();
         record2.Spec = "AAA.BBB";
 
-        var data = List.of(new DbBirdRecord(record2), new DbBirdRecord(record1));
+        var data = List.of(DbBirdRecord.from(record2), DbBirdRecord.from(record1));
 
         var speciesList = model.getSpeciesList(data);
 
@@ -67,11 +67,11 @@ class SpeciesFilterTest {
         var record5 = new NewDbBirdRecord();
         record5.SpeciesCode = "";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2),
-                           new DbBirdRecord(record3),
-                           new DbBirdRecord(record4),
-                           new DbBirdRecord(record5));
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2),
+                           DbBirdRecord.from(record3),
+                           DbBirdRecord.from(record4),
+                           DbBirdRecord.from(record5));
 
         var speciesList = model.getSpeciesList(data);
 
@@ -93,7 +93,7 @@ class SpeciesFilterTest {
         record3.EnglishName = "Cccin Dddir";
         record3.LatinName = "Cccus Dddirix";
 
-        var data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2), new DbBirdRecord(record3));
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3));
 
         var speciesList = model.getSpeciesList(data);
 

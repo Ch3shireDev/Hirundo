@@ -1,7 +1,8 @@
 package com.hirundo.app.models;
 
+import com.hirundo.app.models.mockups.MockCsvFileSaver;
 import com.hirundo.libs.data_structures.*;
-import mockups.*;
+import com.hirundo.mockups.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +36,7 @@ class MainModelTest {
         var record2 = new OldDbBirdRecord();
         record2.Spec = "AAA.BBB";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record2), new DbBirdRecord(record1));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record2), DbBirdRecord.from(record1));
 
         model.loadData();
         var speciesList = model.getSpeciesList();
@@ -74,11 +75,11 @@ class MainModelTest {
         var record5 = new NewDbBirdRecord();
         record5.SpeciesCode = "";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
-                                      new DbBirdRecord(record2),
-                                      new DbBirdRecord(record3),
-                                      new DbBirdRecord(record4),
-                                      new DbBirdRecord(record5));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
+                                      DbBirdRecord.from(record2),
+                                      DbBirdRecord.from(record3),
+                                      DbBirdRecord.from(record4),
+                                      DbBirdRecord.from(record5));
 
         model.loadData();
         var speciesList = model.getSpeciesList();
@@ -101,7 +102,7 @@ class MainModelTest {
         record3.EnglishName = "Cccin Dddir";
         record3.LatinName = "Cccus Dddirix";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2), new DbBirdRecord(record3));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3));
 
         model.loadData();
         var speciesList = model.getSpeciesList();
@@ -139,11 +140,12 @@ class MainModelTest {
 
     @Test
     void getRecordsCount() throws Exception {
-        var record1 = new NewDbBirdRecord();
-        var record2 = new OldDbBirdRecord();
-        var record3 = new NewDbBirdRecord();
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2), new DbBirdRecord(record3));
+        fileDataLoader.Data = List.of(
+                new DbBirdRecord(),
+                new DbBirdRecord(),
+                new DbBirdRecord()
+        );
 
         model.loadData();
         var recordsCount = model.getRecordsCount();
@@ -174,10 +176,10 @@ class MainModelTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
-                                      new DbBirdRecord(record2),
-                                      new DbBirdRecord(record3),
-                                      new DbBirdRecord(record4));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
+                                      DbBirdRecord.from(record2),
+                                      DbBirdRecord.from(record3),
+                                      DbBirdRecord.from(record4));
 
         model.loadData();
         model.setSexSelected(BirdSex.Male);
@@ -213,10 +215,10 @@ class MainModelTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
-                                      new DbBirdRecord(record2),
-                                      new DbBirdRecord(record3),
-                                      new DbBirdRecord(record4));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
+                                      DbBirdRecord.from(record2),
+                                      DbBirdRecord.from(record3),
+                                      DbBirdRecord.from(record4));
 
         model.loadData();
         model.setSexSelected(BirdSex.Any);
@@ -260,10 +262,10 @@ class MainModelTest {
         record4.Seas = "S";
         record4.Age = "I";
 
-        fileDataLoader.Data = List.of(new DbBirdRecord(record1),
-                                      new DbBirdRecord(record2),
-                                      new DbBirdRecord(record3),
-                                      new DbBirdRecord(record4));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
+                                      DbBirdRecord.from(record2),
+                                      DbBirdRecord.from(record3),
+                                      DbBirdRecord.from(record4));
 
         model.loadData();
         model.setSexSelected(BirdSex.Any);
@@ -293,7 +295,7 @@ class MainModelTest {
 //        record2.Seas = "A";
 //
 //
-//        fileDataLoader.Data = List.of(new DbBirdRecord(record1), new DbBirdRecord(record2));
+//        fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2));
 //
 //        model.loadData();
 //        model.setSexSelected(BirdSex.Any);
@@ -314,7 +316,7 @@ class MainModelTest {
         record1.Seas = "A";
         record1.Age = "J";
 
-        var r1 = new DbBirdRecord(record1);
+        var r1 = DbBirdRecord.from(record1);
 
         var record2 = new OldDbBirdRecord();
         record2.Spec = "XXX.YYY";
@@ -322,11 +324,11 @@ class MainModelTest {
         record2.Date = LocalDateTime.of(2020, 3, 1, 0, 0);
         record2.Seas = "S";
         record2.Age = "J";
-        var r2 = new DbBirdRecord(record2);
+        var r2 = DbBirdRecord.from(record2);
 
         var record3 = new OldDbBirdRecord();
         record3.Spec = "XXX.YYY";
-        var r3 = new DbBirdRecord(record3);
+        var r3 = DbBirdRecord.from(record3);
 
         fileDataLoader.Data = List.of(r1, r2, r3);
 
@@ -343,8 +345,8 @@ class MainModelTest {
     @Test
     public void writeResultsForSelectedSpeciesTest() throws Exception {
         var speciesFilter = new MockSpeciesFilter();
-        speciesFilter.filteredRecords = List.of(new DbBirdRecord(new NewDbBirdRecord()),
-                                                new DbBirdRecord(new NewDbBirdRecord()));
+        speciesFilter.filteredRecords = List.of(DbBirdRecord.from(new NewDbBirdRecord()),
+                                                DbBirdRecord.from(new NewDbBirdRecord()));
 
         model.speciesFilter = speciesFilter;
 
@@ -405,9 +407,9 @@ class MainModelTest {
 
     @Test
     public void writeResultsForAllSpeciesTest() throws Exception {
-        model.data = List.of(new DbBirdRecord(new NewDbBirdRecord()),
-                             new DbBirdRecord(new NewDbBirdRecord()),
-                             new DbBirdRecord(new NewDbBirdRecord()));
+        model.data = List.of(DbBirdRecord.from(new NewDbBirdRecord()),
+                             DbBirdRecord.from(new NewDbBirdRecord()),
+                             DbBirdRecord.from(new NewDbBirdRecord()));
 
         var speciesFilter = new MockSpeciesFilter();
         model.speciesFilter = speciesFilter;

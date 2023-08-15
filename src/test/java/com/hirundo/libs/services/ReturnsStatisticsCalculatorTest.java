@@ -40,10 +40,10 @@ class ReturnsStatisticsCalculatorTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2),
-                           new DbBirdRecord(record3),
-                           new DbBirdRecord(record4));
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2),
+                           DbBirdRecord.from(record3),
+                           DbBirdRecord.from(record4));
 
         var sex = BirdSex.Male;
         var species = new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix");
@@ -79,10 +79,10 @@ class ReturnsStatisticsCalculatorTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2),
-                           new DbBirdRecord(record3),
-                           new DbBirdRecord(record4));
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2),
+                           DbBirdRecord.from(record3),
+                           DbBirdRecord.from(record4));
         var sex = BirdSex.Any;
         var species = new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix");
 
@@ -124,10 +124,10 @@ class ReturnsStatisticsCalculatorTest {
         record4.Seas = "S";
         record4.Age ="I";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2),
-                           new DbBirdRecord(record3),
-                           new DbBirdRecord(record4));
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2),
+                           DbBirdRecord.from(record3),
+                           DbBirdRecord.from(record4));
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
 
@@ -154,8 +154,8 @@ class ReturnsStatisticsCalculatorTest {
         record2.Date2 = "2019-11-01";
         record2.Seas = "A";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2));
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2));
 
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
@@ -191,9 +191,9 @@ class ReturnsStatisticsCalculatorTest {
         record3.Seas = "S";
         record3.Age ="I";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2),
-                           new DbBirdRecord(record3)
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2),
+                           DbBirdRecord.from(record3)
         );
 
         var sex = BirdSex.Any;
@@ -223,8 +223,8 @@ class ReturnsStatisticsCalculatorTest {
         record2.Seas = "A";
         record2.Age ="I";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2)
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2)
         );
 
         var sex = BirdSex.Any;
@@ -254,8 +254,8 @@ class ReturnsStatisticsCalculatorTest {
         record2.Seas = "A";
         record2.Age ="I";
 
-        var data = List.of(new DbBirdRecord(record1),
-                           new DbBirdRecord(record2)
+        var data = List.of(DbBirdRecord.from(record1),
+                           DbBirdRecord.from(record2)
         );
 
         var sex = BirdSex.Any;
@@ -311,12 +311,12 @@ class ReturnsStatisticsCalculatorTest {
         record6.Seas = "S";
 
         var data = List.of(
-                new DbBirdRecord(record1),
-                new DbBirdRecord(record2),
-                new DbBirdRecord(record3),
-                new DbBirdRecord(record4),
-                new DbBirdRecord(record5),
-                new DbBirdRecord(record6)
+                DbBirdRecord.from(record1),
+                DbBirdRecord.from(record2),
+                DbBirdRecord.from(record3),
+                DbBirdRecord.from(record4),
+                DbBirdRecord.from(record5),
+                DbBirdRecord.from(record6)
         );
 
         var sex = BirdSex.Any;

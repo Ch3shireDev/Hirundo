@@ -41,7 +41,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         newRecord.Wing = 456.1230000000000000001;
         newRecord.Tail = 789.0;
 
-        var record = new DbBirdRecord(newRecord);
+        var record = DbBirdRecord.from(newRecord);
 
         var returning = new ReturningBirdsData();
         returning.RingNumber = "223344";

@@ -42,7 +42,7 @@ public class Application extends javafx.application.Application {
 
         final Scene scene = new Scene(view.getParent());
 
-        stage.setTitle("Hirundo ver. 1.2.0");
+        stage.setTitle("Hirundo ver. 1.2.1");
         stage.setScene(scene);
         stage.show();
     }

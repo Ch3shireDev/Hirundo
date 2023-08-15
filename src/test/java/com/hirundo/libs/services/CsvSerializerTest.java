@@ -79,7 +79,7 @@ class CsvSerializerTest {
         newRecord.D7 = 6.0;
         newRecord.D8 = 7.0;
 
-        var record = new DbBirdRecord(newRecord);
+        var record = DbBirdRecord.from(newRecord);
         var data = new ReturningBirdsData();
         data.Species = "REG.REG";
         data.FirstDateSeen = LocalDateTime.of(1982, 10, 12, 0, 0);

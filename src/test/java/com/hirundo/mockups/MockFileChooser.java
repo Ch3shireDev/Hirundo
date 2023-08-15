@@ -1,4 +1,4 @@
-package mockups;
+package com.hirundo.mockups;
 
 import com.hirundo.app.services.IFileChooser;
 
