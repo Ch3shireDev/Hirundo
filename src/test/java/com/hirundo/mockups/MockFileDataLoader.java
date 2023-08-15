@@ -12,7 +12,7 @@ public class MockFileDataLoader implements IFileDataLoader {
     public List<DbBirdRecord> Data = new ArrayList<>();
 
     @Override
-    public List<DbBirdRecord> loadData() throws Exception {
+    public List<DbBirdRecord> loadData() {
         IsLoaded = true;
         return Data;
     }
