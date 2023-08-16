@@ -2,7 +2,16 @@ package com.hirundo.app.models;
 
 import com.hirundo.app.services.IFileChooser;
 import com.hirundo.libs.data_structures.*;
-import com.hirundo.libs.services.*;
+import com.hirundo.libs.filters.ISpeciesFilter;
+import com.hirundo.libs.filters.SpeciesFilter;
+import com.hirundo.libs.loaders.IBirdRecordDataLoaderBuilder;
+import com.hirundo.libs.mappers.IReturningBirdsDataCsvRecordMapper;
+import com.hirundo.libs.mappers.ReturningBirdsDataCsvRecordMapper;
+import com.hirundo.libs.serializers.CsvSerializer;
+import com.hirundo.libs.serializers.ICsvSerializer;
+import com.hirundo.libs.services.IReturningBirdsSummarizer;
+import com.hirundo.libs.services.ReturningBirdsSummarizer;
+import com.hirundo.libs.services.ReturnsStatisticsCalculator;
 
 import java.util.ArrayList;
 import java.util.List;

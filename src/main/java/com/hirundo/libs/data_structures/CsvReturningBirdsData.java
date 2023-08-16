@@ -5,7 +5,6 @@ import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 public class CsvReturningBirdsData {

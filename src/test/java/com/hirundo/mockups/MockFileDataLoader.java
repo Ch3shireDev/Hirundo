@@ -1,7 +1,7 @@
 package com.hirundo.mockups;
 
 import com.hirundo.libs.data_structures.DbBirdRecord;
-import com.hirundo.libs.services.IFileDataLoader;
+import com.hirundo.libs.loaders.IFileDataLoader;
 
 import java.util.ArrayList;
 import java.util.List;

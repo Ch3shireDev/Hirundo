@@ -82,7 +82,7 @@ public class NewDbBirdRecord
     @Name("Weight") public Double Weight ;
     @Name("Pole77") public String Pole77 ;
     @Name("DW") public String DW ;
-    @Name("Notch/Dziób") public String NotchDziób ;
+    @Name("Notch/Dziób") public String NotchDziob;
     @Name("Pole80") public String Pole80 ;
     @Name("LocN/Pazur/Kipp") public String LocN_Pazur_Kipp ;
     @Name("Pole82") public String Pole82 ;
@@ -108,7 +108,7 @@ public class NewDbBirdRecord
     @Name("MANIP") public String MANIP ;
     @Name("PRZEM") public String PRZEM ;
     @Name("NAZWOB2") public String NAZWOB2 ;
-    @Name("BŁĄD") public String BŁĄD ;
+    @Name("BŁĄD") public String BLAD;
     @Name("Godz") public LocalDateTime Godz ;
     @Name("DT") public LocalDateTime DT ;
     @Name("OB2") public String OB2 ;

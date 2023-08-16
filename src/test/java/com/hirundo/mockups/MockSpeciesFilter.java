@@ -2,7 +2,7 @@ package com.hirundo.mockups;
 
 import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.data_structures.DbBirdRecord;
-import com.hirundo.libs.services.ISpeciesFilter;
+import com.hirundo.libs.filters.ISpeciesFilter;
 
 import java.util.ArrayList;
 import java.util.List;

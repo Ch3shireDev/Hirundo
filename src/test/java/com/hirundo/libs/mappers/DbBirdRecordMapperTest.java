@@ -1,6 +1,9 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.mappers;
 
-import com.hirundo.libs.data_structures.*;
+import com.hirundo.libs.data_structures.BirdSex;
+import com.hirundo.libs.data_structures.NewDbBirdRecord;
+import com.hirundo.libs.data_structures.OldDbBirdRecord;
+import com.hirundo.libs.data_structures.Season;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

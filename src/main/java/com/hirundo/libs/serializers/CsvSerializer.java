@@ -1,6 +1,5 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.serializers;
 
-import com.hirundo.libs.data_structures.ReturningBirdsData;
 import com.opencsv.CSVWriter;
 import com.opencsv.ICSVWriter;
 import com.opencsv.bean.CsvBindByName;
@@ -13,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvSerializer<T>  implements  ICsvSerializer<T>{
+public class CsvSerializer<T>  implements ICsvSerializer<T> {
     private Class<? extends T> type;
 
     public CsvSerializer(Class<? extends T> type) {
@@ -32,6 +31,8 @@ public class CsvSerializer<T>  implements  ICsvSerializer<T>{
                                                 ICSVWriter.NO_QUOTE_CHARACTER,
                                                 ICSVWriter.DEFAULT_ESCAPE_CHARACTER,
                                                 ICSVWriter.RFC4180_LINE_END);
+
+            writer.write("SEP=;\r\n");
             csvWriter.writeNext(headers);
 
             StatefulBeanToCsv<T> beanToCsv = new StatefulBeanToCsvBuilder<T>(writer)

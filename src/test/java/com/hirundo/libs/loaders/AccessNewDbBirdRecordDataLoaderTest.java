@@ -1,4 +1,4 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.loaders;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -102,7 +102,7 @@ class AccessNewDbBirdRecordDataLoaderTest {
         Assertions.assertEquals(4.9, record1.Weight);
         Assertions.assertEquals("", record1.Pole77);
         Assertions.assertEquals("0.1", record1.DW);
-        Assertions.assertEquals("", record1.NotchDziób);
+        Assertions.assertEquals("", record1.NotchDziob);
         Assertions.assertEquals("", record1.Pole80);
         Assertions.assertEquals("", record1.LocN_Pazur_Kipp);
         Assertions.assertEquals("", record1.Pole82);
@@ -128,7 +128,7 @@ class AccessNewDbBirdRecordDataLoaderTest {
         Assertions.assertEquals("-", record1.MANIP);
         Assertions.assertEquals("-", record1.PRZEM);
         Assertions.assertEquals("STĘPNIEWSKI,KRZYSZTOF", record1.NAZWOB2);
-        Assertions.assertEquals("", record1.BŁĄD);
+        Assertions.assertEquals("", record1.BLAD);
         Assertions.assertEquals(LocalDateTime.of(1899, 12, 30, 6, 0, 0), record1.Godz);
         Assertions.assertEquals(LocalDateTime.of(2017, 3, 26, 6, 0, 0), record1.DT);
         Assertions.assertNull(record1.OB2);

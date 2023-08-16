@@ -1,6 +1,6 @@
 package com.hirundo.libs.data_structures;
 
-import com.hirundo.libs.services.DbBirdRecordMapper;
+import com.hirundo.libs.mappers.DbBirdRecordMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

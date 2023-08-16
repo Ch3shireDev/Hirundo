@@ -19,6 +19,10 @@ public class MainViewModel {
         model.loadData();
     }
 
+    public String getSelectedFileName(){
+        return model.getSelectedFileName();
+    }
+
     public String selectFileName() {
         return model.selectFileName();
     }

@@ -1,6 +1,5 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.loaders;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +14,8 @@ class AccessOldDbBirdRecordDataLoaderTest {
 
     @BeforeEach
     void setUp() {
-    var filename = "src/test/resources/access_example_old_db.mdb";
-    var tableName = "Tab_Ring_Podab";
+        var filename = "src/test/resources/access_example_old_db.mdb";
+        var tableName = "Tab_Ring_Podab";
         dataLoader = new AccessOldDbBirdRecordDataLoader(filename, tableName);
     }
 

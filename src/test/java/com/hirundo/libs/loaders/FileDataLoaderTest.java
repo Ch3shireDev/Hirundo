@@ -1,8 +1,6 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.loaders;
 
 import com.hirundo.libs.data_structures.DbBirdRecord;
-import com.hirundo.libs.data_structures.NewDbBirdRecord;
-import com.hirundo.libs.data_structures.OldDbBirdRecord;
 import com.hirundo.mockups.MockDbBirdRecordDataLoader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

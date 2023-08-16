@@ -1,4 +1,4 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.loaders;
 
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
@@ -110,7 +110,7 @@ public class AccessNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<Ne
             record.Weight = row.getDouble("Weight");
             record.Pole77 = row.getString("Pole77");
             record.DW = row.getString("DW");
-            record.NotchDziób = row.getString("Notch/Dziób");
+            record.NotchDziob = row.getString("Notch/Dziób");
             record.Pole80 = row.getString("Pole80");
             record.LocN_Pazur_Kipp = row.getString("LocN/Pazur/Kipp");
             record.Pole82 = row.getString("Pole82");
@@ -136,7 +136,7 @@ public class AccessNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<Ne
             record.MANIP = row.getString("MANIP");
             record.PRZEM = row.getString("PRZEM");
             record.NAZWOB2 = row.getString("NAZWOB2");
-            record.BŁĄD = row.getString("BŁĄD");
+            record.BLAD = row.getString("BŁĄD");
             record.Godz = row.getLocalDateTime("Godz");
             record.DT = row.getLocalDateTime("DT");
             record.OB2 = row.getString("OB2");

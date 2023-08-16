@@ -1,13 +1,16 @@
 package com.hirundo.libs.services;
 
-import com.hirundo.libs.data_structures.*;
+import com.hirundo.libs.data_structures.DbBirdRecord;
+import com.hirundo.libs.data_structures.NewDbBirdRecord;
+import com.hirundo.libs.data_structures.OldDbBirdRecord;
+import com.hirundo.libs.data_structures.Season;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReturningBirdsFinderTest {
 ReturningBirdsSummarizer finder;

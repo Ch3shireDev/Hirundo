@@ -1,7 +1,7 @@
 package com.hirundo.mockups;
 
-import com.hirundo.libs.services.IBirdRecordDataLoaderBuilder;
-import com.hirundo.libs.services.IFileDataLoader;
+import com.hirundo.libs.loaders.IBirdRecordDataLoaderBuilder;
+import com.hirundo.libs.loaders.IFileDataLoader;
 
 public class MockBirdRecordDataLoaderBuilder implements IBirdRecordDataLoaderBuilder {
     public String Filename;

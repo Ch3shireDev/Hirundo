@@ -1,4 +1,4 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.loaders;
 
 public interface IBirdRecordDataLoaderBuilder {
     IBirdRecordDataLoaderBuilder withFilename(String filename);

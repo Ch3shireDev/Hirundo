@@ -1,6 +1,6 @@
 package com.hirundo.mockups;
 
-import com.hirundo.libs.services.ICsvSerializer;
+import com.hirundo.libs.serializers.ICsvSerializer;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.mappers;
 
 import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.CsvReturningBirdsData;

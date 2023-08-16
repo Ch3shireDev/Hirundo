@@ -2,7 +2,7 @@ package com.hirundo.mockups;
 
 import com.hirundo.libs.data_structures.CsvReturningBirdsData;
 import com.hirundo.libs.data_structures.ReturningBirdsData;
-import com.hirundo.libs.services.IReturningBirdsDataCsvRecordMapper;
+import com.hirundo.libs.mappers.IReturningBirdsDataCsvRecordMapper;
 
 import java.util.List;
 

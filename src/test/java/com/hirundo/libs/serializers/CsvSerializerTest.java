@@ -1,4 +1,4 @@
-package com.hirundo.libs.services;
+package com.hirundo.libs.serializers;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
@@ -28,6 +28,7 @@ class CsvSerializerTest {
         var result = serializer.serializeToCsv(birds);
 
         var expectedResult = """
+                SEP=;\r
                 Id;Ring;Date\r
                 1;1234;2020-01-02\r
                 2;1235;2020-01-03\r

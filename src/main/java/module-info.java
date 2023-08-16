@@ -29,4 +29,12 @@ module com.hirundo.app {
     exports com.hirundo.libs.data_structures;
     exports com.hirundo.app.converters;
     opens com.hirundo.app.converters to javafx.fxml;
+    exports com.hirundo.libs.serializers;
+    opens com.hirundo.libs.serializers to javafx.fxml;
+    exports com.hirundo.libs.loaders;
+    opens com.hirundo.libs.loaders to javafx.fxml;
+    exports com.hirundo.libs.filters;
+    opens com.hirundo.libs.filters to javafx.fxml;
+    exports com.hirundo.libs.mappers;
+    opens com.hirundo.libs.mappers to javafx.fxml;
 }

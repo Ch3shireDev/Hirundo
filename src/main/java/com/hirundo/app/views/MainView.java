@@ -239,6 +239,17 @@ public class MainView implements Initializable {
     }
 
     public void loadDataAction() {
+
+        var filename = viewModel.getSelectedFileName();
+        if(filename == null || filename.isEmpty()){
+            selectFileName();
+        }
+
+        var filename2 = viewModel.getSelectedFileName();
+        if(filename2 == null || filename2.isEmpty()){
+            return;
+        }
+
         try {
             isWindowDisabled.setValue(true);
             progress.setValue(-1);
