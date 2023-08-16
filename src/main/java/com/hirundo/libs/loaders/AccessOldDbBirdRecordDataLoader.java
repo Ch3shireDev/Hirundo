@@ -41,7 +41,7 @@ public class AccessOldDbBirdRecordDataLoader implements IBirdRecordDataLoader<Ol
     public List<OldDbBirdRecord> loadData() {
         var records = new LinkedList<OldDbBirdRecord>();
 
-        Table table = null;
+        Table table;
         try {
             table = DatabaseBuilder.open(new File(filename)).getTable(tableName);
         } catch (IOException e) {

@@ -23,7 +23,7 @@ public class AccessNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<Ne
     public List<NewDbBirdRecord> loadData() {
         var records = new LinkedList<NewDbBirdRecord>();
 
-        Table table = null;
+        Table table;
         try {
             table = DatabaseBuilder.open(new File(filename)).getTable(tableName);
         } catch (IOException e) {
