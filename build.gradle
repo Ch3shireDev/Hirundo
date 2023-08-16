@@ -41,7 +41,6 @@ dependencies {
         exclude(group: 'org.openjfx')
     }
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
-    implementation 'c3p0:c3p0:0.9.1.2'
     implementation 'org.java-sql-generator:org.java-sql-generator:0.3.2'
     implementation 'org.java-sql-generator:java-sql-generator:0.2'
     implementation 'jackcess:jackcess:1.1.10'
