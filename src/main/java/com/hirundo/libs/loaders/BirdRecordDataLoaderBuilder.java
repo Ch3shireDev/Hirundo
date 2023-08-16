@@ -1,6 +1,4 @@
-package com.hirundo.libs.services;
-
-import com.hirundo.libs.loaders.*;
+package com.hirundo.libs.loaders;
 
 public class BirdRecordDataLoaderBuilder implements IBirdRecordDataLoaderBuilder {
     String filename;

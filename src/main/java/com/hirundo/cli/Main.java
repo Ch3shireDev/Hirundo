@@ -1,9 +1,9 @@
 package com.hirundo.cli;
 
 import com.hirundo.libs.data_structures.CsvReturningBirdsData;
+import com.hirundo.libs.loaders.BirdRecordDataLoaderBuilder;
 import com.hirundo.libs.mappers.ReturningBirdsDataCsvRecordMapper;
 import com.hirundo.libs.serializers.CsvSerializer;
-import com.hirundo.libs.services.BirdRecordDataLoaderBuilder;
 import com.hirundo.libs.services.ReturningBirdsSummarizer;
 
 import java.io.File;

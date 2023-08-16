@@ -4,7 +4,7 @@ import com.hirundo.app.models.MainModel;
 import com.hirundo.app.services.DialogFileChooser;
 import com.hirundo.app.view_models.MainViewModel;
 import com.hirundo.app.views.MainView;
-import com.hirundo.libs.services.BirdRecordDataLoaderBuilder;
+import com.hirundo.libs.loaders.BirdRecordDataLoaderBuilder;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
