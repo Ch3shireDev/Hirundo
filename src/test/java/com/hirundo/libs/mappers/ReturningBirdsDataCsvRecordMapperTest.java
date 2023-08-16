@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -115,13 +114,9 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(LocalDateTime.of(1982, 10, 12, 0, 0), birds.get(0).RecordDate);
         Assertions.assertEquals("M", birds.get(0).Sex);
         Assertions.assertEquals("I", birds.get(0).Age);
-        Assertions.assertEquals(BigDecimal
-                                        .valueOf(50.500)
-                                        .setScale(3, RoundingMode.DOWN), birds.get(0).Weight);
+        Assertions.assertEquals(new BigDecimal("50.500"), birds.get(0).Weight);
         Assertions.assertEquals(3, birds.get(0).Fat);
-        Assertions.assertEquals(BigDecimal
-                                        .valueOf(50.500)
-                                        .setScale(3, RoundingMode.DOWN), birds.get(0).Wing);
+        Assertions.assertEquals(new BigDecimal("50.500"), birds.get(0).Wing);
         Assertions.assertEquals(60, birds.get(0).Tail);
         Assertions.assertEquals(1, birds.get(0).D2);
         Assertions.assertEquals(2, birds.get(0).D3);
