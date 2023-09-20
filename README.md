@@ -10,20 +10,20 @@ Uniwersytet Gdański organizuje kilka razy do roku wyjazdy Akcji Bałtyckiej (ht
 
 1. Należy policzyć dla D2-D8 parametry ostrości i skośności
 
-Ostrość (Pointness) = suma d2:d8 / Wing
-Skośność (Symmetry) = suma wartości d na prawo od zera - suma wartości d na lewo od zera / suma d2:d8
+    Ostrość (Pointness) = suma D2:D8 / Wing
+    Skośność (Symmetry) = suma wartości d na prawo od zera: suma wartości d na lewo od zera / suma d2:d8
 
 2. Dla każdej wartości liczbowej (Weight, Wing, Tail, Pointness, Symmetry) wyliczyć średnią + odchylenie standardowe + liczbę n populacji
-
-Populacja to:
-    - wszystkie pierwsze złapania
-    - ptaków w wieku I lub J
-    - z danego roku
-    - z odrzuceniem wartości odchylonych o więcej niż 4 odchylenia standardowe
+    
+    Populacja to:
+        - wszystkie pierwsze złapania,
+        - ptaków w wieku I lub J,
+        - z danego roku,
+        - z odrzuceniem wartości odchylonych o więcej niż 4 odchylenia standardowe.
 
 3. Dla Fat policzyć (dla tak samo określonej populacji):
-    - medianę
-    - kwartyl górny
-    - kwartyl dolny
+    - medianę,
+    - kwartyl górny,
+    - kwartyl dolny.
 
 Tak naprawdę zależy nam na pierwszych złapaniach, nie na wszystkich złapaniach. Ale dalej powinniśmy posortować złapania by wcześniej były te wcześniejsze.

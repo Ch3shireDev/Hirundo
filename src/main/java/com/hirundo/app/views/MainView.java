@@ -26,7 +26,6 @@ public class MainView implements Initializable {
     @FXML
     public ComboBox<BirdSex> sexComboBox;
     public StringProperty fileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
-    //    public StringProperty fileName = new SimpleStringProperty("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb");
     public StringProperty oldTableName = new SimpleStringProperty("Tab_Ring_Podab");
     public StringProperty newTableName = new SimpleStringProperty("AB 2017_18_19_20_21S");
     public FloatProperty progress = new SimpleFloatProperty(0.0f);
@@ -161,7 +160,6 @@ public class MainView implements Initializable {
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());
-//        viewModel.setFileName(fileName.getValue());
     }
 
     public String getLoadingDatabaseStatus() {
