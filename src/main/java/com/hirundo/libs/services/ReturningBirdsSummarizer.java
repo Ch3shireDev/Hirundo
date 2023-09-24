@@ -30,9 +30,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
 
             DbBirdRecord firstRecord = getFirstRecord(sortedRecords);
 
-            var firstSeason = firstRecord.getSeason();
-
-            if (Season.Autumn != firstSeason) {
+            if (!isFirstSeasonAutumn(firstRecord)) {
                 continue;
             }
 
@@ -40,13 +38,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
                 continue;
             }
 
-            var years = sortedRecords
-                    .stream()
-                    .map(DbBirdRecord::getYear)
-                    .distinct()
-                    .toList();
-
-            if (2 > years.size()) {
+            if (!isFromMoreThanOneYear(sortedRecords)) {
                 continue;
             }
 
@@ -58,6 +50,22 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         }
 
         return result;
+    }
+
+    boolean isFirstSeasonAutumn(DbBirdRecord record) {
+        return Season.Autumn == record.getSeason();
+    }
+
+    boolean isFromMoreThanOneYear(List<DbBirdRecord> sortedRecords) {
+        return getYears(sortedRecords).size() > 1;
+    }
+
+    private List<Integer> getYears(List<DbBirdRecord> sortedRecords) {
+        return sortedRecords
+                .stream()
+                .map(DbBirdRecord::getYear)
+                .distinct()
+                .toList();
     }
 
     Boolean isJuvenile(DbBirdRecord record) {
@@ -97,12 +105,25 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         returningBirds.Pointedness = getPointednessFactor(first);
         returningBirds.Symmetry = getSymmetryFactor(first);
 
+        returningBirds.Weight = first.getWeight();
+        returningBirds.Fat = first.getFat();
+        returningBirds.Wing = first.getWing();
+        returningBirds.Tail = first.getTail();
+
+        returningBirds.D2 = first.getD2();
+        returningBirds.D3 = first.getD3();
+        returningBirds.D4 = first.getD4();
+        returningBirds.D5 = first.getD5();
+        returningBirds.D6 = first.getD6();
+        returningBirds.D7 = first.getD7();
+        returningBirds.D8 = first.getD8();
+
         return returningBirds;
     }
 
     private BigDecimal getPointednessFactor(DbBirdRecord record) {
 
-        if(!isPointednessFactorValid(record)) {
+        if (!isPointednessFactorValid(record)) {
             return null;
         }
 
@@ -113,7 +134,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
 
     }
 
-    BigDecimal getSum(DbBirdRecord record){
+    BigDecimal getSum(DbBirdRecord record) {
         var d2 = record.getD2();
         var d3 = record.getD3();
         var d4 = record.getD4();
@@ -127,54 +148,52 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
     }
 
     private boolean isPointednessFactorValid(DbBirdRecord record) {
-        if(null == record.getD2()) return false;
-        if(null == record.getD3()) return false;
-        if(null == record.getD4()) return false;
-        if(null == record.getD5()) return false;
-        if(null == record.getD6()) return false;
-        if(null == record.getD7()) return false;
-        if(null == record.getD8()) return false;
-        if(null == record.getWing()) return false;
+        if (null == record.getD2()) return false;
+        if (null == record.getD3()) return false;
+        if (null == record.getD4()) return false;
+        if (null == record.getD5()) return false;
+        if (null == record.getD6()) return false;
+        if (null == record.getD7()) return false;
+        if (null == record.getD8()) return false;
+        if (null == record.getWing()) return false;
         return record
                 .getWing()
                 .compareTo(BigDecimal.ZERO) != 0;
     }
 
-    private BigDecimal getSymmetryFactor(DbBirdRecord record){
-        if(!isPointednessFactorValid(record)) {
+    private BigDecimal getSymmetryFactor(DbBirdRecord record) {
+        if (!isPointednessFactorValid(record)) {
             return null;
         }
-        if(!isSymmetryFactorValid (record)) {
+        if (!isSymmetryFactorValid(record)) {
             return null;
         }
 
-        var array = new BigDecimal[]{
-                new BigDecimal(record.getD2()),
-                new BigDecimal(record.getD3()),
-                new BigDecimal(record.getD4()),
-                new BigDecimal(record.getD5()),
-                new BigDecimal(record.getD6()),
-                new BigDecimal(record.getD7()),
-                new BigDecimal(record.getD8())
-        };
+        var array = new BigDecimal[]{new BigDecimal(record.getD2()), new BigDecimal(record.getD3()), new BigDecimal(
+                record.getD4()), new BigDecimal(record.getD5()), new BigDecimal(record.getD6()), new BigDecimal(record.getD7()), new BigDecimal(
+                record.getD8())};
 
-        var zeroIndex = Arrays.asList(array).indexOf(BigDecimal.ZERO);
+        var zeroIndex = Arrays
+                .asList(array)
+                .indexOf(BigDecimal.ZERO);
 
-        var leftSum = Arrays.asList(array).subList(0, zeroIndex).stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-        var rightSum = Arrays.asList(array).subList(zeroIndex + 1, array.length).stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+        var leftSum = Arrays
+                .asList(array)
+                .subList(0, zeroIndex)
+                .stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        var rightSum = Arrays
+                .asList(array)
+                .subList(zeroIndex + 1, array.length)
+                .stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         var dSum = getSum(record);
 
         return (rightSum.subtract(leftSum)).divide(dSum, 3, RoundingMode.DOWN);
     }
 
-    boolean isSymmetryFactorValid(DbBirdRecord record){
-        return 0 == record.getD2() ||
-                0 == record.getD3() ||
-                0 == record.getD4() ||
-                0 == record.getD5() ||
-                0 == record.getD6() ||
-                0 == record.getD7() ||
-                0 == record.getD8();
+    boolean isSymmetryFactorValid(DbBirdRecord record) {
+        return 0 == record.getD2() || 0 == record.getD3() || 0 == record.getD4() || 0 == record.getD5() || 0 == record.getD6() || 0 == record.getD7() || 0 == record.getD8();
     }
 }
 

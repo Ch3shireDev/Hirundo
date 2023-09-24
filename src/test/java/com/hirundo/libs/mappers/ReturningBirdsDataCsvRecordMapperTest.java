@@ -140,4 +140,21 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(new BigDecimal("10.123"), birds.get(0).Pointedness);
         Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
     }
+
+    @Test
+    public void mapperReturnsDataFromOnlyFirstBird(){
+        var r1 = new DbBirdRecord();
+        r1.date = LocalDateTime.of(1982, 10, 12, 0, 0, 0);
+
+        var r2 = new DbBirdRecord();
+        r2.date = LocalDateTime.of(1983, 10, 12, 0, 0, 0);
+
+        var data = new ReturningBirdsData();
+        data.Records = List.of(r1, r2);
+
+        var birds = mapper.getCsvReturningBirdsData(List.of(data));
+
+        Assertions.assertEquals(1, birds.size());
+        Assertions.assertEquals(LocalDateTime.of(1982,10,12,0,0,0), birds.get(0).RecordDate);
+    }
 }

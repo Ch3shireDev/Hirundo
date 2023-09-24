@@ -52,12 +52,9 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         var list = new ArrayList<CsvReturningBirdsData>();
 
         for (var returningBird : returningBirds) {
-
-            for (var record : returningBird.Records) {
-
-                var csvData = map(returningBird, record);
-                list.add(csvData);
-            }
+            var record = returningBird.Records.get(0);
+            var csvData = map(returningBird, record);
+            list.add(csvData);
         }
         return list;
     }
