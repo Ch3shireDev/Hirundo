@@ -42,13 +42,15 @@ public class CsvReturningBirdsDataSerializerTest {
         bird.D6 = 5;
         bird.D7 = 6;
         bird.D8 = 7;
+        bird.Pointedness = new BigDecimal("10.123");
+        bird.Symmetry = new BigDecimal("20.123");
 
         var result = serializer.serializeToCsv(List.of(bird));
 
         var expectedResult = """
                 SEP=;\r
-                RingNumber;Species;FirstDateSeen;LastDateSeen;FirstSeasonSeen;LastSeasonSeen;RecordDate;Sex;Age;Weight;Fat;Wing;Tail;D2;D3;D4;D5;D6;D7;D8\r
-                LA94007;REG.REG;1982-10-12;1983-04-01;Autumn;Spring;1982-10-12;M;I;50.500;3;50.500;60;1;2;3;4;5;6;7\r
+                RingNumber;Species;FirstDateSeen;LastDateSeen;FirstSeasonSeen;LastSeasonSeen;RecordDate;Sex;Age;Weight;Fat;Wing;Tail;D2;D3;D4;D5;D6;D7;D8;Pointedness;Symmetry\r
+                LA94007;REG.REG;1982-10-12;1983-04-01;Autumn;Spring;1982-10-12;M;I;50.500;3;50.500;60;1;2;3;4;5;6;7;10.123;20.123\r
                                 """;
         Assertions.assertEquals(expectedResult, result);
     }

@@ -118,6 +118,5 @@ public class DbBirdRecord {
     public Integer getD8() {
         return d8;
     }
-
 }
 

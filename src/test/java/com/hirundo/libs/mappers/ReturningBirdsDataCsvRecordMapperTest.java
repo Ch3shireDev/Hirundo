@@ -74,7 +74,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
     }
 
     @Test
-    public void SerializeBirdData() throws Exception {
+    public void SerializeBirdData() {
         var record = new DbBirdRecord();
         record.ring = "LA94007";
         record.speciesCode = "REG.REG";
@@ -125,5 +125,19 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(5, birds.get(0).D6);
         Assertions.assertEquals(6, birds.get(0).D7);
         Assertions.assertEquals(7, birds.get(0).D8);
+    }
+
+    @Test
+    public void mapperTranslatesPointednessAndSymmetry(){
+
+        var data = new ReturningBirdsData();
+        data.Pointedness = new BigDecimal("10.123");
+        data.Symmetry = new BigDecimal("20.123");
+        data.Records = List.of(new DbBirdRecord());
+
+        var birds = mapper.getCsvReturningBirdsData(List.of(data));
+
+        Assertions.assertEquals(new BigDecimal("10.123"), birds.get(0).Pointedness);
+        Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
     }
 }

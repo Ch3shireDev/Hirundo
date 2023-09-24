@@ -1,5 +1,6 @@
 package com.hirundo.libs.data_structures;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,4 +12,6 @@ public class ReturningBirdsData {
     public LocalDateTime LastDateSeen;
     public Season FirstSeasonSeen;
     public Season LastSeasonSeen;
+    public BigDecimal Pointedness;
+    public BigDecimal Symmetry;
 }

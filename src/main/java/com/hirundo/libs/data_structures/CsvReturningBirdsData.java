@@ -71,6 +71,10 @@ public class CsvReturningBirdsData {
     @CsvBindByName(column = "D8")
     @CsvBindByPosition(position = 19)
     public Integer D8;
-
-
+    @CsvBindByName(column = "Pointedness")
+    @CsvBindByPosition(position = 20)
+    public BigDecimal Pointedness;
+    @CsvBindByName(column = "Symmetry")
+    @CsvBindByPosition(position = 21)
+    public BigDecimal Symmetry;
 }
