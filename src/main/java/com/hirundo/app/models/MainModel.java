@@ -1,5 +1,7 @@
 package com.hirundo.app.models;
 
+import com.hirundo.app.services.CsvFileWriter;
+import com.hirundo.app.services.ICsvFileWriter;
 import com.hirundo.app.services.IFileChooser;
 import com.hirundo.libs.data_structures.*;
 import com.hirundo.libs.filters.ISpeciesFilter;

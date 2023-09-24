@@ -1,6 +1,6 @@
 package com.hirundo.app.models.mockups;
 
-import com.hirundo.app.models.ICsvFileWriter;
+import com.hirundo.app.services.ICsvFileWriter;
 
 public class MockCsvFileSaver implements ICsvFileWriter {
     public String FileName;
