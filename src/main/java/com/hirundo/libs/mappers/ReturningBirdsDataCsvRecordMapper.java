@@ -24,7 +24,7 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.LastSeasonSeen = getSeasonStr(data.LastSeasonSeen);
         result.RecordDate = record.getDate();
         result.Age = record.getAge();
-        result.Weight = roundDecimal(record.getWeight());
+        result.Weight = roundDecimal(data.Weight);
         result.Fat = record.getFat();
         result.Wing = roundDecimal(record.getWing());
         result.Tail = record.getTail();

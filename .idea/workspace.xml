@@ -8,13 +8,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Rearrange files, fix issue with load data button">
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Move data from BirdRecord to ReturningBirdData">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,34 +112,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_directory_selection": "C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services",
-    "last_opened_file_path": "D:/bin/javafx-sdk-21/lib/javafx.media.jar",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2816092",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/bin/javafx-sdk-21/lib/javafx.media.jar&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2816092&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.hirundo.app.views" />
@@ -168,83 +165,13 @@
       <recent name="com.hirundo.libs.data_structures" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.hirundo.libs.data_structures" />
       <recent name="com.hirundo.libs.services" />
+      <recent name="com.hirundo.libs.data_structures" />
       <recent name="com.hirundo.app.models" />
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Hirundo [jpackage]">
-    <configuration name="CsvReturningBirdsDataSerializerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.hirundo.libs.services.CsvReturningBirdsDataSerializerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="FileDataLoaderTest.loadData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.hirundo.libs.services.FileDataLoaderTest.loadData&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="Hirundo [jpackage]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jpackage" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.Hirundo [test]">
     <configuration name="Hirundo [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -289,20 +216,92 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.mappers.ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Gradle.Hirundo [jpackage]" />
-      <item itemvalue="Gradle.CsvReturningBirdsDataSerializerTest" />
-      <item itemvalue="Gradle.FileDataLoaderTest.loadData" />
-      <item itemvalue="Gradle.Hirundo [test]" />
       <item itemvalue="Gradle.Hirundo [run]" />
+      <item itemvalue="Gradle.ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData" />
+      <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" />
+      <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped" />
+      <item itemvalue="Gradle.Hirundo [test]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Hirundo [jpackage]" />
-        <item itemvalue="Gradle.Hirundo [jpackage]" />
-        <item itemvalue="Gradle.Hirundo [run]" />
         <item itemvalue="Gradle.Hirundo [test]" />
-        <item itemvalue="Gradle.CsvReturningBirdsDataSerializerTest" />
+        <item itemvalue="Gradle.Hirundo [run]" />
+        <item itemvalue="Gradle.ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData" />
+        <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" />
+        <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped" />
       </list>
     </recent_temporary>
   </component>
@@ -345,6 +344,9 @@
       <workItem from="1692109242189" duration="11435000" />
       <workItem from="1692184622599" duration="3631000" />
       <workItem from="1695144438621" duration="4673000" />
+      <workItem from="1695546550719" duration="10737000" />
+      <workItem from="1695593442030" duration="774000" />
+      <workItem from="1696888783467" duration="1314000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -605,7 +607,42 @@
       <option name="project" value="LOCAL" />
       <updated>1692122047645</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary=":bird: Update README.md">
+      <created>1695577457939</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1695577457939</updated>
+    </task>
+    <task id="LOCAL-00039" summary=":bird: Move CsvFileWriter with interface to services">
+      <created>1695585204272</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1695585204272</updated>
+    </task>
+    <task id="LOCAL-00040" summary=":bird: Refactoring of ReturningBirdsSummarizer test file">
+      <created>1695585841943</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1695585841943</updated>
+    </task>
+    <task id="LOCAL-00041" summary=":bird: Add Pointedness and Symmetry factors to bird records">
+      <created>1695588259209</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1695588259209</updated>
+    </task>
+    <task id="LOCAL-00042" summary=":bird: Move data from BirdRecord to ReturningBirdData">
+      <created>1695592107147</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1695592107147</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,11 +660,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":bird: Replace MainModel data loader with FileDataLoader" />
-    <MESSAGE value=":bird: Add IFileChooser to MainModel" />
-    <MESSAGE value=":bird: Merge New and Old DbBirdRecordDataLoader into generics" />
-    <MESSAGE value=":bird: Add working data loader, add Main project" />
-    <MESSAGE value=":bird: Update view module" />
     <MESSAGE value=":bird: Working version of a view module. Add icon to project" />
     <MESSAGE value=":bird: Update Access tests" />
     <MESSAGE value=":bird: Add first returning birds count method" />
@@ -648,7 +680,12 @@
     <MESSAGE value=":bird: Extract DbBirdRecord as autonomous data structure" />
     <MESSAGE value=":bird: Move CsvReturningBirdsDate to separate file" />
     <MESSAGE value=":bird: Create explicit CsvReturningBirdsDataSerializer implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Create explicit CsvReturningBirdsDataSerializer implementation" />
+    <MESSAGE value=":bird: Update README.md" />
+    <MESSAGE value=":bird: Move CsvFileWriter with interface to services" />
+    <MESSAGE value=":bird: Refactoring of ReturningBirdsSummarizer test file" />
+    <MESSAGE value=":bird: Add Pointedness and Symmetry factors to bird records" />
+    <MESSAGE value=":bird: Move data from BirdRecord to ReturningBirdData" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Move data from BirdRecord to ReturningBirdData" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

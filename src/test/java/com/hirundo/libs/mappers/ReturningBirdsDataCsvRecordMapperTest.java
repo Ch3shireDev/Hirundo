@@ -32,7 +32,6 @@ class ReturningBirdsDataCsvRecordMapperTest {
         newRecord.D7 = 6.0;
         newRecord.D8 = 7.0;
 
-        newRecord.Weight = 123.0;
         newRecord.Fat = 5.0;
         newRecord.Wing = 456.1230000000000000001;
         newRecord.Tail = 789.0;
@@ -46,6 +45,9 @@ class ReturningBirdsDataCsvRecordMapperTest {
         returning.FirstSeasonSeen = Season.Autumn;
         returning.LastDateSeen = LocalDateTime.of(2021, 11, 2, 0, 0);
         returning.LastSeasonSeen = Season.Autumn;
+
+        returning.Weight = new BigDecimal("123.000");
+
         returning.Records = List.of(record);
 
         var list = List.of(returning);
@@ -100,6 +102,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         data.LastDateSeen = LocalDateTime.of(1983, 4, 1, 0, 0);
         data.FirstSeasonSeen = Season.Autumn;
         data.LastSeasonSeen = Season.Spring;
+        data.Weight = new BigDecimal("50.500");
         data.Records = List.of(record);
 
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
