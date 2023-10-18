@@ -8,11 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Move data from BirdRecord to ReturningBirdData">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/mappers/ReturningBirdsDataCsvRecordMapperTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Refactoring" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -264,7 +260,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SpeciesFilterTest.getSpeciesNullData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -277,7 +273,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped&quot;" />
+            <option value="&quot;com.hirundo.libs.filters.SpeciesFilterTest.getSpeciesNullData&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -289,19 +285,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.SpeciesFilterTest.getSpeciesNullData" />
       <item itemvalue="Gradle.Hirundo [run]" />
       <item itemvalue="Gradle.ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData" />
       <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" />
-      <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped" />
       <item itemvalue="Gradle.Hirundo [test]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Hirundo [test]" />
+        <item itemvalue="Gradle.SpeciesFilterTest.getSpeciesNullData" />
         <item itemvalue="Gradle.Hirundo [run]" />
         <item itemvalue="Gradle.ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData" />
         <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" />
-        <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromTwoYearsShouldNotBeSkipped" />
       </list>
     </recent_temporary>
   </component>
@@ -347,6 +343,7 @@
       <workItem from="1695546550719" duration="10737000" />
       <workItem from="1695593442030" duration="774000" />
       <workItem from="1696888783467" duration="1314000" />
+      <workItem from="1697478177572" duration="7086000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -642,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695592107147</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary=":bird: Refactoring">
+      <created>1697492452028</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1697492452028</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":bird: Working version of a view module. Add icon to project" />
     <MESSAGE value=":bird: Update Access tests" />
     <MESSAGE value=":bird: Add first returning birds count method" />
     <MESSAGE value=":bird: Add CsvSerializer to project" />
@@ -685,7 +688,8 @@
     <MESSAGE value=":bird: Refactoring of ReturningBirdsSummarizer test file" />
     <MESSAGE value=":bird: Add Pointedness and Symmetry factors to bird records" />
     <MESSAGE value=":bird: Move data from BirdRecord to ReturningBirdData" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Move data from BirdRecord to ReturningBirdData" />
+    <MESSAGE value=":bird: Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

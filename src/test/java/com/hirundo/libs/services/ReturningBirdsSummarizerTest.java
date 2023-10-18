@@ -97,7 +97,7 @@ class ReturningBirdsSummarizerTest {
         r1.weight = new BigDecimal("50.500");
         r1.fat = 3;
         r1.wing = new BigDecimal("60.000");
-        r1.tail = 70;
+        r1.tail = new BigDecimal("70");
         r1.d2 = 2;
         r1.d3 = 3;
         r1.d4 = 4;
@@ -128,7 +128,7 @@ class ReturningBirdsSummarizerTest {
         assertEquals(new BigDecimal("50.500"), returningBirds.get(0).Weight);
         assertEquals(3, returningBirds.get(0).Fat);
         assertEquals(new BigDecimal("60.000"), returningBirds.get(0).Wing);
-        assertEquals(70, returningBirds.get(0).Tail);
+        assertEquals(new BigDecimal("70"), returningBirds.get(0).Tail);
         assertEquals(2, returningBirds.get(0).D2);
         assertEquals(3, returningBirds.get(0).D3);
         assertEquals(4, returningBirds.get(0).D4);

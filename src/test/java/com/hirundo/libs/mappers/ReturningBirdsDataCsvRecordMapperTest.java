@@ -50,6 +50,11 @@ class ReturningBirdsDataCsvRecordMapperTest {
 
         returning.Records = List.of(record);
 
+        returning.Wing = new BigDecimal("456.123");
+        returning.Tail = new BigDecimal("789");
+
+        returning.Fat = 5;
+
         var list = List.of(returning);
         var csvRecord = mapper.getCsvReturningBirdsData(list);
 
@@ -61,9 +66,13 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(LocalDateTime.of(2021, 11, 2, 0, 0), csvRecord.get(0).LastDateSeen);
         Assertions.assertEquals(Season.Autumn.toString(), csvRecord.get(0).LastSeasonSeen);
         Assertions.assertEquals(new BigDecimal("123.000"), csvRecord.get(0).Weight);
+
         Assertions.assertEquals(5, csvRecord.get(0).Fat);
+
+
+
         Assertions.assertEquals(new BigDecimal("456.123"), csvRecord.get(0).Wing);
-        Assertions.assertEquals(789, csvRecord.get(0).Tail);
+        Assertions.assertEquals(new BigDecimal("789.000"), csvRecord.get(0).Tail);
         Assertions.assertEquals("J", csvRecord.get(0).Age);
         Assertions.assertEquals("M", csvRecord.get(0).Sex);
         Assertions.assertEquals(1, csvRecord.get(0).D2);
@@ -85,7 +94,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         record.age = "I";
         record.weight = BigDecimal.valueOf(50.5);
         record.wing = BigDecimal.valueOf(50.5);
-        record.tail = 60;
+        record.tail = BigDecimal.valueOf(60);
         record.fat = 3;
         record.d2 = 1;
         record.d3 = 2;
@@ -104,6 +113,15 @@ class ReturningBirdsDataCsvRecordMapperTest {
         data.LastSeasonSeen = Season.Spring;
         data.Weight = new BigDecimal("50.500");
         data.Records = List.of(record);
+        data.Wing = new BigDecimal("50.500");
+        data.Tail = new BigDecimal("60");
+
+        data.Population = 5;
+
+        data.Fat = 3;
+        data.FatMedian = new BigDecimal("4.5");
+        data.FatUpperQuartile = new BigDecimal("4.7");
+        data.FatLowerQuartile = new BigDecimal("4.3");
 
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
 
@@ -120,7 +138,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(new BigDecimal("50.500"), birds.get(0).Weight);
         Assertions.assertEquals(3, birds.get(0).Fat);
         Assertions.assertEquals(new BigDecimal("50.500"), birds.get(0).Wing);
-        Assertions.assertEquals(60, birds.get(0).Tail);
+        Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).Tail);
         Assertions.assertEquals(1, birds.get(0).D2);
         Assertions.assertEquals(2, birds.get(0).D3);
         Assertions.assertEquals(3, birds.get(0).D4);
@@ -128,6 +146,13 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(5, birds.get(0).D6);
         Assertions.assertEquals(6, birds.get(0).D7);
         Assertions.assertEquals(7, birds.get(0).D8);
+
+        Assertions.assertEquals(5, birds.get(0).Population);
+
+        Assertions.assertEquals(3, birds.get(0).Fat);
+        Assertions.assertEquals(new BigDecimal("4.5"), birds.get(0).FatMedian);
+        Assertions.assertEquals(new BigDecimal("4.7"), birds.get(0).FatUpperQuartile);
+        Assertions.assertEquals(new BigDecimal("4.3"), birds.get(0).FatLowerQuartile);
     }
 
     @Test
@@ -142,6 +167,61 @@ class ReturningBirdsDataCsvRecordMapperTest {
 
         Assertions.assertEquals(new BigDecimal("10.123"), birds.get(0).Pointedness);
         Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
+    }
+
+    @Test
+    public void mappesShouldGiveMeanAndStandardDeviationValues(){
+        var data = new ReturningBirdsData();
+        data.Pointedness = new BigDecimal("10.123");
+        data.Symmetry = new BigDecimal("20.123");
+        data.Records = List.of(new DbBirdRecord());
+
+        data.Weight = new BigDecimal("50.123");
+        data.WeightMean = new BigDecimal("60");
+        data.WeightStandardDeviation = new BigDecimal("10");
+
+        data.Wing = new BigDecimal("30");
+        data.WingMean = new BigDecimal("40");
+        data.WingStandardDeviation = new BigDecimal("10");
+
+        data.Tail = new BigDecimal("60");
+        data.TailMean = new BigDecimal("70");
+        data.TailStandardDeviation = new BigDecimal("10");
+
+        data.Pointedness = new BigDecimal("10.123");
+        data.PointednessMean = new BigDecimal("20");
+        data.PointednessStandardDeviation = new BigDecimal("10");
+
+        data.Symmetry = new BigDecimal("20.123");
+        data.SymmetryMean = new BigDecimal("30");
+        data.SymmetryStandardDeviation = new BigDecimal("10");
+
+        var birds = mapper.getCsvReturningBirdsData(List.of(data));
+
+        Assertions.assertEquals(new BigDecimal("10.123"), birds.get(0).Pointedness);
+        Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
+
+        Assertions.assertEquals(new BigDecimal("50.123"), birds.get(0).Weight);
+        Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).WeightMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WeightStandardDeviation);
+
+        Assertions.assertEquals(new BigDecimal("30.000"), birds.get(0).Wing);
+        Assertions.assertEquals(new BigDecimal("40.000"), birds.get(0).WingMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WingStandardDeviation);
+
+        Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).Tail);
+        Assertions.assertEquals(new BigDecimal("70.000"), birds.get(0).TailMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).TailStandardDeviation);
+
+        Assertions.assertEquals(new BigDecimal("10.123"), birds.get(0).Pointedness);
+        Assertions.assertEquals(new BigDecimal("20.000"), birds.get(0).PointednessMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).PointednessStandardDeviation);
+
+        Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
+        Assertions.assertEquals(new BigDecimal("30.000"), birds.get(0).SymmetryMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).SymmetryStandardDeviation);
+
+
     }
 
     @Test

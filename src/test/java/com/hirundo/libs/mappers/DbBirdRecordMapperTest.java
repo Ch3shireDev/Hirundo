@@ -16,7 +16,7 @@ class DbBirdRecordMapperTest {
     DbBirdRecordMapper mapper;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         mapper = new DbBirdRecordMapper();
     }
 
@@ -29,7 +29,7 @@ class DbBirdRecordMapperTest {
         record1.LatinName = "Aarex Babex";
         record1.Age = "I";
         record1.Sex = "F";
-        record1.Ring ="111222";
+        record1.Ring = "111222";
         record1.Date2 = "2020-01-02";
         record1.Seas = "A";
         record1.Weight = 2.5;
@@ -53,13 +53,13 @@ class DbBirdRecordMapperTest {
         Assertions.assertEquals("I", record.getAge());
         Assertions.assertEquals(BirdSex.Female, record.getSex());
         Assertions.assertEquals("111222", record.getRing());
-        Assertions.assertEquals(LocalDateTime.of(2020,1,2,0,0,0), record.getDate());
+        Assertions.assertEquals(LocalDateTime.of(2020, 1, 2, 0, 0, 0), record.getDate());
         Assertions.assertEquals(2020, record.getYear());
         Assertions.assertEquals(Season.Autumn, record.getSeason());
-        Assertions.assertEquals(BigDecimal.valueOf( 2.5), record.getWeight());
+        Assertions.assertEquals(BigDecimal.valueOf(2.5), record.getWeight());
         Assertions.assertEquals(3, record.getFat());
         Assertions.assertEquals(BigDecimal.valueOf(120.5), record.getWing());
-        Assertions.assertEquals(220, record.getTail());
+        Assertions.assertEquals(BigDecimal.valueOf(220.0), record.getTail());
         Assertions.assertEquals(2, record.getD2());
         Assertions.assertEquals(3, record.getD3());
         Assertions.assertEquals(4, record.getD4());
@@ -68,6 +68,7 @@ class DbBirdRecordMapperTest {
         Assertions.assertEquals(7, record.getD7());
         Assertions.assertEquals(8, record.getD8());
     }
+
     @Test
     void fromOldRecord() {
         var record1 = new OldDbBirdRecord();
@@ -75,8 +76,8 @@ class DbBirdRecordMapperTest {
         record1.Spec = "AAA.BBB";
         record1.Age = "I";
         record1.Sex = "F";
-        record1.Ring ="111222";
-        record1.Date = LocalDateTime.of(2020,1,2,0,0,0);
+        record1.Ring = "111222";
+        record1.Date = LocalDateTime.of(2020, 1, 2, 0, 0, 0);
         record1.Seas = "A";
         record1.Mass = 2.5f;
         record1.Fat = 3.0f;
@@ -96,13 +97,13 @@ class DbBirdRecordMapperTest {
         Assertions.assertEquals("I", record.getAge());
         Assertions.assertEquals(BirdSex.Female, record.getSex());
         Assertions.assertEquals("111222", record.getRing());
-        Assertions.assertEquals(LocalDateTime.of(2020,1,2,0,0,0), record.getDate());
+        Assertions.assertEquals(LocalDateTime.of(2020, 1, 2, 0, 0, 0), record.getDate());
         Assertions.assertEquals(2020, record.getYear());
         Assertions.assertEquals(Season.Autumn, record.getSeason());
-        Assertions.assertEquals(BigDecimal.valueOf( 2.5), record.getWeight());
+        Assertions.assertEquals(BigDecimal.valueOf(2.5), record.getWeight());
         Assertions.assertEquals(3, record.getFat());
         Assertions.assertEquals(BigDecimal.valueOf(120.5), record.getWing());
-        Assertions.assertEquals(220, record.getTail());
+        Assertions.assertEquals(BigDecimal.valueOf(220.0), record.getTail());
         Assertions.assertEquals(2, record.getD2());
         Assertions.assertEquals(3, record.getD3());
         Assertions.assertEquals(4, record.getD4());

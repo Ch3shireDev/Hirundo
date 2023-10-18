@@ -30,7 +30,7 @@ public class DbBirdRecordMapper {
         result.age = birdRecord.Age;
         result.fat = asInt(birdRecord.Fat);
         result.wing = asBigDecimal(birdRecord.Wing);
-        result.tail = asInt(birdRecord.Tail);
+        result.tail = asBigDecimal(birdRecord.Tail);
         return result;
     }
 
@@ -55,49 +55,47 @@ public class DbBirdRecordMapper {
         result.age = birdRecord.Age;
         result.fat = asInt(birdRecord.Fat);
         result.wing = asBigDecimal(birdRecord.Wing);
-        result.tail = asInt(birdRecord.Tail);
+        result.tail = asBigDecimal(birdRecord.Tail);
 
         return result;
     }
 
-
-    static LocalDateTime asDate(String value) {
+    LocalDateTime asDate(String value) {
         if (null == value) return null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(value, formatter);
         return date.atStartOfDay();
     }
 
-    static Integer asInt(Double value) {
+    Integer asInt(Double value) {
         if (null == value) return null;
         return value.intValue();
     }
 
-    static Integer asInt(Float value) {
+    Integer asInt(Float value) {
         if (null == value) return null;
         return value.intValue();
     }
 
-    static BirdSex toSex(String sexStr) {
+    BirdSex toSex(String sexStr) {
         if ("F".equals(sexStr)) return BirdSex.Female;
         if ("M".equals(sexStr)) return BirdSex.Male;
         return BirdSex.Undefined;
     }
 
-    static Season asSeason(String seasonStr) {
+    Season asSeason(String seasonStr) {
         if ("A".equals(seasonStr)) return Season.Autumn;
         if ("S".equals(seasonStr)) return Season.Spring;
         return Season.Undefined;
     }
 
-    static BigDecimal asBigDecimal(Double value) {
+    BigDecimal asBigDecimal(Double value) {
         if (null == value) return null;
         return BigDecimal.valueOf(value);
     }
 
-    static BigDecimal asBigDecimal(Float value) {
+    BigDecimal asBigDecimal(Float value) {
         if (null == value) return null;
         return BigDecimal.valueOf(value);
     }
-
 }

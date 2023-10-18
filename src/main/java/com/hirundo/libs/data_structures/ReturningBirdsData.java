@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ReturningBirdsData {
     public List<DbBirdRecord> Records;
+    public int Population;
     public String RingNumber;
     public String Species;
     public LocalDateTime FirstDateSeen;
@@ -13,11 +14,24 @@ public class ReturningBirdsData {
     public Season FirstSeasonSeen;
     public Season LastSeasonSeen;
     public BigDecimal Pointedness;
+    public BigDecimal PointednessMean;
+    public BigDecimal PointednessStandardDeviation;
     public BigDecimal Symmetry;
+    public BigDecimal SymmetryMean;
+    public BigDecimal SymmetryStandardDeviation;
     public BigDecimal Weight;
+    public BigDecimal WeightMean;
+    public BigDecimal WeightStandardDeviation;
     public Integer Fat;
+    public BigDecimal FatMedian;
+    public BigDecimal FatUpperQuartile;
+    public BigDecimal FatLowerQuartile;
     public BigDecimal Wing;
-    public Integer Tail;
+    public BigDecimal WingMean;
+    public BigDecimal WingStandardDeviation;
+    public BigDecimal Tail;
+    public BigDecimal TailMean;
+    public BigDecimal TailStandardDeviation;
     public Integer D2;
     public Integer D3;
     public Integer D4;

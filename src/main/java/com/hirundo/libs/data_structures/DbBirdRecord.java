@@ -25,7 +25,7 @@ public class DbBirdRecord {
     public String age;
     public Integer fat;
     public BigDecimal wing;
-    public Integer tail;
+    public BigDecimal tail;
 
 
     public static DbBirdRecord from(OldDbBirdRecord birdRecord) {
@@ -35,6 +35,7 @@ public class DbBirdRecord {
     public static DbBirdRecord from(NewDbBirdRecord birdRecord) {
         return new DbBirdRecordMapper().map(birdRecord);
     }
+
     public String getSpeciesCode() {
         return speciesCode;
     }
@@ -87,7 +88,7 @@ public class DbBirdRecord {
         return wing;
     }
 
-    public Integer getTail() {
+    public BigDecimal getTail() {
         return tail;
     }
 

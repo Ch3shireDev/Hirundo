@@ -49,7 +49,7 @@ public class CsvReturningBirdsData {
     public BigDecimal Wing;
     @CsvBindByName(column = "Tail")
     @CsvBindByPosition(position = 12)
-    public Integer Tail;
+    public BigDecimal Tail;
     @CsvBindByName(column = "D2")
     @CsvBindByPosition(position = 13)
     public Integer D2;
@@ -77,4 +77,18 @@ public class CsvReturningBirdsData {
     @CsvBindByName(column = "Symmetry")
     @CsvBindByPosition(position = 21)
     public BigDecimal Symmetry;
+    public BigDecimal WeightMean;
+    public BigDecimal WeightStandardDeviation;
+    public BigDecimal WingMean;
+    public BigDecimal WingStandardDeviation;
+    public BigDecimal TailMean;
+    public BigDecimal TailStandardDeviation;
+    public BigDecimal PointednessMean;
+    public BigDecimal PointednessStandardDeviation;
+    public BigDecimal SymmetryMean;
+    public BigDecimal SymmetryStandardDeviation;
+    public int Population;
+    public BigDecimal FatMedian;
+    public BigDecimal FatUpperQuartile;
+    public BigDecimal FatLowerQuartile;
 }

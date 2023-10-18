@@ -31,10 +31,14 @@ public class CsvReturningBirdsDataSerializerTest {
         bird.RecordDate = LocalDateTime.of(1982, 10, 12, 0, 0);
         bird.Sex = "M";
         bird.Age = "I";
-        bird.Weight = BigDecimal.valueOf(50.500).setScale(3, RoundingMode.HALF_UP);
+        bird.Weight = BigDecimal
+                .valueOf(50.500)
+                .setScale(3, RoundingMode.HALF_UP);
         bird.Fat = 3;
-        bird.Wing = BigDecimal.valueOf(50.500).setScale(3, RoundingMode.HALF_UP);
-        bird.Tail = 60;
+        bird.Wing = BigDecimal
+                .valueOf(50.500)
+                .setScale(3, RoundingMode.HALF_UP);
+        bird.Tail = BigDecimal.valueOf(60);
         bird.D2 = 1;
         bird.D3 = 2;
         bird.D4 = 3;
