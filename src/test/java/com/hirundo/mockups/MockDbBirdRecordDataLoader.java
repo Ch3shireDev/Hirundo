@@ -8,6 +8,7 @@ import java.util.List;
 public class MockDbBirdRecordDataLoader implements IDbBirdRecordDataLoader {
     public Boolean IsLoaded;
     public List<DbBirdRecord> Data = new java.util.ArrayList<>();
+
     @Override
     public List<DbBirdRecord> loadData() {
         IsLoaded = true;

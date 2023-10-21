@@ -25,8 +25,10 @@
                             Aplikacja łączy się z bazą danych RINGER (plik .mdb) w celu pobrania rekordów schwytań
                             ptaków. Dane są przetwarzane w poszukiwaniu przypadków tych samych ptaków schwytanych w
                             następujących po sobie sezonach jesiennym i wiosennym. Takie zdarzenie sugeruje, że ptak był
-                            w stanie przeżyć wędrówkę i powrót. Hipoteza badawcza mówi, że mierzone cechy takiego ptaka będą w sposób
-                            istotny różne od średniej populacji ptaków danego gatunku i płci w danym sezonie. Program ma ułatwiać
+                            w stanie przeżyć wędrówkę i powrót. Hipoteza badawcza mówi, że mierzone cechy takiego ptaka
+                            będą w sposób
+                            istotny różne od średniej populacji ptaków danego gatunku i płci w danym sezonie. Program ma
+                            ułatwiać
                             przeglądanie i wybieranie z bazy danych interesujących nas rekordów powracających ptaków.
                         </Label>
                         <HBox>

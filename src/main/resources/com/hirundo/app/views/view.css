@@ -4,23 +4,22 @@ Label {
     -fx-alignment: center;
 }
 
-.tab .tab-label
-{
+.tab .tab-label {
     -fx-padding: 0px 10px;
 }
 
-Tab{
+Tab {
     -fx-alignment: center;
 }
 
-HBox{
+HBox {
     -fx-padding: 10px;
     -fx-fit-to-height: true;
     -fx-alignment: center;
     -fx-spacing: 10px;
 }
 
-VBox{
+VBox {
     -fx-padding: 0;
     -fx-fit-to-height: true;
     -fx-alignment: center;
@@ -38,9 +37,10 @@ ProgressBar {
     -fx-pref-height: 26px;
 }
 
-.root{
+.root {
     -fx-padding: 0 0 20px 0;
 }
-.left, .left HBox{
+
+.left, .left HBox {
     -fx-alignment: center-left;
 }

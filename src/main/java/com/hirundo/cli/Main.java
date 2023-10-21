@@ -36,10 +36,9 @@ public class Main {
 
             var file = new File("result.csv");
 
-            try(var writer = new java.io.FileWriter(file, StandardCharsets.UTF_8)){
+            try (var writer = new java.io.FileWriter(file, StandardCharsets.UTF_8)) {
                 writer.write(result);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("exception = " + e);
             }
         } catch (Exception e) {

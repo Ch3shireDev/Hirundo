@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvSerializer<T>  implements ICsvSerializer<T> {
+public class CsvSerializer<T> implements ICsvSerializer<T> {
     private Class<? extends T> type;
 
     public CsvSerializer(Class<? extends T> type) {

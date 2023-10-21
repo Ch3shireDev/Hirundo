@@ -19,7 +19,7 @@ public class MainViewModel {
         model.loadData();
     }
 
-    public String getSelectedFileName(){
+    public String getSelectedFileName() {
         return model.getSelectedFileName();
     }
 
@@ -27,11 +27,11 @@ public class MainViewModel {
         return model.selectFileName();
     }
 
-    public FileSaveResult writeResultsForSelectedSpecies() throws Exception{
+    public FileSaveResult writeResultsForSelectedSpecies() throws Exception {
         return model.writeResultsForSelectedSpecies();
     }
 
-    public FileSaveResult writeResultsForAllSpecies() throws Exception{
+    public FileSaveResult writeResultsForAllSpecies() throws Exception {
         return model.writeResultsForAllSpecies();
     }
 

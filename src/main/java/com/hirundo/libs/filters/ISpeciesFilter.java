@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ISpeciesFilter {
     List<DbBirdRecord> filterBySpecies(List<DbBirdRecord> records, BirdSpecies species);
+
     List<BirdSpecies> getSpeciesList(List<DbBirdRecord> data);
 }

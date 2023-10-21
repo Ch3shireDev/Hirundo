@@ -17,9 +17,8 @@ public class SpeciesFilter implements ISpeciesFilter {
                 .filter(record -> !record
                         .getSpeciesCode()
                         .isBlank())
-                .filter(record -> record
-                        .getSpeciesCode()
-                        .equals(species.speciesCode()))
+                .filter(record -> record.speciesCode != null && !record.speciesCode.isBlank() && record.speciesCode.equals(
+                        species.speciesCode()))
                 .toList();
     }
 

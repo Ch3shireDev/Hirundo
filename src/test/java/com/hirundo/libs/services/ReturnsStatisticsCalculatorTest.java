@@ -101,33 +101,34 @@ class ReturnsStatisticsCalculatorTest {
         record1.Ring = "1234";
         record1.Date2 = "2019-11-01";
         record1.Seas = "A";
-        record1.Age ="I";
+        record1.Age = "I";
 
         var record2 = new OldDbBirdRecord();
         record2.Spec = "XXX.YYY";
         record2.Ring = "1235";
         record2.Date = LocalDateTime.of(2019, 11, 1, 0, 0);
         record2.Seas = "A";
-        record2.Age ="I";
+        record2.Age = "I";
 
         var record3 = new OldDbBirdRecord();
         record3.Spec = "XXX.YYY";
         record3.Ring = "1234";
         record3.Date = LocalDateTime.of(2020, 3, 1, 0, 0);
         record3.Seas = "S";
-        record3.Age ="I";
+        record3.Age = "I";
 
         var record4 = new NewDbBirdRecord();
         record4.SpeciesCode = "XXX.YYY";
         record4.Ring = "1237";
         record4.Date2 = "2020-03-02";
         record4.Seas = "S";
-        record4.Age ="I";
+        record4.Age = "I";
 
         var data = List.of(DbBirdRecord.from(record1),
                            DbBirdRecord.from(record2),
                            DbBirdRecord.from(record3),
                            DbBirdRecord.from(record4));
+
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
 
@@ -175,21 +176,21 @@ class ReturnsStatisticsCalculatorTest {
         record1.Ring = "1234";
         record1.Date2 = "2019-11-01";
         record1.Seas = "A";
-        record1.Age ="I";
+        record1.Age = "I";
 
         var record2 = new NewDbBirdRecord();
         record2.SpeciesCode = "XXX.YYY";
         record2.Ring = "1234";
         record2.Date2 = "2019-11-02";
         record2.Seas = "A";
-        record2.Age ="I";
+        record2.Age = "I";
 
         var record3 = new NewDbBirdRecord();
         record3.SpeciesCode = "XXX.YYY";
         record3.Ring = "1234";
         record3.Date2 = "2020-03-01";
         record3.Seas = "S";
-        record3.Age ="I";
+        record3.Age = "I";
 
         var data = List.of(DbBirdRecord.from(record1),
                            DbBirdRecord.from(record2),
@@ -214,14 +215,14 @@ class ReturnsStatisticsCalculatorTest {
         record1.Ring = "1234";
         record1.Date2 = "2019-11-01";
         record1.Seas = "A";
-        record1.Age ="I";
+        record1.Age = "I";
 
         var record2 = new NewDbBirdRecord();
         record2.SpeciesCode = "XXX.YYY";
         record2.Ring = "1234";
         record2.Date2 = "2020-10-30";
         record2.Seas = "A";
-        record2.Age ="I";
+        record2.Age = "I";
 
         var data = List.of(DbBirdRecord.from(record1),
                            DbBirdRecord.from(record2)
@@ -245,14 +246,14 @@ class ReturnsStatisticsCalculatorTest {
         record1.Ring = "1234";
         record1.Date2 = "2020-03-01";
         record1.Seas = "S";
-        record1.Age ="I";
+        record1.Age = "I";
 
         var record2 = new NewDbBirdRecord();
         record2.SpeciesCode = "XXX.YYY";
         record2.Ring = "1234";
         record2.Date2 = "2019-11-01";
         record2.Seas = "A";
-        record2.Age ="I";
+        record2.Age = "I";
 
         var data = List.of(DbBirdRecord.from(record1),
                            DbBirdRecord.from(record2)
@@ -328,5 +329,15 @@ class ReturnsStatisticsCalculatorTest {
         assertEquals("XXX.YYY", calculatedData.speciesCode());
         assertEquals("Dowolna", calculatedData.selectedSexName());
         assertEquals(2, calculatedData.returnsCount());
+    }
+
+    @Test
+    public void nullSpeciesCodeShouldNotReturnAnError() throws Exception {
+        var record = new DbBirdRecord();
+        var selectedSpecies = new BirdSpecies("ABC", "Aaabin Bbbir", "Aaarus Bbbirix");
+
+        var result = calculator.getCalculatedData(List.of(record), selectedSpecies, BirdSex.Any);
+
+        assertEquals(0, result.recordsCount());
     }
 }

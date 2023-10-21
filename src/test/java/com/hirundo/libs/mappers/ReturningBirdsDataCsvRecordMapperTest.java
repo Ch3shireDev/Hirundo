@@ -70,7 +70,6 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(5, csvRecord.get(0).Fat);
 
 
-
         Assertions.assertEquals(new BigDecimal("456.123"), csvRecord.get(0).Wing);
         Assertions.assertEquals(new BigDecimal("789.000"), csvRecord.get(0).Tail);
         Assertions.assertEquals("J", csvRecord.get(0).Age);
@@ -146,9 +145,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(5, birds.get(0).D6);
         Assertions.assertEquals(6, birds.get(0).D7);
         Assertions.assertEquals(7, birds.get(0).D8);
-
         Assertions.assertEquals(5, birds.get(0).Population);
-
         Assertions.assertEquals(3, birds.get(0).Fat);
         Assertions.assertEquals(new BigDecimal("4.5"), birds.get(0).FatMedian);
         Assertions.assertEquals(new BigDecimal("4.7"), birds.get(0).FatUpperQuartile);
@@ -156,7 +153,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
     }
 
     @Test
-    public void mapperTranslatesPointednessAndSymmetry(){
+    public void mapperTranslatesPointednessAndSymmetry() {
 
         var data = new ReturningBirdsData();
         data.Pointedness = new BigDecimal("10.123");
@@ -170,10 +167,9 @@ class ReturningBirdsDataCsvRecordMapperTest {
     }
 
     @Test
-    public void mappesShouldGiveMeanAndStandardDeviationValues(){
+    public void mapperShouldGiveMeanAndStandardDeviationValues() {
         var data = new ReturningBirdsData();
-        data.Pointedness = new BigDecimal("10.123");
-        data.Symmetry = new BigDecimal("20.123");
+
         data.Records = List.of(new DbBirdRecord());
 
         data.Weight = new BigDecimal("50.123");
@@ -198,9 +194,6 @@ class ReturningBirdsDataCsvRecordMapperTest {
 
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
 
-        Assertions.assertEquals(new BigDecimal("10.123"), birds.get(0).Pointedness);
-        Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
-
         Assertions.assertEquals(new BigDecimal("50.123"), birds.get(0).Weight);
         Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).WeightMean);
         Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WeightStandardDeviation);
@@ -220,12 +213,10 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
         Assertions.assertEquals(new BigDecimal("30.000"), birds.get(0).SymmetryMean);
         Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).SymmetryStandardDeviation);
-
-
     }
 
     @Test
-    public void mapperReturnsDataFromOnlyFirstBird(){
+    public void mapperReturnsDataFromOnlyFirstBird() {
         var r1 = new DbBirdRecord();
         r1.date = LocalDateTime.of(1982, 10, 12, 0, 0, 0);
 
@@ -238,6 +229,6 @@ class ReturningBirdsDataCsvRecordMapperTest {
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
 
         Assertions.assertEquals(1, birds.size());
-        Assertions.assertEquals(LocalDateTime.of(1982,10,12,0,0,0), birds.get(0).RecordDate);
+        Assertions.assertEquals(LocalDateTime.of(1982, 10, 12, 0, 0, 0), birds.get(0).RecordDate);
     }
 }

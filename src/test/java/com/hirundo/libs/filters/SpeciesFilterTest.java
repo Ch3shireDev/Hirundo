@@ -34,18 +34,9 @@ class SpeciesFilterTest {
         var speciesList = model.getSpeciesList(data);
 
         assertEquals(1, speciesList.size());
-        assertEquals("AAA.BBB",
-                     speciesList
-                             .get(0)
-                             .speciesCode());
-        assertEquals("Aaabin Bbbir",
-                     speciesList
-                             .get(0)
-                             .speciesNameEng());
-        assertEquals("Aaarus Bbbirix",
-                     speciesList
-                             .get(0)
-                             .speciesNameLat());
+        assertEquals("AAA.BBB", speciesList.get(0).speciesCode());
+        assertEquals("Aaabin Bbbir", speciesList.get(0).speciesNameEng());
+        assertEquals("Aaarus Bbbirix", speciesList.get(0).speciesNameLat());
     }
 
     @Test
@@ -67,11 +58,7 @@ class SpeciesFilterTest {
         var record5 = new NewDbBirdRecord();
         record5.SpeciesCode = "";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2),
-                           DbBirdRecord.from(record3),
-                           DbBirdRecord.from(record4),
-                           DbBirdRecord.from(record5));
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4), DbBirdRecord.from(record5));
 
         var speciesList = model.getSpeciesList(data);
 
@@ -98,34 +85,13 @@ class SpeciesFilterTest {
         var speciesList = model.getSpeciesList(data);
 
         assertEquals(3, speciesList.size());
-        assertEquals("AAA.BBB",
-                     speciesList
-                             .get(0)
-                             .speciesCode());
-        assertEquals("Aaabin Bbbir",
-                     speciesList
-                             .get(0)
-                             .speciesNameEng());
-        assertEquals("Aaarus Bbbirix",
-                     speciesList
-                             .get(0)
-                             .speciesNameLat());
-        assertEquals("BBB.CCC",
-                     speciesList
-                             .get(1)
-                             .speciesCode());
-        assertEquals("CCC.DDD",
-                     speciesList
-                             .get(2)
-                             .speciesCode());
-        assertEquals("Cccin Dddir",
-                     speciesList
-                             .get(2)
-                             .speciesNameEng());
-        assertEquals("Cccus Dddirix",
-                     speciesList
-                             .get(2)
-                             .speciesNameLat());
+        assertEquals("AAA.BBB", speciesList.get(0).speciesCode());
+        assertEquals("Aaabin Bbbir", speciesList.get(0).speciesNameEng());
+        assertEquals("Aaarus Bbbirix", speciesList.get(0).speciesNameLat());
+        assertEquals("BBB.CCC", speciesList.get(1).speciesCode());
+        assertEquals("CCC.DDD", speciesList.get(2).speciesCode());
+        assertEquals("Cccin Dddir", speciesList.get(2).speciesNameEng());
+        assertEquals("Cccus Dddirix", speciesList.get(2).speciesNameLat());
     }
 
 }

@@ -6,6 +6,7 @@ import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ReturnsStatisticsCalculator {
     ReturningBirdsSummarizer returningBirdsSummarizer = new ReturningBirdsSummarizer();
@@ -29,11 +30,10 @@ public class ReturnsStatisticsCalculator {
         var speciesNameLat = selectedSpecies.speciesNameLat();
         var sexName = getSexName(selectedSex);
 
-        var filteredData = data
+        Stream<DbBirdRecord> filteredData = data
                 .stream()
-                .filter(b -> b
-                        .getSpeciesCode()
-                        .equals(speciesCode));
+                .filter(b -> speciesCode
+                        .equals(b.getSpeciesCode()));
 
         if (selectedSex != BirdSex.Any) {
             filteredData = filteredData.filter(b -> b.getSex() == selectedSex);
