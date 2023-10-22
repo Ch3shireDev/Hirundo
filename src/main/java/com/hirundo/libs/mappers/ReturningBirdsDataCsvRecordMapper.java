@@ -14,14 +14,13 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         var list = new ArrayList<CsvReturningBirdsData>();
 
         for (var returningBird : returningBirds) {
-            var record = returningBird.Records.get(0);
-            var csvData = map(returningBird, record);
+            var csvData = map(returningBird);
             list.add(csvData);
         }
         return list;
     }
 
-    public CsvReturningBirdsData map(ReturningBirdsData data, DbBirdRecord record) {
+    public CsvReturningBirdsData map(ReturningBirdsData data) {
         var result = new CsvReturningBirdsData();
         result.RingNumber = data.RingNumber;
         result.Species = data.Species;
@@ -29,8 +28,9 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.LastDateSeen = data.LastDateSeen;
         result.FirstSeasonSeen = getSeasonStr(data.FirstSeasonSeen);
         result.LastSeasonSeen = getSeasonStr(data.LastSeasonSeen);
-        result.RecordDate = record.getDate();
-        result.Age = record.getAge();
+        result.BeforeMigrationCatchDate = data.BeforeMigrationCatchDate;
+        result.AfterMigrationCatchDate = data.AfterMigrationCatchDate;
+        result.Age = data.BirdAge;
 
         result.Weight = roundDecimal(data.Weight);
         result.WeightPopulationMean = roundDecimal(data.WeightMean);
@@ -59,17 +59,17 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
 
         result.Population = data.Population;
 
-        if (BirdSex.Male == record.getSex()) result.Sex = "M";
-        if (BirdSex.Female == record.getSex()) result.Sex = "F";
-        if (BirdSex.Undefined == record.getSex()) result.Sex = "";
+        if (BirdSex.Male == data.Sex) result.Sex = "M";
+        if (BirdSex.Female == data.Sex) result.Sex = "F";
+        if (BirdSex.Undefined == data.Sex) result.Sex = "";
 
-        result.D2 = record.getD2();
-        result.D3 = record.getD3();
-        result.D4 = record.getD4();
-        result.D5 = record.getD5();
-        result.D6 = record.getD6();
-        result.D7 = record.getD7();
-        result.D8 = record.getD8();
+        result.D2 = data.D2;
+        result.D3 = data.D3;
+        result.D4 = data.D4;
+        result.D5 = data.D5;
+        result.D6 = data.D6;
+        result.D7 = data.D7;
+        result.D8 = data.D8;
 
         return result;
     }

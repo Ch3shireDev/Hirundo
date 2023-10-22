@@ -11,6 +11,8 @@ public class ReturningBirdsData {
     public String Species;
     public LocalDateTime FirstDateSeen;
     public LocalDateTime LastDateSeen;
+    public LocalDateTime BeforeMigrationCatchDate;
+    public LocalDateTime AfterMigrationCatchDate;
     public Season FirstSeasonSeen;
     public Season LastSeasonSeen;
     public BigDecimal Pointedness;
@@ -39,4 +41,6 @@ public class ReturningBirdsData {
     public Integer D6;
     public Integer D7;
     public Integer D8;
+    public String BirdAge;
+    public BirdSex Sex;
 }

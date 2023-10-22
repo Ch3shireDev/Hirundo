@@ -51,7 +51,8 @@ public class CsvReturningBirdsDataSerializerTest {
         bird.LastDateSeen = LocalDateTime.of(1983, 4, 1, 0, 0);
         bird.FirstSeasonSeen = "Autumn";
         bird.LastSeasonSeen = "Spring";
-        bird.RecordDate = LocalDateTime.of(1982, 10, 12, 0, 0);
+        bird.BeforeMigrationCatchDate = LocalDateTime.of(1982, 10, 12, 0, 0);
+        bird.AfterMigrationCatchDate = LocalDateTime.of(1983, 4, 1, 0, 0);
         bird.Sex = "M";
         bird.Age = "I";
 
@@ -134,8 +135,11 @@ public class CsvReturningBirdsDataSerializerTest {
         assertThat(headerLine, containsString("LastSeasonSeen"));
         assertThat(valuesDictionary.get("LastSeasonSeen"), is("Spring"));
 
-        assertThat(headerLine, containsString("RecordDate"));
-        assertThat(valuesDictionary.get("RecordDate"), is("1982-10-12"));
+        assertThat(headerLine, containsString("BeforeMigrationCatchDate"));
+        assertThat(valuesDictionary.get("BeforeMigrationCatchDate"), is("1982-10-12"));
+
+        assertThat(headerLine, containsString("AfterMigrationCatchDate"));
+        assertThat(valuesDictionary.get("AfterMigrationCatchDate"), is("1983-04-01"));
 
         assertThat(headerLine, containsString("Sex"));
         assertThat(valuesDictionary.get("Sex"), is("M"));
