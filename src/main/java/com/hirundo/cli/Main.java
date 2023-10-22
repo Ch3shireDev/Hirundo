@@ -14,28 +14,24 @@ public class Main {
     public static void main(String[] args) {
 
         try {
+            ReturningBirdsSummarizer finder = new ReturningBirdsSummarizer();
+            ReturningBirdsDataCsvRecordMapper mapper = new ReturningBirdsDataCsvRecordMapper();
+            CsvSerializer<CsvReturningBirdsData> csvWriter = new CsvSerializer<>(CsvReturningBirdsData.class);
 
             var loader = new BirdRecordDataLoaderBuilder()
                     .withOldTableName("Tab_Ring_Podab")
                     .withNewTableName("AB 2017_18_19_20_21S")
-                    .withFilename("C:\\Users\\cheshire\\Documents\\GitHub\\AkcjaBaltyckaDB\\Ring_00_PODAB.mdb")
+                    .withFilename("D:\\Ring_00_PODAB.mdb")
                     .build();
 
             var joinedData = loader.loadData();
 
-            var finder = new ReturningBirdsSummarizer();
-
             var returningBirds = finder.getSummary(joinedData);
-
-            var mapper = new ReturningBirdsDataCsvRecordMapper();
             var list = mapper.getCsvReturningBirdsData(returningBirds);
-
-            var csvWriter = new CsvSerializer<>(CsvReturningBirdsData.class);
 
             var result = csvWriter.serializeToCsv(list);
 
             var file = new File("result.csv");
-
             try (var writer = new java.io.FileWriter(file, StandardCharsets.UTF_8)) {
                 writer.write(result);
             } catch (Exception e) {
@@ -45,6 +41,5 @@ public class Main {
             System.out.println("exception = " + e);
         }
     }
-
 }
 

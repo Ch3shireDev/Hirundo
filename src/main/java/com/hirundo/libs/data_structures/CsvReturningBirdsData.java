@@ -15,80 +15,111 @@ public class CsvReturningBirdsData {
     @CsvBindByPosition(position = 1)
     public String Species;
     @CsvBindByName(column = "FirstDateSeen")
-    @CsvBindByPosition(position = 2)
     @CsvDate("yyyy-MM-dd")
+    @CsvBindByPosition(position = 2)
     public LocalDateTime FirstDateSeen;
     @CsvBindByName(column = "LastDateSeen")
-    @CsvBindByPosition(position = 3)
     @CsvDate("yyyy-MM-dd")
+    @CsvBindByPosition(position = 3)
     public LocalDateTime LastDateSeen;
-    @CsvBindByName(column = "FirstSeasonSeen")
+    @CsvBindByName(column = "Population")
     @CsvBindByPosition(position = 4)
+    public int Population;
+    @CsvBindByName(column = "RecordsCount")
+    @CsvBindByPosition(position = 5)
+    public int RecordsCount;
+    @CsvBindByName(column = "FirstSeasonSeen")
+    @CsvBindByPosition(position = 6)
     public String FirstSeasonSeen;
     @CsvBindByName(column = "LastSeasonSeen")
-    @CsvBindByPosition(position = 5)
+    @CsvBindByPosition(position = 7)
     public String LastSeasonSeen;
     @CsvBindByName(column = "RecordDate")
-    @CsvBindByPosition(position = 6)
     @CsvDate("yyyy-MM-dd")
+    @CsvBindByPosition(position = 8)
     public LocalDateTime RecordDate;
     @CsvBindByName(column = "Sex")
-    @CsvBindByPosition(position = 7)
+    @CsvBindByPosition(position = 9)
     public String Sex;
     @CsvBindByName(column = "Age")
-    @CsvBindByPosition(position = 8)
+    @CsvBindByPosition(position = 10)
     public String Age;
     @CsvBindByName(column = "Weight")
-    @CsvBindByPosition(position = 9)
-    public BigDecimal Weight;
-    @CsvBindByName(column = "Fat")
-    @CsvBindByPosition(position = 10)
-    public Integer Fat;
-    @CsvBindByName(column = "Wing")
     @CsvBindByPosition(position = 11)
-    public BigDecimal Wing;
-    @CsvBindByName(column = "Tail")
+    public BigDecimal Weight;
+    @CsvBindByName(column = "WeightPopulationMean")
     @CsvBindByPosition(position = 12)
-    public BigDecimal Tail;
-    @CsvBindByName(column = "D2")
+    public BigDecimal WeightPopulationMean;
+    @CsvBindByName(column = "WeightPopulationStandardDeviation")
     @CsvBindByPosition(position = 13)
+    public BigDecimal WeightPopulationStandardDeviation;
+    @CsvBindByName(column = "Fat")
+    @CsvBindByPosition(position = 14)
+    public Integer Fat;
+    @CsvBindByName(column = "FatPopulationMedian")
+    @CsvBindByPosition(position = 15)
+    public BigDecimal FatPopulationMedian;
+    @CsvBindByName(column = "FatPopulationUpperQuartile")
+    @CsvBindByPosition(position = 16)
+    public BigDecimal FatPopulationUpperQuartile;
+    @CsvBindByName(column = "FatPopulationLowerQuartile")
+    @CsvBindByPosition(position = 17)
+    public BigDecimal FatPopulationLowerQuartile;
+    @CsvBindByName(column = "Wing")
+    @CsvBindByPosition(position = 18)
+    public BigDecimal Wing;
+    @CsvBindByName(column = "WingPopulationMean")
+    @CsvBindByPosition(position = 19)
+    public BigDecimal WingPopulationMean;
+    @CsvBindByName(column = "WingPopulationStandardDeviation")
+    @CsvBindByPosition(position = 20)
+    public BigDecimal WingPopulationStandardDeviation;
+    @CsvBindByName(column = "Tail")
+    @CsvBindByPosition(position = 21)
+    public BigDecimal Tail;
+    @CsvBindByName(column = "TailPopulationMean")
+    @CsvBindByPosition(position = 22)
+    public BigDecimal TailPopulationMean;
+    @CsvBindByName(column = "TailPopulationStandardDeviation")
+    @CsvBindByPosition(position = 23)
+    public BigDecimal TailPopulationStandardDeviation;
+    @CsvBindByName(column = "Pointedness")
+    @CsvBindByPosition(position = 24)
+    public BigDecimal Pointedness;
+    @CsvBindByName(column = "PointednessPopulationMean")
+    @CsvBindByPosition(position = 25)
+    public BigDecimal PointednessPopulationMean;
+    @CsvBindByName(column = "PointednessPopulationStandardDeviation")
+    @CsvBindByPosition(position = 26)
+    public BigDecimal PointednessPopulationStandardDeviation;
+    @CsvBindByName(column = "Symmetry")
+    @CsvBindByPosition(position = 27)
+    public BigDecimal Symmetry;
+    @CsvBindByName(column = "SymmetryPopulationMean")
+    @CsvBindByPosition(position = 28)
+    public BigDecimal SymmetryPopulationMean;
+    @CsvBindByName(column = "SymmetryPopulationStandardDeviation")
+    @CsvBindByPosition(position = 29)
+    public BigDecimal SymmetryPopulationStandardDeviation;
+    @CsvBindByName(column = "D2")
+    @CsvBindByPosition(position = 30)
     public Integer D2;
     @CsvBindByName(column = "D3")
-    @CsvBindByPosition(position = 14)
+    @CsvBindByPosition(position = 31)
     public Integer D3;
     @CsvBindByName(column = "D4")
-    @CsvBindByPosition(position = 15)
+    @CsvBindByPosition(position = 32)
     public Integer D4;
     @CsvBindByName(column = "D5")
-    @CsvBindByPosition(position = 16)
+    @CsvBindByPosition(position = 33)
     public Integer D5;
     @CsvBindByName(column = "D6")
-    @CsvBindByPosition(position = 17)
+    @CsvBindByPosition(position = 34)
     public Integer D6;
     @CsvBindByName(column = "D7")
-    @CsvBindByPosition(position = 18)
+    @CsvBindByPosition(position = 35)
     public Integer D7;
     @CsvBindByName(column = "D8")
-    @CsvBindByPosition(position = 19)
+    @CsvBindByPosition(position = 36)
     public Integer D8;
-    @CsvBindByName(column = "Pointedness")
-    @CsvBindByPosition(position = 20)
-    public BigDecimal Pointedness;
-    @CsvBindByName(column = "Symmetry")
-    @CsvBindByPosition(position = 21)
-    public BigDecimal Symmetry;
-    public BigDecimal WeightMean;
-    public BigDecimal WeightStandardDeviation;
-    public BigDecimal WingMean;
-    public BigDecimal WingStandardDeviation;
-    public BigDecimal TailMean;
-    public BigDecimal TailStandardDeviation;
-    public BigDecimal PointednessMean;
-    public BigDecimal PointednessStandardDeviation;
-    public BigDecimal SymmetryMean;
-    public BigDecimal SymmetryStandardDeviation;
-    public int Population;
-    public BigDecimal FatMedian;
-    public BigDecimal FatUpperQuartile;
-    public BigDecimal FatLowerQuartile;
 }

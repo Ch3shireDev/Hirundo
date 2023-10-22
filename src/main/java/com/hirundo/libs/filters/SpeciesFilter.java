@@ -11,15 +11,11 @@ import java.util.List;
 public class SpeciesFilter implements ISpeciesFilter {
     public List<DbBirdRecord> filterBySpecies(List<DbBirdRecord> records, BirdSpecies species) {
         if (null == species) return records;
-        return records
-                .stream()
-                .filter(record -> null != record.getSpeciesCode())
-                .filter(record -> !record
-                        .getSpeciesCode()
-                        .isBlank())
-                .filter(record -> record.speciesCode != null && !record.speciesCode.isBlank() && record.speciesCode.equals(
-                        species.speciesCode()))
-                .toList();
+        return records.stream().filter(record -> isEqual(record, species)).toList();
+    }
+
+    boolean isEqual(DbBirdRecord record, BirdSpecies species) {
+        return record.speciesCode != null && !record.speciesCode.isBlank() && record.speciesCode.equals(species.speciesCode());
     }
 
     public List<BirdSpecies> getSpeciesList(List<DbBirdRecord> data) {
@@ -27,10 +23,7 @@ public class SpeciesFilter implements ISpeciesFilter {
             return new ArrayList<>();
         }
 
-        var species = data
-                .stream()
-                .map(this::asSpecies)
-                .toList();
+        var species = data.stream().map(this::asSpecies).toList();
 
         var distinctSpecies = new HashMap<String, BirdSpecies>();
 
@@ -47,11 +40,7 @@ public class SpeciesFilter implements ISpeciesFilter {
             }
         }
 
-        return distinctSpecies
-                .values()
-                .stream()
-                .sorted(Comparator.comparing(BirdSpecies::speciesCode))
-                .toList();
+        return distinctSpecies.values().stream().sorted(Comparator.comparing(BirdSpecies::speciesCode)).toList();
     }
 
     private Boolean isEmpty(BirdSpecies birdSpecies) {

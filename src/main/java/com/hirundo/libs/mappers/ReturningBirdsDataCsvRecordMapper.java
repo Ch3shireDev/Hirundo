@@ -21,13 +21,6 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         return list;
     }
 
-    public String getSeasonStr(Season season) {
-        if (season != null) {
-            return season.toString();
-        }
-        return "";
-    }
-
     public CsvReturningBirdsData map(ReturningBirdsData data, DbBirdRecord record) {
         var result = new CsvReturningBirdsData();
         result.RingNumber = data.RingNumber;
@@ -40,29 +33,29 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.Age = record.getAge();
 
         result.Weight = roundDecimal(data.Weight);
-        result.WeightMean = roundDecimal(data.WeightMean);
-        result.WeightStandardDeviation = roundDecimal(data.WeightStandardDeviation);
+        result.WeightPopulationMean = roundDecimal(data.WeightMean);
+        result.WeightPopulationStandardDeviation = roundDecimal(data.WeightStandardDeviation);
 
         result.Fat = data.Fat;
-        result.FatMedian = data.FatMedian;
-        result.FatUpperQuartile = data.FatUpperQuartile;
-        result.FatLowerQuartile = data.FatLowerQuartile;
+        result.FatPopulationMedian = data.FatMedian;
+        result.FatPopulationUpperQuartile = data.FatUpperQuartile;
+        result.FatPopulationLowerQuartile = data.FatLowerQuartile;
 
         result.Wing = roundDecimal(data.Wing);
-        result.WingMean = roundDecimal(data.WingMean);
-        result.WingStandardDeviation = roundDecimal(data.WingStandardDeviation);
+        result.WingPopulationMean = roundDecimal(data.WingMean);
+        result.WingPopulationStandardDeviation = roundDecimal(data.WingStandardDeviation);
 
         result.Tail = roundDecimal(data.Tail);
-        result.TailMean = roundDecimal(data.TailMean);
-        result.TailStandardDeviation = roundDecimal(data.TailStandardDeviation);
+        result.TailPopulationMean = roundDecimal(data.TailMean);
+        result.TailPopulationStandardDeviation = roundDecimal(data.TailStandardDeviation);
 
         result.Pointedness = roundDecimal(data.Pointedness);
-        result.PointednessMean = roundDecimal(data.PointednessMean);
-        result.PointednessStandardDeviation = roundDecimal(data.PointednessStandardDeviation);
+        result.PointednessPopulationMean = roundDecimal(data.PointednessMean);
+        result.PointednessPopulationStandardDeviation = roundDecimal(data.PointednessStandardDeviation);
 
         result.Symmetry = roundDecimal(data.Symmetry);
-        result.SymmetryMean = roundDecimal(data.SymmetryMean);
-        result.SymmetryStandardDeviation = roundDecimal(data.SymmetryStandardDeviation);
+        result.SymmetryPopulationMean = roundDecimal(data.SymmetryMean);
+        result.SymmetryPopulationStandardDeviation = roundDecimal(data.SymmetryStandardDeviation);
 
         result.Population = data.Population;
 
@@ -78,11 +71,17 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.D7 = record.getD7();
         result.D8 = record.getD8();
 
-
         return result;
     }
 
-    BigDecimal roundDecimal(BigDecimal value) {
+    private String getSeasonStr(Season season) {
+        if (season != null) {
+            return season.toString();
+        }
+        return "";
+    }
+
+    private BigDecimal roundDecimal(BigDecimal value) {
         if (null == value) return null;
         return value.setScale(3, RoundingMode.FLOOR);
     }

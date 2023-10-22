@@ -147,9 +147,9 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(7, birds.get(0).D8);
         Assertions.assertEquals(5, birds.get(0).Population);
         Assertions.assertEquals(3, birds.get(0).Fat);
-        Assertions.assertEquals(new BigDecimal("4.5"), birds.get(0).FatMedian);
-        Assertions.assertEquals(new BigDecimal("4.7"), birds.get(0).FatUpperQuartile);
-        Assertions.assertEquals(new BigDecimal("4.3"), birds.get(0).FatLowerQuartile);
+        Assertions.assertEquals(new BigDecimal("4.5"), birds.get(0).FatPopulationMedian);
+        Assertions.assertEquals(new BigDecimal("4.7"), birds.get(0).FatPopulationUpperQuartile);
+        Assertions.assertEquals(new BigDecimal("4.3"), birds.get(0).FatPopulationLowerQuartile);
     }
 
     @Test
@@ -195,24 +195,24 @@ class ReturningBirdsDataCsvRecordMapperTest {
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
 
         Assertions.assertEquals(new BigDecimal("50.123"), birds.get(0).Weight);
-        Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).WeightMean);
-        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WeightStandardDeviation);
+        Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).WeightPopulationMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WeightPopulationStandardDeviation);
 
         Assertions.assertEquals(new BigDecimal("30.000"), birds.get(0).Wing);
-        Assertions.assertEquals(new BigDecimal("40.000"), birds.get(0).WingMean);
-        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WingStandardDeviation);
+        Assertions.assertEquals(new BigDecimal("40.000"), birds.get(0).WingPopulationMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WingPopulationStandardDeviation);
 
         Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).Tail);
-        Assertions.assertEquals(new BigDecimal("70.000"), birds.get(0).TailMean);
-        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).TailStandardDeviation);
+        Assertions.assertEquals(new BigDecimal("70.000"), birds.get(0).TailPopulationMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).TailPopulationStandardDeviation);
 
         Assertions.assertEquals(new BigDecimal("10.123"), birds.get(0).Pointedness);
-        Assertions.assertEquals(new BigDecimal("20.000"), birds.get(0).PointednessMean);
-        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).PointednessStandardDeviation);
+        Assertions.assertEquals(new BigDecimal("20.000"), birds.get(0).PointednessPopulationMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).PointednessPopulationStandardDeviation);
 
         Assertions.assertEquals(new BigDecimal("20.123"), birds.get(0).Symmetry);
-        Assertions.assertEquals(new BigDecimal("30.000"), birds.get(0).SymmetryMean);
-        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).SymmetryStandardDeviation);
+        Assertions.assertEquals(new BigDecimal("30.000"), birds.get(0).SymmetryPopulationMean);
+        Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).SymmetryPopulationStandardDeviation);
     }
 
     @Test
