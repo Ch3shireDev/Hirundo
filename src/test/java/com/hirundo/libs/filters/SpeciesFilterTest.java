@@ -11,11 +11,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SpeciesFilterTest {
-    SpeciesFilter model;
+    SpeciesFilter filter;
 
     @BeforeEach
     void setUp() {
-        model = new SpeciesFilter();
+        filter = new SpeciesFilter();
     }
 
     @Test
@@ -30,7 +30,7 @@ class SpeciesFilterTest {
 
         var data = List.of(DbBirdRecord.from(record2), DbBirdRecord.from(record1));
 
-        var speciesList = model.getSpeciesList(data);
+        var speciesList = filter.getSpeciesList(data);
 
         assertEquals(1, speciesList.size());
         assertEquals("AAA.BBB", speciesList.get(0).speciesCode());
@@ -59,7 +59,7 @@ class SpeciesFilterTest {
 
         var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4), DbBirdRecord.from(record5));
 
-        var speciesList = model.getSpeciesList(data);
+        var speciesList = filter.getSpeciesList(data);
 
         assertEquals(1, speciesList.size());
     }
@@ -81,7 +81,7 @@ class SpeciesFilterTest {
 
         var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3));
 
-        var speciesList = model.getSpeciesList(data);
+        var speciesList = filter.getSpeciesList(data);
 
         assertEquals(3, speciesList.size());
         assertEquals("AAA.BBB", speciesList.get(0).speciesCode());

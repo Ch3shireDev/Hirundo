@@ -181,3 +181,4 @@ class ReturningBirdsSummarizerTest {
         assertEquals(1, summary.size());
     }
 }
+

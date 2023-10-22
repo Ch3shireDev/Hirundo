@@ -10,8 +10,16 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
-    SummaryFilter summaryFilter = new SummaryFilter();
-    PopulationFilter populationFilter = new PopulationFilter();
+    ISummaryFilter summaryFilter = new SummaryFilter();
+    IPopulationFilter populationFilter = new PopulationFilter();
+
+    public ReturningBirdsSummarizer() {
+    }
+
+    public ReturningBirdsSummarizer(ISummaryFilter summaryFilter, IPopulationFilter populationFilter) {
+        this.summaryFilter = summaryFilter;
+        this.populationFilter = populationFilter;
+    }
 
     public List<ReturningBirdsData> getSummary(List<DbBirdRecord> records) {
         List<ReturningBirdsData> result = new ArrayList<>();
@@ -23,18 +31,17 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
             var ringRecords = ringNumbers.get(ringNumber);
             List<DbBirdRecord> sortedRecords = getSortedRecords(ringRecords);
             if (!summaryFilter.isForSummary(sortedRecords)) continue;
+            DbBirdRecord firstCatchRecord = getFirstRecord(sortedRecords);
+            var population = populationFilter.getPopulation(firstCatchRecord, records);
 
-            DbBirdRecord record = getFirstRecord(sortedRecords);
-            var population = populationFilter.getPopulation(record, records);
-
-            ReturningBirdsData returningBirds = getReturningBirdsData(ringRecords, record);
+            ReturningBirdsData returningBirds = getReturningBirdsData(ringRecords, firstCatchRecord, population);
             result.add(returningBirds);
         }
         return result;
     }
 
 
-    private ReturningBirdsData getReturningBirdsData(List<DbBirdRecord> ringRecords, DbBirdRecord record) {
+    private ReturningBirdsData getReturningBirdsData(List<DbBirdRecord> ringRecords, DbBirdRecord record, List<DbBirdRecord> population) {
         var returningBirds = new ReturningBirdsData();
         returningBirds.RingNumber = record.getRing();
         returningBirds.Species = record.getSpeciesCode();

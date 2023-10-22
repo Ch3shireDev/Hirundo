@@ -1,6 +1,7 @@
-package com.hirundo.libs.serializers;
+package com.hirundo.libs.loaders.serializers;
 
 import com.hirundo.libs.data_structures.CsvReturningBirdsData;
+import com.hirundo.libs.serializers.CsvReturningBirdsDataSerializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

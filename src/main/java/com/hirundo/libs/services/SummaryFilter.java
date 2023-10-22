@@ -6,7 +6,7 @@ import com.hirundo.libs.data_structures.Season;
 
 import java.util.List;
 
-public class SummaryFilter {
+public class SummaryFilter implements ISummaryFilter {
     public boolean isForSummary(List<DbBirdRecord> sortedRecords) {
         if (sortedRecords.size() < 2) {
             return false;
