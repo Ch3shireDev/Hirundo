@@ -22,7 +22,8 @@ public class DbBirdRecord {
     public LocalDateTime date;
     public Season season;
     public BigDecimal weight;
-    public String age;
+    public BirdAge age;
+
     public Integer fat;
     public BigDecimal wing;
     public BigDecimal tail;
@@ -76,7 +77,7 @@ public class DbBirdRecord {
         return weight;
     }
 
-    public String getAge() {
+    public BirdAge getAge() {
         return age;
     }
 

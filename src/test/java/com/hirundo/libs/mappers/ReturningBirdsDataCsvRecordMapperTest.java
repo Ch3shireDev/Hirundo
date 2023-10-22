@@ -1,7 +1,7 @@
 package com.hirundo.libs.mappers;
 
+import com.hirundo.libs.data_structures.BirdAge;
 import com.hirundo.libs.data_structures.BirdSex;
-import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.ReturningBirdsData;
 import com.hirundo.libs.data_structures.Season;
 import org.junit.jupiter.api.Assertions;
@@ -34,7 +34,8 @@ class ReturningBirdsDataCsvRecordMapperTest {
         returning.Weight = new BigDecimal("123.000");
         returning.Wing = new BigDecimal("456.123");
         returning.Tail = new BigDecimal("789");
-        returning.BirdAge = "J";
+        returning.BirdAgeStr = "J";
+        returning.BirdAge = BirdAge.Juvenile;
         returning.Sex = BirdSex.Male;
         returning.Fat = 5;
         returning.D2 = 1;
@@ -78,7 +79,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         data.RingNumber = "LA94007";
         data.Species = "REG.REG";
         data.Sex = BirdSex.Male;
-        data.BirdAge = "I";
+        data.BirdAge = BirdAge.Infantile;
         data.FirstDateSeen = LocalDateTime.of(1982, 10, 12, 0, 0);
         data.LastDateSeen = LocalDateTime.of(1983, 4, 1, 0, 0);
 
@@ -143,7 +144,6 @@ class ReturningBirdsDataCsvRecordMapperTest {
         var data = new ReturningBirdsData();
         data.Pointedness = new BigDecimal("10.123");
         data.Symmetry = new BigDecimal("20.123");
-        data.Records = List.of(new DbBirdRecord());
 
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
 
@@ -154,8 +154,6 @@ class ReturningBirdsDataCsvRecordMapperTest {
     @Test
     public void mapperShouldGiveMeanAndStandardDeviationValues() {
         var data = new ReturningBirdsData();
-
-        data.Records = List.of(new DbBirdRecord());
 
         data.Weight = new BigDecimal("50.123");
         data.WeightMean = new BigDecimal("60");

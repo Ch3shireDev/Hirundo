@@ -2,7 +2,6 @@ package com.hirundo.libs.services;
 
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.ReturningBirdsData;
-import com.hirundo.libs.data_structures.Season;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,94 +10,34 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
+    SummaryFilter summaryFilter = new SummaryFilter();
+    PopulationFilter populationFilter = new PopulationFilter();
 
     public List<ReturningBirdsData> getSummary(List<DbBirdRecord> records) {
-        Map<String, List<DbBirdRecord>> ringNumbers = getRingNumbers(records);
-
         List<ReturningBirdsData> result = new ArrayList<>();
 
+        Map<String, List<DbBirdRecord>> ringNumbers = getRingNumbers(records);
+
         for (var ringNumber : ringNumbers.keySet()) {
+
             var ringRecords = ringNumbers.get(ringNumber);
             List<DbBirdRecord> sortedRecords = getSortedRecords(ringRecords);
-            if (!isForSummary(sortedRecords)) continue;
+            if (!summaryFilter.isForSummary(sortedRecords)) continue;
+
             DbBirdRecord record = getFirstRecord(sortedRecords);
+            var population = populationFilter.getPopulation(record, records);
+
             ReturningBirdsData returningBirds = getReturningBirdsData(ringRecords, record);
             result.add(returningBirds);
         }
-
         return result;
     }
 
-    private Map<String, List<DbBirdRecord>> getRingNumbers(List<DbBirdRecord> records) {
-        return records
-                .stream()
-                .filter(isNotEmptyRing())
-                .collect(Collectors.groupingBy(DbBirdRecord::getRing));
-    }
-
-    private Predicate<DbBirdRecord> isNotEmptyRing() {
-        return b -> null != b.getRing() && !b
-                .getRing()
-                .isBlank();
-    }
-
-    private boolean isForSummary(List<DbBirdRecord> sortedRecords) {
-        if (sortedRecords.size() < 2) {
-            return false;
-        }
-
-        DbBirdRecord firstRecord = getFirstRecord(sortedRecords);
-
-        if (!isFirstSeasonAutumn(firstRecord)) {
-            return false;
-        }
-
-        if (!isJuvenile(firstRecord)) {
-            return false;
-        }
-
-        return isFromMoreThanOneYear(sortedRecords);
-    }
-
-    boolean isFirstSeasonAutumn(DbBirdRecord record) {
-        return Season.Autumn == record.getSeason();
-    }
-
-    boolean isFromMoreThanOneYear(List<DbBirdRecord> sortedRecords) {
-        return getYears(sortedRecords).size() > 1;
-    }
-
-    private List<Integer> getYears(List<DbBirdRecord> sortedRecords) {
-        return sortedRecords
-                .stream()
-                .map(DbBirdRecord::getYear)
-                .distinct()
-                .toList();
-    }
-
-    Boolean isJuvenile(DbBirdRecord record) {
-        return Objects.equals(record.getAge(), "I") || Objects.equals(record.getAge(), "J");
-    }
-
-    private DbBirdRecord getFirstRecord(List<DbBirdRecord> sortedRecords) {
-        return sortedRecords
-                .stream()
-                .findFirst()
-                .get();
-    }
-
-    private List<DbBirdRecord> getSortedRecords(List<DbBirdRecord> ringRecords) {
-        return ringRecords
-                .stream()
-                .sorted(Comparator.comparing(DbBirdRecord::getDate))
-                .toList();
-    }
 
     private ReturningBirdsData getReturningBirdsData(List<DbBirdRecord> ringRecords, DbBirdRecord record) {
         var returningBirds = new ReturningBirdsData();
         returningBirds.RingNumber = record.getRing();
         returningBirds.Species = record.getSpeciesCode();
-        returningBirds.Records = ringRecords;
         List<DbBirdRecord> sortedRecords = getSortedRecords(ringRecords);
 
         DbBirdRecord first = sortedRecords.get(0);
@@ -202,6 +141,34 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
 
     boolean isSymmetryFactorValid(DbBirdRecord record) {
         return 0 == record.getD2() || 0 == record.getD3() || 0 == record.getD4() || 0 == record.getD5() || 0 == record.getD6() || 0 == record.getD7() || 0 == record.getD8();
+    }
+
+    private Map<String, List<DbBirdRecord>> getRingNumbers(List<DbBirdRecord> records) {
+        return records
+                .stream()
+                .filter(isNotEmptyRing())
+                .collect(Collectors.groupingBy(DbBirdRecord::getRing));
+    }
+
+    private Predicate<DbBirdRecord> isNotEmptyRing() {
+        return b -> null != b.getRing() && !b
+                .getRing()
+                .isBlank();
+    }
+
+
+    private DbBirdRecord getFirstRecord(List<DbBirdRecord> sortedRecords) {
+        return sortedRecords
+                .stream()
+                .findFirst()
+                .get();
+    }
+
+    private List<DbBirdRecord> getSortedRecords(List<DbBirdRecord> ringRecords) {
+        return ringRecords
+                .stream()
+                .sorted(Comparator.comparing(DbBirdRecord::getDate))
+                .toList();
     }
 }
 

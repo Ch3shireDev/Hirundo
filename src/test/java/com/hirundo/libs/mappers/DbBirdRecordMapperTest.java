@@ -1,9 +1,6 @@
 package com.hirundo.libs.mappers;
 
-import com.hirundo.libs.data_structures.BirdSex;
-import com.hirundo.libs.data_structures.NewDbBirdRecord;
-import com.hirundo.libs.data_structures.OldDbBirdRecord;
-import com.hirundo.libs.data_structures.Season;
+import com.hirundo.libs.data_structures.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,7 +47,7 @@ class DbBirdRecordMapperTest {
         Assertions.assertEquals("AAA.BBB", record.getSpeciesCode());
         Assertions.assertEquals("Aarin Babin", record.getSpeciesNameEng());
         Assertions.assertEquals("Aarex Babex", record.getSpeciesNameLat());
-        Assertions.assertEquals("I", record.getAge());
+        Assertions.assertEquals(BirdAge.Infantile, record.getAge());
         Assertions.assertEquals(BirdSex.Female, record.getSex());
         Assertions.assertEquals("111222", record.getRing());
         Assertions.assertEquals(LocalDateTime.of(2020, 1, 2, 0, 0, 0), record.getDate());
@@ -94,7 +91,7 @@ class DbBirdRecordMapperTest {
         var record = mapper.map(record1);
         Assertions.assertEquals(123, record.getId());
         Assertions.assertEquals("AAA.BBB", record.getSpeciesCode());
-        Assertions.assertEquals("I", record.getAge());
+        Assertions.assertEquals(BirdAge.Infantile, record.getAge());
         Assertions.assertEquals(BirdSex.Female, record.getSex());
         Assertions.assertEquals("111222", record.getRing());
         Assertions.assertEquals(LocalDateTime.of(2020, 1, 2, 0, 0, 0), record.getDate());

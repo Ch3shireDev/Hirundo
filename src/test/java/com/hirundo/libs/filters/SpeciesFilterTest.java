@@ -18,7 +18,6 @@ class SpeciesFilterTest {
         model = new SpeciesFilter();
     }
 
-
     @Test
     void getSingleSpecies() {
         var record1 = new NewDbBirdRecord();

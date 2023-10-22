@@ -1,5 +1,6 @@
 package com.hirundo.libs.services;
 
+import com.hirundo.libs.data_structures.BirdAge;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.Season;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,25 +28,24 @@ class ReturningBirdsSummarizerTest {
         r1.ring = "1234";
         r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
         r1.season = Season.Autumn;
-        r1.age = "I";
+        r1.age = BirdAge.Infantile;
 
         var r2 = new DbBirdRecord();
         r2.speciesCode = "XXX.YYY";
         r2.ring = "1234";
         r2.date = LocalDateTime.of(2020, 3, 1, 0, 0);
         r2.season = Season.Spring;
-        r2.age = "I";
+        r2.age = BirdAge.Infantile;
 
         var r3 = new DbBirdRecord();
         r3.speciesCode = "XXX.YYY";
-        r3.age = "I";
+        r3.age = BirdAge.Infantile;
 
         var birds = List.of(r1, r2, r3);
 
         var returningBirds = finder.getSummary(birds);
 
         assertEquals(1, returningBirds.size());
-        assertEquals(2, returningBirds.get(0).Records.size());
         assertEquals("1234", returningBirds.get(0).RingNumber);
         assertEquals("XXX.YYY", returningBirds.get(0).Species);
         assertEquals(LocalDateTime.of(2019, 11, 1, 0, 0), returningBirds.get(0).FirstDateSeen);
@@ -61,7 +61,7 @@ class ReturningBirdsSummarizerTest {
         r1.ring = "1234";
         r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
         r1.season = Season.Autumn;
-        r1.age = "I";
+        r1.age = BirdAge.Infantile;
         r1.wing = new BigDecimal("60.0");
         r1.d2 = 2;
         r1.d3 = 3;
@@ -76,7 +76,7 @@ class ReturningBirdsSummarizerTest {
         r2.ring = "1234";
         r2.date = LocalDateTime.of(2020, 3, 1, 0, 0);
         r2.season = Season.Spring;
-        r2.age = "I";
+        r2.age = BirdAge.Infantile;
 
         var birds = List.of(r1, r2);
 
@@ -93,7 +93,7 @@ class ReturningBirdsSummarizerTest {
         r1.ring = "1234";
         r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
         r1.season = Season.Autumn;
-        r1.age = "I";
+        r1.age = BirdAge.Infantile;
         r1.weight = new BigDecimal("50.500");
         r1.fat = 3;
         r1.wing = new BigDecimal("60.000");
@@ -111,14 +111,13 @@ class ReturningBirdsSummarizerTest {
         r2.ring = "1234";
         r2.date = LocalDateTime.of(2020, 3, 1, 0, 0);
         r2.season = Season.Spring;
-        r2.age = "I";
+        r2.age = BirdAge.Infantile;
 
         var birds = List.of(r1, r2);
 
         var returningBirds = finder.getSummary(birds);
 
         assertEquals(1, returningBirds.size());
-        assertEquals(2, returningBirds.get(0).Records.size());
         assertEquals("1234", returningBirds.get(0).RingNumber);
         assertEquals("XXX.YYY", returningBirds.get(0).Species);
         assertEquals(LocalDateTime.of(2019, 11, 1, 0, 0), returningBirds.get(0).FirstDateSeen);
@@ -146,14 +145,14 @@ class ReturningBirdsSummarizerTest {
         r1.speciesCode = "XXX.YYY";
         r1.ring = "1234";
         r1.season = Season.Autumn;
-        r1.age = "I";
+        r1.age = BirdAge.Infantile;
         r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
 
         var r2 = new DbBirdRecord();
         r2.speciesCode = "XXX.YYY";
         r2.ring = "1234";
         r2.season = Season.Autumn;
-        r2.age = "I";
+        r2.age = BirdAge.Infantile;
         r2.date = LocalDateTime.of(2019, 12, 1, 0, 0);
 
         var summary = finder.getSummary(List.of(r1, r2));
@@ -167,14 +166,14 @@ class ReturningBirdsSummarizerTest {
         r1.speciesCode = "XXX.YYY";
         r1.ring = "1234";
         r1.season = Season.Autumn;
-        r1.age = "I";
+        r1.age = BirdAge.Infantile;
         r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
 
         var r2 = new DbBirdRecord();
         r2.speciesCode = "XXX.YYY";
         r2.ring = "1234";
         r2.season = Season.Autumn;
-        r2.age = "I";
+        r2.age = BirdAge.Infantile;
         r2.date = LocalDateTime.of(2020, 12, 1, 0, 0);
 
         var summary = finder.getSummary(List.of(r1, r2));

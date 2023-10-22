@@ -2,10 +2,8 @@ package com.hirundo.libs.data_structures;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class ReturningBirdsData {
-    public List<DbBirdRecord> Records;
     public int Population;
     public String RingNumber;
     public String Species;
@@ -41,6 +39,7 @@ public class ReturningBirdsData {
     public Integer D6;
     public Integer D7;
     public Integer D8;
-    public String BirdAge;
+    public String BirdAgeStr;
     public BirdSex Sex;
+    public BirdAge BirdAge;
 }

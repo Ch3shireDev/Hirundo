@@ -22,6 +22,7 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
 
     public CsvReturningBirdsData map(ReturningBirdsData data) {
         var result = new CsvReturningBirdsData();
+
         result.RingNumber = data.RingNumber;
         result.Species = data.Species;
         result.FirstDateSeen = data.FirstDateSeen;
@@ -30,7 +31,7 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.LastSeasonSeen = getSeasonStr(data.LastSeasonSeen);
         result.BeforeMigrationCatchDate = data.BeforeMigrationCatchDate;
         result.AfterMigrationCatchDate = data.AfterMigrationCatchDate;
-        result.Age = data.BirdAge;
+        result.Age = getAge(data.BirdAge);
 
         result.Weight = roundDecimal(data.Weight);
         result.WeightPopulationMean = roundDecimal(data.WeightMean);
@@ -72,6 +73,18 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.D8 = data.D8;
 
         return result;
+    }
+
+    private String getAge(BirdAge birdAge) {
+        if(birdAge == null) return "";
+
+        return switch (birdAge) {
+            case Infantile -> "I";
+            case Juvenile -> "J";
+            case Adult -> "A";
+            case Other -> "O";
+            default -> "";
+        };
     }
 
     private String getSeasonStr(Season season) {

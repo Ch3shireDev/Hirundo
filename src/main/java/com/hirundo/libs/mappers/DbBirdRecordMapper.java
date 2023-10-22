@@ -27,7 +27,7 @@ public class DbBirdRecordMapper {
         result.season = asSeason(birdRecord.Seas);
         result.id = birdRecord.IDR_Podab;
         result.weight = asBigDecimal(birdRecord.Mass);
-        result.age = birdRecord.Age;
+        result.age = BirdAge.stringToEnum(birdRecord.Age);
         result.fat = asInt(birdRecord.Fat);
         result.wing = asBigDecimal(birdRecord.Wing);
         result.tail = asBigDecimal(birdRecord.Tail);
@@ -52,7 +52,7 @@ public class DbBirdRecordMapper {
         result.date = asDate(birdRecord.Date2);
         result.season = asSeason(birdRecord.Seas);
         result.weight = asBigDecimal(birdRecord.Weight);
-        result.age = birdRecord.Age;
+        result.age = BirdAge.stringToEnum(birdRecord.Age);
         result.fat = asInt(birdRecord.Fat);
         result.wing = asBigDecimal(birdRecord.Wing);
         result.tail = asBigDecimal(birdRecord.Tail);

@@ -19,6 +19,7 @@ Uniwersytet Gdański organizuje kilka razy do roku wyjazdy Akcji Bałtyckiej (ht
         - wszystkie pierwsze złapania,
         - ptaków w wieku I lub J,
         - z danego roku,
+        - danej płci,
         - z odrzuceniem wartości odchylonych o więcej niż 4 odchylenia standardowe.
 
 3. Dla Fat policzyć (dla tak samo określonej populacji):
@@ -27,3 +28,5 @@ Uniwersytet Gdański organizuje kilka razy do roku wyjazdy Akcji Bałtyckiej (ht
     - kwartyl dolny.
 
 Tak naprawdę zależy nam na pierwszych złapaniach, nie na wszystkich złapaniach. Dalej powinniśmy posortować złapania, by najpierw były te wcześniejsze.
+
+Płeć określa populację — tj. porównując ptaki z populacją, bierzemy pod uwagę również płeć.
