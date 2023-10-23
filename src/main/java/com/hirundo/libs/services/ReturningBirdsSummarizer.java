@@ -45,6 +45,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         var returningBirds = new ReturningBirdsData();
         returningBirds.RingNumber = record.getRing();
         returningBirds.Species = record.getSpeciesCode();
+        returningBirds.Population = population.size();
         List<DbBirdRecord> sortedRecords = getSortedRecords(ringRecords);
 
         DbBirdRecord first = sortedRecords.get(0);
