@@ -10,8 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReturningBirdsSummarizerTest2 {
-
+public class MockedReturningBirdsSummarizerTest {
     ReturningBirdsSummarizer summarizer;
     private ISummaryFilter mockSummaryFilter;
     private IPopulationFilter mockPopulationFilter;
@@ -24,16 +23,22 @@ public class ReturningBirdsSummarizerTest2 {
     }
 
     @Test
-    public void populationShouldBeGivenInResults(){
-        Mockito.when(mockSummaryFilter.isForSummary(ArgumentMatchers.anyList())).thenReturn(true);
-        Mockito.when(mockPopulationFilter.getPopulation(ArgumentMatchers.any(DbBirdRecord.class), ArgumentMatchers.anyList())).thenReturn(List.of(new DbBirdRecord(), new DbBirdRecord(), new DbBirdRecord()));
+    public void populationShouldBeGivenInResults() {
+        Mockito
+                .when(mockSummaryFilter.isForSummary(ArgumentMatchers.anyList()))
+                .thenReturn(true);
+        Mockito
+                .when(mockPopulationFilter.getPopulation(ArgumentMatchers.any(DbBirdRecord.class), ArgumentMatchers.anyList()))
+                .thenReturn(List.of(new DbBirdRecord(), new DbBirdRecord(), new DbBirdRecord()));
 
         var r1 = new DbBirdRecord();
         r1.ring = "123";
 
         var result = summarizer.getSummary(List.of(r1));
 
-        Mockito.verify(mockSummaryFilter, Mockito.times(1)).isForSummary(ArgumentMatchers.anyList());
+        Mockito
+                .verify(mockSummaryFilter, Mockito.times(1))
+                .isForSummary(ArgumentMatchers.anyList());
 
         assertEquals(1, result.size());
         assertEquals(3, result.get(0).Population);
