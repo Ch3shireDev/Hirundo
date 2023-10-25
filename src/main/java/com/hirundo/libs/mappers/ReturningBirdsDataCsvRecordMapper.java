@@ -76,7 +76,7 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
     }
 
     private String getAge(BirdAge birdAge) {
-        if(birdAge == null) return "";
+        if(null == birdAge) return "";
 
         return switch (birdAge) {
             case Infantile -> "I";
@@ -88,7 +88,7 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
     }
 
     private String getSeasonStr(Season season) {
-        if (season != null) {
+        if (null != season) {
             return season.toString();
         }
         return "";

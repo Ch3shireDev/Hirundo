@@ -8,7 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Refactoring" />
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Create ReturningBirdsStatisticsResolver class and tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,34 +108,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/bin/javafx-sdk-21/lib/javafx.media.jar&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2816092&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_directory_selection": "C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services",
+    "last_opened_file_path": "D:/bin/javafx-sdk-21/lib/javafx.media.jar",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2816092",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.hirundo.app.views" />
@@ -167,7 +167,7 @@
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Hirundo [test]">
+  <component name="RunManager" selected="Gradle.ReturningBirdsStatisticsResolverTest.returnsCountDifferentSeasonTest">
     <configuration name="Hirundo [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -236,7 +236,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ReturningBirdsStatisticsResolverTest.returnsCountDifferentSeasonTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -249,7 +249,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped&quot;" />
+            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest$ReturningBirdsStatisticsResolverTest.returnsCountDifferentSeasonTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -285,19 +285,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.ReturningBirdsStatisticsResolverTest.returnsCountDifferentSeasonTest" />
       <item itemvalue="Gradle.SpeciesFilterTest.getSpeciesNullData" />
       <item itemvalue="Gradle.Hirundo [run]" />
       <item itemvalue="Gradle.ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData" />
-      <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" />
       <item itemvalue="Gradle.Hirundo [test]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ReturningBirdsStatisticsResolverTest.returnsCountDifferentSeasonTest" />
         <item itemvalue="Gradle.Hirundo [test]" />
         <item itemvalue="Gradle.SpeciesFilterTest.getSpeciesNullData" />
         <item itemvalue="Gradle.Hirundo [run]" />
         <item itemvalue="Gradle.ReturningBirdsDataCsvRecordMapperTest.getCsvReturningBirdsData" />
-        <item itemvalue="Gradle.ReturningBirdsSummarizerTest.summaryFromJustOneYearShouldBeSkipped" />
       </list>
     </recent_temporary>
   </component>
@@ -344,6 +344,7 @@
       <workItem from="1695593442030" duration="774000" />
       <workItem from="1696888783467" duration="1314000" />
       <workItem from="1697478177572" duration="7086000" />
+      <workItem from="1698126483926" duration="2665000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -646,7 +647,21 @@
       <option name="project" value="LOCAL" />
       <updated>1697492452028</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary=":bird: Create ReturningBirdsStatisticsResolver class and tests">
+      <created>1698129116697</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1698129116697</updated>
+    </task>
+    <task id="LOCAL-00045" summary=":bird: Create ReturningBirdsStatisticsResolver class and tests">
+      <created>1698129147747</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1698129147747</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +679,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":bird: Update Access tests" />
     <MESSAGE value=":bird: Add first returning birds count method" />
     <MESSAGE value=":bird: Add CsvSerializer to project" />
     <MESSAGE value=":bird: Change format of CsvWriter to CRLF" />
@@ -689,7 +703,8 @@
     <MESSAGE value=":bird: Add Pointedness and Symmetry factors to bird records" />
     <MESSAGE value=":bird: Move data from BirdRecord to ReturningBirdData" />
     <MESSAGE value=":bird: Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Refactoring" />
+    <MESSAGE value=":bird: Create ReturningBirdsStatisticsResolver class and tests" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Create ReturningBirdsStatisticsResolver class and tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

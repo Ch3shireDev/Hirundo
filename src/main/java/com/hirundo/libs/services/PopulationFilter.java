@@ -51,12 +51,12 @@ public class PopulationFilter implements IPopulationFilter {
 
     private boolean filterAge(DbBirdRecord r) {
         if (!config.FilterAge) return true;
-        return r.age == BirdAge.Infantile || r.age == BirdAge.Juvenile;
+        return BirdAge.Infantile == r.age || BirdAge.Juvenile == r.age;
     }
 
     private boolean filterYear(DbBirdRecord record, DbBirdRecord r) {
         if (!config.FilterYear) return true;
-        if (record.date == null || r.date == null) return false;
+        if (null == record.date || null == r.date) return false;
         return record.date.getYear() == r.date.getYear();
     }
 }

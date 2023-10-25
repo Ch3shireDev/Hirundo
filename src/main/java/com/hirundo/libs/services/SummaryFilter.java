@@ -4,15 +4,16 @@ import com.hirundo.libs.data_structures.BirdAge;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.Season;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class SummaryFilter implements ISummaryFilter {
-    public boolean isForSummary(List<DbBirdRecord> sortedRecords) {
-        if (sortedRecords.size() < 2) {
+    public boolean isForSummary(List<DbBirdRecord> records) {
+        if (records.size() < 2) {
             return false;
         }
 
-        DbBirdRecord firstRecord = getFirstRecord(sortedRecords);
+        DbBirdRecord firstRecord = getFirstRecord(records);
 
         if (!isFirstSeasonAutumn(firstRecord)) {
             return false;
@@ -22,14 +23,14 @@ public class SummaryFilter implements ISummaryFilter {
             return false;
         }
 
-        return isFromMoreThanOneYear(sortedRecords);
+        return isFromMoreThanOneYear(records);
     }
 
-    private DbBirdRecord getFirstRecord(List<DbBirdRecord> sortedRecords) {
-        return sortedRecords
+    private DbBirdRecord getFirstRecord(List<DbBirdRecord> records) {
+        return records
                 .stream()
-                .findFirst()
-                .get();
+                .min(Comparator.comparing(DbBirdRecord::getDate))
+                .orElse(records.get(0));
     }
 
     boolean isFirstSeasonAutumn(DbBirdRecord record) {
@@ -37,11 +38,11 @@ public class SummaryFilter implements ISummaryFilter {
     }
 
     boolean isJuvenile(DbBirdRecord record) {
-        return record.getAge() == BirdAge.Infantile || record.getAge() == BirdAge.Juvenile;
+        return BirdAge.Infantile == record.getAge() || BirdAge.Juvenile == record.getAge();
     }
 
     boolean isFromMoreThanOneYear(List<DbBirdRecord> sortedRecords) {
-        return getYears(sortedRecords).size() > 1;
+        return 1 < getYears(sortedRecords).size();
     }
 
     private List<Integer> getYears(List<DbBirdRecord> sortedRecords) {

@@ -1,76 +1,46 @@
 package com.hirundo.libs.services;
 
-import com.hirundo.libs.data_structures.BirdAge;
 import com.hirundo.libs.data_structures.DbBirdRecord;
-import com.hirundo.libs.data_structures.Season;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mockito;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReturningBirdsSummarizerTest {
-    ReturningBirdsSummarizer finder;
+    ReturningBirdsSummarizer summarizer;
+    private ISummaryFilter mockSummaryFilter;
+    private IPopulationFilter mockPopulationFilter;
 
     @BeforeEach
     void setUp() {
-        finder = new ReturningBirdsSummarizer();
+        mockSummaryFilter = Mockito.mock(ISummaryFilter.class);
+        mockPopulationFilter = Mockito.mock(IPopulationFilter.class);
+        summarizer = new ReturningBirdsSummarizer(mockSummaryFilter, mockPopulationFilter);
     }
 
-    @Nested
-    public class SummaryFilterTest {
+    @Test
+    public void populationShouldBeGivenInResults() {
+        Mockito
+                .when(mockSummaryFilter.isForSummary(ArgumentMatchers.anyList()))
+                .thenReturn(true);
+        Mockito
+                .when(mockPopulationFilter.getPopulation(ArgumentMatchers.any(DbBirdRecord.class), ArgumentMatchers.anyList()))
+                .thenReturn(List.of(new DbBirdRecord(), new DbBirdRecord(), new DbBirdRecord()));
 
-        SummaryFilter filter;
+        var r1 = new DbBirdRecord();
+        r1.ring = "123";
 
-        @BeforeEach
-        void setUp() {
-            filter = new SummaryFilter();
-        }
+        var result = summarizer.getSummary(List.of(r1));
 
-        @Test
-        void summaryFromTwoYearsShouldNotBeSkipped() {
-            var r1 = new DbBirdRecord();
-            r1.speciesCode = "XXX.YYY";
-            r1.ring = "1234";
-            r1.season = Season.Autumn;
-            r1.age = BirdAge.Infantile;
-            r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
+        Mockito
+                .verify(mockSummaryFilter, Mockito.times(1))
+                .isForSummary(ArgumentMatchers.anyList());
 
-            var r2 = new DbBirdRecord();
-            r2.speciesCode = "XXX.YYY";
-            r2.ring = "1234";
-            r2.season = Season.Autumn;
-            r2.age = BirdAge.Infantile;
-            r2.date = LocalDateTime.of(2020, 12, 1, 0, 0);
-
-            var result = filter.isForSummary(List.of(r1, r2));
-
-            assertTrue(result);
-        }
-
-        @Test
-        void summaryFromJustOneYearShouldBeSkipped() {
-            var r1 = new DbBirdRecord();
-            r1.speciesCode = "XXX.YYY";
-            r1.ring = "1234";
-            r1.season = Season.Autumn;
-            r1.age = BirdAge.Infantile;
-            r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
-
-            var r2 = new DbBirdRecord();
-            r2.speciesCode = "XXX.YYY";
-            r2.ring = "1234";
-            r2.season = Season.Autumn;
-            r2.age = BirdAge.Infantile;
-            r2.date = LocalDateTime.of(2019, 12, 1, 0, 0);
-
-            var result = filter.isForSummary(List.of(r1, r2));
-
-            assertFalse(result);
-        }
+        assertEquals(1, result.size());
+        assertEquals(3, result.get(0).Population);
     }
 }

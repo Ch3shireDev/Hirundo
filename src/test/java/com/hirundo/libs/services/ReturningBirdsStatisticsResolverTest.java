@@ -5,6 +5,7 @@ import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.Season;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,10 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ReturningBirdsStatisticsResolverTest {
+    IWingParametersCalculator wingParametersCalculator;
     ReturningBirdsStatisticsResolver resolver;
 
     @BeforeEach
     void setUp() {
+
+        wingParametersCalculator = Mockito.mock(IWingParametersCalculator.class);
         resolver = new ReturningBirdsStatisticsResolver();
     }
 
@@ -52,38 +56,6 @@ public class ReturningBirdsStatisticsResolverTest {
         assertEquals(Season.Autumn, result.FirstSeasonSeen);
         assertEquals(LocalDateTime.of(2020, 3, 1, 0, 0), result.LastDateSeen);
         assertEquals(Season.Spring, result.LastSeasonSeen);
-    }
-
-    @Test
-    public void wingParametersTranslateToPointednessAndSymmetryFactors() {
-        var r1 = new DbBirdRecord();
-        r1.speciesCode = "XXX.YYY";
-        r1.ring = "1234";
-        r1.date = LocalDateTime.of(2019, 11, 1, 0, 0);
-        r1.season = Season.Autumn;
-        r1.age = BirdAge.Infantile;
-        r1.wing = new BigDecimal("60.0");
-        r1.d2 = 2;
-        r1.d3 = 3;
-        r1.d4 = 4;
-        r1.d5 = 0;
-        r1.d6 = 6;
-        r1.d7 = 7;
-        r1.d8 = 8;
-
-        var r2 = new DbBirdRecord();
-        r2.speciesCode = "XXX.YYY";
-        r2.ring = "1234";
-        r2.date = LocalDateTime.of(2020, 3, 1, 0, 0);
-        r2.season = Season.Spring;
-        r2.age = BirdAge.Infantile;
-
-        var birds = List.of(r1, r2);
-
-        var result = resolver.getReturningBirdsData(birds, birds);
-
-        assertEquals(new BigDecimal("0.500"), result.Pointedness);
-        assertEquals(new BigDecimal("0.400"), result.Symmetry);
     }
 
     @Test
@@ -138,3 +110,4 @@ public class ReturningBirdsStatisticsResolverTest {
         assertNotEquals(null, result.Symmetry);
     }
 }
+

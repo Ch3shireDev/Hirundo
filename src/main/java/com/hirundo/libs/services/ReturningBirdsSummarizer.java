@@ -31,12 +31,10 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         for (var ringNumber : ringNumbers.keySet()) {
 
             var ringRecords = ringNumbers.get(ringNumber);
-            List<DbBirdRecord> sortedRecords = getSortedRecords(ringRecords);
-            if (!summaryFilter.isForSummary(sortedRecords)) continue;
-            DbBirdRecord firstCatchRecord = getFirstRecord(sortedRecords);
+            if (!summaryFilter.isForSummary(ringRecords)) continue;
+            DbBirdRecord firstCatchRecord = getFirstRecord(ringRecords);
             var population = populationFilter.getPopulation(firstCatchRecord, records);
-
-            ReturningBirdsData returningBirds = resolver.getReturningBirdsData(sortedRecords, population);
+            ReturningBirdsData returningBirds = resolver.getReturningBirdsData(ringRecords, population);
             result.add(returningBirds);
         }
         return result;
@@ -58,8 +56,8 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
     private DbBirdRecord getFirstRecord(List<DbBirdRecord> sortedRecords) {
         return sortedRecords
                 .stream()
-                .findFirst()
-                .get();
+                .min(Comparator.comparing(DbBirdRecord::getDate))
+                .orElse(sortedRecords.get(0));
     }
 
     private List<DbBirdRecord> getSortedRecords(List<DbBirdRecord> ringRecords) {

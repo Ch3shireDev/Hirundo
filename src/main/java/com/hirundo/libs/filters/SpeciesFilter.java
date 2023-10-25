@@ -15,7 +15,7 @@ public class SpeciesFilter implements ISpeciesFilter {
     }
 
     boolean isEqual(DbBirdRecord record, BirdSpecies species) {
-        return record.speciesCode != null && !record.speciesCode.isBlank() && record.speciesCode.equals(species.speciesCode());
+        return null != record.speciesCode && !record.speciesCode.isBlank() && record.speciesCode.equals(species.speciesCode());
     }
 
     public List<BirdSpecies> getSpeciesList(List<DbBirdRecord> data) {

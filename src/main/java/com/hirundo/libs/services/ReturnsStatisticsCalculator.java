@@ -13,16 +13,16 @@ public class ReturnsStatisticsCalculator {
 
     public BirdSpeciesCalculatedData getCalculatedData(List<DbBirdRecord> data, BirdSpecies selectedSpecies, BirdSex selectedSex) throws Exception {
 
-        if (selectedSpecies == null) {
+        if (null == selectedSpecies) {
             throw new Exception("Species not selected");
         }
-        if (selectedSex == BirdSex.Undefined) {
+        if (BirdSex.Undefined == selectedSex) {
             throw new Exception("Sex not selected");
         }
 
         var speciesCode = selectedSpecies.speciesCode();
 
-        if (speciesCode == null || speciesCode.isBlank()) {
+        if (null == speciesCode || speciesCode.isBlank()) {
             throw new Exception("Species code not selected");
         }
 
@@ -35,7 +35,7 @@ public class ReturnsStatisticsCalculator {
                 .filter(b -> speciesCode
                         .equals(b.getSpeciesCode()));
 
-        if (selectedSex != BirdSex.Any) {
+        if (BirdSex.Any != selectedSex) {
             filteredData = filteredData.filter(b -> b.getSex() == selectedSex);
         }
 
