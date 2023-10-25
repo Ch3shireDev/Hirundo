@@ -18,18 +18,18 @@
                 <AnchorPane>
                     <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
                         <Label maxWidth="500" textAlignment="JUSTIFY" wrapText="true">
-                            Program do wybierania z bazy danych rekordów
+                            Program do wybierania z bazy danych zapisów
                             zdarzeń schwytania ptaków w czasie migracji.
                         </Label>
                         <Label maxWidth="500" textAlignment="JUSTIFY" wrapText="true">
-                            Aplikacja łączy się z bazą danych RINGER (plik .mdb) w celu pobrania rekordów schwytań
+                            Aplikacja łączy się z bazą danych RINGER (plik .mdb) w celu pobrania danych na temat schwytań
                             ptaków. Dane są przetwarzane w poszukiwaniu przypadków tych samych ptaków schwytanych w
                             następujących po sobie sezonach jesiennym i wiosennym. Takie zdarzenie sugeruje, że ptak był
                             w stanie przeżyć wędrówkę i powrót. Hipoteza badawcza mówi, że mierzone cechy takiego ptaka
                             będą w sposób
                             istotny różne od średniej populacji ptaków danego gatunku i płci w danym sezonie. Program ma
                             ułatwiać
-                            przeglądanie i wybieranie z bazy danych interesujących nas rekordów powracających ptaków.
+                            przeglądanie i wybieranie z bazy danych zdarzeń powracających ptaków.
                         </Label>
                         <HBox>
                             <Button onAction="#introductionTabNext">Przejdź dalej</Button>
@@ -156,7 +156,7 @@
                                    GridPane.columnIndex="1"
                                    GridPane.rowIndex="3"
                                    text="${controller.selectedSexName}"/>
-                            <Label text="Liczba rekordów:"
+                            <Label text="Liczba wierszy:"
                                    GridPane.columnIndex="0"
                                    GridPane.rowIndex="4"/>
                             <Label fx:id="recordsCountLabel"
@@ -200,8 +200,8 @@
             <Tab closable="false" text="O programie">
                 <AnchorPane>
                     <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <Label text="Hirundo ver. 1.4.0"/>
-                        <Label text="Data wydania: 2023-08-16"/>
+                        <Label text="Hirundo ver. 1.5.0"/>
+                        <Label text="Data wydania: 2023-10-25"/>
                         <Label text="Autor: Igor Nowicki (igor.nowicki.business@gmail.com)"/>
                         <Label text="Program do analizy ponownych schwytań ptaków w czasie migracji."/>
                     </VBox>

@@ -34,97 +34,90 @@ public class CsvReturningBirdsData {
     @CsvBindByName(column = "LastSeasonSeen")
     @CsvBindByPosition(position = 7)
     public String LastSeasonSeen;
-    @CsvBindByName(column = "BeforeMigrationCatchDate")
-    @CsvDate("yyyy-MM-dd")
-    @CsvBindByPosition(position = 8)
-    public LocalDateTime BeforeMigrationCatchDate;
-    @CsvBindByName(column = "AfterMigrationCatchDate")
-    @CsvDate("yyyy-MM-dd")
-    @CsvBindByPosition(position = 9)
-    public LocalDateTime AfterMigrationCatchDate;
 
     @CsvBindByName(column = "Sex")
-    @CsvBindByPosition(position = 10)
+    @CsvBindByPosition(position = 8)
     public String Sex;
+
     @CsvBindByName(column = "Age")
-    @CsvBindByPosition(position = 11)
+    @CsvBindByPosition(position = 9)
     public String Age;
     @CsvBindByName(column = "Weight")
-    @CsvBindByPosition(position = 12)
+    @CsvBindByPosition(position = 10)
     public BigDecimal Weight;
     @CsvBindByName(column = "WeightPopulationMean")
-    @CsvBindByPosition(position = 13)
+    @CsvBindByPosition(position = 11)
     public BigDecimal WeightPopulationMean;
     @CsvBindByName(column = "WeightPopulationStandardDeviation")
-    @CsvBindByPosition(position = 14)
+    @CsvBindByPosition(position = 12)
     public BigDecimal WeightPopulationStandardDeviation;
     @CsvBindByName(column = "Fat")
-    @CsvBindByPosition(position = 15)
+    @CsvBindByPosition(position = 13)
     public Integer Fat;
     @CsvBindByName(column = "FatPopulationMedian")
-    @CsvBindByPosition(position = 16)
+    @CsvBindByPosition(position = 14)
     public BigDecimal FatPopulationMedian;
     @CsvBindByName(column = "FatPopulationUpperQuartile")
-    @CsvBindByPosition(position = 17)
+    @CsvBindByPosition(position = 15)
     public BigDecimal FatPopulationUpperQuartile;
     @CsvBindByName(column = "FatPopulationLowerQuartile")
-    @CsvBindByPosition(position = 18)
+    @CsvBindByPosition(position = 16)
     public BigDecimal FatPopulationLowerQuartile;
     @CsvBindByName(column = "Wing")
-    @CsvBindByPosition(position = 19)
+    @CsvBindByPosition(position = 17)
     public BigDecimal Wing;
     @CsvBindByName(column = "WingPopulationMean")
-    @CsvBindByPosition(position = 20)
+    @CsvBindByPosition(position = 18)
     public BigDecimal WingPopulationMean;
     @CsvBindByName(column = "WingPopulationStandardDeviation")
-    @CsvBindByPosition(position = 21)
+    @CsvBindByPosition(position = 19)
     public BigDecimal WingPopulationStandardDeviation;
     @CsvBindByName(column = "Tail")
-    @CsvBindByPosition(position = 22)
+    @CsvBindByPosition(position = 20)
     public BigDecimal Tail;
     @CsvBindByName(column = "TailPopulationMean")
-    @CsvBindByPosition(position = 23)
+    @CsvBindByPosition(position = 21)
     public BigDecimal TailPopulationMean;
     @CsvBindByName(column = "TailPopulationStandardDeviation")
-    @CsvBindByPosition(position = 24)
+    @CsvBindByPosition(position = 22)
     public BigDecimal TailPopulationStandardDeviation;
     @CsvBindByName(column = "Pointedness")
-    @CsvBindByPosition(position = 25)
+    @CsvBindByPosition(position = 23)
     public BigDecimal Pointedness;
     @CsvBindByName(column = "PointednessPopulationMean")
-    @CsvBindByPosition(position = 26)
+    @CsvBindByPosition(position = 24)
     public BigDecimal PointednessPopulationMean;
     @CsvBindByName(column = "PointednessPopulationStandardDeviation")
-    @CsvBindByPosition(position = 27)
+    @CsvBindByPosition(position = 25)
     public BigDecimal PointednessPopulationStandardDeviation;
     @CsvBindByName(column = "Symmetry")
-    @CsvBindByPosition(position = 28)
+    @CsvBindByPosition(position = 26)
     public BigDecimal Symmetry;
     @CsvBindByName(column = "SymmetryPopulationMean")
-    @CsvBindByPosition(position = 29)
+    @CsvBindByPosition(position = 27)
     public BigDecimal SymmetryPopulationMean;
     @CsvBindByName(column = "SymmetryPopulationStandardDeviation")
-    @CsvBindByPosition(position = 30)
+    @CsvBindByPosition(position = 28)
     public BigDecimal SymmetryPopulationStandardDeviation;
     @CsvBindByName(column = "D2")
-    @CsvBindByPosition(position = 31)
+    @CsvBindByPosition(position = 29)
     public Integer D2;
     @CsvBindByName(column = "D3")
-    @CsvBindByPosition(position = 32)
+    @CsvBindByPosition(position = 30)
     public Integer D3;
     @CsvBindByName(column = "D4")
-    @CsvBindByPosition(position = 33)
+    @CsvBindByPosition(position = 31)
     public Integer D4;
     @CsvBindByName(column = "D5")
-    @CsvBindByPosition(position = 34)
+    @CsvBindByPosition(position = 32)
     public Integer D5;
     @CsvBindByName(column = "D6")
-    @CsvBindByPosition(position = 35)
+    @CsvBindByPosition(position = 33)
     public Integer D6;
     @CsvBindByName(column = "D7")
-    @CsvBindByPosition(position = 36)
+    @CsvBindByPosition(position = 34)
     public Integer D7;
     @CsvBindByName(column = "D8")
-    @CsvBindByPosition(position = 37)
+    @CsvBindByPosition(position = 35)
     public Integer D8;
 }

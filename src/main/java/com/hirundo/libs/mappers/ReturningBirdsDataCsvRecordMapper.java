@@ -29,11 +29,9 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.LastDateSeen = data.LastDateSeen;
         result.FirstSeasonSeen = getSeasonStr(data.FirstSeasonSeen);
         result.LastSeasonSeen = getSeasonStr(data.LastSeasonSeen);
-        result.BeforeMigrationCatchDate = data.BeforeMigrationCatchDate;
-        result.AfterMigrationCatchDate = data.AfterMigrationCatchDate;
-        result.Age = getAge(data.BirdAge);
+        result.Age = getAge(data.Age);
 
-        result.Weight = roundDecimal(data.Weight);
+        result.Weight = roundDecimal(data.Weight,1);
         result.WeightPopulationMean = roundDecimal(data.WeightMean);
         result.WeightPopulationStandardDeviation = roundDecimal(data.WeightStandardDeviation);
 
@@ -59,6 +57,7 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.SymmetryPopulationStandardDeviation = roundDecimal(data.SymmetryStandardDeviation);
 
         result.Population = data.Population;
+        result.RecordsCount = data.RecordsCount;
 
         if (BirdSex.Male == data.Sex) result.Sex = "M";
         if (BirdSex.Female == data.Sex) result.Sex = "F";
@@ -95,8 +94,11 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
     }
 
     private BigDecimal roundDecimal(BigDecimal value) {
+        return roundDecimal(value, 3);
+    }
+    private BigDecimal roundDecimal(BigDecimal value, int scale) {
         if (null == value) return null;
-        return value.setScale(3, RoundingMode.FLOOR);
+        return value.setScale(scale, RoundingMode.HALF_UP);
     }
 
 }

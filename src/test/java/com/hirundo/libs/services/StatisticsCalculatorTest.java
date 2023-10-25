@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class StatisticsCalculatorTest {
 
@@ -53,12 +54,12 @@ public class StatisticsCalculatorTest {
     }
 
     @Test
-    public void givenOnlyNullValues_whenCalculateMedian_returnZero(){
+    public void givenOnlyNullValues_whenCalculateMedian_returnsNull(){
         var values = new BigDecimal[]{null, null, null};
 
         var result = calculator.calculateMedian(values);
 
-        assertEquals(BigDecimal.ZERO, result);
+        assertNull(result);
     }
 
     @Test
@@ -114,7 +115,7 @@ public class StatisticsCalculatorTest {
     }
 
     @Test
-    public void givenOnlyNullValues_whenCalculateStandardDeviation_thenResultIsZero(){
+    public void givenOnlyNullValues_whenCalculateStandardDeviation_thenResultIsNull(){
         var values = new BigDecimal[]{
           null,
           null,
@@ -123,7 +124,7 @@ public class StatisticsCalculatorTest {
 
         var result = calculator.calculateStandardDeviation(values);
 
-        assertEquals(BigDecimal.ZERO, result);
+        assertNull(result);
     }
 
     @Test
@@ -154,12 +155,12 @@ public class StatisticsCalculatorTest {
     }
 
     @Test
-    public void givenOnlyNullValues_whenCalculateMean_returnZero(){
+    public void givenOnlyNullValues_whenCalculateMean_returnsNull(){
         var values = new BigDecimal[]{null, null, null};
 
         var result = calculator.calculateMean(values);
 
-        assertEquals(BigDecimal.ZERO, result);
+        assertNull(result);
     }
 
     @Test
@@ -260,5 +261,30 @@ public class StatisticsCalculatorTest {
         assertEquals(new BigDecimal("26.000"), result);
     }
 
+    @Test
+    public void givenOnlyNullValues_whenCalculateUpperQuartile_thenResultIsNull(){
+        var values = new BigDecimal[]{
+                null,
+                null,
+                null,
+        };
+
+        var result = calculator.calculateUpperQuartile(values);
+
+        assertNull(result);
+    }
+
+    @Test
+    public void givenOnlyNullValues_whenCalculateLowerQuartile_thenResultIsNull(){
+        var values = new BigDecimal[]{
+                null,
+                null,
+                null,
+        };
+
+        var result = calculator.calculateLowerQuartile(values);
+
+        assertNull(result);
+    }
 
 }

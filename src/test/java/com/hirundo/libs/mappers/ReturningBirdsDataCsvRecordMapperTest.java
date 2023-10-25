@@ -35,7 +35,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         returning.Wing = new BigDecimal("456.123");
         returning.Tail = new BigDecimal("789");
         returning.BirdAgeStr = "J";
-        returning.BirdAge = BirdAge.Juvenile;
+        returning.Age = BirdAge.Juvenile;
         returning.Sex = BirdSex.Male;
         returning.Fat = 5;
         returning.D2 = 1;
@@ -56,7 +56,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(Season.Autumn.toString(), csvRecord.get(0).FirstSeasonSeen);
         Assertions.assertEquals(LocalDateTime.of(2021, 11, 2, 0, 0), csvRecord.get(0).LastDateSeen);
         Assertions.assertEquals(Season.Autumn.toString(), csvRecord.get(0).LastSeasonSeen);
-        Assertions.assertEquals(new BigDecimal("123.000"), csvRecord.get(0).Weight);
+        Assertions.assertEquals(new BigDecimal("123.0"), csvRecord.get(0).Weight);
         Assertions.assertEquals(new BigDecimal("456.123"), csvRecord.get(0).Wing);
         Assertions.assertEquals(new BigDecimal("789.000"), csvRecord.get(0).Tail);
         Assertions.assertEquals("J", csvRecord.get(0).Age);
@@ -79,7 +79,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
         data.RingNumber = "LA94007";
         data.Species = "REG.REG";
         data.Sex = BirdSex.Male;
-        data.BirdAge = BirdAge.Infantile;
+        data.Age = BirdAge.Infantile;
         data.FirstDateSeen = LocalDateTime.of(1982, 10, 12, 0, 0);
         data.LastDateSeen = LocalDateTime.of(1983, 4, 1, 0, 0);
 
@@ -88,7 +88,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
 
         data.FirstSeasonSeen = Season.Autumn;
         data.LastSeasonSeen = Season.Spring;
-        data.Weight = new BigDecimal("50.500");
+        data.Weight = new BigDecimal("50.499");
         data.Wing = new BigDecimal("50.500");
         data.Tail = new BigDecimal("60");
 
@@ -117,10 +117,9 @@ class ReturningBirdsDataCsvRecordMapperTest {
         Assertions.assertEquals(LocalDateTime.of(1983, 4, 1, 0, 0), birds.get(0).LastDateSeen);
         Assertions.assertEquals(Season.Autumn.toString(), birds.get(0).FirstSeasonSeen);
         Assertions.assertEquals(Season.Spring.toString(), birds.get(0).LastSeasonSeen);
-        Assertions.assertEquals(LocalDateTime.of(1982, 10, 12, 0, 0), birds.get(0).BeforeMigrationCatchDate);
         Assertions.assertEquals("M", birds.get(0).Sex);
         Assertions.assertEquals("I", birds.get(0).Age);
-        Assertions.assertEquals(new BigDecimal("50.500"), birds.get(0).Weight);
+        Assertions.assertEquals(new BigDecimal("50.5"), birds.get(0).Weight);
         Assertions.assertEquals(3, birds.get(0).Fat);
         Assertions.assertEquals(new BigDecimal("50.500"), birds.get(0).Wing);
         Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).Tail);
@@ -155,7 +154,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
     public void mapperShouldGiveMeanAndStandardDeviationValues() {
         var data = new ReturningBirdsData();
 
-        data.Weight = new BigDecimal("50.123");
+        data.Weight = new BigDecimal("50.199");
         data.WeightMean = new BigDecimal("60");
         data.WeightStandardDeviation = new BigDecimal("10");
 
@@ -177,7 +176,7 @@ class ReturningBirdsDataCsvRecordMapperTest {
 
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
 
-        Assertions.assertEquals(new BigDecimal("50.123"), birds.get(0).Weight);
+        Assertions.assertEquals(new BigDecimal("50.2"), birds.get(0).Weight);
         Assertions.assertEquals(new BigDecimal("60.000"), birds.get(0).WeightPopulationMean);
         Assertions.assertEquals(new BigDecimal("10.000"), birds.get(0).WeightPopulationStandardDeviation);
 
@@ -208,6 +207,15 @@ class ReturningBirdsDataCsvRecordMapperTest {
         var birds = mapper.getCsvReturningBirdsData(List.of(data));
 
         Assertions.assertEquals(1, birds.size());
-        Assertions.assertEquals(LocalDateTime.of(1982, 10, 12, 0, 0, 0), birds.get(0).BeforeMigrationCatchDate);
+    }
+
+    @Test
+    public void givenRecordsCount_whenMap_resultShouldBeEqualToInitialRecordsCount(){
+        var data = new ReturningBirdsData();
+        data.RecordsCount = 5;
+
+        var birds = mapper.getCsvReturningBirdsData(List.of(data));
+
+        Assertions.assertEquals(5, birds.get(0).RecordsCount);
     }
 }

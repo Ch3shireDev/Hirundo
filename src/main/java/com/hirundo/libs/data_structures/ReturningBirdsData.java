@@ -41,5 +41,6 @@ public class ReturningBirdsData {
     public Integer D8;
     public String BirdAgeStr;
     public BirdSex Sex;
-    public BirdAge BirdAge;
+    public BirdAge Age;
+    public int RecordsCount;
 }

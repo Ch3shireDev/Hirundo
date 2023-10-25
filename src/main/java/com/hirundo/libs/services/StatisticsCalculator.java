@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class StatisticsCalculator {
+public class StatisticsCalculator implements IStatisticsCalculator {
 
     public BigDecimal calculateMedian(BigDecimal[] values) {
 
@@ -14,7 +14,7 @@ public class StatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return BigDecimal.ZERO;
+        if (values.length == 0) return null;
 
         Arrays.sort(values);
 
@@ -29,7 +29,7 @@ public class StatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return BigDecimal.ZERO;
+        if (values.length == 0) return null;
 
         var mean = Arrays
                 .stream(values)
@@ -52,7 +52,7 @@ public class StatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return BigDecimal.ZERO;
+        if (values.length == 0) return null;
 
         return Arrays
                 .stream(values)
@@ -66,7 +66,7 @@ public class StatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return BigDecimal.ZERO;
+        if (values.length == 0) return null;
 
         var median = calculateMedian(values);
 
@@ -84,7 +84,7 @@ public class StatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return BigDecimal.ZERO;
+        if (values.length == 0) return null;
 
         var median = calculateMedian(values);
 

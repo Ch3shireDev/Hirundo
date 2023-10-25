@@ -256,7 +256,7 @@ public class MainView implements Initializable {
                 try {
                     viewModel.loadData();
                     var count = viewModel.getRecordsCount();
-                    Platform.runLater(() -> loadingDatabaseStatus.setValue("Ładowanie zakończone. Załadowano " + count + " rekordów"));
+                    Platform.runLater(() -> loadingDatabaseStatus.setValue("Ładowanie zakończone. Załadowano " + count + " wierszy."));
                     Platform.runLater(() -> progress.setValue(1.0f));
                 } catch (Exception e) {
                     Platform.runLater(() -> progress.setValue(0.0f));
@@ -357,7 +357,7 @@ public class MainView implements Initializable {
     public void writeResultsForSelectedSpeciesAction() {
         try {
             var result = viewModel.writeResultsForSelectedSpecies();
-            writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " rekordów do pliku " + result.OutputFileName);
+            writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " zdarzeń do pliku " + result.OutputFileName);
         } catch (Exception e) {
             writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -369,7 +369,7 @@ public class MainView implements Initializable {
     public void writeResultsForAllSpeciesAction() {
         try {
             var result = viewModel.writeResultsForAllSpecies();
-            writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " rekordów do pliku " + result.OutputFileName);
+            writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " zdarzeń do pliku " + result.OutputFileName);
         } catch (Exception e) {
             writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
             Alert a = new Alert(Alert.AlertType.ERROR);

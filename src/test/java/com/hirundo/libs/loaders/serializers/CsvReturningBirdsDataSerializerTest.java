@@ -52,8 +52,6 @@ public class CsvReturningBirdsDataSerializerTest {
         bird.LastDateSeen = LocalDateTime.of(1983, 4, 1, 0, 0);
         bird.FirstSeasonSeen = "Autumn";
         bird.LastSeasonSeen = "Spring";
-        bird.BeforeMigrationCatchDate = LocalDateTime.of(1982, 10, 12, 0, 0);
-        bird.AfterMigrationCatchDate = LocalDateTime.of(1983, 4, 1, 0, 0);
         bird.Sex = "M";
         bird.Age = "I";
 
@@ -63,8 +61,8 @@ public class CsvReturningBirdsDataSerializerTest {
         bird.FatPopulationLowerQuartile = new BigDecimal("6.123");
 
         bird.Weight = BigDecimal
-                .valueOf(50.500)
-                .setScale(3, RoundingMode.HALF_UP);
+                .valueOf(50.5)
+                .setScale(1, RoundingMode.HALF_UP);
         bird.WeightPopulationMean = BigDecimal
                 .valueOf(60.500)
                 .setScale(3, RoundingMode.HALF_UP);
@@ -136,12 +134,6 @@ public class CsvReturningBirdsDataSerializerTest {
         assertThat(headerLine, containsString("LastSeasonSeen"));
         assertThat(valuesDictionary.get("LastSeasonSeen"), is("Spring"));
 
-        assertThat(headerLine, containsString("BeforeMigrationCatchDate"));
-        assertThat(valuesDictionary.get("BeforeMigrationCatchDate"), is("1982-10-12"));
-
-        assertThat(headerLine, containsString("AfterMigrationCatchDate"));
-        assertThat(valuesDictionary.get("AfterMigrationCatchDate"), is("1983-04-01"));
-
         assertThat(headerLine, containsString("Sex"));
         assertThat(valuesDictionary.get("Sex"), is("M"));
 
@@ -158,7 +150,7 @@ public class CsvReturningBirdsDataSerializerTest {
         assertThat(valuesDictionary.get("FatPopulationLowerQuartile"), is("6.123"));
 
         assertThat(headerLine, containsString("Weight"));
-        assertThat(valuesDictionary.get("Weight"), is("50.500"));
+        assertThat(valuesDictionary.get("Weight"), is("50.5"));
         assertThat(headerLine, containsString("WeightPopulationMean"));
         assertThat(valuesDictionary.get("WeightPopulationMean"), is("60.500"));
         assertThat(headerLine, containsString("WeightPopulationStandardDeviation"));
