@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SummaryFilter implements ISummaryFilter {
     public boolean isForSummary(List<DbBirdRecord> records) {
-        if (records.size() < 2) {
+        if (2 > records.size()) {
             return false;
         }
 

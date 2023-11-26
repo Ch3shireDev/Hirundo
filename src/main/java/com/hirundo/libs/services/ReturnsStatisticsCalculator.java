@@ -1,7 +1,6 @@
 package com.hirundo.libs.services;
 
 import com.hirundo.libs.data_structures.BirdSex;
-import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 
@@ -11,39 +10,41 @@ import java.util.stream.Stream;
 public class ReturnsStatisticsCalculator {
     ReturningBirdsSummarizer returningBirdsSummarizer = new ReturningBirdsSummarizer();
 
-    public BirdSpeciesCalculatedData getCalculatedData(List<DbBirdRecord> data, BirdSpecies selectedSpecies, BirdSex selectedSex) throws Exception {
+    public BirdSpeciesCalculatedData getCalculatedData(List<DbBirdRecord> data, ReturnsStatisticsCalculatorParameters parameters) throws Exception {
 
-        if (null == selectedSpecies) {
+        if (null == parameters.selectedSpecies) {
             throw new Exception("Species not selected");
         }
-        if (BirdSex.Undefined == selectedSex) {
+
+        if (BirdSex.Undefined == parameters.selectedSex) {
             throw new Exception("Sex not selected");
         }
 
-        var speciesCode = selectedSpecies.speciesCode();
+        var speciesCode = parameters.selectedSpecies.speciesCode();
 
-        if (null == speciesCode || speciesCode.isBlank()) {
+        if (speciesCode == null || speciesCode.isBlank()) {
             throw new Exception("Species code not selected");
         }
 
-        var speciesNameEng = selectedSpecies.speciesNameEng();
-        var speciesNameLat = selectedSpecies.speciesNameLat();
-        var sexName = getSexName(selectedSex);
+        var speciesNameEng = parameters.selectedSpecies.speciesNameEng();
+        var speciesNameLat = parameters.selectedSpecies.speciesNameLat();
+        var sexName = getSexName(parameters.selectedSex);
 
         Stream<DbBirdRecord> filteredData = data
                 .stream()
                 .filter(b -> speciesCode
                         .equals(b.getSpeciesCode()));
 
-        if (BirdSex.Any != selectedSex) {
-            filteredData = filteredData.filter(b -> b.getSex() == selectedSex);
+        if (BirdSex.Any != parameters.selectedSex) {
+            filteredData = filteredData.filter(b -> b.getSex() == parameters.selectedSex);
         }
 
         var list = filteredData.toList();
 
         var recordsCount = list.size();
 
-        var returningBirds = returningBirdsSummarizer.getSummary(list);
+        var parameters2 = new ReturningBirdsSummarizerParameters();
+        var returningBirds = returningBirdsSummarizer.getSummary(list, parameters2);
 
         var returnsCount = returningBirds.size();
 

@@ -6,6 +6,7 @@ import com.hirundo.libs.loaders.BirdRecordDataLoaderBuilder;
 import com.hirundo.libs.mappers.ReturningBirdsDataCsvRecordMapper;
 import com.hirundo.libs.serializers.CsvSerializer;
 import com.hirundo.libs.services.ReturningBirdsSummarizer;
+import com.hirundo.libs.services.ReturningBirdsSummarizerParameters;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -34,7 +35,8 @@ public class Main {
 
             var joinedData = loader.loadData();
 
-            List<ReturningBirdsData> returningBirds = summarizer.getSummary(joinedData);
+            var parameters = new ReturningBirdsSummarizerParameters();
+            List<ReturningBirdsData> returningBirds = summarizer.getSummary(joinedData, parameters);
 
             ArrayList<CsvReturningBirdsData> list = mapper.getCsvReturningBirdsData(returningBirds);
             var result = csvWriter.serializeToCsv(list);

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class Application extends javafx.application.Application {
 
@@ -19,6 +20,7 @@ public class Application extends javafx.application.Application {
     }
 
     public static void main(final String[] args) {
+        Locale.setDefault(Locale.of("pl", "PL"));
         javafx.application.Application.launch();
     }
 

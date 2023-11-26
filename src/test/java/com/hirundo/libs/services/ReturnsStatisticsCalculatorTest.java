@@ -40,15 +40,16 @@ class ReturnsStatisticsCalculatorTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2),
-                           DbBirdRecord.from(record3),
-                           DbBirdRecord.from(record4));
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4));
 
         var sex = BirdSex.Male;
         var species = new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix");
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
+
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(2, calculatedData.recordsCount());
         assertEquals("AAA.BBB", calculatedData.speciesCode());
@@ -79,14 +80,15 @@ class ReturnsStatisticsCalculatorTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2),
-                           DbBirdRecord.from(record3),
-                           DbBirdRecord.from(record4));
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4));
         var sex = BirdSex.Any;
         var species = new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix");
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
+
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(3, calculatedData.recordsCount());
         assertEquals("AAA.BBB", calculatedData.speciesCode());
@@ -124,15 +126,15 @@ class ReturnsStatisticsCalculatorTest {
         record4.Seas = "S";
         record4.Age = "I";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2),
-                           DbBirdRecord.from(record3),
-                           DbBirdRecord.from(record4));
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4));
 
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(4, calculatedData.recordsCount());
         assertEquals("XXX.YYY", calculatedData.speciesCode());
@@ -155,13 +157,15 @@ class ReturnsStatisticsCalculatorTest {
         record2.Date2 = "2019-11-01";
         record2.Seas = "A";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2));
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2));
 
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(2, calculatedData.recordsCount());
         assertEquals("XXX.YYY", calculatedData.speciesCode());
@@ -192,15 +196,15 @@ class ReturnsStatisticsCalculatorTest {
         record3.Seas = "S";
         record3.Age = "I";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2),
-                           DbBirdRecord.from(record3)
-        );
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3));
 
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(3, calculatedData.recordsCount());
         assertEquals("XXX.YYY", calculatedData.speciesCode());
@@ -224,14 +228,15 @@ class ReturnsStatisticsCalculatorTest {
         record2.Seas = "A";
         record2.Age = "I";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2)
-        );
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2));
 
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(2, calculatedData.recordsCount());
         assertEquals("XXX.YYY", calculatedData.speciesCode());
@@ -255,14 +260,15 @@ class ReturnsStatisticsCalculatorTest {
         record2.Seas = "A";
         record2.Age = "I";
 
-        var data = List.of(DbBirdRecord.from(record1),
-                           DbBirdRecord.from(record2)
-        );
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2));
 
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(2, calculatedData.recordsCount());
         assertEquals("XXX.YYY", calculatedData.speciesCode());
@@ -311,19 +317,15 @@ class ReturnsStatisticsCalculatorTest {
         record6.Date2 = "2020-03-01";
         record6.Seas = "S";
 
-        var data = List.of(
-                DbBirdRecord.from(record1),
-                DbBirdRecord.from(record2),
-                DbBirdRecord.from(record3),
-                DbBirdRecord.from(record4),
-                DbBirdRecord.from(record5),
-                DbBirdRecord.from(record6)
-        );
+        var data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4), DbBirdRecord.from(record5), DbBirdRecord.from(record6));
 
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = species;
+        parameters.selectedSex = sex;
 
-        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, species, sex);
+        BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
 
         assertEquals(6, calculatedData.recordsCount());
         assertEquals("XXX.YYY", calculatedData.speciesCode());
@@ -335,8 +337,12 @@ class ReturnsStatisticsCalculatorTest {
     public void nullSpeciesCodeShouldNotReturnAnError() throws Exception {
         var record = new DbBirdRecord();
         var selectedSpecies = new BirdSpecies("ABC", "Aaabin Bbbir", "Aaarus Bbbirix");
+        var sex = BirdSex.Any;
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = selectedSpecies;
+        parameters.selectedSex = sex;
 
-        var result = calculator.getCalculatedData(List.of(record), selectedSpecies, BirdSex.Any);
+        var result = calculator.getCalculatedData(List.of(record), parameters);
 
         assertEquals(0, result.recordsCount());
     }

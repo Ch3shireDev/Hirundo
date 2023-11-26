@@ -11,10 +11,9 @@ import com.hirundo.libs.mappers.IReturningBirdsDataCsvRecordMapper;
 import com.hirundo.libs.mappers.ReturningBirdsDataCsvRecordMapper;
 import com.hirundo.libs.serializers.CsvSerializer;
 import com.hirundo.libs.serializers.ICsvSerializer;
-import com.hirundo.libs.services.IReturningBirdsSummarizer;
-import com.hirundo.libs.services.ReturningBirdsSummarizer;
-import com.hirundo.libs.services.ReturnsStatisticsCalculator;
+import com.hirundo.libs.services.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +32,9 @@ public class MainModel {
     private String selectedFileName;
     private String oldTableName;
     private String newTableName;
+    private LocalDate dateRangeStart;
+    private LocalDate dateRangeEnd;
+    private boolean isDateRangeSelected;
 
     public MainModel(IBirdRecordDataLoaderBuilder builder, IFileChooser fileChooser) {
         this.builder = builder;
@@ -49,7 +51,15 @@ public class MainModel {
     }
 
     public BirdSpeciesCalculatedData getCalculatedData() throws Exception {
-        return calculator.getCalculatedData(data, selectedSpecies, selectedSex);
+
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.selectedSpecies = selectedSpecies;
+        parameters.selectedSex = selectedSex;
+        parameters.dateRangeStart = dateRangeStart;
+        parameters.dateRangeEnd = dateRangeEnd;
+        parameters.isDateRangeSelected = isDateRangeSelected;
+
+        return calculator.getCalculatedData(data, parameters);
     }
 
     public String selectFileName() {
@@ -90,7 +100,8 @@ public class MainModel {
 
     public FileSaveResult writeResultsForSelectedSpecies() throws Exception {
         var filteredResults = speciesFilter.filterBySpecies(data, selectedSpecies);
-        var returningData = returningBirdsSummarizer.getSummary(filteredResults);
+        var parameters = new ReturningBirdsSummarizerParameters();
+        var returningData = returningBirdsSummarizer.getSummary(filteredResults, parameters);
         var mappedData = mapper.getCsvReturningBirdsData(returningData);
         var result = serializer.serializeToCsv(mappedData);
         var filename = fileChooser.selectFileToSave(String.format("%s.csv", selectedSpecies.speciesCode().replace(".", "-")));
@@ -102,7 +113,8 @@ public class MainModel {
     }
 
     public FileSaveResult writeResultsForAllSpecies() throws Exception {
-        var returningData = returningBirdsSummarizer.getSummary(data);
+        var parameters = new ReturningBirdsSummarizerParameters();
+        var returningData = returningBirdsSummarizer.getSummary(data, parameters);
         var mappedData = mapper.getCsvReturningBirdsData(returningData);
         var result = serializer.serializeToCsv(mappedData);
         var filename = fileChooser.selectFileToSave("all-species.csv");
@@ -111,6 +123,18 @@ public class MainModel {
         fileSaveResult.OutputFileName = filename;
         fileSaveResult.RecordsCount = mappedData.size();
         return fileSaveResult;
+    }
+
+    public void setDateRangeStart(LocalDate dateRangeStart) {
+        this.dateRangeStart = dateRangeStart;
+    }
+
+    public void setDateRangeEnd(LocalDate dateRangeEnd) {
+        this.dateRangeEnd = dateRangeEnd;
+    }
+
+    public void setIsDateRangeSelected(boolean selected) {
+    this.isDateRangeSelected = selected;
     }
 }
 

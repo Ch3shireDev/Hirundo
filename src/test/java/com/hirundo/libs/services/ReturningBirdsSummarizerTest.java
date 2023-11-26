@@ -34,7 +34,8 @@ public class ReturningBirdsSummarizerTest {
         var r1 = new DbBirdRecord();
         r1.ring = "123";
 
-        var result = summarizer.getSummary(List.of(r1));
+        var parameters = new ReturningBirdsSummarizerParameters();
+        var result = summarizer.getSummary(List.of(r1), parameters);
 
         Mockito
                 .verify(mockSummaryFilter, Mockito.times(1))

@@ -23,7 +23,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         this.populationFilter = populationFilter;
     }
 
-    public List<ReturningBirdsData> getSummary(List<DbBirdRecord> records) {
+    public List<ReturningBirdsData> getSummary(List<DbBirdRecord> records, ReturningBirdsSummarizerParameters parameters) {
         List<ReturningBirdsData> result = new ArrayList<>();
 
         Map<String, List<DbBirdRecord>> ringNumbers = getRingNumbers(records);

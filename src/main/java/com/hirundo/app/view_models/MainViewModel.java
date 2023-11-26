@@ -6,6 +6,7 @@ import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.BirdSpecies;
 import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class MainViewModel {
@@ -57,11 +58,21 @@ public class MainViewModel {
 
     public void setSpeciesSelected(BirdSpecies species) {
         model.setSpeciesSelected(species);
-
     }
 
     public void setSexSelected(BirdSex sex) {
         model.setSexSelected(sex);
     }
 
+    public void setStartDate(LocalDate startDate) {
+        model.setDateRangeStart(startDate);
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        model.setDateRangeEnd(endDate);
+    }
+
+    public void setIsDateRangeSelected(boolean selected) {
+        model.setIsDateRangeSelected(selected);
+    }
 }

@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,13 +19,12 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
     public ObservableList<BirdSpecies> speciesList;
     public ObservableList<BirdSex> sexList;
-    @FXML
-    public ComboBox<BirdSex> sexComboBox;
     public StringProperty fileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
     public StringProperty oldTableName = new SimpleStringProperty("Tab_Ring_Podab");
     public StringProperty newTableName = new SimpleStringProperty("AB 2017_18_19_20_21S");
@@ -38,7 +38,10 @@ public class MainView implements Initializable {
     public BooleanProperty isWindowDisabled = new SimpleBooleanProperty(false);
     public BooleanProperty isResultsDisabled = new SimpleBooleanProperty(true);
     public BooleanProperty isWriteResultsDisabled = new SimpleBooleanProperty(true);
-    public BooleanProperty isSpeciesSelectDisabled = new SimpleBooleanProperty(true);
+    public BooleanProperty isDateDisabled = new SimpleBooleanProperty(true);
+    public BooleanProperty isSpeciesSelectDisabled = new SimpleBooleanProperty(false);
+    public BooleanProperty isSexDisabled = new SimpleBooleanProperty(true);
+    public BooleanProperty isSetDatesCheckBoxDisabled = new SimpleBooleanProperty(false);
     public ObjectProperty<BirdSpecies> selectedSpecies = new SimpleObjectProperty<>();
     public ObjectProperty<BirdSex> selectedSex = new SimpleObjectProperty<>(BirdSex.Female);
     public StringProperty selectedSexName = new SimpleStringProperty();
@@ -47,6 +50,8 @@ public class MainView implements Initializable {
     MainViewModel viewModel;
     BirdSpeciesStringConverter speciesConverter = new BirdSpeciesStringConverter();
     BirdSexStringConverter sexConverter = new BirdSexStringConverter();
+    @FXML
+    public ComboBox<BirdSex> selectSexComboBox;
     @FXML
     private ProgressBar progressBar;
     @FXML
@@ -80,11 +85,25 @@ public class MainView implements Initializable {
     @FXML
     private Label sexLabel;
     @FXML
+    private Label selectSexLabel;
+    @FXML
     private TextField oldTableNameTextField;
     @FXML
     private TextField newTableNameTextField;
     @FXML
     private Label fileNameLabel;
+    @FXML
+    private CheckBox setDatesCheckBox;
+    @FXML
+    private Label startDateLabel;
+    @FXML
+    private DatePicker startDatePicker;
+    @FXML
+    private Label endDateLabel;
+    @FXML
+    private DatePicker endDatePicker;
+    @FXML
+    private Label dateRangeLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,14 +114,13 @@ public class MainView implements Initializable {
                                      .selectedItemProperty());
 
         sexList = FXCollections.observableArrayList(BirdSex.Any, BirdSex.Male, BirdSex.Female);
-        sexComboBox.setConverter(sexConverter);
-        selectedSex.bind(sexComboBox
+        selectSexComboBox.setConverter(sexConverter);
+        selectedSex.bind(selectSexComboBox
                                  .getSelectionModel()
                                  .selectedItemProperty());
-        sexComboBox
+        selectSexComboBox
                 .getSelectionModel()
                 .selectFirst();
-
         mainView
                 .disableProperty()
                 .bind(isWindowDisabled);
@@ -118,13 +136,18 @@ public class MainView implements Initializable {
         dataLoadingTabNextButton
                 .disableProperty()
                 .bind(isSpeciesSelectDisabled);
-
         progressBar
                 .progressProperty()
                 .bind(progress);
         sexLabel
                 .textProperty()
                 .bind(selectedSexName);
+        selectSexLabel
+                .disableProperty()
+                .bind(isSexDisabled);
+        selectSexComboBox
+                .disableProperty()
+                .bind(isSexDisabled);
         writingResultsLabel
                 .textProperty()
                 .bind(writingResultsText);
@@ -146,17 +169,38 @@ public class MainView implements Initializable {
         speciesNameLatinLabel
                 .textProperty()
                 .bind(speciesNameLatin);
-
         oldTableNameTextField
                 .textProperty()
                 .bindBidirectional(oldTableName);
         newTableNameTextField
                 .textProperty()
                 .bindBidirectional(newTableName);
-
         fileNameLabel
                 .textProperty()
                 .bind(fileName);
+        setDatesCheckBox
+                .disableProperty()
+                .bind(isSetDatesCheckBoxDisabled);
+
+        startDateLabel
+                .disableProperty()
+                .bind(isDateDisabled);
+
+        startDatePicker
+                .disableProperty()
+                .bind(isDateDisabled);
+
+        endDateLabel
+                .disableProperty()
+                .bind(isDateDisabled);
+
+        endDatePicker
+                .disableProperty()
+                .bind(isDateDisabled);
+
+        dateRangeLabel
+                .disableProperty()
+                .bind(isDateDisabled);
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());
@@ -172,6 +216,14 @@ public class MainView implements Initializable {
 
     public Boolean getIsSpeciesSelectDisabled() {
         return isSpeciesSelectDisabled.getValue();
+    }
+
+    public Boolean getIsSexDisabled() {
+        return isSexDisabled.getValue();
+    }
+
+    public Boolean getIsSetDatesCheckBoxDisabled() {
+        return isSetDatesCheckBoxDisabled.getValue();
     }
 
     public String getSelectedSexName() {
@@ -275,7 +327,10 @@ public class MainView implements Initializable {
                         this.speciesName.setValue(selectedSpecies
                                                           .getValue()
                                                           .speciesNameEng());
+
                         this.isSpeciesSelectDisabled.setValue(false);
+                        this.isSexDisabled.setValue(false);
+                        this.isSetDatesCheckBoxDisabled.setValue(false);
                     });
                 }
             }).start();
@@ -314,7 +369,7 @@ public class MainView implements Initializable {
                     .getSelectionModel()
                     .getSelectedItem();
             viewModel.setSpeciesSelected(species);
-
+            isSexDisabled.setValue(null == species);
             getCalculatedData();
         } catch (Exception e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -323,9 +378,13 @@ public class MainView implements Initializable {
         }
     }
 
+    public Boolean getIsDateDisabled() {
+        return isDateDisabled.getValue();
+    }
+
     public void sexComboBoxAction() {
         try {
-            var sex = sexComboBox
+            var sex = selectSexComboBox
                     .getSelectionModel()
                     .getSelectedItem();
             viewModel.setSexSelected(sex);
@@ -384,6 +443,23 @@ public class MainView implements Initializable {
 
     public void updateNewTableName() {
         viewModel.setNewTableName(newTableName.getValue());
+    }
+
+    public void setDatesCheckBoxAction(ActionEvent actionEvent) {
+        isDateDisabled.setValue(!setDatesCheckBox.isSelected());
+        viewModel.setIsDateRangeSelected(setDatesCheckBox.isSelected());
+    }
+
+    public void datePickerAction(ActionEvent actionEvent) {
+
+    }
+
+    public void setStartDate(LocalDate startDate){
+        viewModel.setStartDate(startDate);
+    }
+
+    public void setEndDate(LocalDate endDate){
+        viewModel.setEndDate(endDate);
     }
 }
 

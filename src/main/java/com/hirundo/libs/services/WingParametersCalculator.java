@@ -72,9 +72,9 @@ public class WingParametersCalculator implements IWingParametersCalculator {
         if (null == record.getD7()) return true;
         if (null == record.getD8()) return true;
         if (null == record.getWing()) return true;
-        return record
+        return 0 == record
                 .getWing()
-                .compareTo(BigDecimal.ZERO) == 0;
+                .compareTo(BigDecimal.ZERO);
     }
 
 }

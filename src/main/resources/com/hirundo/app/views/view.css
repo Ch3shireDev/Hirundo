@@ -44,3 +44,9 @@ ProgressBar {
 .left, .left HBox {
     -fx-alignment: center-left;
 }
+
+.date-picker .spinner {
+    -fx-opacity: 0;
+    -fx-pref-width: 0px;
+    -fx-max-width: 0px;
+}

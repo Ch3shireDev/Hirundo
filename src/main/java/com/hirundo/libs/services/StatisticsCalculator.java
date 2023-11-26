@@ -14,11 +14,11 @@ public class StatisticsCalculator implements IStatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return null;
+        if (0 == values.length) return null;
 
         Arrays.sort(values);
 
-        if (values.length % 2 == 0) return (values[values.length / 2].add(values[values.length / 2 - 1])).divide(BigDecimal.valueOf(2), 3, RoundingMode.DOWN);
+        if (0 == values.length % 2) return (values[values.length / 2].add(values[values.length / 2 - 1])).divide(BigDecimal.valueOf(2), 3, RoundingMode.DOWN);
         else return values[values.length / 2];
     }
 
@@ -29,7 +29,7 @@ public class StatisticsCalculator implements IStatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return null;
+        if (0 == values.length) return null;
 
         var mean = Arrays
                 .stream(values)
@@ -52,7 +52,7 @@ public class StatisticsCalculator implements IStatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return null;
+        if (0 == values.length) return null;
 
         return Arrays
                 .stream(values)
@@ -66,13 +66,13 @@ public class StatisticsCalculator implements IStatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return null;
+        if (0 == values.length) return null;
 
         var median = calculateMedian(values);
 
         var lowerValues = Arrays
                 .stream(values)
-                .filter(value -> value.compareTo(median) < 0)
+                .filter(value -> 0 > value.compareTo(median))
                 .toArray(BigDecimal[]::new);
 
         return calculateMedian(lowerValues);
@@ -84,13 +84,13 @@ public class StatisticsCalculator implements IStatisticsCalculator {
                 .filter(Objects::nonNull)
                 .toArray(BigDecimal[]::new);
 
-        if (values.length == 0) return null;
+        if (0 == values.length) return null;
 
         var median = calculateMedian(values);
 
         var upperValues = Arrays
                 .stream(values)
-                .filter(value -> value.compareTo(median) > 0)
+                .filter(value -> 0 < value.compareTo(median))
                 .toArray(BigDecimal[]::new);
 
         return calculateMedian(upperValues);
