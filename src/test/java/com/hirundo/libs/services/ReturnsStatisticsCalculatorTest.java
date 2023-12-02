@@ -46,7 +46,7 @@ class ReturnsStatisticsCalculatorTest {
         var species = new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix");
 
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -85,7 +85,7 @@ class ReturnsStatisticsCalculatorTest {
         var species = new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix");
 
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -131,7 +131,7 @@ class ReturnsStatisticsCalculatorTest {
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -162,7 +162,7 @@ class ReturnsStatisticsCalculatorTest {
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -201,7 +201,7 @@ class ReturnsStatisticsCalculatorTest {
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -233,7 +233,7 @@ class ReturnsStatisticsCalculatorTest {
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -265,7 +265,7 @@ class ReturnsStatisticsCalculatorTest {
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -322,7 +322,7 @@ class ReturnsStatisticsCalculatorTest {
         var sex = BirdSex.Any;
         var species = new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix");
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = species;
+        parameters.species = species;
         parameters.selectedSex = sex;
 
         BirdSpeciesCalculatedData calculatedData = calculator.getCalculatedData(data, parameters);
@@ -339,7 +339,7 @@ class ReturnsStatisticsCalculatorTest {
         var selectedSpecies = new BirdSpecies("ABC", "Aaabin Bbbir", "Aaarus Bbbirix");
         var sex = BirdSex.Any;
         var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = selectedSpecies;
+        parameters.species = selectedSpecies;
         parameters.selectedSex = sex;
 
         var result = calculator.getCalculatedData(List.of(record), parameters);

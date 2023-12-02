@@ -1,5 +1,6 @@
 package com.hirundo.libs.services;
 
+import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.ReturningBirdsData;
 
@@ -25,19 +26,34 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
 
     public List<ReturningBirdsData> getSummary(List<DbBirdRecord> records, ReturningBirdsSummarizerParameters parameters) {
         List<ReturningBirdsData> result = new ArrayList<>();
-
         Map<String, List<DbBirdRecord>> ringNumbers = getRingNumbers(records);
 
         for (var ringNumber : ringNumbers.keySet()) {
 
             var ringRecords = ringNumbers.get(ringNumber);
-            if (!summaryFilter.isForSummary(ringRecords)) continue;
+            if (!summaryFilter.isReturningBird(ringRecords)) continue;
+
+            var filteredRecords = getFilteredRecords(records, parameters);
+
             DbBirdRecord firstCatchRecord = getFirstRecord(ringRecords);
-            var population = populationFilter.getPopulation(firstCatchRecord, records);
+            var population = populationFilter.getPopulation(firstCatchRecord, filteredRecords);
             ReturningBirdsData returningBirds = resolver.getReturningBirdsData(ringRecords, population);
             result.add(returningBirds);
         }
+
         return result;
+    }
+
+    private List<DbBirdRecord> getFilteredRecords(List<DbBirdRecord> ringRecords, ReturningBirdsSummarizerParameters parameters) {
+
+        if (parameters.sex == BirdSex.Male || parameters.sex == BirdSex.Female) {
+            ringRecords = ringRecords
+                    .stream()
+                    .filter(r -> r.sex == parameters.sex)
+                    .collect(Collectors.toList());
+        }
+
+        return ringRecords;
     }
 
     private Map<String, List<DbBirdRecord>> getRingNumbers(List<DbBirdRecord> records) {
@@ -58,13 +74,6 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
                 .stream()
                 .min(Comparator.comparing(DbBirdRecord::getDate))
                 .orElse(sortedRecords.get(0));
-    }
-
-    private List<DbBirdRecord> getSortedRecords(List<DbBirdRecord> ringRecords) {
-        return ringRecords
-                .stream()
-                .sorted(Comparator.comparing(DbBirdRecord::getDate))
-                .toList();
     }
 }
 

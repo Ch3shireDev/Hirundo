@@ -100,7 +100,8 @@
                                    GridPane.rowIndex="0"
                                    GridPane.columnIndex="0"/>
 
-                            <ComboBox GridPane.rowIndex="0" GridPane.columnIndex="1"
+                            <ComboBox GridPane.rowIndex="0"
+                                      GridPane.columnIndex="1"
                                       fx:id="speciesComboBox"
                                       items="${controller.speciesList}"
                                       onAction="#speciesComboBoxAction"
@@ -110,8 +111,8 @@
                                    fx:id="selectSexLabel"
                                    GridPane.rowIndex="1"
                                    GridPane.columnIndex="0"
-                                   disable="${controller.isSexDisabled}"
-                            />
+                                   disable="${controller.isSexDisabled}"/>
+
                             <ComboBox
                                     GridPane.rowIndex="1"
                                     GridPane.columnIndex="1"
@@ -150,11 +151,12 @@
                                     GridPane.halignment="RIGHT"
                                     text="Data początkowa:"
                                     disable="${controller.isDateDisabled}"/>
+
                             <DatePicker
                                     fx:id="startDatePicker"
                                     GridPane.columnIndex="1"
                                     GridPane.rowIndex="1"
-                                    onAction="#datePickerAction"
+                                    onAction="#startDatePickerAction"
                                     disable="${controller.isDateDisabled}"/>
                             <Label
                                     fx:id="endDateLabel"
@@ -167,7 +169,7 @@
                                     fx:id="endDatePicker"
                                     GridPane.columnIndex="1"
                                     GridPane.rowIndex="2"
-                                    onAction="#datePickerAction"
+                                    onAction="#endDatePickerAction"
                                     disable="${controller.isDateDisabled}"/>
                             <Label
                                     fx:id="dateRangeLabel"
@@ -176,7 +178,7 @@
                                     GridPane.columnSpan="2"
                                     GridPane.halignment="CENTER"
                                     disable="${controller.isDateDisabled}"
-                                    text="(rok jest ignorowany - wybierany jest odcinek czasu w sezonie)"/>
+                                    text="(rok jest ignorowany - wybierany jest przedział MM.DD - MM.DD w każdym sezonie)"/>
                             <columnConstraints>
                                 <ColumnConstraints percentWidth="50.0"/>
                                 <ColumnConstraints percentWidth="50.0"/>
@@ -261,7 +263,7 @@
             <Tab closable="false" text="O programie">
                 <AnchorPane>
                     <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <Label text="Hirundo ver. 1.5.0"/>
+                        <Label text="Hirundo ver. 1.6.0"/>
                         <Label text="Data wydania: 2023-10-25"/>
                         <Label text="Autor: Igor Nowicki (igor.nowicki.business@gmail.com)"/>
                         <Label text="Program do analizy ponownych schwytań ptaków w czasie migracji."/>

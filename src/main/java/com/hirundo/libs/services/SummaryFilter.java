@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SummaryFilter implements ISummaryFilter {
-    public boolean isForSummary(List<DbBirdRecord> records) {
+    public boolean isReturningBird(List<DbBirdRecord> records) {
         if (2 > records.size()) {
             return false;
         }

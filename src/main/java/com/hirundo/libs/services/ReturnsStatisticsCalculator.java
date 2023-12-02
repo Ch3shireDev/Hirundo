@@ -12,7 +12,7 @@ public class ReturnsStatisticsCalculator {
 
     public BirdSpeciesCalculatedData getCalculatedData(List<DbBirdRecord> data, ReturnsStatisticsCalculatorParameters parameters) throws Exception {
 
-        if (null == parameters.selectedSpecies) {
+        if (null == parameters.species) {
             throw new Exception("Species not selected");
         }
 
@@ -20,14 +20,14 @@ public class ReturnsStatisticsCalculator {
             throw new Exception("Sex not selected");
         }
 
-        var speciesCode = parameters.selectedSpecies.speciesCode();
+        var speciesCode = parameters.species.speciesCode();
 
-        if (speciesCode == null || speciesCode.isBlank()) {
+        if (null == speciesCode || speciesCode.isBlank()) {
             throw new Exception("Species code not selected");
         }
 
-        var speciesNameEng = parameters.selectedSpecies.speciesNameEng();
-        var speciesNameLat = parameters.selectedSpecies.speciesNameLat();
+        var speciesNameEng = parameters.species.speciesNameEng();
+        var speciesNameLat = parameters.species.speciesNameLat();
         var sexName = getSexName(parameters.selectedSex);
 
         Stream<DbBirdRecord> filteredData = data

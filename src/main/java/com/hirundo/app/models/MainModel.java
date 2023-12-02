@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainModel {
+    public List<DbBirdRecord> data = new ArrayList<>();
     private final IBirdRecordDataLoaderBuilder builder;
     public IFileChooser fileChooser;
     public ISpeciesFilter speciesFilter = new SpeciesFilter();
@@ -25,7 +26,6 @@ public class MainModel {
     public IReturningBirdsDataCsvRecordMapper mapper = new ReturningBirdsDataCsvRecordMapper();
     public ICsvSerializer<CsvReturningBirdsData> serializer = new CsvSerializer<>(CsvReturningBirdsData.class);
     public ICsvFileWriter csvFileWriter = new CsvFileWriter();
-    public List<DbBirdRecord> data = new ArrayList<>();
     BirdSpecies selectedSpecies;
     BirdSex selectedSex = BirdSex.Any;
     ReturnsStatisticsCalculator calculator = new ReturnsStatisticsCalculator();
@@ -51,14 +51,7 @@ public class MainModel {
     }
 
     public BirdSpeciesCalculatedData getCalculatedData() throws Exception {
-
-        var parameters = new ReturnsStatisticsCalculatorParameters();
-        parameters.selectedSpecies = selectedSpecies;
-        parameters.selectedSex = selectedSex;
-        parameters.dateRangeStart = dateRangeStart;
-        parameters.dateRangeEnd = dateRangeEnd;
-        parameters.isDateRangeSelected = isDateRangeSelected;
-
+        var parameters = getReturnsStatisticsCalculatorParameters();
         return calculator.getCalculatedData(data, parameters);
     }
 
@@ -99,8 +92,8 @@ public class MainModel {
     }
 
     public FileSaveResult writeResultsForSelectedSpecies() throws Exception {
+        var parameters = getReturningBirdsSummarizerParameters();
         var filteredResults = speciesFilter.filterBySpecies(data, selectedSpecies);
-        var parameters = new ReturningBirdsSummarizerParameters();
         var returningData = returningBirdsSummarizer.getSummary(filteredResults, parameters);
         var mappedData = mapper.getCsvReturningBirdsData(returningData);
         var result = serializer.serializeToCsv(mappedData);
@@ -112,8 +105,9 @@ public class MainModel {
         return fileSaveResult;
     }
 
+
     public FileSaveResult writeResultsForAllSpecies() throws Exception {
-        var parameters = new ReturningBirdsSummarizerParameters();
+        var parameters = getReturningBirdsSummarizerParameters();
         var returningData = returningBirdsSummarizer.getSummary(data, parameters);
         var mappedData = mapper.getCsvReturningBirdsData(returningData);
         var result = serializer.serializeToCsv(mappedData);
@@ -135,6 +129,26 @@ public class MainModel {
 
     public void setIsDateRangeSelected(boolean selected) {
     this.isDateRangeSelected = selected;
+    }
+
+    private ReturningBirdsSummarizerParameters getReturningBirdsSummarizerParameters() {
+        var parameters = new ReturningBirdsSummarizerParameters();
+        parameters.useDateRange = isDateRangeSelected;
+        parameters.dateRangeStart = dateRangeStart;
+        parameters.dateRangeEnd = dateRangeEnd;
+        parameters.sex = selectedSex;
+        parameters.speciesCode = selectedSpecies.speciesCode();
+        return parameters;
+    }
+
+    private ReturnsStatisticsCalculatorParameters getReturnsStatisticsCalculatorParameters() {
+        var parameters = new ReturnsStatisticsCalculatorParameters();
+        parameters.species = selectedSpecies;
+        parameters.selectedSex = selectedSex;
+        parameters.dateRangeStart = dateRangeStart;
+        parameters.dateRangeEnd = dateRangeEnd;
+        parameters.isDateRangeSelected = isDateRangeSelected;
+        return parameters;
     }
 }
 

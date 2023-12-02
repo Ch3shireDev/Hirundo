@@ -1,5 +1,6 @@
 package com.hirundo.libs.services;
 
+import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,23 +13,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReturningBirdsSummarizerTest {
     ReturningBirdsSummarizer summarizer;
-    private ISummaryFilter mockSummaryFilter;
-    private IPopulationFilter mockPopulationFilter;
+    private ISummaryFilter summaryFilter;
+    private IPopulationFilter populationFilter;
 
     @BeforeEach
     void setUp() {
-        mockSummaryFilter = Mockito.mock(ISummaryFilter.class);
-        mockPopulationFilter = Mockito.mock(IPopulationFilter.class);
-        summarizer = new ReturningBirdsSummarizer(mockSummaryFilter, mockPopulationFilter);
+        summaryFilter = Mockito.mock(ISummaryFilter.class);
+        populationFilter = Mockito.mock(IPopulationFilter.class);
+        summarizer = new ReturningBirdsSummarizer(summaryFilter, populationFilter);
     }
 
     @Test
     public void populationShouldBeGivenInResults() {
         Mockito
-                .when(mockSummaryFilter.isForSummary(ArgumentMatchers.anyList()))
+                .when(summaryFilter.isReturningBird(ArgumentMatchers.anyList()))
                 .thenReturn(true);
         Mockito
-                .when(mockPopulationFilter.getPopulation(ArgumentMatchers.any(DbBirdRecord.class), ArgumentMatchers.anyList()))
+                .when(populationFilter.getPopulation(ArgumentMatchers.any(DbBirdRecord.class), ArgumentMatchers.anyList()))
                 .thenReturn(List.of(new DbBirdRecord(), new DbBirdRecord(), new DbBirdRecord()));
 
         var r1 = new DbBirdRecord();
@@ -38,10 +39,59 @@ public class ReturningBirdsSummarizerTest {
         var result = summarizer.getSummary(List.of(r1), parameters);
 
         Mockito
-                .verify(mockSummaryFilter, Mockito.times(1))
-                .isForSummary(ArgumentMatchers.anyList());
+                .verify(summaryFilter, Mockito.times(1))
+                .isReturningBird(ArgumentMatchers.anyList());
 
         assertEquals(1, result.size());
         assertEquals(3, result.get(0).Population);
     }
+
+    @Test
+    public void givenAnySex_whenFiltered_thenPopulationHasBothSexes(){
+        Mockito
+                .when(summaryFilter.isReturningBird(ArgumentMatchers.anyList()))
+                .thenReturn(true);
+
+        var r1 = new DbBirdRecord();
+        r1.ring = "123";
+        r1.sex = BirdSex.Male;
+
+        var r2 = new DbBirdRecord();
+        r2.ring = "345";
+        r2.sex = BirdSex.Female;
+
+        var parameters = new ReturningBirdsSummarizerParameters();
+        parameters.sex = BirdSex.Any;
+
+        summarizer.getSummary(List.of(r1, r2), parameters);
+
+        Mockito
+                .verify(populationFilter, Mockito.atLeastOnce())
+                .getPopulation(ArgumentMatchers.any(), ArgumentMatchers.eq(List.of(r1, r2)));
+    }
+
+    @Test
+    public void givenMaleInParameters_whenFiltered_thenPopulationHasMaleSex(){
+        Mockito
+                .when(summaryFilter.isReturningBird(ArgumentMatchers.anyList()))
+                .thenReturn(true);
+
+        var r1 = new DbBirdRecord();
+        r1.ring = "123";
+        r1.sex = BirdSex.Male;
+
+        var r2 = new DbBirdRecord();
+        r2.ring = "345";
+        r2.sex = BirdSex.Female;
+
+        var parameters = new ReturningBirdsSummarizerParameters();
+        parameters.sex = BirdSex.Male;
+
+        summarizer.getSummary(List.of(r1, r2), parameters);
+
+        Mockito
+                .verify(populationFilter, Mockito.atLeastOnce())
+                .getPopulation(ArgumentMatchers.any(), ArgumentMatchers.eq(List.of(r1)));
+    }
+
 }

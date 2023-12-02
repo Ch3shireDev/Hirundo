@@ -6,7 +6,7 @@ import com.hirundo.libs.data_structures.BirdSpecies;
 import java.time.LocalDate;
 
 public class ReturnsStatisticsCalculatorParameters {
-    public BirdSpecies selectedSpecies;
+    public BirdSpecies species;
     public BirdSex selectedSex;
     public Boolean isDateRangeSelected;
     public LocalDate dateRangeStart;

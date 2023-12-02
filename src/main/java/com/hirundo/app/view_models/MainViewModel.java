@@ -9,6 +9,7 @@ import com.hirundo.libs.data_structures.BirdSpeciesCalculatedData;
 import java.time.LocalDate;
 import java.util.List;
 
+// TODO: Pozbyć się ViewModel, w ewidentny sposób nie jest potrzebny.
 public class MainViewModel {
     private final MainModel model;
 
@@ -37,23 +38,23 @@ public class MainViewModel {
     }
 
     public void setNewTableName(String value) {
-        this.model.setNewTableName(value);
+        model.setNewTableName(value);
     }
 
     public void setOldTableName(String value) {
-        this.model.setOldTableName(value);
+        model.setOldTableName(value);
     }
 
     public List<BirdSpecies> getSpeciesList() {
-        return this.model.getSpeciesList();
+        return model.getSpeciesList();
     }
 
     public BirdSpeciesCalculatedData getCalculatedData() throws Exception {
-        return this.model.getCalculatedData();
+        return model.getCalculatedData();
     }
 
     public Integer getRecordsCount() {
-        return this.model.getRecordsCount();
+        return model.getRecordsCount();
     }
 
     public void setSpeciesSelected(BirdSpecies species) {
@@ -64,15 +65,15 @@ public class MainViewModel {
         model.setSexSelected(sex);
     }
 
+    public void setIsDateRangeSelected(boolean selected) {
+        model.setIsDateRangeSelected(selected);
+    }
+
     public void setStartDate(LocalDate startDate) {
         model.setDateRangeStart(startDate);
     }
 
     public void setEndDate(LocalDate endDate) {
         model.setDateRangeEnd(endDate);
-    }
-
-    public void setIsDateRangeSelected(boolean selected) {
-        model.setIsDateRangeSelected(selected);
     }
 }

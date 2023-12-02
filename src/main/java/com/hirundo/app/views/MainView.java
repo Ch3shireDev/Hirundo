@@ -9,7 +9,6 @@ import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,11 +46,13 @@ public class MainView implements Initializable {
     public StringProperty selectedSexName = new SimpleStringProperty();
     public StringProperty writingResultsText = new SimpleStringProperty();
     public StringProperty loadingDatabaseStatus = new SimpleStringProperty();
+    public ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
+    public ObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
     MainViewModel viewModel;
     BirdSpeciesStringConverter speciesConverter = new BirdSpeciesStringConverter();
     BirdSexStringConverter sexConverter = new BirdSexStringConverter();
     @FXML
-    public ComboBox<BirdSex> selectSexComboBox;
+    private ComboBox<BirdSex> selectSexComboBox;
     @FXML
     private ProgressBar progressBar;
     @FXML
@@ -109,75 +110,99 @@ public class MainView implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         speciesList = FXCollections.observableArrayList();
         speciesComboBox.setConverter(speciesConverter);
+
         selectedSpecies.bind(speciesComboBox
                                      .getSelectionModel()
                                      .selectedItemProperty());
 
         sexList = FXCollections.observableArrayList(BirdSex.Any, BirdSex.Male, BirdSex.Female);
+
         selectSexComboBox.setConverter(sexConverter);
+
         selectedSex.bind(selectSexComboBox
                                  .getSelectionModel()
                                  .selectedItemProperty());
+
         selectSexComboBox
                 .getSelectionModel()
                 .selectFirst();
+
         mainView
                 .disableProperty()
                 .bind(isWindowDisabled);
+
         resultsPane
                 .disableProperty()
                 .bind(isResultsDisabled);
+
         writeResultsPane
                 .disableProperty()
                 .bind(isWriteResultsDisabled);
+
         dataProcessingTab
                 .disableProperty()
                 .bind(isSpeciesSelectDisabled);
+
         dataLoadingTabNextButton
                 .disableProperty()
                 .bind(isSpeciesSelectDisabled);
+
         progressBar
                 .progressProperty()
                 .bind(progress);
+
         sexLabel
                 .textProperty()
                 .bind(selectedSexName);
+
         selectSexLabel
                 .disableProperty()
                 .bind(isSexDisabled);
+
         selectSexComboBox
                 .disableProperty()
                 .bind(isSexDisabled);
+
         writingResultsLabel
                 .textProperty()
                 .bind(writingResultsText);
+
         loadingDatabaseStatusLabel
                 .textProperty()
                 .bind(loadingDatabaseStatus);
+
         speciesCodeLabel
                 .textProperty()
                 .bind(speciesCode);
+
         recordsCountLabel
                 .textProperty()
                 .bind(recordsCount);
+
         returnsCountLabel
                 .textProperty()
                 .bind(returnsCount);
+
         speciesNameEngLabel
                 .textProperty()
                 .bind(speciesNameEng);
+
         speciesNameLatinLabel
                 .textProperty()
                 .bind(speciesNameLatin);
+
         oldTableNameTextField
                 .textProperty()
                 .bindBidirectional(oldTableName);
+
         newTableNameTextField
                 .textProperty()
                 .bindBidirectional(newTableName);
+
         fileNameLabel
                 .textProperty()
                 .bind(fileName);
+
         setDatesCheckBox
                 .disableProperty()
                 .bind(isSetDatesCheckBoxDisabled);
@@ -201,6 +226,9 @@ public class MainView implements Initializable {
         dateRangeLabel
                 .disableProperty()
                 .bind(isDateDisabled);
+
+        startDate.bind(startDatePicker.valueProperty());
+        endDate.bind(endDatePicker.valueProperty());
 
         viewModel.setOldTableName(oldTableName.getValue());
         viewModel.setNewTableName(newTableName.getValue());
@@ -403,12 +431,8 @@ public class MainView implements Initializable {
         speciesNameEng.setValue(calculatedData.speciesNameEng());
         speciesNameLatin.setValue(calculatedData.speciesNameLat());
         selectedSexName.setValue(calculatedData.selectedSexName());
-        recordsCount.setValue(calculatedData
-                                      .recordsCount()
-                                      .toString());
-        returnsCount.setValue(calculatedData
-                                      .returnsCount()
-                                      .toString());
+        recordsCount.setValue(calculatedData.recordsCount().toString());
+        returnsCount.setValue(calculatedData.returnsCount().toString());
         isResultsDisabled.setValue(false);
         isWriteResultsDisabled.setValue(false);
     }
@@ -445,21 +469,33 @@ public class MainView implements Initializable {
         viewModel.setNewTableName(newTableName.getValue());
     }
 
-    public void setDatesCheckBoxAction(ActionEvent actionEvent) {
+    public void setDatesCheckBoxAction() {
         isDateDisabled.setValue(!setDatesCheckBox.isSelected());
         viewModel.setIsDateRangeSelected(setDatesCheckBox.isSelected());
     }
 
-    public void datePickerAction(ActionEvent actionEvent) {
-
+    public void startDatePickerAction() {
+        viewModel.setStartDate(startDatePicker.getValue());
+        try {
+            getCalculatedData();
+        }
+        catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
     }
 
-    public void setStartDate(LocalDate startDate){
-        viewModel.setStartDate(startDate);
-    }
-
-    public void setEndDate(LocalDate endDate){
-        viewModel.setEndDate(endDate);
+    public void endDatePickerAction() {
+        viewModel.setEndDate(endDatePicker.getValue());
+        try {
+            getCalculatedData();
+        }
+        catch (Exception e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+        }
     }
 }
 
