@@ -2,7 +2,7 @@ package com.hirundo.app.views;
 
 import com.hirundo.app.converters.BirdSexStringConverter;
 import com.hirundo.app.converters.BirdSpeciesStringConverter;
-import com.hirundo.app.view_models.MainViewModel;
+import com.hirundo.app.controllers.MainController;
 import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.BirdSpecies;
 import javafx.application.Platform;
@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
+    private MainController model;
     public ObservableList<BirdSpecies> speciesList;
     public ObservableList<BirdSex> sexList;
     public StringProperty fileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
@@ -48,7 +49,7 @@ public class MainView implements Initializable {
     public StringProperty loadingDatabaseStatus = new SimpleStringProperty();
     public ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
     public ObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
-    MainViewModel viewModel;
+
     BirdSpeciesStringConverter speciesConverter = new BirdSpeciesStringConverter();
     BirdSexStringConverter sexConverter = new BirdSexStringConverter();
     @FXML
@@ -230,8 +231,10 @@ public class MainView implements Initializable {
         startDate.bind(startDatePicker.valueProperty());
         endDate.bind(endDatePicker.valueProperty());
 
-        viewModel.setOldTableName(oldTableName.getValue());
-        viewModel.setNewTableName(newTableName.getValue());
+        String value1 = oldTableName.getValue();
+        model.setOldTableName(value1);
+        String value = newTableName.getValue();
+        model.setNewTableName(value);
     }
 
     public String getLoadingDatabaseStatus() {
@@ -306,8 +309,8 @@ public class MainView implements Initializable {
         return fileName.getValue();
     }
 
-    public void setViewModel(MainViewModel viewModel) {
-        this.viewModel = viewModel;
+    public void setController(MainController model) {
+        this.model = model;
     }
 
     public Parent getParent() throws IOException {
@@ -318,12 +321,12 @@ public class MainView implements Initializable {
 
     public void loadDataAction() {
 
-        var filename = viewModel.getSelectedFileName();
+        var filename = model.getSelectedFileName();
         if (null == filename || filename.isEmpty()) {
             selectFileName();
         }
 
-        var filename2 = viewModel.getSelectedFileName();
+        var filename2 = model.getSelectedFileName();
         if (null == filename2 || filename2.isEmpty()) {
             return;
         }
@@ -334,8 +337,8 @@ public class MainView implements Initializable {
             loadingDatabaseStatus.setValue("Ładowanie danych...");
             new Thread(() -> {
                 try {
-                    viewModel.loadData();
-                    var count = viewModel.getRecordsCount();
+                    model.loadData();
+                    var count = model.getRecordsCount();
                     Platform.runLater(() -> loadingDatabaseStatus.setValue("Ładowanie zakończone. Załadowano " + count + " wierszy."));
                     Platform.runLater(() -> progress.setValue(1.0f));
                 } catch (Exception e) {
@@ -347,7 +350,7 @@ public class MainView implements Initializable {
                 } finally {
                     Platform.runLater(() -> {
                         this.isWindowDisabled.setValue(false);
-                        var speciesList = viewModel.getSpeciesList();
+                        var speciesList = model.getSpeciesList();
                         this.speciesList.addAll(speciesList);
                         this.speciesComboBox
                                 .getSelectionModel()
@@ -373,8 +376,8 @@ public class MainView implements Initializable {
 
     public void selectFileName() {
 
-        if (null == viewModel) return;
-        String result = viewModel.selectFileName();
+        if (model == null) return;
+        String result = model.selectFileName();
         if (null != result) fileName.setValue(result);
     }
 
@@ -396,7 +399,7 @@ public class MainView implements Initializable {
             var species = speciesComboBox
                     .getSelectionModel()
                     .getSelectedItem();
-            viewModel.setSpeciesSelected(species);
+            model.setSpeciesSelected(species);
             isSexDisabled.setValue(null == species);
             getCalculatedData();
         } catch (Exception e) {
@@ -415,7 +418,7 @@ public class MainView implements Initializable {
             var sex = selectSexComboBox
                     .getSelectionModel()
                     .getSelectedItem();
-            viewModel.setSexSelected(sex);
+            model.setSexSelected(sex);
             getCalculatedData();
         } catch (Exception e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
@@ -426,7 +429,7 @@ public class MainView implements Initializable {
 
 
     private void getCalculatedData() throws Exception {
-        var calculatedData = viewModel.getCalculatedData();
+        var calculatedData = model.getCalculatedData();
         speciesCode.setValue(calculatedData.speciesCode());
         speciesNameEng.setValue(calculatedData.speciesNameEng());
         speciesNameLatin.setValue(calculatedData.speciesNameLat());
@@ -439,7 +442,7 @@ public class MainView implements Initializable {
 
     public void writeResultsForSelectedSpeciesAction() {
         try {
-            var result = viewModel.writeResultsForSelectedSpecies();
+            var result = model.writeResultsForSelectedSpecies();
             writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " zdarzeń do pliku " + result.OutputFileName);
         } catch (Exception e) {
             writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
@@ -451,7 +454,7 @@ public class MainView implements Initializable {
 
     public void writeResultsForAllSpeciesAction() {
         try {
-            var result = viewModel.writeResultsForAllSpecies();
+            var result = model.writeResultsForAllSpecies();
             writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " zdarzeń do pliku " + result.OutputFileName);
         } catch (Exception e) {
             writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
@@ -462,20 +465,24 @@ public class MainView implements Initializable {
     }
 
     public void updateOldTableName() {
-        viewModel.setOldTableName(oldTableName.getValue());
+        String value = oldTableName.getValue();
+        model.setOldTableName(value);
     }
 
     public void updateNewTableName() {
-        viewModel.setNewTableName(newTableName.getValue());
+        String value = newTableName.getValue();
+        model.setNewTableName(value);
     }
 
     public void setDatesCheckBoxAction() {
         isDateDisabled.setValue(!setDatesCheckBox.isSelected());
-        viewModel.setIsDateRangeSelected(setDatesCheckBox.isSelected());
+        boolean selected = setDatesCheckBox.isSelected();
+        model.setIsDateRangeSelected(selected);
     }
 
     public void startDatePickerAction() {
-        viewModel.setStartDate(startDatePicker.getValue());
+        LocalDate startDate1 = startDatePicker.getValue();
+        model.setDateRangeStart(startDate1);
         try {
             getCalculatedData();
         }
@@ -487,7 +494,8 @@ public class MainView implements Initializable {
     }
 
     public void endDatePickerAction() {
-        viewModel.setEndDate(endDatePicker.getValue());
+        LocalDate endDate1 = endDatePicker.getValue();
+        model.setDateRangeEnd(endDate1);
         try {
             getCalculatedData();
         }

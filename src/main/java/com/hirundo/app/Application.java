@@ -1,8 +1,7 @@
 package com.hirundo.app;
 
-import com.hirundo.app.models.MainModel;
+import com.hirundo.app.controllers.MainController;
 import com.hirundo.app.services.DialogFileChooser;
-import com.hirundo.app.view_models.MainViewModel;
 import com.hirundo.app.views.MainView;
 import com.hirundo.libs.loaders.BirdRecordDataLoaderBuilder;
 import javafx.scene.Scene;
@@ -29,10 +28,9 @@ public class Application extends javafx.application.Application {
 
         final var fileChooser = new DialogFileChooser();
         final var builder = new BirdRecordDataLoaderBuilder();
-        final var model = new MainModel(builder, fileChooser);
-        final var viewModel = new MainViewModel(model);
+        final var controller = new MainController(builder, fileChooser);
         final var view = new MainView();
-        view.setViewModel(viewModel);
+        view.setController(controller);
 
         var hirundo = getClass().getResourceAsStream("hirundo.png");
         if (null != hirundo) {

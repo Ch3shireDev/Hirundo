@@ -1,6 +1,6 @@
-package com.hirundo.app.models;
+package com.hirundo.app.controllers;
 
-import com.hirundo.app.models.mockups.MockCsvFileSaver;
+import com.hirundo.app.controllers.mockups.MockCsvFileSaver;
 import com.hirundo.libs.data_structures.*;
 import com.hirundo.mockups.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +11,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainModelTest {
-    MainModel model;
+class MainControllerTests {
+    MainController controller;
     MockBirdRecordDataLoaderBuilder builder;
     MockFileChooser fileChooser;
     MockFileDataLoader fileDataLoader;
@@ -23,7 +23,26 @@ class MainModelTest {
         builder = new MockBirdRecordDataLoaderBuilder();
         builder.FileDataLoader = fileDataLoader;
         fileChooser = new MockFileChooser();
-        model = new MainModel(builder, fileChooser);
+        controller = new MainController(builder, fileChooser);
+    }
+
+    @Test
+    void loadData() throws Exception {
+        fileDataLoader.IsLoaded = false;
+
+        controller.loadData();
+
+        assertTrue(fileDataLoader.IsLoaded);
+    }
+
+    @Test
+    void selectFileName() {
+        fileChooser.FileName = "file.mdb";
+
+        final String selectedFileName = controller.selectFileName();
+
+        assertEquals("file.mdb", selectedFileName);
+        assertEquals("file.mdb", controller.getSelectedFileName());
     }
 
     @Test
@@ -38,8 +57,8 @@ class MainModelTest {
 
         fileDataLoader.Data = List.of(DbBirdRecord.from(record2), DbBirdRecord.from(record1));
 
-        model.loadData();
-        var speciesList = model.getSpeciesList();
+        controller.loadData();
+        var speciesList = controller.getSpeciesList();
 
         assertEquals(1, speciesList.size());
         assertEquals("AAA.BBB",
@@ -75,14 +94,10 @@ class MainModelTest {
         var record5 = new NewDbBirdRecord();
         record5.SpeciesCode = "";
 
-        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
-                                      DbBirdRecord.from(record2),
-                                      DbBirdRecord.from(record3),
-                                      DbBirdRecord.from(record4),
-                                      DbBirdRecord.from(record5));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4), DbBirdRecord.from(record5));
 
-        model.loadData();
-        var speciesList = model.getSpeciesList();
+        controller.loadData();
+        var speciesList = controller.getSpeciesList();
 
         assertEquals(1, speciesList.size());
     }
@@ -104,8 +119,8 @@ class MainModelTest {
 
         fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3));
 
-        model.loadData();
-        var speciesList = model.getSpeciesList();
+        controller.loadData();
+        var speciesList = controller.getSpeciesList();
 
         assertEquals(3, speciesList.size());
         assertEquals("AAA.BBB",
@@ -141,14 +156,10 @@ class MainModelTest {
     @Test
     void getRecordsCount() throws Exception {
 
-        fileDataLoader.Data = List.of(
-                new DbBirdRecord(),
-                new DbBirdRecord(),
-                new DbBirdRecord()
-        );
+        fileDataLoader.Data = List.of(new DbBirdRecord(), new DbBirdRecord(), new DbBirdRecord());
 
-        model.loadData();
-        var recordsCount = model.getRecordsCount();
+        controller.loadData();
+        var recordsCount = controller.getRecordsCount();
 
         assertEquals(3, recordsCount);
     }
@@ -176,15 +187,12 @@ class MainModelTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
-                                      DbBirdRecord.from(record2),
-                                      DbBirdRecord.from(record3),
-                                      DbBirdRecord.from(record4));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4));
 
-        model.loadData();
-        model.setSexSelected(BirdSex.Male);
-        model.setSpeciesSelected(new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix"));
-        BirdSpeciesCalculatedData calculatedData = model.getCalculatedData();
+        controller.loadData();
+        controller.setSexSelected(BirdSex.Male);
+        controller.setSpeciesSelected(new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix"));
+        BirdSpeciesCalculatedData calculatedData = controller.getCalculatedData();
 
         assertEquals(2, calculatedData.recordsCount());
         assertEquals("AAA.BBB", calculatedData.speciesCode());
@@ -215,15 +223,12 @@ class MainModelTest {
         record4.SpeciesCode = "BBB.CCC";
         record4.Ring = "1237";
 
-        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
-                                      DbBirdRecord.from(record2),
-                                      DbBirdRecord.from(record3),
-                                      DbBirdRecord.from(record4));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4));
 
-        model.loadData();
-        model.setSexSelected(BirdSex.Any);
-        model.setSpeciesSelected(new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix"));
-        BirdSpeciesCalculatedData calculatedData = model.getCalculatedData();
+        controller.loadData();
+        controller.setSexSelected(BirdSex.Any);
+        controller.setSpeciesSelected(new BirdSpecies("AAA.BBB", "Aaabin Bbbir", "Aaarus Bbbirix"));
+        BirdSpeciesCalculatedData calculatedData = controller.getCalculatedData();
 
         assertEquals(3, calculatedData.recordsCount());
         assertEquals("AAA.BBB", calculatedData.speciesCode());
@@ -262,15 +267,12 @@ class MainModelTest {
         record4.Seas = "S";
         record4.Age = "I";
 
-        fileDataLoader.Data = List.of(DbBirdRecord.from(record1),
-                                      DbBirdRecord.from(record2),
-                                      DbBirdRecord.from(record3),
-                                      DbBirdRecord.from(record4));
+        fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2), DbBirdRecord.from(record3), DbBirdRecord.from(record4));
 
-        model.loadData();
-        model.setSexSelected(BirdSex.Any);
-        model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
-        BirdSpeciesCalculatedData calculatedData = model.getCalculatedData();
+        controller.loadData();
+        controller.setSexSelected(BirdSex.Any);
+        controller.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
+        BirdSpeciesCalculatedData calculatedData = controller.getCalculatedData();
 
         assertEquals(4, calculatedData.recordsCount());
         assertEquals("XXX.YYY", calculatedData.speciesCode());
@@ -332,10 +334,10 @@ class MainModelTest {
 
         fileDataLoader.Data = List.of(r1, r2, r3);
 
-        model.loadData();
-        model.setSexSelected(BirdSex.Any);
-        model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
-        BirdSpeciesCalculatedData calculatedData = model.getCalculatedData();
+        controller.loadData();
+        controller.setSexSelected(BirdSex.Any);
+        controller.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
+        BirdSpeciesCalculatedData calculatedData = controller.getCalculatedData();
 
         assertEquals(3, calculatedData.recordsCount());
         assertEquals(1, calculatedData.returnsCount());
@@ -345,35 +347,34 @@ class MainModelTest {
     @Test
     public void writeResultsForSelectedSpeciesTest() throws Exception {
         var speciesFilter = new MockSpeciesFilter();
-        speciesFilter.filteredRecords = List.of(DbBirdRecord.from(new NewDbBirdRecord()),
-                                                DbBirdRecord.from(new NewDbBirdRecord()));
+        speciesFilter.filteredRecords = List.of(DbBirdRecord.from(new NewDbBirdRecord()), DbBirdRecord.from(new NewDbBirdRecord()));
 
-        model.speciesFilter = speciesFilter;
+        controller.speciesFilter = speciesFilter;
 
         var returningBirdsSummarizer = new MockReturningBirdsSummarizer();
         returningBirdsSummarizer.summary = List.of(new ReturningBirdsData());
-        model.returningBirdsSummarizer = returningBirdsSummarizer;
+        controller.returningBirdsSummarizer = returningBirdsSummarizer;
 
         var mapper = new MockReturningBirdsDataCsvRecordMapper();
         mapper.outputData = List.of(new CsvReturningBirdsData(), new CsvReturningBirdsData());
-        model.mapper = mapper;
+        controller.mapper = mapper;
 
         var serializer = new MockCsvSerializer<CsvReturningBirdsData>();
         serializer.outputData = "abc";
 
-        model.serializer = serializer;
+        controller.serializer = serializer;
 
         var fileChooser = new MockFileChooser();
         fileChooser.FileName = "test.csv";
-        model.fileChooser = fileChooser;
+        controller.fileChooser = fileChooser;
 
         var csvFileWriter = new MockCsvFileSaver();
 
-        model.csvFileWriter = csvFileWriter;
+        controller.csvFileWriter = csvFileWriter;
 
-        model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
+        controller.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
 
-        var result = model.writeResultsForSelectedSpecies();
+        var result = controller.writeResultsForSelectedSpecies();
 
         // 1. Z danych jest wyodrębniany dany gatunek.
         assertTrue(speciesFilter.isFilterCalled);
@@ -407,38 +408,33 @@ class MainModelTest {
 
     @Test
     public void writeResultsForAllSpeciesTest() throws Exception {
-        model.data = List.of(DbBirdRecord.from(new NewDbBirdRecord()),
-                             DbBirdRecord.from(new NewDbBirdRecord()),
-                             DbBirdRecord.from(new NewDbBirdRecord()));
+        controller.data = List.of(DbBirdRecord.from(new NewDbBirdRecord()), DbBirdRecord.from(new NewDbBirdRecord()), DbBirdRecord.from(new NewDbBirdRecord()));
 
         var speciesFilter = new MockSpeciesFilter();
-        model.speciesFilter = speciesFilter;
+        controller.speciesFilter = speciesFilter;
 
         var returningBirdsSummarizer = new MockReturningBirdsSummarizer();
         returningBirdsSummarizer.summary = List.of(new ReturningBirdsData());
-        model.returningBirdsSummarizer = returningBirdsSummarizer;
+        controller.returningBirdsSummarizer = returningBirdsSummarizer;
 
         var mapper = new MockReturningBirdsDataCsvRecordMapper();
-        mapper.outputData = List.of(new CsvReturningBirdsData(),
-                                    new CsvReturningBirdsData(),
-                                    new CsvReturningBirdsData(),
-                                    new CsvReturningBirdsData());
-        model.mapper = mapper;
+        mapper.outputData = List.of(new CsvReturningBirdsData(), new CsvReturningBirdsData(), new CsvReturningBirdsData(), new CsvReturningBirdsData());
+        controller.mapper = mapper;
 
         var serializer = new MockCsvSerializer<CsvReturningBirdsData>();
         serializer.outputData = "abc";
-        model.serializer = serializer;
+        controller.serializer = serializer;
 
         var fileChooser = new MockFileChooser();
         fileChooser.FileName = "test.csv";
-        model.fileChooser = fileChooser;
+        controller.fileChooser = fileChooser;
 
         var csvFileWriter = new MockCsvFileSaver();
-        model.csvFileWriter = csvFileWriter;
+        controller.csvFileWriter = csvFileWriter;
 
-        model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
+        controller.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
 
-        var result = model.writeResultsForAllSpecies();
+        var result = controller.writeResultsForAllSpecies();
 
         // 1. Z danych nie jest wyodrębniany gatunek.
         assertFalse(speciesFilter.isFilterCalled);

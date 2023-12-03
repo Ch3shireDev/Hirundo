@@ -1,4 +1,4 @@
-package com.hirundo.app.models.mockups;
+package com.hirundo.app.controllers.mockups;
 
 import com.hirundo.app.services.ICsvFileWriter;
 

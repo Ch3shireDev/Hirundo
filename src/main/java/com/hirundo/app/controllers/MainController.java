@@ -1,5 +1,6 @@
-package com.hirundo.app.models;
+package com.hirundo.app.controllers;
 
+import com.hirundo.app.models.FileSaveResult;
 import com.hirundo.app.services.CsvFileWriter;
 import com.hirundo.app.services.ICsvFileWriter;
 import com.hirundo.app.services.IFileChooser;
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainModel {
+public class MainController {
     public List<DbBirdRecord> data = new ArrayList<>();
     private final IBirdRecordDataLoaderBuilder builder;
     public IFileChooser fileChooser;
@@ -36,7 +37,7 @@ public class MainModel {
     private LocalDate dateRangeEnd;
     private boolean isDateRangeSelected;
 
-    public MainModel(IBirdRecordDataLoaderBuilder builder, IFileChooser fileChooser) {
+    public MainController(IBirdRecordDataLoaderBuilder builder, IFileChooser fileChooser) {
         this.builder = builder;
         this.fileChooser = fileChooser;
     }

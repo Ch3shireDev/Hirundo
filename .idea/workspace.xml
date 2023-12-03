@@ -8,8 +8,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add date picking options">
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add date filtering controls">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,34 +123,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Documents/GitHub/Hirundo&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2816092&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TODO_SCOPE": "All Places",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_directory_selection": "C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services",
+    "last_opened_file_path": "D:/Documents/GitHub/Hirundo",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2816092",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.hirundo.app.views" />
@@ -175,22 +184,7 @@
       <recent name="com.hirundo.app.view_models" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'Hirundo.test'">
-    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-20" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.hirundo.app.Application" />
-      <module name="Hirundo.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.hirundo.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.Hirundo [run]">
     <configuration name="CLI" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.hirundo.cli.Main" />
       <module name="Hirundo.main" />
@@ -203,28 +197,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="Hirundo [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
     </configuration>
     <configuration name="Hirundo [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -270,7 +242,7 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'Hirundo.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ReturningBirdsSummarizerTest.givenAnySex_whenFiltered_thenPopulationHasBothSexes" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -282,6 +254,56 @@
         <option name="taskNames">
           <list>
             <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest.givenAnySex_whenFiltered_thenPopulationHasBothSexes&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ReturningBirdsSummarizerTest.givenMaleInParameters_whenFiltered_thenPopulationHasMaleSex" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest.givenMaleInParameters_whenFiltered_thenPopulationHasMaleSex&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ReturningBirdsSummarizerTest.givenManySpecies_whenSelectedOneSpecies_summarizerShouldSelectOneSpecies" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.hirundo.libs.services.ReturningBirdsSummarizerTest.givenManySpecies_whenSelectedOneSpecies_summarizerShouldSelectOneSpecies&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -294,19 +316,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.CLI" />
-      <item itemvalue="Application.Application" />
-      <item itemvalue="Gradle.Hirundo [jar]" />
-      <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
+      <item itemvalue="Gradle.ReturningBirdsSummarizerTest.givenAnySex_whenFiltered_thenPopulationHasBothSexes" />
+      <item itemvalue="Gradle.ReturningBirdsSummarizerTest.givenMaleInParameters_whenFiltered_thenPopulationHasMaleSex" />
+      <item itemvalue="Gradle.ReturningBirdsSummarizerTest.givenManySpecies_whenSelectedOneSpecies_summarizerShouldSelectOneSpecies" />
       <item itemvalue="Gradle.Hirundo [run]" />
       <item itemvalue="Gradle.Hirundo [test]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'Hirundo.test'" />
-        <item itemvalue="Gradle.Hirundo [test]" />
         <item itemvalue="Gradle.Hirundo [run]" />
-        <item itemvalue="Gradle.Hirundo [jar]" />
-        <item itemvalue="Application.Application" />
+        <item itemvalue="Gradle.Hirundo [test]" />
+        <item itemvalue="Gradle.ReturningBirdsSummarizerTest.givenAnySex_whenFiltered_thenPopulationHasBothSexes" />
+        <item itemvalue="Gradle.ReturningBirdsSummarizerTest.givenMaleInParameters_whenFiltered_thenPopulationHasMaleSex" />
+        <item itemvalue="Gradle.ReturningBirdsSummarizerTest.givenManySpecies_whenSelectedOneSpecies_summarizerShouldSelectOneSpecies" />
       </list>
     </recent_temporary>
   </component>
@@ -360,6 +382,8 @@
       <workItem from="1701029157083" duration="1146000" />
       <workItem from="1701030385749" duration="7544000" />
       <workItem from="1701521701155" duration="371000" />
+      <workItem from="1701523303603" duration="9942000" />
+      <workItem from="1701590939686" duration="1145000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -690,7 +714,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701040305681</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary=":bird: Add date filtering controls">
+      <created>1701554621708</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1701554621722</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +739,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":bird: Move getReturningBirdsData to separate service" />
     <MESSAGE value=":bird: Move getCalculatedData to ReturnsStatisticsCalculator" />
     <MESSAGE value=":bird: Move getSpeciesList to SpeciesFinder" />
     <MESSAGE value=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception" />
@@ -733,15 +763,26 @@
     <MESSAGE value=":bird: Add statistics methods" />
     <MESSAGE value=":bird: 1.5.0 release" />
     <MESSAGE value=":bird: Add date picking options" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add date picking options" />
+    <MESSAGE value=":bird: Add date filtering controls" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add date filtering controls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java</url>
-          <line>371</line>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

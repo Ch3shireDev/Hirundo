@@ -18,8 +18,6 @@ module com.hirundo.app {
     opens com.hirundo.app.views to javafx.fxml;
     exports com.hirundo.app.models;
     opens com.hirundo.app.models to javafx.fxml;
-    exports com.hirundo.app.view_models;
-    opens com.hirundo.app.view_models to javafx.fxml;
     exports com.hirundo.libs.services;
     opens com.hirundo.libs.services to javafx.fxml;
     opens com.hirundo.libs.data_structures to javafx.fxml;
@@ -37,4 +35,6 @@ module com.hirundo.app {
     opens com.hirundo.libs.filters to javafx.fxml;
     exports com.hirundo.libs.mappers;
     opens com.hirundo.libs.mappers to javafx.fxml;
+    exports com.hirundo.app.controllers;
+    opens com.hirundo.app.controllers to javafx.fxml;
 }
