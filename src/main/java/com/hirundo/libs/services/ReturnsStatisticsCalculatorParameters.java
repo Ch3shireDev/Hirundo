@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class ReturnsStatisticsCalculatorParameters {
     public BirdSpecies species;
     public BirdSex selectedSex;
-    public Boolean isDateRangeSelected;
+    public boolean isDateRangeSelected;
     public LocalDate dateRangeStart;
     public LocalDate dateRangeEnd;
 }

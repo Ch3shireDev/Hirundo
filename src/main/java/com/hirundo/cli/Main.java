@@ -20,7 +20,7 @@ public class Main {
         var oldTableName = "Tab_Ring_Podab";
         var newTableName = "AB 2017_18_19_20_21S";
         var fileName = "D:\\Ring_00_PODAB.mdb";
-        var outputCsvFileName = "result.csv";
+        var outputCsvFileName = "result-with-time-range.csv";
 
         try {
             ReturningBirdsSummarizer summarizer = new ReturningBirdsSummarizer();
@@ -36,6 +36,11 @@ public class Main {
             var joinedData = loader.loadData();
 
             var parameters = new ReturningBirdsSummarizerParameters();
+
+            parameters.useDateRange = true;
+            parameters.dateRangeStart = java.time.LocalDate.of(2017, 9,1);
+            parameters.dateRangeEnd = java.time.LocalDate.of(2017, 9, 30);
+
             List<ReturningBirdsData> returningBirds = summarizer.getSummary(joinedData, parameters);
 
             ArrayList<CsvReturningBirdsData> list = mapper.getCsvReturningBirdsData(returningBirds);

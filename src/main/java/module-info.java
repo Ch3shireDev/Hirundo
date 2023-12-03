@@ -21,8 +21,8 @@ module com.hirundo.app {
     exports com.hirundo.libs.services;
     opens com.hirundo.libs.services to javafx.fxml;
     opens com.hirundo.libs.data_structures to javafx.fxml;
-    exports com.hirundo.app.services;
-    opens com.hirundo.app.services to javafx.fxml;
+    exports com.hirundo.app.models.services;
+    opens com.hirundo.app.models.services to javafx.fxml;
 
     exports com.hirundo.libs.data_structures;
     exports com.hirundo.app.converters;

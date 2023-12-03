@@ -1,8 +1,8 @@
 package com.hirundo.app.views;
 
+import com.hirundo.app.controllers.MainController;
 import com.hirundo.app.converters.BirdSexStringConverter;
 import com.hirundo.app.converters.BirdSpeciesStringConverter;
-import com.hirundo.app.controllers.MainController;
 import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.BirdSpecies;
 import javafx.application.Platform;
@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +23,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
-    private MainController model;
     public ObservableList<BirdSpecies> speciesList;
     public ObservableList<BirdSex> sexList;
     public StringProperty fileName = new SimpleStringProperty("Wybierz plik bazy danych .mdb");
@@ -49,9 +49,9 @@ public class MainView implements Initializable {
     public StringProperty loadingDatabaseStatus = new SimpleStringProperty();
     public ObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
     public ObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
-
     BirdSpeciesStringConverter speciesConverter = new BirdSpeciesStringConverter();
     BirdSexStringConverter sexConverter = new BirdSexStringConverter();
+    private MainController model;
     @FXML
     private ComboBox<BirdSex> selectSexComboBox;
     @FXML
@@ -105,7 +105,7 @@ public class MainView implements Initializable {
     @FXML
     private DatePicker endDatePicker;
     @FXML
-    private Label dateRangeLabel;
+    private VBox dateInfoHBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -224,7 +224,7 @@ public class MainView implements Initializable {
                 .disableProperty()
                 .bind(isDateDisabled);
 
-        dateRangeLabel
+        dateInfoHBox
                 .disableProperty()
                 .bind(isDateDisabled);
 
@@ -362,6 +362,8 @@ public class MainView implements Initializable {
                         this.isSpeciesSelectDisabled.setValue(false);
                         this.isSexDisabled.setValue(false);
                         this.isSetDatesCheckBoxDisabled.setValue(false);
+                        this.isResultsDisabled.setValue(false);
+                        this.isWriteResultsDisabled.setValue(false);
                     });
                 }
             }).start();
@@ -376,7 +378,7 @@ public class MainView implements Initializable {
 
     public void selectFileName() {
 
-        if (model == null) return;
+        if (null == model) return;
         String result = model.selectFileName();
         if (null != result) fileName.setValue(result);
     }
@@ -395,18 +397,12 @@ public class MainView implements Initializable {
     }
 
     public void speciesComboBoxAction() {
-        try {
+
             var species = speciesComboBox
                     .getSelectionModel()
                     .getSelectedItem();
             model.setSpeciesSelected(species);
             isSexDisabled.setValue(null == species);
-            getCalculatedData();
-        } catch (Exception e) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText(e.getMessage());
-            a.show();
-        }
     }
 
     public Boolean getIsDateDisabled() {
@@ -414,17 +410,10 @@ public class MainView implements Initializable {
     }
 
     public void sexComboBoxAction() {
-        try {
-            var sex = selectSexComboBox
-                    .getSelectionModel()
-                    .getSelectedItem();
-            model.setSexSelected(sex);
-            getCalculatedData();
-        } catch (Exception e) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText(e.getMessage());
-            a.show();
-        }
+        var sex = selectSexComboBox
+                .getSelectionModel()
+                .getSelectedItem();
+        model.setSexSelected(sex);
     }
 
 
@@ -434,8 +423,12 @@ public class MainView implements Initializable {
         speciesNameEng.setValue(calculatedData.speciesNameEng());
         speciesNameLatin.setValue(calculatedData.speciesNameLat());
         selectedSexName.setValue(calculatedData.selectedSexName());
-        recordsCount.setValue(calculatedData.recordsCount().toString());
-        returnsCount.setValue(calculatedData.returnsCount().toString());
+        recordsCount.setValue(calculatedData
+                                      .recordsCount()
+                                      .toString());
+        returnsCount.setValue(calculatedData
+                                      .returnsCount()
+                                      .toString());
         isResultsDisabled.setValue(false);
         isWriteResultsDisabled.setValue(false);
     }
@@ -443,6 +436,7 @@ public class MainView implements Initializable {
     public void writeResultsForSelectedSpeciesAction() {
         try {
             var result = model.writeResultsForSelectedSpecies();
+            if (null == result) return;
             writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " zdarzeń do pliku " + result.OutputFileName);
         } catch (Exception e) {
             writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
@@ -455,6 +449,7 @@ public class MainView implements Initializable {
     public void writeResultsForAllSpeciesAction() {
         try {
             var result = model.writeResultsForAllSpecies();
+            if (null == result) return;
             writingResultsText.setValue("Zapis zakończony. Zapisano " + result.RecordsCount + " zdarzeń do pliku " + result.OutputFileName);
         } catch (Exception e) {
             writingResultsText.setValue("Błąd zapisu. " + e.getMessage());
@@ -483,23 +478,18 @@ public class MainView implements Initializable {
     public void startDatePickerAction() {
         LocalDate startDate1 = startDatePicker.getValue();
         model.setDateRangeStart(startDate1);
-        try {
-            getCalculatedData();
-        }
-        catch (Exception e) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText(e.getMessage());
-            a.show();
-        }
     }
 
     public void endDatePickerAction() {
         LocalDate endDate1 = endDatePicker.getValue();
         model.setDateRangeEnd(endDate1);
+
+    }
+
+    public void calculateAction() {
         try {
             getCalculatedData();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText(e.getMessage());
             a.show();

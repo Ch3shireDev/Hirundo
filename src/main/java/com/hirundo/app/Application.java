@@ -1,7 +1,7 @@
 package com.hirundo.app;
 
 import com.hirundo.app.controllers.MainController;
-import com.hirundo.app.services.DialogFileChooser;
+import com.hirundo.app.models.services.DialogFileChooser;
 import com.hirundo.app.views.MainView;
 import com.hirundo.libs.loaders.BirdRecordDataLoaderBuilder;
 import javafx.scene.Scene;
@@ -42,7 +42,7 @@ public class Application extends javafx.application.Application {
 
         final Scene scene = new Scene(view.getParent());
 
-        stage.setTitle("Hirundo ver. 1.6.0");
+        stage.setTitle("Hirundo ver. 1.6.1");
         stage.setScene(scene);
         stage.show();
     }

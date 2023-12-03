@@ -8,6 +8,5 @@ public class ReturningBirdsSummarizerParameters {
     public LocalDate dateRangeStart;
     public LocalDate dateRangeEnd;
     public BirdSex sex;
-    public String speciesCode;
     public boolean useDateRange;
 }

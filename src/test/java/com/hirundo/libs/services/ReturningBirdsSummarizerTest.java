@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -94,4 +95,34 @@ public class ReturningBirdsSummarizerTest {
                 .getPopulation(ArgumentMatchers.any(), ArgumentMatchers.eq(List.of(r1)));
     }
 
+    @Test
+    public void givenTimeRangeInParameters_whenFiltered_thenPopulationHasRecordsInRange(){
+        Mockito
+                .when(summaryFilter.isReturningBird(ArgumentMatchers.anyList()))
+                .thenReturn(true);
+
+        var r1 = new DbBirdRecord();
+        r1.ring = "123";
+        r1.date = LocalDate.parse( "2020-09-01").atStartOfDay();
+
+        var r2 = new DbBirdRecord();
+        r2.ring = "345";
+        r2.date = LocalDate.parse("2020-09-30").atStartOfDay();
+
+        var r3 = new DbBirdRecord();
+        r3.ring = "567";
+        r3.date = LocalDate.parse("2020-10-01").atStartOfDay();
+
+        var parameters = new ReturningBirdsSummarizerParameters();
+        parameters.useDateRange = true;
+        parameters.dateRangeStart = LocalDate.parse("2020-09-01");
+        parameters.dateRangeEnd = LocalDate.parse("2020-09-30");
+
+        summarizer.getSummary(List.of(r1, r2, r3), parameters);
+
+        Mockito
+                .verify(populationFilter, Mockito.atLeastOnce())
+                .getPopulation(ArgumentMatchers.any(), ArgumentMatchers.eq(List.of(r1, r2)));
+    }
 }
+

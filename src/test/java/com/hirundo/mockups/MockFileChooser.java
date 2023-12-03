@@ -1,6 +1,6 @@
 package com.hirundo.mockups;
 
-import com.hirundo.app.services.IFileChooser;
+import com.hirundo.app.models.services.IFileChooser;
 
 public class MockFileChooser implements IFileChooser {
     public String FileName;

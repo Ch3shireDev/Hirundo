@@ -171,14 +171,18 @@
                                     GridPane.rowIndex="2"
                                     onAction="#endDatePickerAction"
                                     disable="${controller.isDateDisabled}"/>
-                            <Label
-                                    fx:id="dateRangeLabel"
+                            <VBox
+                                    fx:id="dateInfoHBox"
+                                    disable="${controller.isDateDisabled}"
+                                    GridPane.halignment="CENTER"
                                     GridPane.columnIndex="0"
                                     GridPane.rowIndex="3"
-                                    GridPane.columnSpan="2"
-                                    GridPane.halignment="CENTER"
-                                    disable="${controller.isDateDisabled}"
-                                    text="(rok jest ignorowany - wybierany jest przedział MM.DD - MM.DD w każdym sezonie)"/>
+                                    GridPane.columnSpan="2">
+                            <Label
+                                    text="Należy podać daty w formacie DD.MM.YYYY"/>
+                            <Label
+                                    text="(rok jest ignorowany - wybierany jest przedział DD.MM - DD.MM w każdym sezonie)"/>
+                            </VBox>
                             <columnConstraints>
                                 <ColumnConstraints percentWidth="50.0"/>
                                 <ColumnConstraints percentWidth="50.0"/>
@@ -233,11 +237,18 @@
                                    text="${controller.returnsCount}"
                                    GridPane.columnIndex="1"
                                    GridPane.rowIndex="5"/>
+                            <HBox
+                                    GridPane.columnIndex="0"
+                                    GridPane.rowIndex="6"
+                                    GridPane.columnSpan="2">
+                                <Button onAction="#calculateAction" >Oblicz</Button>
+                            </HBox>
                             <columnConstraints>
                                 <ColumnConstraints percentWidth="50.0"/>
                                 <ColumnConstraints percentWidth="50.0"/>
                             </columnConstraints>
                             <rowConstraints>
+                                <RowConstraints/>
                                 <RowConstraints/>
                                 <RowConstraints/>
                                 <RowConstraints/>
@@ -263,8 +274,8 @@
             <Tab closable="false" text="O programie">
                 <AnchorPane>
                     <VBox AnchorPane.topAnchor="30" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <Label text="Hirundo ver. 1.6.0"/>
-                        <Label text="Data wydania: 2023-10-25"/>
+                        <Label text="Hirundo ver. 1.6.1"/>
+                        <Label text="Data wydania: 2023-12-03"/>
                         <Label text="Autor: Igor Nowicki (igor.nowicki.business@gmail.com)"/>
                         <Label text="Program do analizy ponownych schwytań ptaków w czasie migracji."/>
                     </VBox>

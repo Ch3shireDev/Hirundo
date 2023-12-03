@@ -37,11 +37,10 @@ public class PopulationFilter implements IPopulationFilter {
                 .stream()
                 .collect(Collectors.toMap(r -> r.ring, r -> r, (r1, r2) -> r1.date.isBefore(r2.date) ? r1 : r2));
 
-        result = merge
+        return merge
                 .values()
                 .stream()
                 .toList();
-        return result;
     }
 
     private boolean filterSpecies(DbBirdRecord record, DbBirdRecord r) {

@@ -35,15 +35,16 @@ public class ReturnsStatisticsCalculator {
                 .filter(b -> speciesCode
                         .equals(b.getSpeciesCode()));
 
-        if (BirdSex.Any != parameters.selectedSex) {
-            filteredData = filteredData.filter(b -> b.getSex() == parameters.selectedSex);
+        if(BirdSex.Male == parameters.selectedSex || BirdSex.Female == parameters.selectedSex){
+            filteredData = filteredData.filter(b -> parameters.selectedSex == b.getSex());
         }
 
         var list = filteredData.toList();
 
         var recordsCount = list.size();
 
-        var parameters2 = new ReturningBirdsSummarizerParameters();
+        ReturningBirdsSummarizerParameters parameters2 = getParameters(parameters);
+
         var returningBirds = returningBirdsSummarizer.getSummary(list, parameters2);
 
         var returnsCount = returningBirds.size();
@@ -54,6 +55,15 @@ public class ReturnsStatisticsCalculator {
                                              sexName,
                                              recordsCount,
                                              returnsCount);
+    }
+
+    private ReturningBirdsSummarizerParameters getParameters(ReturnsStatisticsCalculatorParameters parameters) {
+        var parameters2 = new ReturningBirdsSummarizerParameters();
+        parameters2.dateRangeStart = parameters.dateRangeStart;
+        parameters2.dateRangeEnd = parameters.dateRangeEnd;
+        parameters2.useDateRange = parameters.isDateRangeSelected;
+        parameters2.sex = parameters.selectedSex;
+        return parameters2;
     }
 
     private String getSexName(BirdSex selectedSex) {

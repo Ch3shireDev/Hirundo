@@ -1,6 +1,5 @@
 package com.hirundo.libs.services;
 
-import com.hirundo.libs.data_structures.BirdSex;
 import com.hirundo.libs.data_structures.DbBirdRecord;
 import com.hirundo.libs.data_structures.ReturningBirdsData;
 
@@ -15,6 +14,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
     ISummaryFilter summaryFilter = new SummaryFilter();
     IPopulationFilter populationFilter = new PopulationFilter();
     ReturningBirdsStatisticsResolver resolver = new ReturningBirdsStatisticsResolver();
+    ParametersFilter parametersFilter = new ParametersFilter();
 
     public ReturningBirdsSummarizer() {
     }
@@ -28,14 +28,20 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         List<ReturningBirdsData> result = new ArrayList<>();
         Map<String, List<DbBirdRecord>> ringNumbers = getRingNumbers(records);
 
+        var filteredRecords = records
+                .stream()
+                .filter(r -> parametersFilter.filter(r, parameters))
+                .collect(Collectors.toList());
+
         for (var ringNumber : ringNumbers.keySet()) {
 
             var ringRecords = ringNumbers.get(ringNumber);
             if (!summaryFilter.isReturningBird(ringRecords)) continue;
 
-            var filteredRecords = getFilteredRecords(records, parameters);
-
             DbBirdRecord firstCatchRecord = getFirstRecord(ringRecords);
+
+            if(!parametersFilter.filter(firstCatchRecord, parameters)) continue;
+
             var population = populationFilter.getPopulation(firstCatchRecord, filteredRecords);
             ReturningBirdsData returningBirds = resolver.getReturningBirdsData(ringRecords, population);
             result.add(returningBirds);
@@ -44,17 +50,7 @@ public class ReturningBirdsSummarizer implements IReturningBirdsSummarizer {
         return result;
     }
 
-    private List<DbBirdRecord> getFilteredRecords(List<DbBirdRecord> ringRecords, ReturningBirdsSummarizerParameters parameters) {
 
-        if (parameters.sex == BirdSex.Male || parameters.sex == BirdSex.Female) {
-            ringRecords = ringRecords
-                    .stream()
-                    .filter(r -> r.sex == parameters.sex)
-                    .collect(Collectors.toList());
-        }
-
-        return ringRecords;
-    }
 
     private Map<String, List<DbBirdRecord>> getRingNumbers(List<DbBirdRecord> records) {
         return records

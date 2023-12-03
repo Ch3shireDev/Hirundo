@@ -281,33 +281,6 @@ class MainControllerTests {
         assertEquals(4, calculatedData.recordsCount());
     }
 
-//    @Test
-//    public void returnsCountSameSeasonTest() throws Exception {
-//
-//        var record1 = new NewDbBirdRecord();
-//        record1.SpeciesCode = "XXX.YYY";
-//        record1.Ring = "1234";
-//        record1.Date2 = "2019-11-01";
-//        record1.Seas = "A";
-//
-//        var record2 = new OldDbBirdRecord();
-//        record2.Spec = "XXX.YYY";
-//        record2.Ring = "1234";
-//        record2.Date = LocalDateTime.of(2020, 1, 1, 0, 0);
-//        record2.Seas = "A";
-//
-//
-//        fileDataLoader.Data = List.of(DbBirdRecord.from(record1), DbBirdRecord.from(record2));
-//
-//        model.loadData();
-//        model.setSexSelected(BirdSex.Any);
-//        model.setSpeciesSelected(new BirdSpecies("XXX.YYY", "Aaabin Bbbir", "Aaarus Bbbirix"));
-//        BirdSpeciesCalculatedData calculatedData = model.getCalculatedData();
-//
-//        assertEquals(2, calculatedData.recordsCount());
-//        assertEquals(0, calculatedData.returnsCount());
-//    }
-
     @Test
     public void returnsCountDifferentSeasonTest() throws Exception {
 
