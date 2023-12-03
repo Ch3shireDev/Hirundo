@@ -8,16 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add date filtering controls">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/view_models/MainViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/models/MainControllerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/view_models/MainViewModelTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Remove ViewModel, rename MainModel to MainController" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -383,7 +374,7 @@
       <workItem from="1701030385749" duration="7544000" />
       <workItem from="1701521701155" duration="371000" />
       <workItem from="1701523303603" duration="9942000" />
-      <workItem from="1701590939686" duration="1145000" />
+      <workItem from="1701590939686" duration="1629000" />
     </task>
     <task id="LOCAL-00001" summary=":bird: Rename hirundo\hirundo to hirundo\app">
       <created>1678487881020</created>
@@ -721,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701554621722</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary=":bird: Remove ViewModel, rename MainModel to MainController">
+      <created>1701592322698</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1701592322698</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,7 +737,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":bird: Move getCalculatedData to ReturnsStatisticsCalculator" />
     <MESSAGE value=":bird: Move getSpeciesList to SpeciesFinder" />
     <MESSAGE value=":bird: Make ReturnsStatisticsCalculator::getCalculatedData throwing Exception" />
     <MESSAGE value=":bird: Add some logic and tests to MainModel. Extract interfaces from services" />
@@ -764,7 +761,8 @@
     <MESSAGE value=":bird: 1.5.0 release" />
     <MESSAGE value=":bird: Add date picking options" />
     <MESSAGE value=":bird: Add date filtering controls" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bird: Add date filtering controls" />
+    <MESSAGE value=":bird: Remove ViewModel, rename MainModel to MainController" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bird: Remove ViewModel, rename MainModel to MainController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
