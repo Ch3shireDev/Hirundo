@@ -10,8 +10,16 @@ import java.util.List;
 
 public class SpeciesFilter implements ISpeciesFilter {
     public List<DbBirdRecord> filterBySpecies(List<DbBirdRecord> records, BirdSpecies species) {
-        if (null == species) return records;
-        return records.stream().filter(record -> isEqual(record, species)).toList();
+        try {
+            if (null == species) return records;
+            return records
+                    .stream()
+                    .filter(record -> isEqual(record, species))
+                    .toList();
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Error filtering by species. " + e.getMessage());
+        }
     }
 
     boolean isEqual(DbBirdRecord record, BirdSpecies species) {

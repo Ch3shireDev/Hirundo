@@ -13,16 +13,12 @@ public class FileDataLoader implements IFileDataLoader {
 
     @Override
     public List<DbBirdRecord> loadData() throws Exception {
-
-        var totalData = new java.util.ArrayList<DbBirdRecord>();
-
+        var totalData = new java.util.ArrayList<DbBirdRecord>(1000000);
         for (IDbBirdRecordDataLoader birdDataLoader : birdDataLoaders) {
             var data = birdDataLoader.loadData();
             totalData.addAll(data);
         }
-
         return totalData;
     }
-
 }
 

@@ -101,7 +101,14 @@ public class MainController {
             return null;
         }
 
-        var filteredResults = speciesFilter.filterBySpecies(data, selectedSpecies);
+        List<DbBirdRecord> filteredResults;
+
+        try {
+            filteredResults = speciesFilter.filterBySpecies(data, selectedSpecies);
+        }
+        catch (Exception e) {
+            throw new Exception("Error while filtering data. " + e.getMessage());
+        }
 
         return getFileSaveResult(filename, filteredResults);
     }
@@ -153,15 +160,29 @@ public class MainController {
     }
 
     private FileSaveResult getFileSaveResult(String filename, List<DbBirdRecord> filteredResults) throws Exception {
-        var parameters = getReturningBirdsSummarizerParameters();
-        var returningData = returningBirdsSummarizer.getSummary(filteredResults, parameters);
-        var mappedData = mapper.getCsvReturningBirdsData(returningData);
-        var result = serializer.serializeToCsv(mappedData);
-        csvFileWriter.writeToFile(filename, result);
-        var fileSaveResult = new FileSaveResult();
-        fileSaveResult.OutputFileName = filename;
-        fileSaveResult.RecordsCount = mappedData.size();
-        return fileSaveResult;
+        String result;
+        List<CsvReturningBirdsData> mappedData;
+
+        try {
+            var parameters = getReturningBirdsSummarizerParameters();
+            var returningData = returningBirdsSummarizer.getSummary(filteredResults, parameters);
+            mappedData = mapper.getCsvReturningBirdsData(returningData);
+            result = serializer.serializeToCsv(mappedData);
+        }
+        catch (Exception e) {
+            throw new Exception("Error while serializing data", e);
+        }
+
+        try{
+            csvFileWriter.writeToFile(filename, result);
+            var fileSaveResult = new FileSaveResult();
+            fileSaveResult.OutputFileName = filename;
+            fileSaveResult.RecordsCount = mappedData.size();
+            return fileSaveResult;
+        }
+        catch (Exception e) {
+            throw new Exception("Error while saving file", e);
+        }
     }
 
 

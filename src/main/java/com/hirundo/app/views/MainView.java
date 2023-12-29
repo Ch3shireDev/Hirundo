@@ -344,9 +344,11 @@ public class MainView implements Initializable {
                 } catch (Exception e) {
                     Platform.runLater(() -> progress.setValue(0.0f));
                     Platform.runLater(() -> loadingDatabaseStatus.setValue("Błąd ładowania danych. " + e.getMessage()));
-                    Alert a = new Alert(Alert.AlertType.ERROR);
-                    a.setContentText(e.getMessage());
-                    a.show();
+                    Platform.runLater(() -> {
+                        Alert a = new Alert(Alert.AlertType.ERROR);
+                        a.setContentText(e.getMessage());
+                        a.show();
+                    });
                 } finally {
                     Platform.runLater(() -> {
                         this.isWindowDisabled.setValue(false);
@@ -355,10 +357,12 @@ public class MainView implements Initializable {
                         this.speciesComboBox
                                 .getSelectionModel()
                                 .selectFirst();
-                        this.speciesName.setValue(selectedSpecies
-                                                          .getValue()
-                                                          .speciesNameEng());
 
+                        if(selectedSpecies.getValue() != null) {
+                            this.speciesName.setValue(selectedSpecies
+                                                              .getValue()
+                                                              .speciesNameEng());
+                        }
                         this.isSpeciesSelectDisabled.setValue(false);
                         this.isSexDisabled.setValue(false);
                         this.isSetDatesCheckBoxDisabled.setValue(false);
@@ -377,7 +381,6 @@ public class MainView implements Initializable {
     }
 
     public void selectFileName() {
-
         if (null == model) return;
         String result = model.selectFileName();
         if (null != result) fileName.setValue(result);

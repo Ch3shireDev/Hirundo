@@ -9,30 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="592e76d8-b651-4549-a464-a6e6f2948b8f" name="Changes" comment=":bird: Add date picking functionality to project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ParametersFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ParametersFilterTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/CsvFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/services/CsvFileWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/DialogFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/services/DialogFileChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/ICsvFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/services/ICsvFileWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/services/IFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/models/services/IFileChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/app/views/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/cli/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/BirdAge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/data_structures/BirdAge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/PopulationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/PopulationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsSummarizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsSummarizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsSummarizerParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturningBirdsSummarizerParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturnsStatisticsCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturnsStatisticsCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturnsStatisticsCalculatorParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hirundo/libs/services/ReturnsStatisticsCalculatorParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hirundo/app/views/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/controllers/MainControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/controllers/MainControllerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/app/controllers/mockups/MockCsvFileSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/app/controllers/mockups/MockCsvFileSaver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ReturningBirdsSummarizerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/libs/services/ReturningBirdsSummarizerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hirundo/mockups/MockFileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hirundo/mockups/MockFileChooser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +114,9 @@
     <option name="groupByToolId" value="true" />
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectId" id="2Mq30NdbvofRDchrImJXRm9Z6EG" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -160,6 +140,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/cheshire/Documents/GitHub/Hirundo/src/test/java/com/hirundo/libs/services",
     "last_opened_file_path": "D:/Documents/GitHub/Hirundo",
     "list.type.of.created.stylesheet": "CSS",
@@ -240,7 +221,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="Hirundo [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -262,7 +243,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="Hirundo [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -284,7 +265,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="ReturningBirdsSummarizerTest.givenTimeRangeInParameters_whenFiltered_thenPopulationHasRecordsInRange" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -308,7 +289,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="Tests in 'Hirundo.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -330,7 +311,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <list>
@@ -350,6 +331,13 @@
         <item itemvalue="Gradle.ReturningBirdsSummarizerTest.givenTimeRangeInParameters_whenFiltered_thenPopulationHasRecordsInRange" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-20.0.2-azul-20.0.2-3183f394aec4-4edb7f01" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -402,14 +390,8 @@
       <workItem from="1701030385749" duration="7544000" />
       <workItem from="1701521701155" duration="371000" />
       <workItem from="1701523303603" duration="9942000" />
-      <workItem from="1701590939686" duration="17223000" />
-    </task>
-    <task id="LOCAL-00002" summary=":bird: Move classes and resources to views, models, controllers, viewmodels folders">
-      <created>1678730116165</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1678730116165</updated>
+      <workItem from="1701590939686" duration="17898000" />
+      <workItem from="1702749154857" duration="102000" />
     </task>
     <task id="LOCAL-00003" summary=":bird: Rename controllers to views&#10;&#10;Move FXML loader from Application to MainView">
       <created>1678732165600</created>
@@ -747,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701592654083</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary=":bird: Add date picking functionality to project">
+      <created>1701623832928</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1701623832928</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
