@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'com.hirundo'
-version '1.6.2'
+version '1.6.3'
 
 repositories {
     mavenCentral()
@@ -40,12 +40,12 @@ dependencies {
     implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
         exclude(group: 'org.openjfx')
     }
-    implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+    implementation 'org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0'
     implementation 'org.java-sql-generator:org.java-sql-generator:0.3.2'
     implementation 'org.java-sql-generator:java-sql-generator:0.2'
     implementation 'jackcess:jackcess:1.1.10'
     implementation 'com.healthmarketscience.jackcess:jackcess:4.0.5'
-    implementation('com.opencsv:opencsv:5.7.1')
+    implementation 'com.opencsv:opencsv:5.7.1'
     implementation 'org.diirt.javafx:javafx-all:3.1.7'
     implementation 'org.mockito:mockito-core:5.4.0'
 
@@ -67,4 +67,8 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+tasks.withType(JavaExec).configureEach {
+    maxHeapSize = "4g"
 }

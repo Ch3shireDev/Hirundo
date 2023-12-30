@@ -95,8 +95,15 @@ public class MainController {
     }
 
     public FileSaveResult writeResultsForSelectedSpecies() throws Exception {
-        var templateFilename = getTemplateFilename(true);
-        var filename = fileChooser.selectFileToSave(templateFilename);
+        String filename;
+
+        try {
+            var templateFilename = getTemplateFilename(true);
+            filename = fileChooser.selectFileToSave(templateFilename);
+        } catch (Exception e) {
+            throw new Exception("Error while selecting file. " + e.getMessage());
+        }
+
         if (null == filename) {
             return null;
         }
@@ -105,8 +112,7 @@ public class MainController {
 
         try {
             filteredResults = speciesFilter.filterBySpecies(data, selectedSpecies);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("Error while filtering data. " + e.getMessage());
         }
 
@@ -136,27 +142,44 @@ public class MainController {
 
         }
 
+        String sexName = getSexName();
+
+        String dateRangeName = getDateRangeName();
+
+        return String.format("%s-%s-%s.csv", speciesName, sexName, dateRangeName);
+    }
+
+    private String getSexName() {
         var sexName = "any-sex";
 
-        if(selectedSex != BirdSex.Any) {
+        if (selectedSex != BirdSex.Any) {
             sexName = selectedSex
                     .toString()
                     .toLowerCase();
         }
+        return sexName;
+    }
 
+    private String getDateRangeName() {
         var dateRangeName = "all-dates";
 
         if (isDateRangeSelected) {
-            dateRangeName = String.format("from-%s-to-%s",
-                                          DateTimeFormatter
-                                                  .ofPattern("MM-dd", Locale.ENGLISH)
-                                                  .format(dateRangeStart),
-                                          DateTimeFormatter
-                                                  .ofPattern("MM-dd", Locale.ENGLISH)
-                                                  .format(dateRangeEnd));
-        }
+            try {
+                var dateStart = DateTimeFormatter
+                        .ofPattern("MM-dd", Locale.ENGLISH)
+                        .format(dateRangeStart);
 
-        return String.format("%s-%s-%s.csv", speciesName, sexName, dateRangeName);
+                var dateEnd = DateTimeFormatter
+                        .ofPattern("MM-dd", Locale.ENGLISH)
+                        .format(dateRangeEnd);
+
+                dateRangeName = String.format("from-%s-to-%s", dateStart, dateEnd);
+            }
+            catch (Exception e){
+                throw new IllegalArgumentException("Error while formatting date range. " + e.getMessage());
+            }
+        }
+        return dateRangeName;
     }
 
     private FileSaveResult getFileSaveResult(String filename, List<DbBirdRecord> filteredResults) throws Exception {
@@ -168,19 +191,17 @@ public class MainController {
             var returningData = returningBirdsSummarizer.getSummary(filteredResults, parameters);
             mappedData = mapper.getCsvReturningBirdsData(returningData);
             result = serializer.serializeToCsv(mappedData);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("Error while serializing data", e);
         }
 
-        try{
+        try {
             csvFileWriter.writeToFile(filename, result);
             var fileSaveResult = new FileSaveResult();
             fileSaveResult.OutputFileName = filename;
             fileSaveResult.RecordsCount = mappedData.size();
             return fileSaveResult;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("Error while saving file", e);
         }
     }

@@ -16,10 +16,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class MainView implements Initializable {
@@ -228,6 +230,10 @@ public class MainView implements Initializable {
                 .disableProperty()
                 .bind(isDateDisabled);
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        setDateTimeFormat(startDatePicker, formatter);
+        setDateTimeFormat(endDatePicker, formatter);
+
         startDate.bind(startDatePicker.valueProperty());
         endDate.bind(endDatePicker.valueProperty());
 
@@ -235,6 +241,28 @@ public class MainView implements Initializable {
         model.setOldTableName(value1);
         String value = newTableName.getValue();
         model.setNewTableName(value);
+    }
+
+    private void setDateTimeFormat(DatePicker startDatePicker, DateTimeFormatter formatter) {
+        startDatePicker.setConverter(new StringConverter<LocalDate>() {
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return formatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, formatter);
+                } else {
+                    return null;
+                }
+            }
+        });
     }
 
     public String getLoadingDatabaseStatus() {
@@ -335,7 +363,7 @@ public class MainView implements Initializable {
             isWindowDisabled.setValue(true);
             progress.setValue(-1);
             loadingDatabaseStatus.setValue("Ładowanie danych...");
-            new Thread(() -> {
+            var thread = new Thread(() -> {
                 try {
                     model.loadData();
                     var count = model.getRecordsCount();
@@ -358,7 +386,7 @@ public class MainView implements Initializable {
                                 .getSelectionModel()
                                 .selectFirst();
 
-                        if(selectedSpecies.getValue() != null) {
+                        if (selectedSpecies.getValue() != null) {
                             this.speciesName.setValue(selectedSpecies
                                                               .getValue()
                                                               .speciesNameEng());
@@ -370,7 +398,9 @@ public class MainView implements Initializable {
                         this.isWriteResultsDisabled.setValue(false);
                     });
                 }
-            }).start();
+            });
+
+            thread.start();
 
         } catch (Exception e) {
             progress.setValue(0.0f);
@@ -401,11 +431,11 @@ public class MainView implements Initializable {
 
     public void speciesComboBoxAction() {
 
-            var species = speciesComboBox
-                    .getSelectionModel()
-                    .getSelectedItem();
-            model.setSpeciesSelected(species);
-            isSexDisabled.setValue(null == species);
+        var species = speciesComboBox
+                .getSelectionModel()
+                .getSelectedItem();
+        model.setSpeciesSelected(species);
+        isSexDisabled.setValue(null == species);
     }
 
     public Boolean getIsDateDisabled() {
