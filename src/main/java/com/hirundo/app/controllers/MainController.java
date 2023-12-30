@@ -7,6 +7,7 @@ import com.hirundo.app.models.services.IFileChooser;
 import com.hirundo.libs.data_structures.*;
 import com.hirundo.libs.filters.ISpeciesFilter;
 import com.hirundo.libs.filters.SpeciesFilter;
+import com.hirundo.libs.loaders.HeapEfficientFileDataLoader;
 import com.hirundo.libs.loaders.IBirdRecordDataLoaderBuilder;
 import com.hirundo.libs.mappers.IReturningBirdsDataCsvRecordMapper;
 import com.hirundo.libs.mappers.ReturningBirdsDataCsvRecordMapper;
@@ -45,11 +46,7 @@ public class MainController {
     }
 
     public void loadData() throws Exception {
-        var dataLoader = builder
-                .withFilename(selectedFileName)
-                .withOldTableName(oldTableName)
-                .withNewTableName(newTableName)
-                .build();
+        var dataLoader = new HeapEfficientFileDataLoader(selectedFileName, oldTableName, newTableName);
         data = dataLoader.loadData();
     }
 
