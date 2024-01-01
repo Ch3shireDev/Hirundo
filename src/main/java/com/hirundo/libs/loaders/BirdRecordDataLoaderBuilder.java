@@ -21,26 +21,11 @@ public class BirdRecordDataLoaderBuilder implements IBirdRecordDataLoaderBuilder
     }
 
     public IFileDataLoader build() {
-
         if (null == filename) {
             throw new IllegalStateException("Filename is not set");
         }
 
-        var adapters = new java.util.ArrayList<IDbBirdRecordDataLoader>();
-
-        if (null != oldTableName) {
-            var oldBirdDataLoader = new AccessOldDbBirdRecordDataLoader(filename, oldTableName);
-            var oldAdapter = new BirdDataLoaderAdapter(oldBirdDataLoader);
-            adapters.add(oldAdapter);
-        }
-
-        if (null != newTableName) {
-            var newBirdDataLoader = new AccessNewDbBirdRecordDataLoader(filename, newTableName);
-            var newAdapter = new BirdDataLoaderAdapter(newBirdDataLoader);
-            adapters.add(newAdapter);
-        }
-
-        return new FileDataLoader(adapters.toArray(IDbBirdRecordDataLoader[]::new));
+        return new HeapEfficientFileDataLoader(filename, oldTableName, newTableName);
     }
 
 }
