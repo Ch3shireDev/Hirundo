@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'com.hirundo'
-version '1.6.4.1'
+version '1.6.5'
 
 repositories {
     mavenCentral()

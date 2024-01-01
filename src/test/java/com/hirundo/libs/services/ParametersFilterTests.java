@@ -141,4 +141,22 @@ public class ParametersFilterTests {
 
         assertFalse(result);
     }
+
+    @Test
+    public void givenBirdFromAugust_whenParametersAreFromJulyToNovember_thenFilterReturnsTrue(){
+        var r1 = new DbBirdRecord();
+        r1.ring = "123";
+        r1.date = LocalDate
+                .parse("2020-08-16")
+                .atStartOfDay();
+
+        var parameters = new ReturningBirdsSummarizerParameters();
+        parameters.useDateRange = true;
+        parameters.dateRangeStart = LocalDate.parse("2020-07-15");
+        parameters.dateRangeEnd = LocalDate.parse("2020-11-15");
+
+        var result = filter.filter(r1, parameters);
+
+        assertTrue(result);
+    }
 }
