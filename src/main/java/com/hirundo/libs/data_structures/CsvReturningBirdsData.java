@@ -120,4 +120,40 @@ public class CsvReturningBirdsData {
     @CsvBindByName(column = "D8")
     @CsvBindByPosition(position = 35)
     public Integer D8;
+
+    @CsvBindByName(column = "F0")
+    @CsvBindByPosition(position = 36)
+    public Integer F0;
+
+    @CsvBindByName(column = "F1")
+    @CsvBindByPosition(position = 37)
+    public Integer F1;
+
+    @CsvBindByName(column = "F2")
+    @CsvBindByPosition(position = 38)
+    public Integer F2;
+
+    @CsvBindByName(column = "F3")
+    @CsvBindByPosition(position = 39)
+    public Integer F3;
+
+    @CsvBindByName(column = "F4")
+    @CsvBindByPosition(position = 40)
+    public Integer F4;
+
+    @CsvBindByName(column = "F5")
+    @CsvBindByPosition(position = 41)
+    public Integer F5;
+
+    @CsvBindByName(column = "F6")
+    @CsvBindByPosition(position = 42)
+    public Integer F6;
+
+    @CsvBindByName(column = "F7")
+    @CsvBindByPosition(position = 43)
+    public Integer F7;
+
+    @CsvBindByName(column = "F8")
+    @CsvBindByPosition(position = 44)
+    public Integer F8;
 }

@@ -15,9 +15,14 @@ public class ReturningBirdsStatisticsResolver {
         wingParametersCalculator = new WingParametersCalculator();
         statisticsCalculator = new StatisticsCalculator();
     }
+
     public ReturningBirdsStatisticsResolver(IWingParametersCalculator wingParametersCalculator, IStatisticsCalculator statisticsCalculator) {
         this.wingParametersCalculator = wingParametersCalculator;
         this.statisticsCalculator = statisticsCalculator;
+    }
+
+    private static int countFat(List<DbBirdRecord> totalPopulation, Integer fatLevel) {
+        return totalPopulation.stream().filter(b -> fatLevel.equals(b.getFat())).toList().size();
     }
 
     public ReturningBirdsData getReturningBirdsData(List<DbBirdRecord> returningBirdRecords, List<DbBirdRecord> totalPopulation) {
@@ -104,6 +109,16 @@ public class ReturningBirdsStatisticsResolver {
         returningBirds.D6 = first.getD6();
         returningBirds.D7 = first.getD7();
         returningBirds.D8 = first.getD8();
+
+        returningBirds.F0 = countFat(totalPopulation, 0);
+        returningBirds.F1 = countFat(totalPopulation, 1);
+        returningBirds.F2 = countFat(totalPopulation, 2);
+        returningBirds.F3 = countFat(totalPopulation, 3);
+        returningBirds.F4 = countFat(totalPopulation, 4);
+        returningBirds.F5 = countFat(totalPopulation, 5);
+        returningBirds.F6 = countFat(totalPopulation, 6);
+        returningBirds.F7 = countFat(totalPopulation, 7);
+        returningBirds.F8 = countFat(totalPopulation, 8);
 
         return returningBirds;
     }

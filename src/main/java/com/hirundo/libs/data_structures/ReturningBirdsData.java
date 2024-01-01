@@ -43,4 +43,14 @@ public class ReturningBirdsData {
     public BirdSex Sex;
     public BirdAge Age;
     public int RecordsCount;
+
+    public Integer F0;
+    public Integer F1;
+    public Integer F2;
+    public Integer F3;
+    public Integer F4;
+    public Integer F5;
+    public Integer F6;
+    public Integer F7;
+    public Integer F8;
 }

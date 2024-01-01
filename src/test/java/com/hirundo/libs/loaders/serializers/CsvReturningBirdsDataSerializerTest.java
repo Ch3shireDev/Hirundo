@@ -100,6 +100,16 @@ public class CsvReturningBirdsDataSerializerTest {
         bird.D7 = 6;
         bird.D8 = 7;
 
+        bird.F0 = 1;
+        bird.F1 = 2;
+        bird.F2 = 3;
+        bird.F3 = 4;
+        bird.F4 = 5;
+        bird.F5 = 6;
+        bird.F6 = 7;
+        bird.F7 = 8;
+        bird.F8 = 9;
+
         var result = serializer.serializeToCsv(List.of(bird));
 
         var settingsLine = result.split("\r\n")[0];

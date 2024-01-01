@@ -25,7 +25,7 @@ public class AccessOldDbBirdRecordDataLoader implements IBirdRecordDataLoader<Ol
             var table = db.getTable(tableName);
             var records = new LinkedList<OldDbBirdRecord>();
             for (Row row : table) {
-                OldDbBirdRecord record = getOldDbBirdRecord(row);
+                OldDbBirdRecord record = AccessOldDbBirdRecordDataLoader.getOldDbBirdRecord(row);
                 records.add(record);
             }
             return records;

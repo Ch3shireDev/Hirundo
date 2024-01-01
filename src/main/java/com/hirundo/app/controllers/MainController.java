@@ -152,7 +152,7 @@ public class MainController {
     private String getSexName() {
         var sexName = "any-sex";
 
-        if (selectedSex != BirdSex.Any) {
+        if (BirdSex.Any != selectedSex) {
             sexName = selectedSex
                     .toString()
                     .toLowerCase();

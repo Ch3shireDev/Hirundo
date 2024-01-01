@@ -247,7 +247,7 @@ public class MainView implements Initializable {
         startDatePicker.setConverter(new StringConverter<LocalDate>() {
             @Override
             public String toString(LocalDate date) {
-                if (date != null) {
+                if (null != date) {
                     return formatter.format(date);
                 } else {
                     return "";
@@ -256,7 +256,7 @@ public class MainView implements Initializable {
 
             @Override
             public LocalDate fromString(String string) {
-                if (string != null && !string.isEmpty()) {
+                if (null != string && !string.isEmpty()) {
                     return LocalDate.parse(string, formatter);
                 } else {
                     return null;
@@ -386,7 +386,7 @@ public class MainView implements Initializable {
                                 .getSelectionModel()
                                 .selectFirst();
 
-                        if (selectedSpecies.getValue() != null) {
+                        if (null != selectedSpecies.getValue()) {
                             this.speciesName.setValue(selectedSpecies
                                                               .getValue()
                                                               .speciesNameEng());

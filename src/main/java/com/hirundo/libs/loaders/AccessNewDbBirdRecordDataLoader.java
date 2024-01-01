@@ -25,7 +25,7 @@ public class AccessNewDbBirdRecordDataLoader implements IBirdRecordDataLoader<Ne
             var table = db.getTable(tableName);
             var records = new LinkedList<NewDbBirdRecord>();
             for (Row row : table) {
-                NewDbBirdRecord record = getNewDbBirdRecord(row);
+                NewDbBirdRecord record = AccessNewDbBirdRecordDataLoader.getNewDbBirdRecord(row);
                 records.add(record);
             }
             return records;

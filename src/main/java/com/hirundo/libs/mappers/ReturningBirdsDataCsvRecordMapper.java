@@ -71,6 +71,16 @@ public class ReturningBirdsDataCsvRecordMapper implements IReturningBirdsDataCsv
         result.D7 = data.D7;
         result.D8 = data.D8;
 
+        result.F0 = data.F0;
+        result.F1 = data.F1;
+        result.F2 = data.F2;
+        result.F3 = data.F3;
+        result.F4 = data.F4;
+        result.F5 = data.F5;
+        result.F6 = data.F6;
+        result.F7 = data.F7;
+        result.F8 = data.F8;
+
         return result;
     }
 
